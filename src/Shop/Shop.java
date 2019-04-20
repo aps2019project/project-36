@@ -12,6 +12,4 @@ public class Shop {
     public void sell(int ID){}
     public void show(){}
     public void showShopHelp(){}
-
-
 }
