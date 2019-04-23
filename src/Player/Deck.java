@@ -1,7 +1,7 @@
 package Player;
 
 import Collective.Card;
-import Collective.Items;
+import Collective.Item;
 import java.util.ArrayList;
 
 public class Deck {
@@ -9,7 +9,7 @@ public class Deck {
     private static ArrayList<Deck> decks = new ArrayList<Deck>();
     private String name;
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<Items> items = new ArrayList<Items>();
+    private ArrayList<Item> items = new ArrayList<Item>();
 
     private Hand hand = new Hand();
 
@@ -25,7 +25,7 @@ public class Deck {
         return cards;
     }
 
-    public ArrayList<Items> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
