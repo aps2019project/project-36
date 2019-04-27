@@ -9,7 +9,7 @@ enum CollectableTypes{
     Eksir;
 }
 
-public class Collectable extends Item{
+public class Collectible extends Item{
     private int MP ;
     private ArrayList <Card> targetArea =new ArrayList<Card>();
     private Cell cell;
