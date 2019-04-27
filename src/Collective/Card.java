@@ -3,6 +3,7 @@ package Collective;
 public class Card {
     private String name;
     private int id;
+    protected int price;
 
     public String getName() {
         return name;
