@@ -9,10 +9,18 @@ public class Item {
     private String desc;
     private int itemID;
     private Player owner;
-
+    private String type;
 
     public void setOwner(Player Player ) {
         this.owner = owner;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Player getOwner() {
