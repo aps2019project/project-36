@@ -4,6 +4,15 @@ public class Card {
     private String name;
     private int id;
     protected int price;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;

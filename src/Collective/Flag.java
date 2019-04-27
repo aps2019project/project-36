@@ -8,6 +8,8 @@ import Cell.Cell;
 public class Flag extends Item {
     private ArrayList<Flag> flags=new ArrayList<>();
     private Cell cell;
+    private Card owner;
+
 
     public void addFlag(Flag flag){}
 
@@ -15,12 +17,12 @@ public class Flag extends Item {
         return flags;
     }
 
-    public void setOwner(Player player){
-
+    public Card getOwner() {
+        return owner;
     }
 
-    public Player getOwner(){
-        return super.getOwner();
+    public void setOwner(Card owner) {
+        this.owner = owner;
     }
 
     public Cell getCell() {

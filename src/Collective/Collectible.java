@@ -14,6 +14,15 @@ public class Collectible extends Item{
     private ArrayList <Card> targetArea =new ArrayList<Card>();
     private Cell cell;
     private CollectableTypes collectabletype;
+    private Card owner;
+    public Card getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Card owner) {
+        this.owner = owner;
+    }
+
     public Cell getCell() {
         return cell;
     }
@@ -37,6 +46,7 @@ public class Collectible extends Item{
             case ChineseSword:
                 break;
             case JoonBaw:
+                if(owner.getType().equals()
                 break;
             case TirSeShakh:
                 break;

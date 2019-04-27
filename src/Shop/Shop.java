@@ -14,6 +14,7 @@ public class Shop {
     public void show(){}
     public void showShopHelp(){}
     public void exit(){
+        return;
     }
     public void help(){
         System.out.println("exit");
