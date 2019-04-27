@@ -1,8 +1,60 @@
 import Consts.Consts;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-public class Main {
+public class Main
+{
+    @SuppressWarnings("unchecked")
+    public static void main( String[] args )
+    {
 
-    public static void main(String[] args) {
+        JSONObject HeroDetails = new JSONObject();
+        HeroDetails.put("Name", "Sven");
+        HeroDetails.put("AP", "5");
+        HeroDetails.put("Class", "Melee");
+        HeroDetails.put("Special power", "attack");
+        JSONObject HeroObject = new JSONObject();
+        HeroObject.put("Hero", HeroDetails);
 
+
+        JSONObject ItemDetails2 = new JSONObject();
+        ItemDetails2.put("Name", "Yasha");
+        ItemDetails2.put("Desc", "add 3 HP to Hero");
+        JSONObject ItemObject = new JSONObject();
+        ItemObject.put("Item", ItemDetails2);
+
+        JSONObject CardsDetails2 = new JSONObject();
+        CardsDetails2.put("Type", "Spell");
+        CardsDetails2.put("Name", "OverPower");
+        CardsDetails2.put("MP", "2");
+        CardsDetails2.put("Desc", "add 2 AP to selected card");
+        CardsDetails2.put("Type", "Minion");
+        CardsDetails2.put("Name", "Dex");
+        CardsDetails2.put("Class", "Melee");
+        CardsDetails2.put("AP", "3");
+        CardsDetails2.put("HP", "5");
+        CardsDetails2.put("MP", "1");
+        CardsDetails2.put("Special power", "Heal 1 allied minion on spawn");
+        JSONObject CardsObject = new JSONObject();
+        CardsObject.put("Cards", CardsDetails2);
+
+
+        //Add Objects to list
+        JSONArray List = new JSONArray();
+        List.add(HeroObject);
+        List.add(ItemObject);
+        List.add(CardsObject);
+
+        //Write JSON file
+        try (FileWriter file = new FileWriter("Cards.json")) {
+
+            file.write(List.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

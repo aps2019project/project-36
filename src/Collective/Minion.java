@@ -12,15 +12,15 @@ enum MinionTypes{
 
 public class Minion extends Card {
 
-    private int HP;
-    private int AP;
-    private int MP;
-    private Spell specialPower;
-    private String classType;
-    private int neededManna;
-    private int typeOfActivation;
-    private int rangeOfAttack;
-    private String typeOfImpact;
+    protected int HP;
+    protected int AP;
+    protected int MP;
+    protected Spell specialPower;
+    protected String classType;
+    protected int neededManna;
+    protected int typeOfActivation;
+    protected int rangeOfAttack;
+    protected String typeOfImpact;
 
     public void attack(){
     }
