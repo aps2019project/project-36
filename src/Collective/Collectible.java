@@ -46,7 +46,6 @@ public class Collectible extends Item{
             case ChineseSword:
                 break;
             case JoonBaw:
-                if(owner.getType().equals()
                 break;
             case TirSeShakh:
                 break;
