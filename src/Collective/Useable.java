@@ -5,7 +5,7 @@ enum UsableTypes{
     KingKiller,AssassinationDagger,PoisonousDagger,ShockHammer,GhoslTamid;
 }
 
-public class Useable extends Items
+public class Useable extends Item
 {
     private int cost;
    // private UseableType

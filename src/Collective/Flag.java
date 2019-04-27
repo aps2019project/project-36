@@ -4,7 +4,7 @@ import Player.Player;
 
 import java.util.ArrayList;
 
-public class Flag extends Items {
+public class Flag extends Item {
     private ArrayList<Flag> flags=new ArrayList<>();
     private CellEffect cell;
 
