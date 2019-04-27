@@ -1,13 +1,13 @@
 package Consts;
 
 import Collective.Card;
-import Collective.Items;
+import Collective.Item;
 
 public class Consts {
     private static Consts consts = null;
     private String[] usernames = {"Attacker", "Street Fighter", "King Arthas"};
     private Card[] cards;
-    private Items item;
+    private Item item;
 
     public static Consts getInstance() {
         if(consts == null)
@@ -23,7 +23,7 @@ public class Consts {
         return cards;
     }
 
-    public Items getItem() {
+    public Item getItem() {
         return item;
     }
 }
