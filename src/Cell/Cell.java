@@ -17,6 +17,38 @@ public class Cell {
         return y;
     }
 
+    public ArrayList<Cell> getCells() {
+        return cells;
+    }
+
+    public ArrayList<Buff> getBuffs() {
+        return Buffs;
+    }
+
+    public void setBuffs(ArrayList<Buff> buffs) {
+        Buffs = buffs;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public ArrayList<CellEffect> getCellEffects() {
+        return cellEffects;
+    }
+
+    public void setCellEffects(ArrayList<CellEffect> cellEffects) {
+        this.cellEffects = cellEffects;
+    }
+
+    public void setCells(ArrayList<Cell> cells) {
+        this.cells = cells;
+    }
+
     public int getX() {
         return x;
     }
