@@ -5,5 +5,5 @@ enum CollectibleTypes{
     Eksir;
 }
 
-public class Collectible extends Items{
+public class Collectible extends Item{
 }

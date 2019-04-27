@@ -11,7 +11,7 @@ public class Collection {
     private ArrayList<Card> cards;
     private ArrayList<Item> items;
     private ArrayList<Deck> decks;
-    private ArrayList<Deck> searchedList;
+    private ArrayList<Integer> searchedList;
 
     public ArrayList<Card> getCards() {
         return cards;
@@ -25,22 +25,25 @@ public class Collection {
         return decks;
     }
 
-    public void search (String name) {
-        search(cards);
-        search(items);
+    public ArrayList<Integer> getSearchedList() {
+        return searchedList;
+    }
+    public int addToSearchedList (int id) {
+        searchedList.add(id);
+        return id;
+    }
+
+    public int search (String name) {
         for (int i = 0; i < cards.size(); i++){
             if (cards.get(i).getName().equals(name)){
-                return cards.get(i).getId();
-                addToSearchedList(cards.get(i));
+                addToSearchedList(cards.get(i).getId());
             }
         }
         for (int i = 0; i < items.size(); i++){
             if (items.get(i).getName().equals(name)){
-                return items.get(i).getId();
-                addToSearchedList(items.get(i));
+                addToSearchedList(items.get(i).getId());
             }
         }
         return 0;
     }
-    public int search(ArrayList<Colective>)
 }
