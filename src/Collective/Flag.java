@@ -3,10 +3,11 @@ package Collective;
 import Player.Player;
 
 import java.util.ArrayList;
+import Cell.Cell;
 
 public class Flag extends Item {
     private ArrayList<Flag> flags=new ArrayList<>();
-    private CellEffect cell;
+    private Cell cell;
 
     public void addFlag(Flag flag){}
 
@@ -22,11 +23,11 @@ public class Flag extends Item {
         return super.getOwner();
     }
 
-    public CellEffect getCell() {
+    public Cell getCell() {
         return cell;
     }
 
-    public void setCell(CellEffect cell) {
+    public void setCell(Cell cell) {
         this.cell = cell;
     }
 
