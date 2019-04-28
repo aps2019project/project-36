@@ -4,7 +4,7 @@ import Collective.Card;
 
 import java.util.ArrayList;
 
-class Match {
+public class Match {
 
     private static ArrayList<Match> matches = new ArrayList<Match>();
     private ArrayList<Card> cards = new ArrayList<Card>();

@@ -8,11 +8,16 @@ public class Consts {
     private String[] usernames = {"Attacker", "Street Fighter", "King Arthas"};
     private Card[] cards;
     private Item item;
+    private final int initialDaricNum = 500;
 
     public static Consts getInstance() {
         if(consts == null)
             consts = new Consts();
         return consts;
+    }
+
+    public int getInitialDaricNum() {
+        return initialDaricNum;
     }
 
     public String[] getUsernames() {
