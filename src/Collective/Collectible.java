@@ -1,4 +1,9 @@
 package Collective;
+
+import Cell.Cell;
+
+import java.util.ArrayList;
+
 enum CollectibleTypes{
     MajoonMana, MajoonRoointan, NefrinMarg, RandomDamage,
     BladesofAgility, ChineseSword, JoonBaw, TirSeShakh,
@@ -6,4 +11,42 @@ enum CollectibleTypes{
 }
 
 public class Collectible extends Item{
+    private Cell cell;
+    private ArrayList <Card> targetArea = new ArrayList<>();
+    private int HP;
+    private CollectibleTypes collectibletype;
+    public Cell getCell() {
+        return cell;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
+    }
+
+    public void main(String[] args) {
+        switch(collectibletype){
+            case MajoonMana:
+                break;
+            case MajoonRoointan:
+                break;
+            case NefrinMarg:
+                break;
+            case RandomDamage:
+                break;
+            case BladesofAgility:
+                break;
+            case ChineseSword:
+                break;
+            case JoonBaw:
+                break;
+            case TirSeShakh:
+                break;
+            case Eksir:
+                break;
+
+        }
+    }
+
+
+
 }
