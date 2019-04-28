@@ -36,12 +36,12 @@ public class Collection {
     public int search (String name) {
         for (int i = 0; i < cards.size(); i++){
             if (cards.get(i).getName().equals(name)){
-                addToSearchedList(cards.get(i).getId());
+                addToSearchedList(cards.get(i).getCardNumber());
             }
         }
         for (int i = 0; i < items.size(); i++){
             if (items.get(i).getName().equals(name)){
-                addToSearchedList(items.get(i).getId());
+                addToSearchedList(items.get(i).getItemNumber());
             }
         }
         return 0;
