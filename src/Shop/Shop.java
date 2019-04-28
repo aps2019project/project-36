@@ -8,7 +8,6 @@ import Player.Account;
 public class Shop {
     private ArrayList<Card> cards= new ArrayList<>();
     private ArrayList<Item> items= new ArrayList<>();
-    private Account account;
     public void showCollection(){}
     public void search(String name){
         boolean exist=false;
@@ -28,7 +27,7 @@ public class Shop {
             System.out.println("This Card/Item is not in the shop");
         }
     }
-    public void searchCollection(String name){
+    public void searchCollection(String name,Account account){
         boolean exist=false;
         for(Card x: account.getCollection().getCards()){
             if(name.equals(x.getName())){
