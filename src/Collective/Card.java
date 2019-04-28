@@ -6,13 +6,29 @@ public class Card {
     protected int x;
     protected int y;
     protected int price;
-    protected int cardID;
-    protected String cardid;
+    protected int cardNumber;
+    protected String cardID;
     protected String name;
     protected Player owner;
     protected int HP;
     protected int AP;
     protected int MP;
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(String cardID) {
+        this.cardID = cardID;
+    }
 
     public void isHero(Hero hero) {
     }

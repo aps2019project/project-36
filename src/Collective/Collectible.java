@@ -46,6 +46,7 @@ public class Collectible extends Item{
             case TirSeShakh:
                 break;
             case Eksir:
+                //this.owner.owner.getMainDeck().
                 break;
 
         }
