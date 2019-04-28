@@ -3,12 +3,14 @@ package Shop;
 import java.util.ArrayList;
 import Collective.Card;
 import Collective.Item;
+import Player.Account;
 
 public class Shop {
     private ArrayList<Card> cards= new ArrayList<>();
     private ArrayList<Item> items= new ArrayList<>();
+    private Account account;
     public void showCollection(){}
-    public int search(String name){
+    public void search(String name){
         for(Card x: cards){
             if(name.equals(x.getName())){
                 System.out.println(x.getCardNumber());
@@ -19,10 +21,18 @@ public class Shop {
                 System.out.println(x.getItemNumber());
             }
         }
-        return 0;
     }
     public void searchCollection(String name){
-        
+        for(Card x: account.getCollection().getCards()){
+            if(name.equals(x.getName())){
+                System.out.println(x.getCardNumber());
+            }
+        }
+        for(Item x:account.getCollection().getItems()){
+            if(name.equals(x.getName())){
+                System.out.println(x.getItemNumber());
+            }
+        }
     }
     public void buy(String name){}
     public void sell(int ID){}
