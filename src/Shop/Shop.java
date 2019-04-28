@@ -21,7 +21,9 @@ public class Shop {
         }
         return 0;
     }
-    //public Array searchCollection(String name){}
+    public void searchCollection(String name){
+        
+    }
     public void buy(String name){}
     public void sell(int ID){}
     public void show(){}
