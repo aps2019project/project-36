@@ -12,6 +12,7 @@ public class Card {
     protected Player owner;
     protected int HP;
     protected int AP;
+    protected int MP;
 
     public void isHero(Hero hero) {
     }

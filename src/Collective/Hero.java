@@ -6,8 +6,6 @@ enum HeroTypes{
 }
 
 public class Hero extends Card {
-
-    private int MP;
     private Spell specialPower;
     private String classType;
     private int RangeOfAttack;

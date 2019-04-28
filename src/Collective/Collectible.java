@@ -15,6 +15,7 @@ public class Collectible extends Item{
     private ArrayList <Card> targetArea = new ArrayList<>();
     private int HP;
     private CollectibleTypes collectibletype;
+    private Card owner;
     public Cell getCell() {
         return cell;
     }
@@ -26,6 +27,7 @@ public class Collectible extends Item{
     public void main(String[] args) {
         switch(collectibletype){
             case MajoonMana:
+                this.owner.MP+=3;
                 break;
             case MajoonRoointan:
                 break;
@@ -34,10 +36,12 @@ public class Collectible extends Item{
             case RandomDamage:
                 break;
             case BladesofAgility:
+                this.owner.AP+=6;
                 break;
             case ChineseSword:
                 break;
             case JoonBaw:
+                this.owner.HP+=6;
                 break;
             case TirSeShakh:
                 break;
