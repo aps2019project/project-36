@@ -5,18 +5,18 @@ import Collective.Card;
 import Collective.Item;
 
 public class Shop {
-    protected ArrayList<Card> cards= new ArrayList<Card>();
-    protected ArrayList<Item> items= new ArrayList<Item>();
+    private ArrayList<Card> cards= new ArrayList<>();
+    private ArrayList<Item> items= new ArrayList<>();
     public void showCollection(){}
     public int search(String name){
-        for(int i=0; i<cards.size(); i++){
-            if(name.equals(cards.get(i).getName())){
-                return cards.get(i).getCardNumber();
+        for(Card x: cards){
+            if(name.equals(x.getName())){
+                System.out.println(x.getCardNumber());
             }
         }
-        for(int i=0; i<items.size(); i++){
-            if(name.equals(items.get(i).getName())){
-               return items.get(i).getItemNumber();
+        for(Item x:items){
+            if(name.equals(x.getName())){
+                System.out.println(x.getItemNumber());
             }
         }
         return 0;
@@ -35,7 +35,7 @@ public class Shop {
         System.out.println("search[item name|card name]");
         System.out.println("search collection[item name|card name]");
         System.out.println("buy[card name|item name]");
-        System.out.println("sell[card id|card id]");
+        System.out.println("sell[card id|item id]");
         System.out.println("show");
         System.out.println("help");
     }
