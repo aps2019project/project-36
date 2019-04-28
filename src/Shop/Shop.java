@@ -1,13 +1,26 @@
 package Shop;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import Collective.Card;
+import Collective.Item;
 
 public class Shop {
-    protected ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> cards= new ArrayList<>();
+    private ArrayList<Item> items= new ArrayList<>();
     public void showCollection(){}
-    //public int search(String name){}
+    public int search(String name){
+        for(Card x: cards){
+            if(name.equals(x.getName())){
+                System.out.println(x.getCardNumber());
+            }
+        }
+        for(Item x:items){
+            if(name.equals(x.getName())){
+                System.out.println(x.getItemNumber());
+            }
+        }
+        return 0;
+    }
     //public Array searchCollection(String name){}
     public void buy(String name){}
     public void sell(int ID){}
@@ -22,7 +35,7 @@ public class Shop {
         System.out.println("search[item name|card name]");
         System.out.println("search collection[item name|card name]");
         System.out.println("buy[card name|item name]");
-        System.out.println("sell[card id|card id]");
+        System.out.println("sell[card id|item id]");
         System.out.println("show");
         System.out.println("help");
     }

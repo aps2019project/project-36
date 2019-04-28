@@ -5,10 +5,19 @@ import Player.Player;
 import java.util.ArrayList;
 
 public class Item {
-    private String name;
-    private String desc;
-    private int itemID;
-    private String type;
+    protected String name;
+    protected String desc;
+    protected String type;
+    protected String itemID;
+    protected int itemNumber;
+
+    public String getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(String itemID) {
+        this.itemID = itemID;
+    }
 
     public String getType() {
         return type;
@@ -26,13 +35,12 @@ public class Item {
         return name;
     }
 
-    public void setId(int id) {
-        this.itemID = id;
+    public int getItemNumber() {
+        return itemNumber;
     }
 
-    public int getId() {
-        return itemID;
+    public void setItemNumber(int itemNumber) {
+        this.itemNumber = itemNumber;
     }
-
 }
 

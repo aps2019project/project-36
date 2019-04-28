@@ -11,10 +11,6 @@ enum MinionTypes{
 }
 
 public class Minion extends Card {
-
-    protected int HP;
-    protected int AP;
-    protected int MP;
     protected Spell specialPower;
     protected String classType;
     protected int neededManna;
