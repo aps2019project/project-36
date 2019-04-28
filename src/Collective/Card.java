@@ -1,9 +1,36 @@
 package Collective;
 
-public class Card {
-    private String name;
-    private int id;
+import Player.Player;
 
+public class Card {
+    protected int x;
+    protected int y;
+    protected int price;
+    protected int cardID;
+    protected String cardid;
+    protected String name;
+    protected Player owner;
+
+    public void isHero(Hero hero) {
+    }
+
+    public void isMinion(Minion minion) {
+    }
+
+    public void isSpell(Spell spell) {
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setOwner(Player player) {
+
+    }
+
+    public Player getOwner(Player player){
+        return player;
+    }
     public String getName() {
         return name;
     }
@@ -12,11 +39,8 @@ public class Card {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public void setType(String type) {
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 }
