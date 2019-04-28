@@ -11,27 +11,39 @@ public class Shop {
     private Account account;
     public void showCollection(){}
     public void search(String name){
+        boolean exist=false;
         for(Card x: cards){
             if(name.equals(x.getName())){
                 System.out.println(x.getCardNumber());
+                exist=true;
             }
         }
         for(Item x:items){
             if(name.equals(x.getName())){
                 System.out.println(x.getItemNumber());
+                exist=true;
             }
+        }
+        if(!exist){
+            System.out.println("This Card/Item is not in the shop");
         }
     }
     public void searchCollection(String name){
+        boolean exist=false;
         for(Card x: account.getCollection().getCards()){
             if(name.equals(x.getName())){
                 System.out.println(x.getCardNumber());
+                exist=true;
             }
         }
         for(Item x:account.getCollection().getItems()){
             if(name.equals(x.getName())){
                 System.out.println(x.getItemNumber());
+                exist=true;
             }
+        }
+        if(!exist){
+            System.out.println("This Card/Item is not in the collection");
         }
     }
     public void buy(String name){}
