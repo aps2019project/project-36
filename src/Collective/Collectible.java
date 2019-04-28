@@ -46,7 +46,8 @@ public class Collectible extends Item{
             case TirSeShakh:
                 break;
             case Eksir:
-                //this.owner.owner.getMainDeck().
+                this.owner.owner.getMainDeck().getHero().AP+=3;
+                this.owner.owner.getMainDeck().getHero().HP+=3;
                 break;
 
         }
