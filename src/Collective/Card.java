@@ -10,6 +10,8 @@ public class Card {
     protected String cardid;
     protected String name;
     protected Player owner;
+    protected int HP;
+    protected int AP;
 
     public void isHero(Hero hero) {
     }

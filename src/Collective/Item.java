@@ -5,10 +5,10 @@ import Player.Player;
 import java.util.ArrayList;
 
 public class Item {
-    private String name;
-    private String desc;
-    private int itemID;
-    private String type;
+    protected String name;
+    protected String desc;
+    protected int itemID;
+    protected String type;
 
     public String getType() {
         return type;
