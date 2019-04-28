@@ -53,4 +53,8 @@ public class Deck {
     public void setHand(Hand hand) {
         this.hand = hand;
     }
+
+    public void removeItem(Item item){
+        items.remove(item);
+    }
 }
