@@ -1,6 +1,7 @@
 package Player;
 
 import Collective.Card;
+import Collective.Hero;
 import Collective.Item;
 import java.util.ArrayList;
 
@@ -10,8 +11,16 @@ public class Deck {
     private String name;
     private ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Item> items = new ArrayList<Item>();
-
+    private Hero hero;
     private Hand hand = new Hand();
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
 
     public static ArrayList<Deck> getDecks() {
         return decks;
