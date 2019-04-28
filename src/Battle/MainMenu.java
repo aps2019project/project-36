@@ -45,7 +45,16 @@ public class MainMenu {
             pair.username = account.getUsername();
             ans.add(pair);
         }
-        Collections.sort(ans);
+        for (int i = 0; i < ans.size(); i++){
+            for (int j = 0; j < ans.size(); j++){
+                if(ans.get(i).wins > ans.get(j).wins){
+                    Collections.swap(ans, i, j);
+                }
+            }
+        }
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.println(i + 1 + "- UserName : " + ans.get(i).username + "- Wins : " + ans.get(i).wins);
+        }
     }
 }
 
