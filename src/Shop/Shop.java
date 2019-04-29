@@ -64,3 +64,22 @@ public class Shop {
     }
 
 }
+
+
+/*just writing some things down:
+show collection:
+Items:
+Name: TajDanayi - Desc: Add mana after third turn - Buy Cost : 300
+Name: NamoosSepar - Desc: Activate 2 passive HolyBuffs - Buy Cost : 4000
+Name: KamanDamool - Desc: Add 2 to Hero's Range - Buy Cost : 3000
+Name: ParSimorgh - Desc: Multiple Hero's life by 2 - Buy Cost : 3000
+Name: TerrorHood - Desc: Activate WeaknessBuff - Buy Cost : 20000
+Name: KingKiller - Desc: Kill enemy's hero after 15 turns - Buy Cost : 9000
+Name: AssassinationDagger - Desc: Hero hits 8 more times when attacking the enemy's hero - Buy Cost : 5000
+Name: PoisonousDagger - Desc: After every hit poisons the enemy's force for 1 turn - Buy Cost : 7000
+Name: ShockHammer - Desc: Stun enemy for 1 turn - Buy Cost : 15000
+Name: SoulEater - Desc: ONly for Melee : Add 2 HP after a hit - Buy Cost : 25000
+Name: GhoslTamid - Desc: Hit 5 more times while the enemy has not been hit 5 times - Buy Cost : 20000
+sell cost?!
+ */
+
