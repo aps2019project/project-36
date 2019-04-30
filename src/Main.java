@@ -1,11 +1,14 @@
 import Consts.Consts;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import Player.Player;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Main
 {
+    static Player loggedInPlayer = new Player();
     public static void main( String[] args )
     {
         JSONObject HeroDetails = new JSONObject();
