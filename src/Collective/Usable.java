@@ -3,8 +3,8 @@ package Collective;
 import Player.Player;
 
 enum UsableTypes {
-    SoulEater,TajDanayi,NamoosSepar,KamanDamool,ParSimorgh,TerrorHood,
-    KingKiller,AssassinationDagger,PoisonousDagger,ShockHammer,GhoslTamid;
+    SOULEATER,TAJDANAYI,NAMOOSSEPAR,KAMANDAMOOL,PARSIMORGH,TERRORHOOD,
+    KINGKILLER,ASSASSINATIONDAGGER,POISONOUSDAGGER,SHOCKHAMMER,GHOSLTAMID;
 }
 
 public class Usable extends Item {
@@ -22,27 +22,27 @@ public class Usable extends Item {
 
     public void main(String[] args) {
         switch(usabletype){
-            case  SoulEater:
+            case  SOULEATER:
                 break;
-            case TajDanayi:
+            case TAJDANAYI:
                 break;
-            case NamoosSepar:
+            case NAMOOSSEPAR:
                 break;
-            case KamanDamool:
+            case KAMANDAMOOL:
                 break;
-            case ParSimorgh:
+            case PARSIMORGH:
                 break;
-            case TerrorHood:
+            case TERRORHOOD:
                 break;
-            case KingKiller:
+            case KINGKILLER:
                 break;
-            case AssassinationDagger:
+            case ASSASSINATIONDAGGER:
                 break;
-            case PoisonousDagger:
+            case POISONOUSDAGGER:
                 break;
-            case ShockHammer:
+            case SHOCKHAMMER:
                 break;
-            case GhoslTamid:
+            case GHOSLTAMID:
                 break;
 
         }

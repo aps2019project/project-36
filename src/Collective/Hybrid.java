@@ -1,7 +1,7 @@
 package Collective;
 
 enum HybridTypes{
-    NeizedareFars,NeizeDareToorani,DiveSiah,GhooleTakCheshm,GhooleBozorg;
+    NEIZEDAREFARS,NEIZEDARETOORANI,DIVESIAH,GHOOLETAKCHESHM,GHOOLEBOZORG;
 }
 
 public class Hybrid extends Minion {

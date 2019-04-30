@@ -1,9 +1,9 @@
 package Collective;
 
 enum RangedTypes{
-    KamandareFars,KAmandareToorani,GhollabsangdareToorani,
-    GhooleTAkCheshm,Oghab,MAreSammi,EzhdehayeAtashAndaz,
-    MareGhoolPeikar,Jadoogar,JadoogareAzam,Jen,Giv,Iraj,NaneSarma;
+    KAMANDAREFARS,KAMANDARETOORANI,GHOLLABSANGDARETOORANI,
+    GHOOLETAKCHESHM,OGHAB,MARESAMMI,EZHDEHAYEATASHANDAZ,
+    MAREGHOOLPEIKAR,JADOOGAR,JADOOGAREAZAM,JEN,GIV,IRAJ,NANESARMA;
 
 }
 

@@ -1,10 +1,10 @@
 package Collective;
 
 enum MeleeTypes{
-    ShamshirzaneFars,AsbsavareFars,PahlavaneFars,SepahsalareFars,
-    JasooseToorani,GorzdareToorani,ShahzadeyeToorani,DiveGorazsavar,
-    ShireDarande,GorgeSefid,Palang,Gorg,GorazeVahshi,Piran,BAhman,
-    Ashkboos,GhooleDosar,Fooladzere,Siavash,ShahGhool,ArzhangDiv;
+    SHAMSHIRZANEFARS,ASBSAVAREFARS,PAHLAVANEFARS,SEPAHSALAREFARS,
+    JASOOSETOORANI,GORZDARETOORANI,SHAHZADEYETOORANI,DIVEGORAZSAVAR,
+    SHIREDARANDE,GORGESEFID,PALANG,GORG,GORAZEVAHSHI,PIRAN,BAHMAN,
+    ASHKBOOS,GHOOLEDOSAR,FOOLADZERE,SIAVASH,SHAHGHOOL,ARZHANGDIV;
 }
 
 public class Melee extends Minion {

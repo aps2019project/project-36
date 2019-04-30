@@ -1,8 +1,8 @@
 package Collective;
 
 enum HeroTypes{
-    DiveSefid,Simorgh,Ezhdeha,Rakhsh,ZAhak,
-    Kaveh,Arash,Afsane,Efandiar,Rostam;
+    DIVESEFID,SIMORGH,EZHDEHA,RAKHSH,ZAHAK,
+    KAVEH,ARASH,AFSANE,EFANDIAR,ROSTAM;
 }
 
 public class Hero extends Card {

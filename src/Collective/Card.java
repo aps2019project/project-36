@@ -1,8 +1,14 @@
 package Collective;
 
 import Player.Player;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Card {
+
     protected int x;
     protected int y;
     protected int price;

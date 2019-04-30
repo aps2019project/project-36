@@ -2,9 +2,9 @@ package Collective;
 
 import java.util.ArrayList;
 enum SpellTypes{
-    TotalDiarm,AreaDispal,Empower,FireBall,GodStrength,HellFire,
-    LightingBolt,PoisonLake,MAdness,AllDisarm,AllPoison,Dispel,HealthWithProfit,
-    GhazaBokhorJoonBegiri,AllPower,AllAttack,Weakening,Sacrifice;
+    TOTALDIARM,AREADISPAL,EMPOWER,FIREBALL,GODSTRENGTH,HELLFIRE,
+    LIGHTINGBOLT,POISONLAKE,MADNESS,ALLDISARM,ALLPOISON,DISPEL,HEALTHWITHPROFIT,
+    GHAZABOKHORJOONBEGIRI,ALLPOWER,ALLATTACK,WEAKENING,SACRIFICE;
 }
 public class Spell extends Card {
     private ArrayList<Card> targetArea = new ArrayList<>();

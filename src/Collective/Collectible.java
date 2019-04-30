@@ -5,9 +5,8 @@ import Cell.Cell;
 import java.util.ArrayList;
 
 enum CollectibleTypes{
-    MajoonMana, MajoonRoointan, NefrinMarg, RandomDamage,
-    BladesofAgility, ChineseSword, JoonBaw, TirSeShakh,
-    Eksir;
+    MAJOONMANA, MAJOswONROOINTAN, NEFRINMARG, RANDOMDAMAGE,
+    BLADESOFAGILITY, CHINESESWORD, JOONBAW, TIRSESHAKH, EKSIR;
 }
 
 public class Collectible extends Item{
@@ -26,26 +25,26 @@ public class Collectible extends Item{
 
     public void main(String[] args) {
         switch(collectibletype){
-            case MajoonMana:
+            case MAJOONMANA:
                 this.owner.MP+=3;
                 break;
-            case MajoonRoointan:
+            case MAJOswONROOINTAN:
                 break;
-            case NefrinMarg:
+            case NEFRINMARG:
                 break;
-            case RandomDamage:
+            case RANDOMDAMAGE:
                 break;
-            case BladesofAgility:
+            case BLADESOFAGILITY:
                 this.owner.AP+=6;
                 break;
-            case ChineseSword:
+            case CHINESESWORD:
                 break;
-            case JoonBaw:
+            case JOONBAW:
                 this.owner.HP+=6;
                 break;
-            case TirSeShakh:
+            case TIRSESHAKH:
                 break;
-            case Eksir:
+            case EKSIR:
                 this.owner.owner.getMainDeck().getHero().AP+=3;
                 this.owner.owner.getMainDeck().getHero().HP+=3;
                 break;

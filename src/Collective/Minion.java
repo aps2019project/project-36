@@ -1,13 +1,13 @@
 package Collective;
 
 enum MinionTypes{
-    KamandareFars,ShamshirZaneFars,NeizedareFars,AsbsavareFars,PahlevaneFars,
-    SepahsalareFars,KamandareToorani,GhollabsangdareToorani,NeizedareToorani,
-    JasooseToorani,GorzdareToorani,ShahzadeyeToorani,DiveSiah,GhooleSangandaz,
-    Oghab,DiveGorazsavar,GhooleTakcheshm,MareSammi,EzhdehayeAtashandaz,Shiredarande,
-    MareGhoolpeikar,GorgeSefid,Palang,Gorg,Jadoogar,JadoogareAzam,Jen,GorazeVahshi,
-    Piran,Giv,Bahman,Ashkboos,Iraj,GhooleBozorg,GhooleDosar,NaneSarma,FooladZere,
-    Siavash,ShahGhool,ArzhangDiv;
+    KAMANDAREFARS,SHAMSHIRZANEFARS,NEIZEDAREFARS,ASBSAVAREFARS,PAHLEVANEFARS,
+    SEPAHSALAREFARS,KAMANDARETOORANI,GHOLLABSANGDARETOORANI,NEIZEDARETOORANI,
+    JASOOSETOORANI,GORZDARETOORANI,SHAHZADEYETOORANI,DIVESIAH,GHOOLESANGANDAZ,
+    OGHAB,DIVEGORAZSAVAR,GHOOLETAKCHESHM,MARESAMMI,EZHDEHAYEATASHANDAZ,SHIREDARANDE,
+    MAREGHOOLPEIKAR,GORGESEFID,PALANG,GORG,JADOOGAR,JADOOGAREAZAM,JEN,GORAZEVAHSHI,
+    PIRAN,GIV,BAHMAN,ASHKBOOS,IRAJ,GHOOLEBOZORG,GHOOLEDOSAR,NANESARMA,FOOLADZERE,
+    SIAVASH,SHAHGHOOL,ARZHANGDIV;
 }
 
 public class Minion extends Card {
