@@ -1,9 +1,11 @@
 package Shop;
 
-import java.util.ArrayList;
 import Collective.Card;
 import Collective.Item;
 import Player.Account;
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 
 public class Shop {
     private ArrayList<Card> cards= new ArrayList<>();
@@ -47,7 +49,10 @@ public class Shop {
     }
     public void buy(String name){}
     public void sell(int ID){}
-    public void show(){}
+
+    public JSONArray show(JSONArray list){
+        return list;
+    }
     public void showShopHelp(){}
     public void exit(){
         return;
