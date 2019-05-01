@@ -1,11 +1,6 @@
 package Collective;
 
 import Player.Player;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Card {
 
@@ -19,6 +14,18 @@ public class Card {
     protected int HP;
     protected int AP;
     protected int MP;
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public void setAP(int AP) {
+        this.AP = AP;
+    }
+
+    public void setMP(int MP) {
+        this.MP = MP;
+    }
 
     public int getCardNumber() {
         return cardNumber;
@@ -53,9 +60,10 @@ public class Card {
 
     }
 
-    public Player getOwner(Player player){
+    public Player getOwner(Player player) {
         return player;
     }
+
     public String getName() {
         return name;
     }

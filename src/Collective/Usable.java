@@ -2,12 +2,14 @@ package Collective;
 
 import Player.Player;
 
-enum UsableTypes {
-    SOULEATER,TAJDANAYI,NAMOOSSEPAR,KAMANDAMOOL,PARSIMORGH,TERRORHOOD,
-    KINGKILLER,ASSASSINATIONDAGGER,POISONOUSDAGGER,SHOCKHAMMER,GHOSLTAMID;
-}
 
 public class Usable extends Item {
+
+    enum UsableTypes {
+        SOULEATER, TAJDANAYI, NAMOOSSEPAR, KAMANDAMOOL, PARSIMORGH, TERRORHOOD,
+        KINGKILLER, ASSASSINATIONDAGGER, POISONOUSDAGGER, SHOCKHAMMER, GHOSLTAMID;
+    }
+
     private int cost;
     private UsableTypes usabletype;
     private Player owner;
@@ -20,32 +22,32 @@ public class Usable extends Item {
         this.owner = owner;
     }
 
-    public void main(String[] args) {
-        switch(usabletype){
-            case  SOULEATER:
-                break;
-            case TAJDANAYI:
-                break;
-            case NAMOOSSEPAR:
-                break;
-            case KAMANDAMOOL:
-                break;
-            case PARSIMORGH:
-                break;
-            case TERRORHOOD:
-                break;
-            case KINGKILLER:
-                break;
-            case ASSASSINATIONDAGGER:
-                break;
-            case POISONOUSDAGGER:
-                break;
-            case SHOCKHAMMER:
-                break;
-            case GHOSLTAMID:
-                break;
-
-        }
-    }
+//    public void main(String[] args) {
+//        switch (usabletype) {
+//            case SOULEATER:
+//                break;
+//            case TAJDANAYI:
+//                break;
+//            case NAMOOSSEPAR:
+//                break;
+//            case KAMANDAMOOL:
+//                break;
+//            case PARSIMORGH:
+//                break;
+//            case TERRORHOOD:
+//                break;
+//            case KINGKILLER:
+//                break;
+//            case ASSASSINATIONDAGGER:
+//                break;
+//            case POISONOUSDAGGER:
+//                break;
+//            case SHOCKHAMMER:
+//                break;
+//            case GHOSLTAMID:
+//                break;
+//
+//        }
+//    }
 
 }
