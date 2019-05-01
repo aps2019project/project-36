@@ -65,4 +65,9 @@ public class Game {
     public void changeFlagNumsOfPlayer2(int change) {
         flagNumsOfPlayer2 += change;
     }
+    public void checkIsOver(){
+        if(mode == 1){
+            if(player2.)
+        }
+    }
 }
