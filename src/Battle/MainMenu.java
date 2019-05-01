@@ -16,12 +16,18 @@ public class MainMenu {
                 if (Account.getAccounts().get(i).getPassword().equals(password)){
                     return true;
                 }
+                else {
+                    System.out.println("invalid password");
+                    return false;
+                }
             }
         }
+        System.out.println("entered username does not exist");
         return false;
     }
 
     public void createAccount(String username, String password){
+        // checked in main
         Account newAccount = new Account();
         newAccount.setUsername(username);
         newAccount.setPassword(password);
@@ -55,6 +61,14 @@ public class MainMenu {
         for (int i = 0; i < ans.size(); i++) {
             System.out.println(i + 1 + "- UserName : " + ans.get(i).username + "- Wins : " + ans.get(i).wins);
         }
+    }
+    public void help(){
+        System.out.println("create account [user name]");
+        System.out.println("login [user name]");
+        System.out.println("show leaderboard");
+        System.out.println("save");
+        System.out.println("logout");
+        System.out.println("help");
     }
 }
 
