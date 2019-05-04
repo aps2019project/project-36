@@ -2,28 +2,29 @@ package Battle;
 
 import Player.Account;
 import Player.Collection;
+import Player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MainMenu {
+public class AccountMenu {
+    public void save(){};
     public void exit(){
         return;
     }
-    public boolean login(String username, String password){
-        for(int i = 0; i <Account.getAccounts().size(); i++){
+    public Account login(String username, String password){
+        for(int i = 0; i < Account.getAccounts().size(); i++){
             if(Account.getAccounts().get(i).getUsername().equals(username)){
                 if (Account.getAccounts().get(i).getPassword().equals(password)){
-                    return true;
+                    return Account.getAccounts().get(i);
                 }
                 else {
                     System.out.println("invalid password");
-                    return false;
+                    return null;
                 }
             }
         }
-        System.out.println("entered username does not exist");
-        return false;
+        return null;
     }
 
     public void createAccount(String username, String password){

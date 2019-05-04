@@ -1,15 +1,34 @@
 package Battle;
 
+import Map.Map;
 import Player.Player;
+import Player.Match;
+import com.sun.tools.javac.Main;
 
 public class Game {
     private Player player1 = new Player();
     private Player player2 = new Player();
     private int turn = 0;
-    private int totalNumberOfFlags = -1;
-    private int flagNumsOfPlayer1 = -1;
-    private int flagNumsOfPlayer2 = -1;
+    private int reachingFlag = 0;
     private int mode;
+    private int manaPlayer1;
+    private int manaPlayer2;
+
+    public int getManaPlayer1() {
+        return manaPlayer1;
+    }
+
+    public void setManaPlayer1(int manaPlayer1) {
+        this.manaPlayer1 = manaPlayer1;
+    }
+
+    public int getManaPlayer2() {
+        return manaPlayer2;
+    }
+
+    public void setManaPlayer2(int manaPlayer2) {
+        this.manaPlayer2 = manaPlayer2;
+    }
 
     public Player getPlayer1() {
         return player1;
@@ -17,10 +36,6 @@ public class Game {
 
     public void setMode(int mode) {
         this.mode = mode;
-    }
-
-    public void setTotalNumberOfFlags(int totalNumberOfFlags) {
-        this.totalNumberOfFlags = totalNumberOfFlags;
     }
 
     public void setPlayer1(Player player1) {
@@ -43,31 +58,47 @@ public class Game {
         turn++;
     }
 
-    public int getFlagNumsOfPlayer1() {
-        return flagNumsOfPlayer1;
+    public void reachedFlag(){
+        reachingFlag = turn;
     }
 
-    public void setFlagNumsOfPlayer1(int flagNumsOfPlayer1) {
-        this.flagNumsOfPlayer1 = flagNumsOfPlayer1;
-    }
-
-    public int getFlagNumsOfPlayer2() {
-        return flagNumsOfPlayer2;
-    }
-
-    public void setFlagNumsOfPlayer2(int flagNumsOfPlayer2) {
-        this.flagNumsOfPlayer2 = flagNumsOfPlayer2;
-    }
-
-    public void changeFlagNumsOfPlayer1(int change) {
-        flagNumsOfPlayer1 += change;
-    }
-    public void changeFlagNumsOfPlayer2(int change) {
-        flagNumsOfPlayer2 += change;
-    }
-    public void checkIsOver(){
+    public int checkIsOver(){
         if(mode == 1){
-            //if(player2.)
+            if(player2.getMainDeck().getHero().getHP() == 0){
+                return 1;
+            }
+            else if (player1.getMainDeck().getHero().getHP() == 0){
+                return 2;
+            }
         }
+        if(mode == 2){
+            if(reachingFlag != 0 && turn - reachingFlag >= 6){
+                if(Map.getFlagsInMap().get(0).getOwner().equals(player1)){
+                    return 1;
+                }
+                else if(Map.getFlagsInMap().get(0).getOwner().equals(player2)){
+                    return 2;
+                }
+            }
+        }
+        if(mode == 3){
+            int cnt1 = 0;
+            int cnt2 = 0;
+            for(int i = 0; i < Map.getFlagsInMap().size(); i++){
+                if(Map.getFlagsInMap().get(0).getOwner().equals(player1)){
+                    cnt1 ++;
+                }
+                else if(Map.getFlagsInMap().get(0).getOwner().equals(player2)){
+                    cnt2 ++;
+                }
+            }
+            if(cnt1 >= Map.getFlagsInMap().size()/2){
+                return 1;
+            }
+            else if(cnt2 >= Map.getFlagsInMap().size() / 2){
+                return 2;
+            }
+        }
+        return 0;
     }
 }

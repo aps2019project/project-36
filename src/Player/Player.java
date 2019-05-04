@@ -35,4 +35,20 @@ public class Player {
     public void changeDaric(int change){
         daric -= change;
     }
+    public static boolean takenUsernames(String username){
+        for(int i = 0; i < Account.getAccounts().size(); i++){
+            if(Account.getAccounts().get(i).getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static Player findPlayerByUsername(String username){
+        for(int i = 0; i < Account.getAccounts().size(); i++){
+            if(Account.getAccounts().get(i).getUsername().equals(username)){
+                Account.getAccounts().get(i);
+            }
+        }
+        return null;
+    }
 }

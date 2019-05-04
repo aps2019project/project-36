@@ -21,9 +21,7 @@ public class Spell extends Card {
 
     private SpellTypes spellArr[] = SpellTypes.values();
     private CellEffect effect;
-    private int MP;
     private String desc;
-    private int neededManna;
     private String classType;
     private TargetArea targetArea;
     private Buff.BuffType buffType;
