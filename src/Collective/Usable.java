@@ -9,11 +9,6 @@ public class Usable extends Item {
 
     private int price;
     private UsableTypes usabletype;
-    private Card owner;
-
-    public Card getOwner() {
-        return owner;
-    }
 
     public int getPrice() {
         return price;
@@ -21,10 +16,6 @@ public class Usable extends Item {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public void setOwner(Card owner) {
-        this.owner = owner;
     }
 
     public void setUsabletype() {

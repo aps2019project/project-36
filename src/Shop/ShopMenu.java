@@ -6,52 +6,117 @@ import Player.Account;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ShopMenu {
+public class ShopMenu{
     private static ArrayList<Card> cards = new ArrayList<> ( );
     private static ArrayList<Item> items = new ArrayList<> ( );
 
-    public static void showCollection() {
+    public void exit(){
+        return;
     }
 
+    public static void showCollection() {}
+
     public static void search(String name) {
-        boolean exist = false;
-        for (Card x : cards) {
-            if (name.equals (x.getName ( ))) {
-                System.out.println (x.getCardNumber ( ));
-                exist = true;
+        boolean found= false;
+        for(Card x: cards){
+            if(name.compareToIgnoreCase (x.getName ())== 0){
+                System.out.println (x.getCardNumber ());
+                found= true;
+                break;
             }
         }
-        for (Item x : items) {
-            if (name.equals (x.getName ( ))) {
-                System.out.println (x.getItemNumber ( ));
-                exist = true;
+        if(!found){
+            for(Item x: items){
+                if(name.compareToIgnoreCase (x.getName ())== 0){
+                    System.out.println (x.getItemID ());
+                    found= true;
+                    break;
+                }
             }
         }
-        if (!exist) {
+        if(!found){
             System.out.println ("This Card/Item is not in the shop");
         }
     }
 
     public static void searchCollection(String name, Account account) {
-        boolean exist = false;
-        for (Card x : account.getCollection ( ).getCards ( )) {
-            if (name.equals (x.getName ( ))) {
-                System.out.println (x.getCardNumber ( ));
-                exist = true;
+        boolean found= false;
+        for(Card x: account.getCollection ().getCards ()){
+            if(name.compareToIgnoreCase (x.getName ())== 0){
+                System.out.println (x.getCardNumber ());
+                found= true;
             }
         }
-        for (Item x : account.getCollection ( ).getItems ( )) {
-            if (name.equals (x.getName ( ))) {
-                System.out.println (x.getItemNumber ( ));
-                exist = true;
+        if(!found){
+            for(Item x: account.getCollection ().getItems ()){
+                if(name.compareToIgnoreCase (x.getName ())== 0){
+                    System.out.println (x.getItemID ());
+                    found= true;
+                }
             }
         }
-        if (!exist) {
-            System.out.println ("This Card/Item is not in the collection");
+        if(!found){
+            System.out.println ("This Card/Item is not in the shop");
         }
     }
 
     public static void buy(String name, Account account) {
+        boolean found= false;
+        for(Card x: cards ){
+            if(name.compareToIgnoreCase (x.getName ())== 0){
+                Card wantedCard= new Card();
+                wantedCard.setAP(x.getAP ());
+                wantedCard.setCardID (x.getCardID ());
+                wantedCard.setOwner (account);
+                wantedCard.setHP(x.getHP ());
+                wantedCard.setCardNumber (x.getCardNumber ());
+                wantedCard.setPrice (x.getPrice ());
+                wantedCard.setName (x.getName ());
+                wantedCard.setMP (x.getMP ());
+                found= true;
+                if(found){
+                    if(wantedCard.getPrice ()> account.getDaric ()){
+                        System.out.println ("You don't have enough money");
+                    }
+                    else if(wantedCard.getPrice ()<= account.getDaric ()){
+                        System.out.println ("You bought this item successfully");
+                        account.getCollection ().addCard(wantedCard);
+                        account.setDaric (account.getDaric()- wantedCard.getPrice());
+                    }
+                    break;
+                }
+            }
+        }
+        if(!found){
+            for(Item x: items){
+                if(name.compareToIgnoreCase (x.getName ())== 0){
+                    Item wantedItem= new Item ();
+                    wantedItem.setName (name);
+                    wantedItem.setItemID (x.getItemID ());
+                    wantedItem.setItemNumber (x.getItemNumber ());
+                    wantedItem.setType (x.getType ());
+                    wantedItem.setOwner (account);
+                    found= true;
+                    if(found){
+                        if(wantedItem.getPrice()> account.getDaric ()){
+                            System.out.println ("You don't have enough money.");
+                        }
+                        else if(account.getItemNumbers()>= 3){
+                            System.out.println ("You can't have more than 3 items.");
+                        }
+                        else if(account.getItemNumbers()< 3 && wantedItem.getPrice()<= account.getDaric ()){
+                            System.out.println ("You bought this item successfully");
+                            account.setDaric (account.getDaric ()- wantedItem.getPrice());
+                            account.getCollection (),addItem(wantedItem);
+                        }
+                    }
+                }
+            }
+        }
+        if(!found){
+            System.out.println ("This Card/Item is not in the shop");
+        }
+
     }
 
     public static void sell(int ID) {

@@ -67,10 +67,10 @@ public class Game {
             int cnt1 = 0;
             int cnt2 = 0;
             for(int i = 0; i < Map.getFlagsInMap().size(); i++){
-                if(Map.getFlagsInMap().get(0).getOwner().getOwner().equals(player1)){
+                if(Map.getFlagsInMap().get(0).getOwner().equals(player1)){
                     cnt1 ++;
                 }
-                else if(Map.getFlagsInMap().get(0).getOwner().getOwner().equals(player2)){
+                else if(Map.getFlagsInMap().get(0).getOwner().equals(player2)){
                     cnt2 ++;
                 }
             }

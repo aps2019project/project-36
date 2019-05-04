@@ -15,7 +15,6 @@ public class Collectible extends Item{
     private ArrayList <Card> targetArea = new ArrayList<>();
     private int HP;
     private CollectibleTypes collectibletype;
-    private Card owner;
     public Cell getCell() {
         return cell;
     }

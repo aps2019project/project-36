@@ -1,11 +1,31 @@
 package Collective;
 
+import Player.Player;
+
 public class Item {
-    protected String name;
-    protected String desc;
-    protected String type;
-    protected String itemID;
-    protected int itemNumber;
+    private String name;
+    private String desc;
+    private String type;
+    private String itemID;
+    private int itemNumber;
+    private Player owner;
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
 
     public String getItemID() {
         return itemID;
