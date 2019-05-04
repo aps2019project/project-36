@@ -13,6 +13,11 @@ public class Card {
     protected int HP;
     protected int AP;
     protected int MP;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
 
     public void setHP(int HP) {
         this.HP = HP;

@@ -148,7 +148,7 @@ public class Main
                 }
             }
             if(!check){
-                System.out.println("Deck doesnt exist!");
+                System.out.println("Deck doesn't exist!");
             }
         }
         // ba regex remove & add ro bzan

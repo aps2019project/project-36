@@ -25,8 +25,6 @@ public class Usable extends Item {
                 break;
             case TAJDANAYI:
                 setPrice(300);
-                //if(owner.getOwner().getTurn()>= 3)
-                //owner.MP+= 1;
                 break;
             case NAMOOSSEPAR:
                 setPrice(4000);
@@ -59,6 +57,34 @@ public class Usable extends Item {
         }
     }
 
+    public void usableEffect(String name,Card card){
+        switch(name){
+            case "SOULEATER":
+                break;
+            case "TAJDANAYI":
+                break;
+            case "NAMOOSSEPAR":
+                break;
+            case "KAMANDAMOOL":
+                card.HP+= 6;
+                break;
+            case "PARSIMORGH":
+                break;
+            case "TERRORHOOD":
+                break;
+            case "KINGKILLER":
+                break;
+            case "ASSASSINATIONDAGGER":
+                break;
+            case "POISONOUSDAGGER":
+                break;
+            case "SHOCKHAMMER":
+                break;
+            case "GHOSLTAMID":
+                break;
+        }
+
+    }
 }
 //chejuri az player be game va turn beresam?
 //tabe baraye karha
