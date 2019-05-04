@@ -187,7 +187,7 @@ public class Main
         }
         collectionMenu();
     }
-    public static void shopMenu{
+    public static void shopMenu(){
         ShopMenu menu = new ShopMenu ();
         menu.help();
         input= scanner.nextLine();
