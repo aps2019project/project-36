@@ -5,6 +5,9 @@ import Collective.Item;
 import org.json.JSONArray;
 import org.json.*
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import com.sun.tools.javac.Main;
 
 public class Shop {
     private ArrayList<Card> cards= new ArrayList<>();

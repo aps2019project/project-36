@@ -70,3 +70,4 @@ public class Usable extends Item {
 
 }
 //chejuri az player be game va turn beresam?
+//tabe baraye karha

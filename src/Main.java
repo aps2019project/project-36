@@ -187,6 +187,39 @@ public class Main
         }
         collectionMenu();
     }
+    public static void shopMenu{
+        ShopMenu menu = new ShopMenu ();
+        menu.help();
+        input= scanner.nextLine();
+        if(input.compareToIgnoreCase("exit")== 0){
+            secondMenu();
+        }
+        if(input.compareToIgnoreCase ("show collection")== 0){
+        }
+        if(input.length ()> 7 && input.substring (0,5).compareToIgnoreCase ("search")== 0){
+            String name= input.substring (6);
+            menu.search (name);
+        }
+        if(input.length ()> 18 && input.substring (0,16).compareToIgnoreCase ("search collection")== 0){
+            String name= input.substring (18);
+            menu.searchCollection (name,loggedInPlayer);
+        }
+        if(input.length()> 4 && input.substring (0,2).compareToIgnoreCase ("buy")== 0){
+            String name= input.substring (3);
+            menu.buy (name,loggedInPlayer);
+        }
+        if(input.length ()> 5 && input.substring (0,3).compareToIgnoreCase ("sell")== 0){
+            String id= input.substring (4);
+            menu.sell (Integer.parseInt (id));
+        }
+        if(input.compareToIgnoreCase ("show")== 0){
+            //menu.show();
+        }
+        if(input.compareToIgnoreCase ("help")== 0){
+            menu.help ();
+        }
+
+    }
     public static void collecionHelp(){
         System.out.println("exit");
         System.out.println("show");
