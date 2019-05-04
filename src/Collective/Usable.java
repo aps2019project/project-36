@@ -26,7 +26,7 @@ public class Usable extends Item {
             case TAJDANAYI:
                 setPrice(300);
                 //if(owner.getOwner().getTurn()>= 3)
-                owner.MP+= 1;
+                //owner.MP+= 1;
                 break;
             case NAMOOSSEPAR:
                 setPrice(4000);

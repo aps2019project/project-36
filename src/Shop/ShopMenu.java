@@ -13,10 +13,10 @@ public class ShopMenu{
         return;
     }
 
-    public static void showCollection() {
+    public void showCollection() {
     }
 
-    public static void search(String name) {
+    public void search(String name) {
         boolean found= false;
         for(Card x: cards){
             if(name.compareToIgnoreCase (x.getName ())== 0){
@@ -39,7 +39,7 @@ public class ShopMenu{
         }
     }
 
-    public static void searchCollection(String name, Account account) {
+    public void searchCollection(String name, Account account) {
         boolean found= false;
         for(Card x: account.getCollection ().getCards ()){
             if(name.compareToIgnoreCase (x.getName ())== 0){
@@ -60,16 +60,14 @@ public class ShopMenu{
         }
     }
 
-    public static void buy(String name, Account account) {
+    public void buy(String name, Account account) {
         boolean found= false;
         for(Card x: cards ){
             if(name.compareToIgnoreCase (x.getName ())== 0){
                 Card wantedCard= new Card();
                 wantedCard.setAP(x.getAP ());
-                wantedCard.setCardID (x.getCardID ());
                 wantedCard.setOwner (account);
                 wantedCard.setHP(x.getHP ());
-                wantedCard.setCardNumber (x.getCardNumber ());
                 wantedCard.setPrice (x.getPrice ());
                 wantedCard.setName (x.getName ());
                 wantedCard.setMP (x.getMP ());
@@ -80,7 +78,7 @@ public class ShopMenu{
                     }
                     else if(wantedCard.getPrice ()<= account.getDaric ()){
                         System.out.println ("You bought this card successfully");
-                        account.getCollection ().addCard(wantedCard);
+                        account.getCollection ().add(wantedCard.getCardID ());
                         account.setDaric (account.getDaric()- wantedCard.getPrice());
                     }
                     break;
@@ -92,8 +90,6 @@ public class ShopMenu{
                 if(name.compareToIgnoreCase (x.getName ())== 0){
                     Item wantedItem= new Item ();
                     wantedItem.setName (name);
-                    wantedItem.setItemID (x.getItemID ());
-                    wantedItem.setItemNumber (x.getItemNumber ());
                     wantedItem.setType (x.getType ());
                     wantedItem.setOwner (account);
                     found= true;
@@ -107,7 +103,7 @@ public class ShopMenu{
                         else if(account.getItemNumbers()< 3 && wantedItem.getPrice()<= account.getDaric ()){
                             System.out.println ("You bought this item successfully");
                             account.setDaric (account.getDaric ()- wantedItem.getPrice());
-                            account.getCollection (),addItem(wantedItem);
+                            account.getCollection ().addItem (wantedItem);
                         }
                     }
                 }
@@ -119,7 +115,7 @@ public class ShopMenu{
 
     }
 
-    public static void sell(int ID,Account account) {
+    public void sell(int ID,Account account) {
         boolean found= false;
         for(Card x: cards){
             if(x.getCardNumber ()== ID){
@@ -144,7 +140,7 @@ public class ShopMenu{
         }
     }
 
-    public static void show() {
+    public void show() {
     }
 
     public void help() {
@@ -157,4 +153,5 @@ public class ShopMenu{
         System.out.println ("show");
         System.out.println ("help");
     }
+
 }

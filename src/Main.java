@@ -213,7 +213,6 @@ public class Main
             menu.sell (Integer.parseInt (id),loggedInPlayer);
         }
         if(input.compareToIgnoreCase ("show")== 0){
-            //menu.show();
         }
         if(input.compareToIgnoreCase ("help")== 0){
             menu.help ();
