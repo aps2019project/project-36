@@ -10,9 +10,7 @@ public class Spell extends Card {
     }
     private ArrayList<Card> targetArea = new ArrayList<>();
     private CellEffect effect;
-    private int MP;
     private String desc;
-    private int neededManna;
     private String classType;
 
     public void removeCard(int AP){}

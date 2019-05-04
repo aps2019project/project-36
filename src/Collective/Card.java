@@ -13,9 +13,57 @@ public class Card {
     private int HP;
     private int AP;
     private int MP;
-    private int hitNumber= 0;
+    private int hitNumber= 0;//tedad zarbehayi ke khorde
     private boolean attacker= false; //age card hamle kone true mishe vagarna false
     private Card enemy;//cardi ke behesh hamle mikone
+    private String kindOfAttack;
+    private String type;
+
+    public String getKindOfAttack() {
+        return kindOfAttack;
+    }
+
+    public void setKindOfAttack(String name) {
+            switch (name) {
+                case "DIVESEFID":
+                    kindOfAttack = "melee";
+                    break;
+                case "SIMORGH":
+                    kindOfAttack = "melee";
+                    break;
+                case "EZHDEHA":
+                    kindOfAttack = "melee";
+                    break;
+                case "RAKHSH":
+                    kindOfAttack = "melee";
+                    break;
+                case "ZAHAK":
+                    kindOfAttack = "melee";
+                    break;
+                case "KAVEH":
+                    kindOfAttack = "melee";
+                    break;
+                case "ARASH":
+                    kindOfAttack = "ranged";
+                    break;
+                case "AFSANE":
+                    kindOfAttack = "ranged";
+                    break;
+                case "ESFANDIAR":
+                    kindOfAttack = "hybrid";
+                    break;
+                case "ROSTAM":
+                    kindOfAttack = "hybrid";
+                    break; }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Card getEnemy() {
         return enemy;
