@@ -1,5 +1,4 @@
 package Collective;
-
 import Player.Player;
 
 public class Card {
@@ -59,24 +58,12 @@ public class Card {
         return HP;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
-    }
-
     public int getAP() {
         return AP;
     }
 
-    public void setAP(int AP) {
-        this.AP = AP;
-    }
-
     public int getMP() {
         return MP;
-    }
-
-    public void setMP(int MP) {
-        this.MP = MP;
     }
 
     public void setCardNumber(int cardNumber) {
