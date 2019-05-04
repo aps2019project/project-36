@@ -33,19 +33,29 @@ public class Collection {
         return id;
     }
 
+    public void addToDecks(Deck deck){
+        decks.add(deck);
+    }
+
     public int search (String name) {
         for (int i = 0; i < cards.size(); i++){
             if (cards.get(i).getName().equals(name)){
                 addToSearchedList(cards.get(i).getCardNumber());
+                return cards.get(i).getCardNumber();
             }
         }
         for (int i = 0; i < items.size(); i++){
             if (items.get(i).getName().equals(name)){
                 addToSearchedList(items.get(i).getItemNumber());
+                return items.get(i).getItemNumber();
             }
         }
         return 0;
     }
+    public boolean validateDeck(Deck deck){
+        if(deck.getCards().size() == 20 && deck.getHero() != null){
+            return true;
+        }
+        return false;
+    }
 }
-
-// getOption();

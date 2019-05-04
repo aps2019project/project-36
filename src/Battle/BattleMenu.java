@@ -10,7 +10,6 @@ public class BattleMenu {
     public void singlePlayerMode(Player player,int kind , int mode){
 
     }
-
 }
 
 // getOptions() bezanim

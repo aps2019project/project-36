@@ -1,21 +1,23 @@
+import Battle.AccountMenu;
 import Battle.Game;
 import Collective.Flag;
-import Player.Player;
+import Player.*;
 import Player.Match;
-
 import java.util.ArrayList;
-
 import Battle.BattleMenu;
 import Shop.ShopMenu;
-
 import java.util.Collection;
 import java.util.Scanner;
 
 public class Main
 {
-    static Player loggedInPlayer = new Player();
+    static boolean EXIT = false;
+    static Scanner scanner = new Scanner(System.in);
+    static String input = new String();
+    static Account loggedInPlayer = new Account();
     public static void main( String[] args )
     {
+        /*
         while (true) {
             // in case of playing a game:
             // mode 2
@@ -30,40 +32,181 @@ public class Main
                 match.setWinner();
             }
         }
-        boolean x = true;
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder option = new StringBuilder();
-        Main.help();
-        while(x){
-            option.setLength(0);
-            option.append(scanner.next());
-            switch (option.toString().toLowerCase()){
-                case "enter help":
-                    Main.help();
-                    break;
-                case "enter exit":
-                    x= false;
-                    return;
-                case "enter collection":
-                    Collection.getOptions();
-                    break;
-                case "enter shop":
-                    ShopMenu.getOptions();
-                    break;
-                case "enter battle":
-                    BattleMenu.getOptions();
-                    break;
-                    default:
-                        System.out.println("Option not found");
+        */
+        while(true){
+            firstMenu();
+            if (EXIT){
+                return;
             }
+            secondMenu();
         }
     }
+    public static void firstMenu(){
+        AccountMenu menu = new AccountMenu();
+        menu.help();
+        input = scanner.nextLine();
+        if(input.compareToIgnoreCase("exit") == 0){
+            EXIT = true;
+        }
+        if (input.length() >= 13 && input.substring(0, 12).compareToIgnoreCase("create account") == 0){
+            if(!Player.takenUsernames(input.substring((14)))) {
+                String username = input.substring((14));
+                input = scanner.nextLine();
+                menu.createAccount(username, input);
+            }
+            else
+                System.out.println("This username is already taken!");
+        }
+        else if(input.length() >= 5 && input.substring(0, 4).compareToIgnoreCase("login") == 0){
+            if(loggedInPlayer != null){
+                System.out.println("Another account is logged in! Please first logout!");
+            }
+            if(Player.takenUsernames(input.substring((6)))) {
+                String username = input.substring((6));
+                input = scanner.nextLine();
+                loggedInPlayer = menu.login(username, input);
+            }
+            else
+                System.out.println("This username does not exist!");
+        }
+        else if(input.compareToIgnoreCase("show leaderboard") == 0){
+            menu.showLeaderboard();
+        }
+        else if(input.compareToIgnoreCase("save") == 0){
+            menu.save();
+        }
+        else if(input.compareToIgnoreCase("logout") == 0){
+            loggedInPlayer = null;
+        }
+        else if(input.compareToIgnoreCase("help") == 0){
+            menu.help();
+        }
+        if (loggedInPlayer == null){
+            firstMenu();
+        }
+    }
+    public static void secondMenu(){
+        help();
+        input = scanner.nextLine();
+        if(input.compareToIgnoreCase("exit") == 0){
+            firstMenu();
+        }
+        else if(input.compareToIgnoreCase("collection") == 0){
+            collectionMenu();
+        }
+        else if(input.compareToIgnoreCase("shop") == 0){
+
+        }
+        else if(input.compareToIgnoreCase("battle") == 0){
+            BattleMenu menu = new BattleMenu();
+        }
+        else if(input.compareToIgnoreCase("help") == 0){
+            help();
+        }
+        secondMenu();
+    }
+    public static void collectionMenu(){
+        collecionHelp();
+        input = scanner.nextLine();
+        if(input.compareToIgnoreCase("exit") == 0){
+            secondMenu();
+        }
+        else if(input.compareToIgnoreCase("show") == 0){
+
+        }
+        else if (input.length() >= 6 && input.substring(0,5).compareToIgnoreCase("search") == 0){
+            int temp = loggedInPlayer.getCollection().search(input.substring(7));
+            if(temp != 0){
+                System.out.println(temp);
+            }
+            else
+                System.out.println("entered card/item does not exist in this collection");
+        }
+        else if(input.compareToIgnoreCase("save") == 0){
+
+        }
+        else if (input.length() >= 11 && input.substring(0,10).compareToIgnoreCase("create deck") == 0){
+            boolean check = false;
+            Deck deck = new Deck();
+            deck.setName(input.substring(12));
+            for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(12))){
+                    System.out.println("Deck already exists!");
+                    check = true;
+                }
+            }
+            if(!check){
+                loggedInPlayer.getCollection().addToDecks(deck);
+            }
+        }
+        else if (input.length() >= 11 && input.substring(0,10).compareToIgnoreCase("delete deck") == 0){
+            boolean check = false;
+            for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(12))){
+                    loggedInPlayer.getCollection().getDecks().remove(i);
+                    check = true;
+                }
+            }
+            if(!check){
+                System.out.println("Deck doesnt exist!");
+            }
+        }
+        // ba regex remove & add ro bzan
+        else if(input.length() >= 13 && input.substring(0, 12).compareToIgnoreCase("validate deck") == 0){
+            for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(14))){
+                    if(loggedInPlayer.getCollection().validateDeck(loggedInPlayer.getCollection().getDecks().get(i))){
+                        System.out.println("valid");
+                    }
+                    else
+                        System.out.println("invalid");
+                    break;
+                }
+            }
+        }
+        else if(input.length() >= 11 && input.substring(0, 10).compareToIgnoreCase("select deck") == 0){
+            boolean check = false;
+            for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(14))){
+                    loggedInPlayer.setMainDeck(loggedInPlayer.getCollection().getDecks().get(i));
+                    check = true;
+                }
+            }
+            if (!check){
+                System.out.println("Deck doesnt exist!");
+            }
+        }
+        else if(input.compareToIgnoreCase("show all decks") == 0){
+
+        }
+        else if(input.length() >= 9 && input.substring(0, 8).compareToIgnoreCase("show deck") == 0){
+
+        }
+        else if(input.compareToIgnoreCase("help") == 0){
+            collecionHelp();
+        }
+        collectionMenu();
+    }
+    public static void collecionHelp(){
+        System.out.println("exit");
+        System.out.println("show");
+        System.out.println("save");
+        System.out.println("create deck");
+        System.out.println("delete deck");
+        System.out.println("add card to deck");
+        System.out.println("remove card from deck");
+        System.out.println("validate dec");
+        System.out.println("select deck");
+        System.out.println("show all decks");
+        System.out.println("show deck");
+        System.out.println("help");
+    }
     public static void help(){
-        System.out.println("Help");
-        System.out.println("Exit");
         System.out.println("Collection");
         System.out.println("Shop");
         System.out.println("Battle");
+        System.out.println("Exit");
+        System.out.println("Help");
     }
 
 }
