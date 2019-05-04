@@ -48,7 +48,7 @@ public class Main
         if(input.compareToIgnoreCase("exit") == 0){
             EXIT = true;
         }
-        if (input.length() >= 13 && input.substring(0, 12).compareToIgnoreCase("create account") == 0){
+        if (input.length() > 15 && input.substring(0, 13).compareToIgnoreCase("create account") == 0){
             if(!Player.takenUsernames(input.substring((14)))) {
                 String username = input.substring((14));
                 input = scanner.nextLine();
@@ -57,12 +57,12 @@ public class Main
             else
                 System.out.println("This username is already taken!");
         }
-        else if(input.length() >= 5 && input.substring(0, 4).compareToIgnoreCase("login") == 0){
+        else if(input.length() > 6 && input.substring(0, 4).compareToIgnoreCase("login") == 0){
             if(loggedInPlayer != null){
                 System.out.println("Another account is logged in! Please first logout!");
             }
-            if(Player.takenUsernames(input.substring((6)))) {
-                String username = input.substring((6));
+            if(Player.takenUsernames(input.substring((5)))) {
+                String username = input.substring((5));
                 input = scanner.nextLine();
                 loggedInPlayer = menu.login(username, input);
             }
@@ -114,8 +114,8 @@ public class Main
         else if(input.compareToIgnoreCase("show") == 0){
 
         }
-        else if (input.length() >= 6 && input.substring(0,5).compareToIgnoreCase("search") == 0){
-            int temp = loggedInPlayer.getCollection().search(input.substring(7));
+        else if (input.length() > 7 && input.substring(0,5).compareToIgnoreCase("search") == 0){
+            int temp = loggedInPlayer.getCollection().search(input.substring(6));
             if(temp != 0){
                 System.out.println(temp);
             }
@@ -125,12 +125,12 @@ public class Main
         else if(input.compareToIgnoreCase("save") == 0){
 
         }
-        else if (input.length() >= 11 && input.substring(0,10).compareToIgnoreCase("create deck") == 0){
+        else if (input.length() > 12 && input.substring(0,10).compareToIgnoreCase("create deck") == 0){
             boolean check = false;
             Deck deck = new Deck();
-            deck.setName(input.substring(12));
+            deck.setName(input.substring(11));
             for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
-                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(12))){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(11))){
                     System.out.println("Deck already exists!");
                     check = true;
                 }
@@ -139,10 +139,10 @@ public class Main
                 loggedInPlayer.getCollection().addToDecks(deck);
             }
         }
-        else if (input.length() >= 11 && input.substring(0,10).compareToIgnoreCase("delete deck") == 0){
+        else if (input.length() > 12 && input.substring(0,10).compareToIgnoreCase("delete deck") == 0){
             boolean check = false;
             for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
-                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(12))){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(11))){
                     loggedInPlayer.getCollection().getDecks().remove(i);
                     check = true;
                 }
@@ -152,9 +152,9 @@ public class Main
             }
         }
         // ba regex remove & add ro bzan
-        else if(input.length() >= 13 && input.substring(0, 12).compareToIgnoreCase("validate deck") == 0){
+        else if(input.length() > 14 && input.substring(0, 12).compareToIgnoreCase("validate deck") == 0){
             for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
-                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(14))){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(13))){
                     if(loggedInPlayer.getCollection().validateDeck(loggedInPlayer.getCollection().getDecks().get(i))){
                         System.out.println("valid");
                     }
@@ -164,10 +164,10 @@ public class Main
                 }
             }
         }
-        else if(input.length() >= 11 && input.substring(0, 10).compareToIgnoreCase("select deck") == 0){
+        else if(input.length() > 12 && input.substring(0, 10).compareToIgnoreCase("select deck") == 0){
             boolean check = false;
             for(int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++){
-                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(14))){
+                if(loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(11))){
                     loggedInPlayer.setMainDeck(loggedInPlayer.getCollection().getDecks().get(i));
                     check = true;
                 }
@@ -179,7 +179,7 @@ public class Main
         else if(input.compareToIgnoreCase("show all decks") == 0){
 
         }
-        else if(input.length() >= 9 && input.substring(0, 8).compareToIgnoreCase("show deck") == 0){
+        else if(input.length() > 10 && input.substring(0, 8).compareToIgnoreCase("show deck") == 0){
 
         }
         else if(input.compareToIgnoreCase("help") == 0){
