@@ -3,6 +3,16 @@ package Collective;
 import Player.Player;
 
 public class Card {
+    public enum AttackType {
+        ON_SPAWN,
+        PASSIVE,
+        ON_DEATH,
+        ON_ATTACK,
+        ON_DEFEND,
+        ON_TURN,
+        COMBO,
+        NONE
+    }
 
     protected int x;
     protected int y;
@@ -59,24 +69,13 @@ public class Card {
         return HP;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
-    }
 
     public int getAP() {
         return AP;
     }
 
-    public void setAP(int AP) {
-        this.AP = AP;
-    }
-
     public int getMP() {
         return MP;
-    }
-
-    public void setMP(int MP) {
-        this.MP = MP;
     }
 
     public void setCardNumber(int cardNumber) {

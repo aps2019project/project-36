@@ -2,7 +2,6 @@ package Collective;
 
 import Player.Player;
 import java.util.ArrayList;
-import org.json.*;
 
 public class Item {
     protected String name;

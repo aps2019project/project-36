@@ -24,35 +24,35 @@ public class Collectible extends Item{
         this.cell = cell;
     }
 
-//    public void main(String[] args) {
-//        switch(collectibletype){
-//            case MAJOONMANA:
-//                this.owner.MP+=3;
-//                break;
-//            case MAJOswONROOINTAN:
-//                break;
-//            case NEFRINMARG:
-//                break;
-//            case RANDOMDAMAGE:
-//                break;
-//            case BLADESOFAGILITY:
-//                this.owner.AP+=6;
-//                break;
-//            case CHINESESWORD:
-//                break;
-//            case JOONBAW:
-//                this.owner.HP+=6;
-//                break;
-//            case TIRSESHAKH:
-//                break;
-//            case EKSIR:
-//                this.owner.owner.getMainDeck().getHero().AP+=3;
-//                this.owner.owner.getMainDeck().getHero().HP+=3;
-//                break;
-//
-//        }
-//    }
-//
+    public void main(String[] args) {
+        switch(collectibletype){
+            case MAJOONMANA:
+                this.owner.MP+=3;
+                break;
+            case MAJOswONROOINTAN:
+                break;
+            case NEFRINMARG:
+                break;
+            case RANDOMDAMAGE:
+                break;
+            case BLADESOFAGILITY:
+                this.owner.AP+=6;
+                break;
+            case CHINESESWORD:
+                break;
+            case JOONBAW:
+                this.owner.HP+=6;
+                break;
+            case TIRSESHAKH:
+                break;
+            case EKSIR:
+                this.owner.owner.getMainDeck().getHero().AP+=3;
+                this.owner.owner.getMainDeck().getHero().HP+=3;
+                break;
+
+        }
+    }
+
 
 
 }

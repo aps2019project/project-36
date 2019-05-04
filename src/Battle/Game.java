@@ -67,7 +67,7 @@ public class Game {
     }
     public void checkIsOver(){
         if(mode == 1){
-            if(player2.)
+            //if(player2.)
         }
     }
 }
