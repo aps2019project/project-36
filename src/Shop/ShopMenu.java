@@ -4,7 +4,6 @@ import Collective.Card;
 import Collective.Item;
 import Player.Account;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ShopMenu{
     private static ArrayList<Card> cards = new ArrayList<> ( );
@@ -14,7 +13,8 @@ public class ShopMenu{
         return;
     }
 
-    public static void showCollection() {}
+    public static void showCollection() {
+    }
 
     public static void search(String name) {
         boolean found= false;
@@ -79,7 +79,7 @@ public class ShopMenu{
                         System.out.println ("You don't have enough money");
                     }
                     else if(wantedCard.getPrice ()<= account.getDaric ()){
-                        System.out.println ("You bought this item successfully");
+                        System.out.println ("You bought this card successfully");
                         account.getCollection ().addCard(wantedCard);
                         account.setDaric (account.getDaric()- wantedCard.getPrice());
                     }
@@ -119,7 +119,29 @@ public class ShopMenu{
 
     }
 
-    public static void sell(int ID) {
+    public static void sell(int ID,Account account) {
+        boolean found= false;
+        for(Card x: cards){
+            if(x.getCardNumber ()== ID){
+                System.out.println ("You sold this card successfully");
+                account.setDaric (account.getDaric ()- x.getPrice ());
+                found= true;
+                break;
+            }
+        }
+        if(!found){
+            for(Item x: items){
+                if(x.getItemNumber ()== ID){
+                    System.out.println ("You sold this item successfully");
+                    account.setDaric (account.getDaric ()- x.getPrice ());
+                    found= true;
+                    break;
+                }
+            }
+        }
+        if(!found){
+            System.out.println ("This Card/Item is not in the shop");
+        }
     }
 
     public static void show() {
