@@ -4,21 +4,18 @@ import java.util.ArrayList;
 import Collective.Buff;
 import Collective.Card;
 import Collective.CellEffect;
+import Collective.Item;
 
 public class Cell {
     private int x;
     private int y;
-    private ArrayList<Cell> cells= new ArrayList<Cell>();
-    private ArrayList<Buff> Buffs= new ArrayList<Buff>();
-    private ArrayList<Card> cards= new ArrayList<Card>();
-    private ArrayList<CellEffect> cellEffects= new ArrayList<CellEffect>();
+    private ArrayList<Buff> Buffs;
+    private Card card;
+    private Item item;
+    private ArrayList<CellEffect> cellEffects;
 
     public int getY() {
         return y;
-    }
-
-    public ArrayList<Cell> getCells() {
-        return cells;
     }
 
     public ArrayList<Buff> getBuffs() {
@@ -29,24 +26,28 @@ public class Cell {
         Buffs = buffs;
     }
 
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
-    }
-
     public ArrayList<CellEffect> getCellEffects() {
         return cellEffects;
     }
 
-    public void setCellEffects(ArrayList<CellEffect> cellEffects) {
-        this.cellEffects = cellEffects;
+    public Card getCard() {
+        return card;
     }
 
-    public void setCells(ArrayList<Cell> cells) {
-        this.cells = cells;
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public void setCellEffects(ArrayList<CellEffect> cellEffects) {
+        this.cellEffects = cellEffects;
     }
 
     public int getX() {

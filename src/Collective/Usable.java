@@ -1,74 +1,27 @@
 package Collective;
 
+import Player.Player;
+
 public class Usable extends Item {
-
-    enum UsableTypes {
-        SOULEATER, TAJDANAYI, NAMOOSSEPAR, KAMANDAMOOL, PARSIMORGH, TERRORHOOD,
-        KINGKILLER, ASSASSINATIONDAGGER, POISONOUSDAGGER, SHOCKHAMMER, GHOSLTAMID;
-    }
-
     private int price;
-    private UsableTypes usabletype;
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setUsabletype() {
-        switch (usabletype) {
-            case SOULEATER:
-                setPrice(25000);
-                break;
-            case TAJDANAYI:
-                setPrice(300);
-                break;
-            case NAMOOSSEPAR:
-                setPrice(4000);
-                break;
-            case KAMANDAMOOL:
-                setPrice(3000);
-                break;
-            case PARSIMORGH:
-                setPrice(3500);
-               break;
-            case TERRORHOOD:
-                setPrice(20000);
-                break;
-            case KINGKILLER:
-                setPrice(9000);
-                break;
-            case ASSASSINATIONDAGGER:
-                setPrice(5000);
-                break;
-            case POISONOUSDAGGER:
-                setPrice(7000);
-                break;
-            case SHOCKHAMMER:
-                setPrice(15000);
-                break;
-            case GHOSLTAMID:
-                setPrice(20000);
-                break;
-
-        }
-    }
-
-    public void usableEffect(String name,Card card){
-        switch(name){
+    public void usableEffect(String name, Player player) {
+        switch (name) {
             case "SOULEATER":
                 break;
             case "TAJDANAYI":
                 break;
             case "NAMOOSSEPAR":
+                activeHolyBuff (player.getMainDeck ( ).getHero ( ), 2); //activeHolyBuff(Card card,number of buffs)
                 break;
             case "KAMANDAMOOL":
-                card.HP+= 6;
+                if (player.getMainDeck ( ).getHero ( ).getKindOfAttack ( ).compareTo ("ranged") == 0 || player.getMainDeck ( ).getHero ( ).getKindOfAttack ( ).compareTo ("hybrid") == 0) {
+                    player.getMainDeck ( ).getHero ( ).setRangeOfAttack (player.getMainDeck ( ).getHero ( ).getRangeOfAttack ( ) + 2);
+                }
                 break;
             case "PARSIMORGH":
+                if(player.getMainDeck ().getHero ().getHP ()< 15){
+                    player.getMainDeck ().getHero ().setHP (player.getMainDeck ().getHero ().getHP()* 2 );
+                }
                 break;
             case "TERRORHOOD":
                 break;
@@ -83,7 +36,6 @@ public class Usable extends Item {
             case "GHOSLTAMID":
                 break;
         }
-
     }
 }
 //chejuri az player be game va turn beresam?
