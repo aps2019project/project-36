@@ -1,9 +1,7 @@
 package Collective;
 
-import Player.Player;
-
 import java.util.ArrayList;
-import Cell.Cell;
+import Map.Cell;
 
 public class Flag extends Item {
     private ArrayList<Flag> flags=new ArrayList<>();

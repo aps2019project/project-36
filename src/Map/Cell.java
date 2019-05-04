@@ -1,4 +1,4 @@
-package Cell;
+package Map;
 
 import java.util.ArrayList;
 import Collective.Buff;

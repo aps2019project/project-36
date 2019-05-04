@@ -1,5 +1,10 @@
 package Shop;
 
+import Collective.Card;
+import Collective.Item;
+
+import java.util.ArrayList;
+
 public class ShopMenu {
     private ArrayList<Card> cards= new ArrayList<>();
     private ArrayList<Item> items= new ArrayList<>();

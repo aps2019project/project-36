@@ -1,6 +1,6 @@
 package Collective;
 
-import Cell.Cell;
+import Map.Cell;
 
 import java.util.ArrayList;
 
