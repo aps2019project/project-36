@@ -3,20 +3,42 @@ import Player.Player;
 
 public class Card {
 
-    protected int x;
-    protected int y;
-    protected int price;
-    protected int cardNumber;
-    protected String cardID;
+    private int x;
+    private int y;
+    private int price;
+    private int cardNumber;
+    private String cardID;
     protected String name;
-    protected Player owner;
-    protected int HP;
-    protected int AP;
-    protected int MP;
-    private String type;
+    private Player owner;
+    private int HP;
+    private int AP;
+    private int MP;
+    private int hitNumber= 0;
+    private boolean attacker= false; //age card hamle kone true mishe vagarna false
+    private Card enemy;//cardi ke behesh hamle mikone
 
-    public String getType() {
-        return type;
+    public Card getEnemy() {
+        return enemy;
+    }
+
+    public void setEnemy(Card enemy) {
+        this.enemy = enemy;
+    }
+
+    public boolean isAttacker() {
+        return attacker;
+    }
+
+    public void setAttacker(boolean attacker) {
+        this.attacker = attacker;
+    }
+
+    public int getHitNumber() {
+        return hitNumber;
+    }
+
+    public void setHitNumber(int hitNumber) {
+        this.hitNumber = hitNumber;
     }
 
     public void setHP(int HP) {
@@ -83,15 +105,6 @@ public class Card {
         this.cardID = cardID;
     }
 
-    public void isHero(Hero hero) {
-    }
-
-    public void isMinion(Minion minion) {
-    }
-
-    public void isSpell(Spell spell) {
-    }
-
     public void setPrice(int price) {
         this.price = price;
     }
@@ -111,9 +124,5 @@ public class Card {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setType(String type) {
-    }
-
 
 }

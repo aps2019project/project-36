@@ -11,6 +11,24 @@ public class Game {
     private int turn = 0;
     private int reachingFlag = 0;
     private int mode;
+    private int manaPlayer1;
+    private int manaPlayer2;
+
+    public int getManaPlayer1() {
+        return manaPlayer1;
+    }
+
+    public void setManaPlayer1(int manaPlayer1) {
+        this.manaPlayer1 = manaPlayer1;
+    }
+
+    public int getManaPlayer2() {
+        return manaPlayer2;
+    }
+
+    public void setManaPlayer2(int manaPlayer2) {
+        this.manaPlayer2 = manaPlayer2;
+    }
 
     public Player getPlayer1() {
         return player1;

@@ -1,5 +1,6 @@
 package Collective;
 
+import Battle.Game;
 import Map.Cell;
 
 public class Collectible extends Item{
@@ -13,11 +14,18 @@ public class Collectible extends Item{
         this.cell = cell;
     }
 
-    public void collectibleEffect(String name,Card card) {
+    public void collectibleEffect(String name, Card card, Game game) {
         switch (name) {
             case "MAJOONMANA":
+                if(card.getOwner ().equals (game.getPlayer1 ())){
+                    game.setManaPlayer1 (game.getManaPlayer1 ()+ 3);
+                }
+                else if(card.getOwner ().equals (game.getPlayer2 ())){
+                    game.setManaPlayer2 (game.getManaPlayer2 ()+ 3);
+                }
                 break;
             case "MAJOONROOINTAN":
+                activeHolyBuff(card,10);
                 break;
             case "NEFRINMARG":
                 break;
@@ -27,6 +35,12 @@ public class Collectible extends Item{
                 card.setAP (card.getAP ()+ 6);
                 break;
             case "CHINESESWORD":
+                if(card.getHitNumber ()< 5){
+                    card.setAP (card.getAP ()+ 5);
+                }
+                else{
+                    card.setAP (card.getAP ()- 5);
+                }
                 break;
             case "JOONBAW":
                 card.setHP (card.getHP ()+ 6);
