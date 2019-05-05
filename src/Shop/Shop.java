@@ -2,8 +2,6 @@ package Shop;
 
 import Collective.Card;
 import Collective.Item;
-import org.json.simple.JSONObject;
-
 import java.awt.event.MouseAdapter;
 import java.io.FileWriter;
 import java.util.ArrayList;
