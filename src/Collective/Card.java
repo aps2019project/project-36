@@ -3,7 +3,9 @@ package Collective;
 import Map.Cell;
 import Player.Player;
 
-public class Card {
+import java.util.ArrayList;
+
+public abstract class Card {
     public enum AttackType {
         ON_SPAWN,
         PASSIVE,
@@ -26,6 +28,17 @@ public class Card {
     protected int MP;
     protected String id;
     protected int neededMAnna;
+    protected static ArrayList<Card> cards=new ArrayList<>();
+    public abstract String getType();
+
+    public static ArrayList<Card> getCard() {
+        return cards;
+    }
+
+    public static void addCards(Card card) {
+        cards.add(card);
+    }
+
 
     public Card(String id, String name, int price, int manna) {
         this.id = id;

@@ -97,6 +97,10 @@ public class Spell extends Card {
     public void setType(String type) {
     }
 
+    public String getType(){
+        return "Spell";
+    }
+
 
     public Spell(String id, String name, int price, int HPneededManna,
                  int APChange, int HPChange, int coolDown,

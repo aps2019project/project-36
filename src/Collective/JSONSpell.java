@@ -1,14 +1,14 @@
 package Collective;
 
-import org.json.simple.JSONObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileWriter;
 
 public class JSONSpell {
 
-    public static void main(String[] args) {
-
-
+    public static void main(String[] args) throws JSONException {
 
         JSONObject TotalDisarm = new JSONObject();
         TotalDisarm.put("Name", "TotalDisarm");

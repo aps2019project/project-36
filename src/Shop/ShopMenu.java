@@ -89,7 +89,7 @@ public class ShopMenu{
                     Item wantedItem= new Item ();
                     wantedItem.setName (name);
                     wantedItem.setType (x.getType ());
-                    wantedItem.setOwner (account);
+                    //wantedItem.setOwner (account);
                     found= true;
                     if(found){
                         if(wantedItem.getPrice()> account.getDaric ()){
