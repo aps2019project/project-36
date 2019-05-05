@@ -1,27 +1,19 @@
 package Collective;
+
 import Battle.Game;
-
-import java.util.ArrayList;
-
-
+import Map.Cell;
 
 public class Collectible extends Item{
-    enum CollectibleTypes {
-        MAJOONMANA, MAJOswONROOINTAN, NEFRINMARG, RANDOMDAMAGE,
-        BLADESOFAGILITY, CHINESESWORD, JOONBAW, TIRSESHAKH, EKSIR;
-    }
-    private CellEffect cell;
-    private ArrayList <Card> targetArea = new ArrayList<>();
+    private Cell cell;
     private int HP;
-    private CollectibleTypes collectibletype;
-    private Card owner;
-    public CellEffect getCell() {
+    private String collectibleType;
+    public Cell getCell() {
         return cell;
     }
-
-    public void setCell(CellEffect cell) {
+    public void setCell(Cell cell) {
         this.cell = cell;
     }
+
     /*public void collectibleEffect(String name, Card card, Game game) {
         switch (name) {
             case "MAJOONMANA":
@@ -67,6 +59,5 @@ public class Collectible extends Item{
         }
     }*/
 
-
-
 }
+

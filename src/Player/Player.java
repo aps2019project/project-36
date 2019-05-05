@@ -25,11 +25,15 @@ public class Player {
         this.mainDeck = mainDeck;
     }
 
+    public void setDaric(int daric) {
+        this.daric = daric;
+    }
+
     public int getDaric() {
         return daric;
     }
 
-    public void setDaric() {
+    public void setDaricPrimitive() {
         daric = Consts.getInstance().getInitialDaricNum();
     }
     public void changeDaric(int change){

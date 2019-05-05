@@ -3,7 +3,6 @@ import Battle.Game;
 import Collective.Flag;
 import Player.*;
 import Player.Match;
-import java.util.ArrayList;
 import Battle.BattleMenu;
 import Shop.ShopMenu;
 import java.util.Collection;
@@ -206,11 +205,11 @@ public class Main
         }
         if(input.length()> 4 && input.substring (0,2).compareToIgnoreCase ("buy")== 0){
             String name= input.substring (3);
-            //menu.buy (name,loggedInPlayer);
+            menu.buy (name,loggedInPlayer);
         }
         if(input.length ()> 5 && input.substring (0,3).compareToIgnoreCase ("sell")== 0){
             String id= input.substring (4);
-            //menu.sell (Integer.parseInt (id),loggedInPlayer);
+            menu.sell (Integer.parseInt (id),loggedInPlayer);
         }
         if(input.compareToIgnoreCase ("show")== 0){
         }
