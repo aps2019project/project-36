@@ -13,8 +13,4 @@ import com.sun.tools.javac.Main;
 public class Shop {
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
-
-    public static void main(String[] args) {
-
-    }
 }
