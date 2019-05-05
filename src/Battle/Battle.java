@@ -28,7 +28,10 @@ public class Battle {
                 System.out.println("flag's owner is player 2");
         }
         if (game.getMode() == 3){
-            Map.getFlagsInMap().forEach(i -> System.out.println(i.getOwner().getCardID()));
+            for(int i = 0; i < Map.getFlagsInMap().size(); i++) {
+                System.out.println("flag owner's card id is : " + Map.getFlagsInMap().get(i).getOwner().getCardID());
+                System.out.println("from team : " + Map.getFlagsInMap().get(i).getOwner().getOwner().getUsername());
+            }
         }
     }
     public void playTurn(){
