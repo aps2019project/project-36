@@ -23,26 +23,29 @@ public class Buff {
         PUTT_IN_GROUND
     }
 
-    class PoisonBuff extends Buff {
-        public void decreaseHP(Card card) {
-        }
+    private String positiveOrNegative;
+    private int startTurn;
+    private int durationTurn;
+    private boolean isDispellable;
+    private boolean isContinuous;
+    private boolean isActive;
+    private int damagePerTurn;
+
+    public Buff(int durationTurn, boolean isDispellable, boolean isContinuous) {
+        this.durationTurn = durationTurn;
+        this.isDispellable = isDispellable;
+        this.isContinuous = isContinuous;
     }
 
-    class WeaknessBuff extends Buff {
-        public void decreaseHP(Card card) {
-        }
-
-        public void decreaseAP(Card card) {
-        }
+    public Buff(int durationTurn, boolean isDispellable, boolean isContinuous, int damagePerTurn) {
+        this.durationTurn = durationTurn;
+        this.isDispellable = isDispellable;
+        this.isContinuous = isContinuous;
+        this.damagePerTurn = damagePerTurn;
     }
 
-    class StunBuff extends Buff {
-        public void allOPerationsOff(Card card) {
-        }
+    public void setPositiveOrNegative(String positiveOrNegative) {
+        this.positiveOrNegative = positiveOrNegative;
     }
 
-    class DisarmBuff extends Buff {
-        public void counterAttackOff() {
-        }
-    }
 }

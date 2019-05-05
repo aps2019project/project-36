@@ -30,7 +30,7 @@ public class Hero extends Card {
     public void setHeroType() {
     }
 
-    public HeroTypes[] getHeroType() {
+    public HeroTypes[] getType() {
         return heroArr;
     }
 
@@ -42,7 +42,10 @@ public class Hero extends Card {
         this.cooldown = cooldown;
     }
 
-    public Hero() {
+    public Hero(){
+
+    }
+    public void Heros() {
         for (HeroTypes hero : heroArr) {
             switch (hero) {
                 case DIVESEFID:
@@ -129,7 +132,5 @@ public class Hero extends Card {
             }
         }
     }
-
-
 
 }

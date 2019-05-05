@@ -1,7 +1,4 @@
 package Collective;
-
-import Cell.Cell;
-
 import java.util.ArrayList;
 
 
@@ -11,16 +8,16 @@ public class Collectible extends Item{
         MAJOONMANA, MAJOswONROOINTAN, NEFRINMARG, RANDOMDAMAGE,
         BLADESOFAGILITY, CHINESESWORD, JOONBAW, TIRSESHAKH, EKSIR;
     }
-    private Cell cell;
+    private CellEffect cell;
     private ArrayList <Card> targetArea = new ArrayList<>();
     private int HP;
     private CollectibleTypes collectibletype;
     private Card owner;
-    public Cell getCell() {
+    public CellEffect getCell() {
         return cell;
     }
 
-    public void setCell(Cell cell) {
+    public void setCell(CellEffect cell) {
         this.cell = cell;
     }
 

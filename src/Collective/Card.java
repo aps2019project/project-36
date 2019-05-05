@@ -24,6 +24,15 @@ public class Card {
     protected int HP;
     protected int AP;
     protected int MP;
+    protected String id;
+    protected int neededMAnna;
+
+    public Card(String id, String name, int price, int manna) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.neededMAnna = manna;
+    }
 
     public void setHP(int HP) {
         this.HP = HP;
@@ -121,6 +130,8 @@ public class Card {
 
     public void setType(String type) {
     }
+
+    public Card(){}
 
 
 }
