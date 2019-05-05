@@ -1,6 +1,6 @@
 package Battle;
 
-import Collective.Card;
+import Collective.*;
 import Collective.Flag;
 import Collective.Item;
 import Map.*;
@@ -10,7 +10,7 @@ import com.sun.tools.javac.Main;
 public class Battle {
     Game game = new Game();
     Player currentPlayer = new Player();
-    Card selectedCard = new Card();
+    Card selectedCard;
     Item selectedItem = new Item();
     public void gameInfo(){
         System.out.println("Player 1 ManaPoint : " + game.getManaPlayer1());
@@ -74,9 +74,9 @@ public class Battle {
         return selectedCard;
     }
 
-    public void setSelectedCard(int cardID) {
+    public void setSelectedCard(String cardID) {
         for(int i = 0; i < Card.getCards().size(); i++){
-            if(Card.getCards().get(i).getCardID() == cardID){
+            if(Card.getCards().get(i).getCardID().equals(cardID)){
                 selectedCard = Card.getCards().get(i);
                 return;
             }

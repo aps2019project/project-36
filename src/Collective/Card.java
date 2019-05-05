@@ -19,7 +19,6 @@ public abstract class Card {
 
     protected Cell cell;
     protected int price;
-    protected int cardNumber;
     protected String cardID;
     protected String name;
     protected Player owner;
@@ -31,7 +30,7 @@ public abstract class Card {
     protected static ArrayList<Card> cards=new ArrayList<>();
     public abstract String getType();
 
-    public static ArrayList<Card> getCard() {
+    public static ArrayList<Card> getCards() {
         return cards;
     }
 

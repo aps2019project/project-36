@@ -177,8 +177,8 @@ public class Menu {
             menu.buy(name, loggedInPlayer);
         }
         if (input.length() > 5 && input.substring(0, 3).compareToIgnoreCase("sell") == 0) {
-            String id = input.substring(4);
-            menu.sell(Integer.parseInt(id), loggedInPlayer);
+            //String id = input.substring(4);
+            menu.sell(input.substring(4), loggedInPlayer);
         }
         if (input.compareToIgnoreCase("show") == 0) {
         }
