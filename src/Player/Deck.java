@@ -57,4 +57,11 @@ public class Deck {
     public void removeItem(Item item){
         items.remove(item);
     }
+
+    public boolean validateDeck(){
+        if(this.getCards().size() == 20 && this.getHero() != null){
+            return true;
+        }
+        return false;
+    }
 }
