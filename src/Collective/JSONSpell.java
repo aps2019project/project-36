@@ -12,6 +12,7 @@ public class JSONSpell {
 
         JSONObject TotalDisarm = new JSONObject();
         TotalDisarm.put("Name", "TotalDisarm");
+
         TotalDisarm.put("Class", "Spell");
         TotalDisarm.put("price", "1000");
         TotalDisarm.put("neededManna", "0");
