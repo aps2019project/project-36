@@ -23,7 +23,7 @@ public class Usable extends Item {
 //                }
 //                break;
 //            case "NAMOOSSEPAR":
-//                activeHolyBuff (card.getOwner().getMainDeck().getHero(), 2); //activeHolyBuff(Card card,number of buffs)
+//                HolyBuff (card.getOwner().getMainDeck().getHero(), 2); //activeHolyBuff(Card card,number of buffs)
 //                break;
 //            case "KAMANDAMOOL":
 //                if (card.getOwner().getMainDeck ().getHero ().getKindOfAttack ().compareTo ("ranged") == 0 || card.getOwner().getMainDeck ( ).getHero ( ).getKindOfAttack ( ).compareTo ("hybrid") == 0) {
@@ -36,7 +36,7 @@ public class Usable extends Item {
 //                }
 //                break;
 //            case "TERRORHOOD":
-//                activeWeaknessBuff(card,2);//activeWeaknessBuff(Card card,int power)
+//                WeaknessBuff(card,2);
 //                break;
 //            case "KINGKILLER":
 //                if(card.getOwner ().equals (game.getPlayer1 ())){
@@ -53,16 +53,16 @@ public class Usable extends Item {
 //                break;
 //            case "POISONOUSDAGGER":
 //                if(card.isAttacker ()){
-//                    activePosionBuff(card.getEnemy ());
+//                    PoisonBuff(card.getEnemy ());
 //                }
 //                break;
 //            case "SHOCKHAMMER":
 //                if(card.isAttacker ()){
-//                    stun(card.getEnemy ());
+//                    StunBuff(card.getEnemy ());
 //                }
 //                break;
 //            case "GHOSLTAMID":
-//                activeHolyBuff(card);
+//                HolyBuff(card);
 //                break;
 //        }
     }
