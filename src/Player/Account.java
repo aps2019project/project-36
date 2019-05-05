@@ -15,9 +15,11 @@ public class Account extends Player {
         return numberOfItemsOwned;
     }
 
-    public void setNumberOfItemsOwned(int numberOfCardsOwned) {
+    public void changeNumberOfItemsOwned(int numberOfCardsOwned) {
         this.numberOfItemsOwned = numberOfCardsOwned;
     }
+
+    public void setNumberOfItemsOwned(){numberOfItemsOwned= 0;}
 
     public static ArrayList<Account> getAccounts() {
         return accounts;

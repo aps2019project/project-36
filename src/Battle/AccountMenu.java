@@ -34,6 +34,7 @@ public class AccountMenu {
         newAccount.setPassword(password);
         newAccount.setDaric();
         Account.addToAccounts(newAccount);
+        newAccount.setNumberOfItemsOwned();
     }
 
     public void showLeaderboard(){

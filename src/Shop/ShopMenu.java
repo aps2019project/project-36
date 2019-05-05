@@ -102,7 +102,7 @@ public class ShopMenu{
                             System.out.println ("You bought this item successfully");
                             account.changeDaric (account.getDaric ()- wantedItem.getPrice());
                             //account.getCollection ().addItem (wantedItem);
-                            account.setNumberOfItemsOwned (account.getNumberOfItemsOwned ()+ 1);
+                            account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned ()+ 1);
                         }
                     }
                 }
@@ -129,7 +129,7 @@ public class ShopMenu{
                 if(x.getItemNumber ()== ID){
                     System.out.println ("You sold this item successfully");
                     account.changeDaric (account.getDaric ()- x.getPrice ());
-                    account.setNumberOfItemsOwned (account.getNumberOfItemsOwned ()- 1);
+                    account.changeNumberOfItemsOwned (account.getNumberOfItemsOwned ()- 1);
                     found= true;
                     break;
                 }
