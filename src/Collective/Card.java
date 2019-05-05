@@ -5,7 +5,7 @@ import Player.Player;
 
 import java.util.ArrayList;
 
-public class Card {
+public abstract class Card {
     public enum AttackType {
         ON_SPAWN,
         PASSIVE,
@@ -29,7 +29,7 @@ public class Card {
     protected String id;
     protected int neededMAnna;
     protected static ArrayList<Card> cards=new ArrayList<>();
-
+    public abstract String getCard();
 
     public static ArrayList<Card> getCards() {
         return cards;
