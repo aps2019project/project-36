@@ -9,6 +9,15 @@ public class Account extends Player {
     private String password;
     private Collection collection;
     private GraveYard graveYard;
+    private int numberOfItemsOwned;
+
+    public int getNumberOfItemsOwned() {
+        return numberOfItemsOwned;
+    }
+
+    public void setNumberOfItemsOwned(int numberOfCardsOwned) {
+        this.numberOfItemsOwned = numberOfCardsOwned;
+    }
 
     public static ArrayList<Account> getAccounts() {
         return accounts;

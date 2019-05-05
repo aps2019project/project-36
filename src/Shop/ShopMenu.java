@@ -91,19 +91,20 @@ public class ShopMenu{
                     wantedItem.setType (x.getType ());
                     wantedItem.setOwner (account);
                     found= true;
-                    /*if(found){
+                    if(found){
                         if(wantedItem.getPrice()> account.getDaric ()){
                             System.out.println ("You don't have enough money.");
                         }
-                        else if(account.getItemNumbers()>= 3){
+                        else if(account.getNumberOfItemsOwned ()>= 3){
                             System.out.println ("You can't have more than 3 items.");
                         }
-                        else if(account.getItemNumbers()< 3 && wantedItem.getPrice()<= account.getDaric ()){
+                        else if(account.getNumberOfItemsOwned ()< 3 && wantedItem.getPrice()<= account.getDaric ()){
                             System.out.println ("You bought this item successfully");
-                            account.setDaric (account.getDaric ()- wantedItem.getPrice());
-                            account.getCollection ().addItem (wantedItem);
+                            account.changeDaric (account.getDaric ()- wantedItem.getPrice());
+                            //account.getCollection ().addItem (wantedItem);
+                            account.setNumberOfItemsOwned (account.getNumberOfItemsOwned ()+ 1);
                         }
-                    }*/
+                    }
                 }
             }
         }
@@ -128,6 +129,7 @@ public class ShopMenu{
                 if(x.getItemNumber ()== ID){
                     System.out.println ("You sold this item successfully");
                     account.changeDaric (account.getDaric ()- x.getPrice ());
+                    account.setNumberOfItemsOwned (account.getNumberOfItemsOwned ()- 1);
                     found= true;
                     break;
                 }
