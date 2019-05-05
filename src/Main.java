@@ -95,10 +95,10 @@ public class Main
             collectionMenu();
         }
         else if(input.compareToIgnoreCase("shop") == 0){
-
+            shopMenu();
         }
         else if(input.compareToIgnoreCase("battle") == 0){
-            BattleMenu menu = new BattleMenu();
+            battleMenu();
         }
         else if(input.compareToIgnoreCase("help") == 0){
             help();
@@ -177,7 +177,7 @@ public class Main
             }
         }
         else if(input.compareToIgnoreCase("show all decks") == 0){
-
+            showAllDecks();
         }
         else if(input.length() > 10 && input.substring(0, 8).compareToIgnoreCase("show deck") == 0){
 
@@ -218,6 +218,61 @@ public class Main
             menu.help ();
         }
 
+    }
+    public static void battleMenu(){
+        BattleMenu menu = new BattleMenu();
+        int mode;
+        int numOfFlags = 0;
+        if (! loggedInPlayer.getCollection().validateDeck(loggedInPlayer.getMainDeck())){
+            System.out.println("selected deck is invalid");
+            secondMenu();
+        }
+        input = scanner.nextLine();
+        System.out.println("single player");
+        System.out.println("multi player");
+        System.out.println("exit");
+        if(input.compareToIgnoreCase("exit") == 0){
+            secondMenu();
+        }
+        else if(input.compareToIgnoreCase("Single player") == 0){
+            System.out.println("story");
+            System.out.println("Custom game");
+            input = scanner.nextLine();
+            if (input.compareToIgnoreCase("story") == 0){
+                menu.singlePlayerStory(loggedInPlayer);
+            }
+            else if (input.compareToIgnoreCase("custom") == 0){
+                showAllDecks();
+                System.out.println("mode 1: kill competitor's hero");
+                System.out.println("mode 2: keep the only flag for six turns");
+                System.out.println("mode 3:collect half of flags");
+                mode = scanner.nextInt();
+                if (mode == 3)
+                    numOfFlags = scanner.nextInt();
+                if (mode == 2)
+                    numOfFlags = 1;
+                menu.singlePlayerCustom(loggedInPlayer, mode, numOfFlags);
+            }
+        }
+        else if(input.compareToIgnoreCase("multi player") == 0){
+            Account.getAccounts().forEach(i -> System.out.println(i.getUsername()));
+            input = scanner.nextLine();
+            Player player2 = Player.findPlayerByUsername(input.substring(12));
+            if(player2.getMainDeck() == null || !player2.getMainDeck().validateDeck()){
+                System.out.println("selected deck for second player is invalid");
+                battleMenu();
+            }
+            mode = scanner.nextInt();
+            if (mode == 3)
+                numOfFlags = scanner.nextInt();
+            if (mode == 2)
+                numOfFlags = 1;
+            menu.multiPlayer(loggedInPlayer, player2, mode, numOfFlags);
+        }
+        battleMenu();
+    }
+    public static void showAllDecks(){
+        //todo
     }
     public static void collecionHelp(){
         System.out.println("exit");
