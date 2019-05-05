@@ -7,6 +7,9 @@ import java.io.FileWriter;
 public class JSONSpell {
 
     public static void main(String[] args) {
+
+
+
         JSONObject TotalDisarm = new JSONObject();
         TotalDisarm.put("Name", "TotalDisarm");
         TotalDisarm.put("Class", "Spell");

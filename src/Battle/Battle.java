@@ -34,6 +34,44 @@ public class Battle {
             }
         }
     }
+    public void showMyMinions(Player player){
+        for(int i = 0; i < player.getMainDeck().getCards().size(); i++){
+            //todo
+        }
+    }
+
+    public void showOpponentMinions(Player player){
+        //todo
+    }
+
+    public void ShowCardInfo(int cartID){
+        //todo
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public Card getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void setSelectedCard(int cardID) {
+
+    }
+
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(Item selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
     public void playTurn(){
 
     }
