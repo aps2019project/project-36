@@ -31,7 +31,7 @@ public abstract class Card {
     protected static ArrayList<Card> cards=new ArrayList<>();
     public abstract String getType();
 
-    public static ArrayList<Card> getCard() {
+    public static ArrayList<Card> getCards() {
         return cards;
     }
 
