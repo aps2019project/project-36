@@ -5,8 +5,6 @@ import Map.Cell;
 
 public class Collectible extends Item{
     private Cell cell;
-    private int HP;
-    private String collectibleType;
     public Cell getCell() {
         return cell;
     }

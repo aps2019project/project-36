@@ -10,6 +10,9 @@ public class Item {
     private int itemNumber;
     private Card owner;
     private int price;
+    private int changeHP;
+    private int changeAP;
+    private int changeMP;
 
     public int getPrice() {
         return price;
