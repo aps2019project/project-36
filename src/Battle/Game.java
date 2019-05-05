@@ -5,7 +5,10 @@ import Player.Player;
 import Player.Match;
 import com.sun.tools.javac.Main;
 
+import java.util.Scanner;
+
 public class Game {
+
     private Player player1 = new Player();
     private Player player2 = new Player();
     private int turn = 0;
@@ -16,6 +19,14 @@ public class Game {
 
     public int getManaPlayer1() {
         return manaPlayer1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
     }
 
     public void setManaPlayer1(int manaPlayer1) {
@@ -42,14 +53,6 @@ public class Game {
         this.player1 = player1;
     }
 
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
     public int getTurn() {
         return turn;
     }
@@ -58,8 +61,19 @@ public class Game {
         turn++;
     }
 
+    public void setMana(int a){
+        if(a == 1){
+            manaPlayer1 = turn / 2 + 2;
+        }
+        else
+            manaPlayer2 = turn / 2 + 2;
+    }
     public void reachedFlag(){
         reachingFlag = turn;
+    }
+
+    public int getMode() {
+        return mode;
     }
 
     public int checkIsOver(){
@@ -85,10 +99,10 @@ public class Game {
             int cnt1 = 0;
             int cnt2 = 0;
             for(int i = 0; i < Map.getFlagsInMap().size(); i++){
-                if(Map.getFlagsInMap().get(0).getOwner().equals(player1)){
+                if(Map.getFlagsInMap().get(0).getOwner().getOwner().equals(player1)){
                     cnt1 ++;
                 }
-                else if(Map.getFlagsInMap().get(0).getOwner().equals(player2)){
+                else if(Map.getFlagsInMap().get(0).getOwner().getOwner().equals(player2)){
                     cnt2 ++;
                 }
             }

@@ -8,7 +8,7 @@ public class Item {
     private String type;
     private String itemID;
     private int itemNumber;
-    private Player owner;
+    private Card owner;
     private int price;
 
     public int getPrice() {
@@ -19,11 +19,11 @@ public class Item {
         this.price = price;
     }
 
-    public Player getOwner() {
+    public Card getOwner() {
         return owner;
     }
 
-    public void setOwner(Player owner) {
+    public void setOwner(Card owner) {
         this.owner = owner;
     }
 
