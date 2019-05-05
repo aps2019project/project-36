@@ -41,7 +41,7 @@ public class Minion extends Card {
     public void setType(String type) {
     }
 
-    public String getCard() {
+    public String getType() {
         return "Minion";
     }
 

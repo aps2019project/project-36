@@ -97,7 +97,7 @@ public class Spell extends Card {
     public void setType(String type) {
     }
 
-    public String getCard(){
+    public String getType(){
         return "Spell";
     }
 

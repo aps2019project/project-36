@@ -30,11 +30,11 @@ public class Hero extends Card {
     public void setHeroType() {
     }
 
-    public String getCard(){
+    public String getType(){
         return "Hero";
     }
 
-    public HeroTypes[] getType() {
+    public HeroTypes[] getHeroType() {
         return heroArr;
     }
 
