@@ -1,5 +1,6 @@
 package Collective;
 
+import Map.Cell;
 import Player.Player;
 
 public class Card {
@@ -14,8 +15,7 @@ public class Card {
         NONE
     }
 
-    protected int x;
-    protected int y;
+    protected Cell cell;
     protected int price;
     protected int cardNumber;
     protected String cardID;
@@ -34,6 +34,14 @@ public class Card {
         this.neededMAnna = manna;
     }
 
+    public Cell getCell() {
+        return cell;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
+    }
+
     public void setHP(int HP) {
         this.HP = HP;
     }
@@ -48,22 +56,6 @@ public class Card {
 
     public int getCardNumber() {
         return cardNumber;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public int getPrice() {

@@ -9,7 +9,7 @@ public class Spell extends Card {
     enum SpellTypes {
         TOTALDIARM, AREADISPAL, EMPOWER, FIREBALL, GODSTRENGTH, HELLFIRE,
         LIGHTINGBOLT, POISONLAKE, MADNESS, ALLDISARM, ALLPOISON, DISPEL, HEALTHWITHPROFIT,
-        GHAZABOKHORJOONBEGIRI, ALLPOWER, ALLATTACK, WEAKENING, SACRIFICE, KINGSGUARD, SHOCK;
+        GHAZABOKHORJOONBEGIRI, ALLPOWER, ALLATTACK, WEAKENING, SACRIFICE, KINGSGUARD, SHOCK
     }
 
     public enum TargetArea {
@@ -32,10 +32,10 @@ public class Spell extends Card {
         ON_DEFEND,//todo looks it is handled despite of it isn't used
         ON_DEATH,
         ON_SPAWN,
-        PASSIVE;
+        PASSIVE
     }
 
-    private SpellTypes spellArr[] =SpellTypes.values();
+    private SpellTypes spellArr[] = SpellTypes.values();
     private CellEffect effect;
     private String desc;
     private TargetArea targetArea;
@@ -67,6 +67,37 @@ public class Spell extends Card {
         this.isDispeller = isDispeller;
         this.addedBuffs.add(addedBuff);
     }
+
+    public String getTargetArea() {
+        return targetArea.values().toString();
+    }
+
+    public void setTargetArea(String targetArea) {
+        this.targetArea = TargetArea.valueOf(targetArea);
+    }
+
+    public String getEffect() {
+        return buffType.values().toString();
+    }
+
+    public void setEffect(String buffType) {
+        this.buffType = Buff.BuffType.valueOf(buffType);
+    }
+
+    public void setNeededManna(int manna) {
+        neededManna = manna;
+    }
+
+    public void removeCard(int AP) {
+    }
+
+    public void setPrice(int price) {
+    }
+
+    public void setType(String type) {
+    }
+
+
     public Spell(String id, String name, int price, int HPneededManna,
                  int APChange, int HPChange, int coolDown,
                  Target target, List<Buff> addedBuffs,
@@ -83,51 +114,6 @@ public class Spell extends Card {
         this.addedBuffs = addedBuffs;
     }
 
-    public Spell(String id, String name, int price, int HPneededManna,
-                 int APChange, int HPChange, int coolDown,
-                 Target target, Buff addedBuff,
-                 SpellActivationType activationType,
-                 String description, boolean isDispeller,
-                 Spell addedSpell) {
-        super(id, name, price, HPneededManna);
-        this.APChange = APChange;
-        this.HPChange = HPChange;
-        this.coolDown = coolDown;
-        this.target = target;
-        this.activationType = activationType;
-        this.description = description;
-        this.isDispeller = isDispeller;
-        this.addedBuffs.add(addedBuff);
-        this.addedSpells.add(addedSpell);
-    }
-    public String getTargetArea() {
-        return targetArea.values().toString();
-    }
-
-    public void setTargetArea(String targetArea) {
-        this.targetArea = TargetArea.valueOf(targetArea);
-    }
-
-    public String getEffect() {
-        return buffType.values().toString();
-    }
-
-    public void setEffect(String buffType) {
-        this.buffType= Buff.BuffType.valueOf(buffType);
-    }
-
-    public void setNeededManna(int manna) {
-        neededManna = manna;
-    }
-
-    public void removeCard(int AP) {
-    }
-
-    public void setPrice(int price) {
-    }
-
-    public void setType(String type) {
-    }
 
     public Spell() {
         for (SpellTypes spell : spellArr) {
@@ -260,57 +246,8 @@ public class Spell extends Card {
         }
     }
 
-    public Spell(String id, String name, int price, int HPneededManna,
-                 int APChange, int HPChange, int coolDown,
-                 Target target, Buff addedBuff,
-                 SpellActivationType activationType,
-                 String description, boolean isDispeller) {
-        super(id, name, price, HPneededManna);
-        this.APChange = APChange;
-        this.HPChange = HPChange;
-        this.coolDown = coolDown;
-        this.target = target;
-        this.activationType = activationType;
-        this.description = description;
-        this.isDispeller = isDispeller;
-        this.addedBuffs.add(addedBuff);
-    }
 
-    public Spell(String id, String name, int price, int HPneededManna,
-                 int APChange, int HPChange, int coolDown,
-                 Target target, List<Buff> addedBuffs,
-                 SpellActivationType activationType,
-                 String description, boolean isDispeller) {
-        super(id, name, price, HPneededManna);
-        this.APChange = APChange;
-        this.HPChange = HPChange;
-        this.coolDown = coolDown;
-        this.target = target;
-        this.activationType = activationType;
-        this.description = description;
-        this.isDispeller = isDispeller;
-        this.addedBuffs = addedBuffs;
-    }
-
-    public Spell(String id, String name, int price, int HPneededManna,
-                 int APChange, int HPChange, int coolDown,
-                 Target target, Buff addedBuff,
-                 SpellActivationType activationType,
-                 String description, boolean isDispeller,
-                 Spell addedSpell) {
-        super(id, name, price, HPneededManna);
-        this.APChange = APChange;
-        this.HPChange = HPChange;
-        this.coolDown = coolDown;
-        this.target = target;
-        this.activationType = activationType;
-        this.description = description;
-        this.isDispeller = isDispeller;
-        this.addedBuffs.add(addedBuff);
-        this.addedSpells.add(addedSpell);
-    }
-    
-    public void spellEffect(){
+    public void spellEffect() {
 
         Target totalDisarmTarget = new Target(Consts.HERO_MINION, 1, 1, Consts.ENEMY, false, false, 0, Consts.ALL);
         DisarmBuff totalDisarmBuff = new DisarmBuff(1000, true, false);
@@ -387,7 +324,7 @@ public class Spell extends Card {
         Target allPowerTarget = new Target(Consts.HERO_MINION, Integer.MAX_VALUE, Integer.MAX_VALUE, Consts.FRIEND, false, false, 0, Consts.ALL);
         PowerBuff allPowerBuff = new PowerBuff(Integer.MAX_VALUE, true, false, 0, 2);
         Spell allPower = new Spell("shop_allPower_1", "allPower", 200, 4, 0, 0, 0, allPowerTarget, allPowerBuff, SpellActivationType.ON_CAST, "", false);
-        
+
 
         Target allAttackTarget = new Target(Consts.HERO_MINION, Integer.MAX_VALUE, 1, Consts.ENEMY, false, false, 0, Consts.ALL);
         Spell allAttack = new Spell("shop_allAttack_1", "allAttack", 1500, 4, 0, -6, 0, allAttackTarget, (Buff) null, SpellActivationType.ON_CAST, "", false);
@@ -406,7 +343,6 @@ public class Spell extends Card {
         sacrificeBuffs.add(sacrificeBuff2);
         Spell sacrifice = new Spell("shop_sacrifice_1", "sacrifice", 1600, 2, 0, 0, 0, sacrificeTarget, sacrificeBuffs, SpellActivationType.ON_CAST, "", false);
 
-        //todo
 
 
         Target shockTarget = new Target(Consts.HERO_MINION, 1, 1, Consts.ENEMY, false, false, 0, Consts.ALL);

@@ -32,7 +32,7 @@ public class AccountMenu {
         Account newAccount = new Account();
         newAccount.setUsername(username);
         newAccount.setPassword(password);
-        newAccount.setDaric();
+        newAccount.setDaricPrimitive();
         Account.addToAccounts(newAccount);
     }
 
