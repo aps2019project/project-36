@@ -60,7 +60,7 @@ public class ShopMenu{
 
     public void buy(String name, Account account) {
         boolean found= false;
-        for(Card x: cards ){
+        /*for(Card x: cards ){
             if(name.compareToIgnoreCase (x.getName ())== 0){
                 Card wantedCard= new Card();
                 wantedCard.setAP(x.getAP ());
@@ -110,14 +110,14 @@ public class ShopMenu{
         }
         if(!found){
             System.out.println ("This Card/Item is not in the shop");
-        }
+        }*/
 
     }
 
-    public void sell(int ID,Account account) {
+    public void sell(String ID,Account account) {
         boolean found= false;
         for(Card x: cards){
-            if(x.getCardNumber ()== ID){
+            if(x.getCardID ().compareToIgnoreCase (ID)== 0){
                 System.out.println ("You sold this card successfully");
                 account.changeDaric (account.getDaric () - x.getPrice ());
                 found= true;
@@ -126,7 +126,7 @@ public class ShopMenu{
         }
         if(!found){
             for(Item x: items){
-                if(x.getItemNumber ()== ID){
+                if(x.getItemID ().compareToIgnoreCase (ID)== 00){
                     System.out.println ("You sold this item successfully");
                     account.changeDaric (account.getDaric ()- x.getPrice ());
                     account.changeNumberOfItemsOwned (account.getNumberOfItemsOwned ()- 1);

@@ -2,17 +2,35 @@ package Battle;
 
 
 import Map.Cell;
-import Player.Player;
+import Player.*;
 import Menu.Menu;
+import Player.ComputerPlayer;
 
 public class BattleMenu {
     //mode 1 : kill competitor's hero 2: keep the only flag for six turns 3: collect half of flags
     //kind 1 : Story 2: Custom Game
     public void singlePlayerStory(Player player){
+        Deck tempDeck = new Deck();
+        tempDeck = player.getMainDeck ();
+        for(int i= 1; i< 4;i++){
+            Player computerPlayer= new ComputerPlayer ();
+            if(i== 1){
+                //todo
+                //player.getMainDeck ().setHero ();
+                multiPlayer (player,computerPlayer,i,0);
+            }
+            else if(i== 2){
+                multiPlayer (player,computerPlayer,i,1);
+            }
+            else{
+                multiPlayer (player,computerPlayer,i,7);
+            }
+
+        }
+        player.setMainDeck (tempDeck);
 
     }
     public void singlePlayerCustom(Player player, int mode, int numOfFlags){
-
     }
 
     public void multiPlayer(Player player1, Player player2, int mode, int numOfFlags){
