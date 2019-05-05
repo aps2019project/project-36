@@ -35,7 +35,6 @@ public class BattleMenu {
             if (input.compareToIgnoreCase("") == 0){
 
             }
-            battle.playTurn();
             game.setMana(1);
             game.setMana(2);
             game.changeTurn();

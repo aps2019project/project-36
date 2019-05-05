@@ -3,7 +3,7 @@ package Battle;
 import Collective.Card;
 import Collective.Flag;
 import Collective.Item;
-import Map.Map;
+import Map.*;
 import Player.Player;
 import com.sun.tools.javac.Main;
 
@@ -20,7 +20,8 @@ public class Battle {
             System.out.println("Player 2 HealthPoint : " + game.getPlayer2().getMainDeck().getHero().getHP());
         }
         if(game.getMode() == 2){
-            System.out.println("flag's position" + Map.getFlagsInMap().get(0).getCell().getX() + 1 + " " + Map.getFlagsInMap().get(0).getCell().getY() + 1);
+            System.out.println("flag's position" + Map.getFlagsInMap().get(0).getCell().getX() + 1 + " "
+                    + Map.getFlagsInMap().get(0).getCell().getY() + 1);
             if (Map.getFlagsInMap().get(0).getOwner().equals(game.getPlayer1())){
                 System.out.println("flag's owner is player 1");
             }
@@ -48,6 +49,19 @@ public class Battle {
         //todo
     }
 
+    public void moveTo(int x, int y){
+        Cell cell = new Cell();
+        cell.setY(y);
+        cell.setX(x);
+        if(Math.abs(cell.getX() - selectedCard.getCell().getX()) +
+                Math.abs(cell.getY() - selectedCard.getCell().getY()) > 2) {
+            //todo age betune bishtar az 2 khune bere barresi she
+            selectedCard.setCell(cell);
+        }
+        else
+            System.out.println("invalid target");
+    }
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -61,7 +75,13 @@ public class Battle {
     }
 
     public void setSelectedCard(int cardID) {
-
+        for(int i = 0; i < Card.getCards().size(); i++){
+            if(Card.getCards().get(i).getCardID() == cardID){
+                selectedCard = Card.getCards().get(i);
+                return;
+            }
+        }
+        System.out.println("Invalid card id");
     }
 
     public Item getSelectedItem() {
