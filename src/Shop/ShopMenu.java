@@ -77,7 +77,7 @@ public class ShopMenu{
                     else if(wantedCard.getPrice ()<= account.getDaric ()){
                         System.out.println ("You bought this card successfully");
                         //account.getCollection ().add(wantedCard.getCardID ());
-                        account.setDaric (account.getDaric()- wantedCard.getPrice());
+                        account.changeDaric (account.getDaric()- wantedCard.getPrice());
                     }
                     break;
                 }
@@ -118,7 +118,7 @@ public class ShopMenu{
         for(Card x: cards){
             if(x.getCardNumber ()== ID){
                 System.out.println ("You sold this card successfully");
-                account.setDaric (account.getDaric () - x.getPrice ());
+                account.changeDaric (account.getDaric () - x.getPrice ());
                 found= true;
                 break;
             }
@@ -127,7 +127,7 @@ public class ShopMenu{
             for(Item x: items){
                 if(x.getItemNumber ()== ID){
                     System.out.println ("You sold this item successfully");
-                    account.setDaric (account.getDaric ()- x.getPrice ());
+                    account.changeDaric (account.getDaric ()- x.getPrice ());
                     found= true;
                     break;
                 }

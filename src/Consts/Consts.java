@@ -8,7 +8,7 @@ public class Consts {
     private String[] usernames = {"Attacker", "Street Fighter", "King Arthas"};
     private Card[] cards;
     private Item item;
-    private final int initialDaricNum = 500;
+    private final int initialDaricNum = 15000;
     public static final int MONEY = 1000000;
     public static final String NONE = "none";
     public static final String ALL = "all";

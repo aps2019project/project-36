@@ -25,19 +25,15 @@ public class Player {
         this.mainDeck = mainDeck;
     }
 
-    public void setDaric(int daric) {
-        this.daric = daric;
-    }
-
     public int getDaric() {
         return daric;
     }
-
-    public void setDaricPrimitive() {
+    public void setDaric() {
         daric = Consts.getInstance().getInitialDaricNum();
     }
-    public void changeDaric(int change){
-        daric -= change;
+
+    public void changeDaric(int daric) {
+        this.daric = daric;
     }
     public static boolean takenUsernames(String username){
         for(int i = 0; i < Account.getAccounts().size(); i++){
