@@ -1,6 +1,7 @@
 package Shop;
 
 import Collective.*;
+import Player.Account;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -27,7 +28,7 @@ public class Shop {
         return items;
     }
 
-    private void init() {
+    private static void init() {
         for (TypeOfFiles typeOfFiles : TypeOfFiles.values ( )) {
             File folder = new File (typeOfFiles.name ( ));
             File[] listOfFiles = folder.listFiles ( );
@@ -39,7 +40,7 @@ public class Shop {
         }
     }
 
-    public void makeNewFromFile(String path, String type) {
+    public static void makeNewFromFile(String path, String type) {
         try {
             Gson gson = new Gson ( );
             InputStream input = new FileInputStream (path);
@@ -71,7 +72,7 @@ public class Shop {
         }
     }
 
-    public void makeNewItemByName(String name) {
+    public static Item makeNewItemByName(String name) {
         Item item= checkNameItem (name);
         TypeOfFiles typeOfFile= null;
         if(item instanceof Collectible){
@@ -83,10 +84,13 @@ public class Shop {
         if(item != null){
             makeNewFromFile (typeOfFile.name ( )+"/"+item.getName ()+".json",typeOfFile.toString ());
         }
+        items.remove (item);
+        return item;
+
 
     }
 
-    public Card makeNewCardByName(String name) {
+    public static Card makeNewCardByName(String name) {
         Card card = checkNameCard (name);
         TypeOfFiles typeOfFile = null;
 
@@ -104,11 +108,12 @@ public class Shop {
             makeNewFromFile (typeOfFile.name() + "/" + card.getName() + ".json", typeOfFile.toString());
         }
         cards.remove (card);
+        Card.addToCards (card);
         return card;
     }
 
 
-    public Card checkNameCard(String name) {
+    public static Card checkNameCard(String name) {
         for (Card x : cards) {
             if (x.getName ( ).compareTo (name) == 0) {
                 return x;
@@ -117,7 +122,7 @@ public class Shop {
         return null;
     }
 
-    public Item checkNameItem(String name){
+    public static Item checkNameItem(String name){
         for(Item x: items){
             if(x.getName ().compareTo (name)== 0){
                 return x;

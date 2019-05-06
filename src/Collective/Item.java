@@ -7,7 +7,6 @@ public class Item {
     private String desc;
     private String type;
     private String itemID;
-    private int itemNumber;
     private Card owner;
     private int price;
     private int changeHP;
@@ -56,14 +55,6 @@ public class Item {
 
     public String getName() {
         return name;
-    }
-
-    public int getItemNumber() {
-        return itemNumber;
-    }
-
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
     }
 
 }

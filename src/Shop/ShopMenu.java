@@ -3,6 +3,8 @@ package Shop;
 import Collective.Card;
 import Collective.Item;
 import Player.Account;
+import Player.Player;
+
 import java.util.ArrayList;
 
 public class ShopMenu{
@@ -18,7 +20,7 @@ public class ShopMenu{
             if(x.getType ().compareTo ("Hero")== 0){
                 System.out.println ((i+1) +" Name: " + x.getName () +" - AP: "+x.getAP ()+" - HP: "+
                         x.getHP ()+" - Class: " +x.getClass () +" - Special Power: "+
-                       x.getSpecialPower() + " - Sell Cost: " + x.getPrice ());
+                       x.getDesc () + " - Sell Cost: " + x.getPrice ());
                 i++;
             }
         }
@@ -35,12 +37,12 @@ public class ShopMenu{
             if(x.getType ().compareTo ("Spell")== 0){
                 System.out.println ((i+1) +"Type "+ x.getType ()+ " - Name: " + x.getName () +
                         " - MP: "+x.getMP ()+" - Class: " +x.getClass () +" - Description: "+
-                        x.getSpecialPower() + " - Sell Cost: " + x.getPrice ());
+                        x.getDesc () + " - Sell Cost: " + x.getPrice ());
             }
             else if(Shop.getCards ().get(i).getType ().compareTo ("Minion")== 0){
                 System.out.println ((i+1) +"Type "+ x.getType ()+ " - Name: " + x.getName () +
                         " - Class: " +x.getClass () +" - AP: "+x.getAP ()+" - HP: "+x.getHP ()+" - MP"+x.getMP ()+" - SpecialPower: "+
-                       x.getSpecialPower() + " - Sell Cost: " + x.getPrice ());
+                       x.getDesc () + " - Sell Cost: " + x.getPrice ());
             }
             i++;
         }
@@ -92,50 +94,41 @@ public class ShopMenu{
 
     public void buy(String name, Account account) {
         boolean found= false;
-        /*for(Card x: cards ){
+        for(Card x: Shop.getCards () ){
             if(name.compareToIgnoreCase (x.getName ())== 0){
-                Card wantedCard= new Card();
-                wantedCard.setAP(x.getAP ());
-                wantedCard.setOwner (account);
-                wantedCard.setHP(x.getHP ());
-                wantedCard.setPrice (x.getPrice ());
-                wantedCard.setName (x.getName ());
-                wantedCard.setMP (x.getMP ());
-                //todo add to cards in Card.card
                 found= true;
                 if(found){
-                    if(wantedCard.getPrice ()> account.getDaric ()){
+                    if(x.getPrice ()> account.getDaric ()){
                         System.out.println ("You don't have enough money");
                     }
-                    else if(wantedCard.getPrice ()<= account.getDaric ()){
+                    else if(x.getPrice ()<= account.getDaric ()){
                         System.out.println ("You bought this card successfully");
-                        //account.getCollection ().add(wantedCard.getCardID ());
-                        account.changeDaric (account.getDaric()- wantedCard.getPrice());
+                        Shop.makeNewCardByName (x.getName ()).setCardID (makeID (x.getName (),account)); //set card iD
+                        account.getCollection ().addToCards (Shop.makeNewCardByName (x.getName ()));
+                        account.changeDaric (account.getDaric()- x.getPrice());
+
                     }
                     break;
                 }
             }
         }
         if(!found){
-            for(Item x: items){
+            for(Item x: Shop.getItems ()){
                 if(name.compareToIgnoreCase (x.getName ())== 0){
-                    Item wantedItem= new Item ();
-                    wantedItem.setName (name);
-                    wantedItem.setType (x.getType ());
-                    //wantedItem.setOwner (account);
                     found= true;
                     if(found){
-                        if(wantedItem.getPrice()> account.getDaric ()){
+                        if(x.getPrice()> account.getDaric ()){
                             System.out.println ("You don't have enough money.");
                         }
                         else if(account.getNumberOfItemsOwned ()>= 3){
                             System.out.println ("You can't have more than 3 items.");
                         }
-                        else if(account.getNumberOfItemsOwned ()< 3 && wantedItem.getPrice()<= account.getDaric ()){
+                        else if(account.getNumberOfItemsOwned ()< 3 && x.getPrice()<= account.getDaric ()){
                             System.out.println ("You bought this item successfully");
-                            account.changeDaric (account.getDaric ()- wantedItem.getPrice());
-                            //account.getCollection ().addItem (wantedItem);
+                            account.changeDaric (account.getDaric ()- x.getPrice());
                             account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned ()+ 1);
+                            Shop.makeNewItemByName (x.getName ()).setItemID (makeID (x.getName (),account));
+                            account.getCollection ().addToItems (Shop.makeNewItemByName (x.getName ()));
                         }
                     }
                 }
@@ -143,7 +136,7 @@ public class ShopMenu{
         }
         if(!found){
             System.out.println ("This Card/Item is not in the shop");
-        }*/
+        }
 
     }
 
@@ -152,8 +145,9 @@ public class ShopMenu{
         for(Card x: Shop.getCards ()){
             if(x.getCardID ().compareToIgnoreCase (ID)== 0){
                 System.out.println ("You sold this card successfully");
-                account.changeDaric (account.getDaric () - x.getPrice ());
+                account.changeDaric (account.getDaric () + x.getPrice ());
                 account.getCollection ().removeFromCards (x);
+                Card.removeFromCards (x);
                 found= true;
                 break;
             }
@@ -162,7 +156,8 @@ public class ShopMenu{
             for(Item x: Shop.getItems ()){
                 if(x.getItemID ().compareToIgnoreCase (ID)== 00){
                     System.out.println ("You sold this item successfully");
-                    account.changeDaric (account.getDaric ()- x.getPrice ());
+                    account.getCollection ().removeFromItems (x);
+                    account.changeDaric (account.getDaric () + x.getPrice ());
                     account.changeNumberOfItemsOwned (account.getNumberOfItemsOwned ()- 1);
                     found= true;
                     break;
@@ -179,7 +174,7 @@ public class ShopMenu{
             for(int i= 0 ; i<Shop.getCards().size ();i++){
                 if(Shop.getCards ().get(i).getType ().compareTo ("Hero")==0){
                     System.out.println ((i+1) +" Name: " + Shop.getCards ().get(i).getName () +" - AP: "+Shop.getCards ().get(i).getAP ()+
-                            " - HP: "+ Shop.getCards ().get(i).getHP ()+" - Special Power: "+ Shop.getCards ().get(i).getSpecialPower() +
+                            " - HP: "+ Shop.getCards ().get(i).getHP ()+" - Special Power: "+ Shop.getCards ().get(i).getDesc () +
                             " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
                 }
             }
@@ -193,14 +188,14 @@ public class ShopMenu{
                 if(Shop.getCards ().get(i).getType ().compareTo ("Spell")== 0){
                     System.out.println ((i+1) +"Type "+ Shop.getCards ().get (i).getType ()+ " - Name: " + Shop.getCards ().get(i).getName () +
                             " - MP: "+Shop.getCards ().get(i).getMP ()+" - Class: " +Shop.getCards ().getClass () +" - Description: "+
-                            Shop.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
+                            Shop.getCards ().get(i).getDesc () + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
                 }
                 else if(Shop.getCards ().get(i).getType ().compareTo ("Minion")== 0){
                     System.out.println ((i+1) +"Type "+ Shop.getCards ().get (i).getType ()+ " - Name: " +
                             Shop.getCards ().get(i).getName () + " - Class: " +Shop.getCards ().getClass () +
                             " - AP: "+Shop.getCards ().get(i).getAP ()+" - HP: "+Shop.getCards ().get (i).getHP ()+
                             " - MP"+Shop.getCards ().get (i).getMP ()+" - SpecialPower: "+
-                            Shop.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
+                            Shop.getCards ().get(i).getDesc () + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
                 }
             }
     }
@@ -216,5 +211,30 @@ public class ShopMenu{
         System.out.println ("help");
     }
 
-}
+    public String makeID(String name, Account account){
+        String ID;
+        ID=account.getUsername ()+"_"+name+"_"+getMaxNumber (name,account);
+        return ID;
 
+    }
+    public int getMaxNumber(String name,Account account){
+        boolean found= false;
+        int maxNumber= 0;
+        for(Card x:account.getCollection ().getCards ()){
+            if(x.getName ().compareTo (name)==0){
+                maxNumber++;
+                found=true;
+            }
+        }
+        if(!found){
+            for(Item x:account.getCollection ().getItems ()){
+                if(x.getName ().compareTo (name)==0){
+                    maxNumber++;
+                    found=true;
+                }
+            }
+        }
+        return maxNumber++;
+    }
+
+}
