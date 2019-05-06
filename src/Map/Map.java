@@ -21,7 +21,13 @@ public class Map {
     public static ArrayList<Flag> getFlagsInMap(){
         return flagsInMap;
     }
-    public static void addToFlagsInMap(Flag flag){
+    public static void addToFlagsInMap(Cell cell){
+        Flag flag = new Flag();
+        flag.setCell(cell);
         flagsInMap.add(flag);
+    }
+    public static void clearMap(){
+        flagsInMap.clear();
+        cardsInMap.clear();
     }
 }

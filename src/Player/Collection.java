@@ -33,6 +33,21 @@ public class Collection {
         return id;
     }
 
+    public void addToCards(Card card){
+        cards.add(card);
+    }
+
+    public void addToItems(Item item){
+        items.add(item);
+    }
+
+    public void removeFromCards(Card card){
+        cards.remove(card);
+    }
+
+    public void removeFromItems(Item item){
+        items.remove(item);
+    }
     public void addToDecks(Deck deck){
         decks.add(deck);
     }
