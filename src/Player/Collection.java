@@ -55,13 +55,13 @@ public class Collection {
     public String search (String name) {
         for (int i = 0; i < cards.size(); i++){
             if (cards.get(i).getName().equals(name)){
-                addToSearchedList(cards.get(i).getCardID ());
+                addToSearchedList(cards.get(i).getCardID());
                 return cards.get(i).getCardID();
             }
         }
         for (int i = 0; i < items.size(); i++){
             if (items.get(i).getName().equals(name)){
-                addToSearchedList(items.get(i).getItemID ());
+                addToSearchedList(items.get(i).getItemID());
                 return items.get(i).getItemID();
             }
         }

@@ -10,6 +10,7 @@ import Menu.Menu;
 import Player.ComputerPlayer;
 
 public class BattleMenu {
+    private static boolean check = false;
     //mode 1 : kill competitor's hero 2: keep the only flag for six turns 3: collect half of flags
     //kind 1 : Story 2: Custom Game
     public void singlePlayerStory(Player player){
@@ -94,7 +95,7 @@ public class BattleMenu {
             }
             // todo attack combo
             else if(input.length() >= 17 && input.substring(0,16).compareToIgnoreCase("Use special power") == 0){
-                battle.useSpecialPower(Integer.parseInt(input.substring(18, 18)), Integer.parseInt((input.substring(20, 20))));
+                //battle.useSpecialPower(Integer.parseInt(input.substring(18, 18)), Integer.parseInt((input.substring(20, 20))));
             }
             else if(input.equals("Show hand")){
                 battle.showHand();
@@ -125,6 +126,13 @@ public class BattleMenu {
             else if(input.equals("Help")){
                 battle.help();
             }
+            else if(input.equals("end game")){
+                if (game.getPlayer1().equals(currentPlayer)) {
+                    match.setWinner(game.getPlayer2());
+                    check = true;
+                    break;
+                }
+            }
             else if (input.equals("end turn")) {
 
                 game.setMana(1);
@@ -135,10 +143,10 @@ public class BattleMenu {
                 } else currentPlayer = player2;
             }
         }
-        if (game.checkIsOver() == 1){
+        if (!check && game.checkIsOver() == 1){
             match.setWinner(player1);
         }
-        else
+        else if(!check && game.checkIsOver() == 2)
             match.setWinner(player2);
         Match.addToMatches(match);
         System.out.println("winner is : " + match.getWinner().getUsername());
