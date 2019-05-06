@@ -6,26 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spell extends Card {
-    enum SpellTypes {
-        TOTALDIARM, AREADISPAL, EMPOWER, FIREBALL, GODSTRENGTH, HELLFIRE,
-        LIGHTINGBOLT, POISONLAKE, MADNESS, ALLDISARM, ALLPOISON, DISPEL, HEALTHWITHPROFIT,
-        GHAZABOKHORJOONBEGIRI, ALLPOWER, ALLATTACK, WEAKENING, SACRIFICE, KINGSGUARD, SHOCK
-    }
 
-
-
-    public enum SpellActivationType {
-        ON_CARD_INSERTION,
-        ON_BATTLE_START,
-        ON_CAST,
-        ON_ATTACK,
-        ON_DEFEND,//todo looks it is handled despite of it isn't used
-        ON_DEATH,
-        ON_SPAWN,
-        PASSIVE
-    }
-
-    private SpellTypes spellArr[] = SpellTypes.values();
     private CellEffect effect;
     private String desc;
     private Buff.BuffType buffType;
@@ -36,7 +17,6 @@ public class Spell extends Card {
     private Target target;
     private List<Spell> addedSpells = new ArrayList<>();
     private List<Buff> addedBuffs = new ArrayList<>();
-    private SpellActivationType activationType;
     private String description;
     private boolean isDispeller;
     private int number_of_simultaneous_attacks;
@@ -44,25 +24,6 @@ public class Spell extends Card {
     public int getNumber_of_simultaneous_attacks() {
         return number_of_simultaneous_attacks;
     }
-
-
-
-    public Spell(String id, String name, int price, int HPneededManna,
-                 int APChange, int HPChange, int coolDown,
-                 Target target, Buff addedBuff,
-                 SpellActivationType activationType,
-                 String description, boolean isDispeller) {
-        super(id, name, price, HPneededManna);
-        this.APChange = APChange;
-        this.HPChange = HPChange;
-        this.coolDown = coolDown;
-        this.target = target;
-        this.activationType = activationType;
-        this.description = description;
-        this.isDispeller = isDispeller;
-        this.addedBuffs.add(addedBuff);
-    }
-
 
     public String getEffect() {
         return buffType.values().toString();
@@ -91,156 +52,8 @@ public class Spell extends Card {
     }
 
 
-    public Spell(String id, String name, int price, int HPneededManna,
-                 int APChange, int HPChange, int coolDown,
-                 Target target, List<Buff> addedBuffs,
-                 SpellActivationType activationType,
-                 String description, boolean isDispeller) {
-        super(id, name, price, HPneededManna);
-        this.APChange = APChange;
-        this.HPChange = HPChange;
-        this.coolDown = coolDown;
-        this.target = target;
-        this.activationType = activationType;
-        this.description = description;
-        this.isDispeller = isDispeller;
-        this.addedBuffs = addedBuffs;
-    }
 
-
-    public Spell() {
-        for (SpellTypes spell : spellArr) {
-            switch (spell) {
-                case TOTALDIARM:
-                    setPrice(1000);
-                    setNeededManna(0);
-                    setTargetAreas("ONE");
-                    setEffect("DISARM");
-                    break;
-                case AREADISPAL:
-                    setPrice(1500);
-                    setNeededManna(2);
-                    setTargetAreas("TWO");
-                    setEffect("ANTI");
-                    break;
-                case EMPOWER:
-                    setPrice(250);
-                    setNeededManna(1);
-                    setTargetAreas("SELF");
-                    setEffect("APCHANGE");
-                    break;
-                case FIREBALL:
-                    setPrice(400);
-                    setNeededManna(1);
-                    setTargetAreas("ENEMY");
-                    setEffect("ATTACK");
-                    break;
-                case GODSTRENGTH:
-                    setPrice(450);
-                    setNeededManna(2);
-                    setTargetAreas("SELF");
-                    setEffect("CHAMPIONAP");
-                    break;
-                case HELLFIRE:
-                    setPrice(600);
-                    setNeededManna(3);
-                    setTargetAreas("TWO");
-                    setEffect("STUN");
-                    break;
-                case LIGHTINGBOLT:
-                    setPrice(1250);
-                    setNeededManna(2);
-                    setTargetAreas("ENEMY");
-                    setEffect("ATTACK");
-                    break;
-                case POISONLAKE:
-                    setPrice(900);
-                    setNeededManna(5);
-                    setTargetAreas("THREE");
-                    setEffect("POISON");
-                    break;
-                case MADNESS:
-                    setPrice(650);
-                    setNeededManna(0);
-                    setTargetAreas("SELF");
-                    setEffect("APCHANGE");
-                    setEffect("DISARM");
-                    break;
-                case ALLDISARM:
-                    setPrice(2000);
-                    setNeededManna(9);
-                    setTargetAreas("ENEMY");
-                    setEffect("DISARM");
-                    break;
-                case ALLPOISON:
-                    setPrice(1500);
-                    setNeededManna(8);
-                    setTargetAreas("ENEMY");
-                    setEffect("POISON");
-                    break;
-                case DISPEL:
-                    setPrice(2100);
-                    setNeededManna(0);
-                    setTargetAreas("RANDOM");
-                    setEffect("ANTI");
-                    break;
-                case HEALTHWITHPROFIT:
-                    setPrice(2250);
-                    setNeededManna(0);
-                    setTargetAreas("SELF");
-                    setEffect("WEAKNESS");
-                    setEffect("HOLY");
-                    break;
-                case GHAZABOKHORJOONBEGIRI:
-                    setPrice(2500);
-                    setNeededManna(2);
-                    setTargetAreas("SELF");
-                    setEffect("POWER");
-                    break;
-                case ALLPOWER:
-                    setPrice(2000);
-                    setNeededManna(4);
-                    setTargetAreas("SELF");
-                    setEffect("POWER");
-                    break;
-                case ALLATTACK:
-                    setPrice(1500);
-                    setNeededManna(4);
-                    setTargetAreas("ALL_IN_COLUMN");
-                    setEffect("ATTACK");
-                    break;
-                case WEAKENING:
-                    setPrice(1000);
-                    setNeededManna(1);
-                    setTargetAreas("MINION");
-                    setTargetAreas("ENEMY");
-                    setEffect("WEAKNESS");
-                    break;
-                case SACRIFICE:
-                    setPrice(1600);
-                    setNeededManna(3);
-                    setTargetAreas("MINION");
-                    setTargetAreas("SELF");
-                    setEffect("KILL");
-                    break;
-                case KINGSGUARD:
-                    setPrice(1750);
-                    setNeededManna(3);
-                    setTargetAreas("EIGHT_AROUNDS");
-                    setEffect("KILL");
-                    break;
-                case SHOCK:
-                    setPrice(1200);
-                    setNeededManna(1);
-                    setTargetAreas("ENEMY");
-                    setEffect("STUN");
-                    break;
-            }
-        }
-    }
-
-
-    public void spellEffect() {
+   /* public void spellEffect() {
 
         Target totalDisarmTarget = new Target(Consts.HERO_MINION, 1, 1, Consts.ENEMY, false, false, 0, Consts.ALL);
         DisarmBuff totalDisarmBuff = new DisarmBuff(1000, true, false);
@@ -341,7 +154,7 @@ public class Spell extends Card {
         Target shockTarget = new Target(Consts.HERO_MINION, 1, 1, Consts.ENEMY, false, false, 0, Consts.ALL);
         StunBuff shockBuff = new StunBuff(2, true, false);
         Spell shock = new Spell("shop_shock_1", "shock", 1200, 1, 0, 0, 0, shockTarget, shockBuff, SpellActivationType.ON_CAST, "", false);
-    }
+    }*/
 
 
 }
