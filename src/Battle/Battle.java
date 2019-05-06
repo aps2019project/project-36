@@ -47,7 +47,7 @@ public class Battle {
         //todo
     }
 
-    public void ShowCardInfo(int cartID){
+    public void showCardInfo(Card card){
         //todo
     }
 

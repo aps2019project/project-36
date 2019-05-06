@@ -1,6 +1,7 @@
 package Battle;
 
 
+import Collective.Card;
 import Consts.Consts;
 import Map.Cell;
 import Map.Map;
@@ -66,6 +67,15 @@ public class BattleMenu {
             String input = Menu.getInput();
             if (input.compareToIgnoreCase("Show my minions") == 0){
                 battle.showMyMinions(currentPlayer);
+            }
+            else if (input.compareToIgnoreCase("Show opponent minions") == 0){
+                battle.showOpponentMinions(currentPlayer);
+            }
+            else if (input.length() >= 14 && input.substring(0,13).compareToIgnoreCase("Show card info") == 0){
+                battle.showCardInfo(Card.getCardByID(input.substring(15)));
+            }
+            else if (input.length() >= 6 && input.substring(0,5).compareToIgnoreCase("Select") == 0){
+                battle.setSelectedCard(Card.getCardByID(input.substring(15)));
             }
             game.setMana(1);
             game.setMana(2);

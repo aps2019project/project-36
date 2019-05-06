@@ -13,7 +13,7 @@ public class Game {
 
     private Player player1 = new Player();
     private Player player2 = new Player();
-    private int turn = 0;
+    private int turn = 1;
     private int reachingFlag = 0;
     private int mode;
     private int manaPlayer1;
