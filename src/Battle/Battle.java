@@ -8,6 +8,11 @@ import Player.*;
 import com.sun.tools.javac.Main;
 
 import java.util.ArrayList;
+import java.util.Random;
+
+import static java.lang.Math.abs;
+
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
@@ -233,7 +238,23 @@ public class Battle {
     public void playRandomTurn(){
         Random random = new Random();
         int rand = random.nextInt(3);
-        //todo
+        // 0 : insert 1 : move 2 : attack
+        if(rand == 0){
+            rand = random.nextInt(5);
+            insertCard(currentPlayer.getMainDeck().getHand().getCards().get(5).getName(), random.nextInt(8), random.nextInt(4));
+        }
+        if(rand == 1){
+            int cnt = 0;
+            for(int i = 0; i < Map.getCardsInMap().size(); i++){
+                if (Map.getCardsInMap().get(i).getOwner().equals(currentPlayer)){
+                    cnt ++;
+                }
+            }
+            rand = random.nextInt(cnt);
+        }
+        if(rand == 2){
+
+        }
     }
 
     public void use(int x, int y){

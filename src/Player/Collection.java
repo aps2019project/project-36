@@ -52,20 +52,20 @@ public class Collection {
         decks.add(deck);
     }
 
-    public int search (String name) {
+    public String search (String name) {
         for (int i = 0; i < cards.size(); i++){
             if (cards.get(i).getName().equals(name)){
                 addToSearchedList(cards.get(i).getCardNumber());
-                return cards.get(i).getCardNumber();
+                return cards.get(i).getCardID();
             }
         }
         for (int i = 0; i < items.size(); i++){
             if (items.get(i).getName().equals(name)){
                 addToSearchedList(items.get(i).getItemNumber());
-                return items.get(i).getItemNumber();
+                return items.get(i).getItemID();
             }
         }
-        return 0;
+        return "";
     }
     public boolean validateDeck(Deck deck){
         if(deck.getCards().size() == 20 && deck.getHero() != null){

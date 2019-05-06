@@ -7,6 +7,9 @@ import Player.*;
 import Battle.BattleMenu;
 import Shop.Shop;
 import Shop.ShopMenu;
+import com.sun.jdi.ArrayReference;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,7 +58,7 @@ public class Menu {
         } else if (input.compareToIgnoreCase("show leaderboard") == 0) {
             menu.showLeaderboard();
         } else if (input.compareToIgnoreCase("save") == 0) {
-            menu.save();
+
         } else if (input.compareToIgnoreCase("logout") == 0) {
             loggedInPlayer = null;
         } else if (input.compareToIgnoreCase("help") == 0) {
@@ -368,4 +371,9 @@ public class Menu {
         System.out.println("Exit");
         System.out.println("Help");
     }
+}
+
+class Pair{
+    Card card;
+    Deck deck;
 }

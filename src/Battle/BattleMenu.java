@@ -18,6 +18,7 @@ public class BattleMenu {
         tempDeck = player.getMainDeck ();
         for(int i= 1; i< 4;i++){
             Player computerPlayer= new ComputerPlayer ();
+            computerPlayer.setUsername("comp");
             if(i == 1){
                 player.setMainDeck(Consts.getInstance().getDeckStory1());
                 multiPlayer (player,computerPlayer,i,0);
@@ -40,6 +41,7 @@ public class BattleMenu {
     public void singlePlayerCustom(Player player, int mode, int numOfFlags){
         Match match = new Match();
         ComputerPlayer player2 = new ComputerPlayer();
+        player2.setUsername("comp");
         multiPlayer(player, player2, mode, numOfFlags);
         match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
         Map.clearMap();
@@ -64,7 +66,14 @@ public class BattleMenu {
         Player currentPlayer = player1;
         while(game.checkIsOver() == 0){
             battle.gameInfo();
-            String input = Menu.getInput();
+            String input;
+            if (currentPlayer.getUsername().equals("comp")){
+                battle.playRandomTurn();
+                input = "end turn";
+                continue;
+            }
+            else
+                input = Menu.getInput();
             if (input.compareToIgnoreCase("Show my minions") == 0){
                 battle.showMyMinions(currentPlayer);
             }
