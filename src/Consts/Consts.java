@@ -2,6 +2,7 @@ package Consts;
 
 import Collective.Card;
 import Collective.Item;
+import Player.*;
 
 public class Consts {
     private static Consts consts = null;
@@ -36,7 +37,21 @@ public class Consts {
     public static final String ENEMY_CARD_SPELL = "enemy card spell";
     public static final String WEAKER_AP = "weaker ap";
     public static final String HOLY_BUFF = "holy buff";
+    public static final Deck deckStory1 = null;
+    public static final Deck deckStory2 = null;
+    public static final Deck deckStory3 = null;
 
+    public static Deck getDeckStory1() {
+        return deckStory1;
+    }
+
+    public static Deck getDeckStory2() {
+        return deckStory2;
+    }
+
+    public static Deck getDeckStory3() {
+        return deckStory3;
+    }
 
     public static Consts getInstance() {
         if(consts == null)

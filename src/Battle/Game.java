@@ -1,10 +1,12 @@
 package Battle;
 
-import Map.Map;
+import Collective.Flag;
+import Map.*;
 import Player.Player;
 import Player.Match;
 import com.sun.tools.javac.Main;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -62,6 +64,13 @@ public class Game {
     }
 
     public void setMana(int a){
+        if (turn >= 14){
+            if(a == 1){
+                manaPlayer1 = 9;
+            }
+            else
+                manaPlayer2 = 9;
+        }
         if(a == 1){
             manaPlayer1 = turn / 2 + 2;
         }
@@ -114,5 +123,28 @@ public class Game {
             }
         }
         return 0;
+    }
+
+    public void setFlags(int numOfFlags){
+        if(numOfFlags == 1){
+            Cell cell = new Cell();
+            cell.setX(5);
+            cell.setY(3);
+            Map.addToFlagsInMap(cell);
+        }
+        if(numOfFlags > 1){
+            Random random = new Random();
+            if(numOfFlags % 2 == 1){
+                setFlags(1);
+            }
+            for (int i = 0; i < numOfFlags/2; i++){
+                Cell cell = new Cell();
+                cell.setX(random.nextInt(4));
+                cell.setY(random.nextInt(3));
+                Map.addToFlagsInMap(cell);
+                cell.setX(random.nextInt(4));
+                cell.setY(8 - random.nextInt(3));
+            }
+        }
     }
 }
