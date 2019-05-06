@@ -13,4 +13,8 @@ public class GraveYard {
     public ArrayList<Card> getCards() {
         return cards;
     }
+
+    public void showInfo(String ID){
+        //todo
+    }
 }

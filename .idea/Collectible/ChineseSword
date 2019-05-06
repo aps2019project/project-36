@@ -1,5 +1,0 @@
-{"name":"ChineseSword",
-  "desc":"Hit 5 more times until it gets hitted 5 times",
-  "type": "Collectible",
-  "changeAP":6,
-}
