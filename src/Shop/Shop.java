@@ -65,12 +65,23 @@ public class Shop {
         }
     }
 
-    public void makeNewFromItem() {
+    public void makeNewItemByName(String name) {
+        Item item= checkNameItem (name);
+        TypeOfFiles typeOfFile= null;
+        if(item instanceof Collectible){
+            typeOfFile= TypeOfFiles.Collectible;
+        }
+        if(item instanceof Usable){
+            typeOfFile= TypeOfFiles.Usable;
+        }
+        if(item != null){
+            makeNewFromFile (typeOfFile.name ( )+"/"+item.getName ()+".json",typeOfFile.toString ());
+        }
 
     }
 
     public Card makeNewCardByName(String name) {
-        Card card = checkName (name);
+        Card card = checkNameCard (name);
         TypeOfFiles typeOfFile = null;
 
         if (card instanceof Hero) {
@@ -84,13 +95,14 @@ public class Shop {
             typeOfFile = TypeOfFiles.Spell;
         }
         if (card != null) {
-            makeNewFromFile (typeOfFile.name ( ) + "/" + card.getName ( ) + ".json", typeOfFile.toString ( ));
+            makeNewFromFile (typeOfFile.name() + "/" + card.getName() + ".json", typeOfFile.toString());
         }
         cards.remove (card);
         return card;
     }
 
-    public Card checkName(String name) {
+
+    public Card checkNameCard(String name) {
         for (Card x : cards) {
             if (x.getName ( ).compareTo (name) == 0) {
                 return x;
@@ -99,6 +111,14 @@ public class Shop {
         return null;
     }
 
+    public Item checkNameItem(String name){
+        for(Item x: items){
+            if(x.getName ().compareTo (name)== 0){
+                return x;
+            }
+        }
+        return null;
+    }
 
 }
 
