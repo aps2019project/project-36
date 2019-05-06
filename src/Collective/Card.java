@@ -29,6 +29,8 @@ public abstract class Card {
     protected String id;
     protected int neededMAnna;
     protected static ArrayList<Card> cards=new ArrayList<>();
+    private String type;
+
     public abstract String getType();
 
     public static ArrayList<Card> getCards() {

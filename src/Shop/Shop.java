@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 
 public class Shop {
-    private ArrayList<Card> cards = new ArrayList<> ( );
-    private ArrayList<Item> items = new ArrayList<> ( );
+    private static ArrayList<Card> cards = new ArrayList<> ( );
+    private static ArrayList<Item> items = new ArrayList<> ( );
 
     public enum TypeOfFiles {
         Collectible,
@@ -17,6 +17,14 @@ public class Shop {
         Hero,
         Spell,
         Minion
+    }
+
+    public static ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public static ArrayList<Item> getItems() {
+        return items;
     }
 
     private void init() {

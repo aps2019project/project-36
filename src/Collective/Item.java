@@ -14,6 +14,10 @@ public class Item {
     private int changeAP;
     private int changeMP;
 
+    public String getDesc() {
+        return desc;
+    }
+
     public int getPrice() {
         return price;
     }
