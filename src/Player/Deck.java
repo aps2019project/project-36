@@ -38,6 +38,13 @@ public class Deck {
         return items;
     }
 
+    public void addToCards(Card card){
+        cards.add(card);
+    }
+
+    public void addToItems(Item item){
+        items.add(item);
+    }
     public String getName() {
         return name;
     }

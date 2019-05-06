@@ -1,11 +1,14 @@
 package Menu;
 
 import Battle.AccountMenu;
+import Collective.Card;
 import Player.*;
 import Battle.BattleMenu;
 import Shop.ShopMenu;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Menu {
 
@@ -123,7 +126,29 @@ public class Menu {
                 System.out.println("Deck doesn't exist!");
             }
         }
-        // ba regex remove & add ro bzan
+        // todo ba regex remove & add ro bzan
+        else if(input.substring(0,2).compareToIgnoreCase("add") == 0){
+            String[] str = input.split(" ");
+            outer:
+            for (Deck deck: Deck.getDecks()) {
+                if(deck.getName().equals(str[3])){
+                    for (Card card: loggedInPlayer.getCollection().getCards()) {
+                        if(card.getCardID().equals(str[2])){
+                            deck.addToCards(card);
+                            if(!deck.validateDeck()){
+                                System.out.println("can not ");
+                            }
+                            break outer;
+                        }
+                    }
+                    System.out.println("selected cart is not in the collection");
+                }
+            }
+
+        }
+        else if(input.substring(0,5).compareToIgnoreCase("remove") == 0){
+            String[] str = input.split(" ");
+        }
         else if (input.length() > 14 && input.substring(0, 12).compareToIgnoreCase("validate deck") == 0) {
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
                 if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(13))) {

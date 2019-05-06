@@ -26,7 +26,7 @@ public class Consts {
     public static final String MELEE = "melee";
     public static final String RANGED = "ranged";
     public static final String HYBRID = "hybrid";
-    public static final String MELLE_RANGED = "melee and ranged";
+    public static final String MELEE_RANGED = "melee and ranged";
     public static final String RANGED_HYBRID = "ranged and hybrid";
     public static final String MELEE_HYBRID = "melee and hybrid";
     public static final String POSITIVE = "positive";

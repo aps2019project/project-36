@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import Map.Cell;
 
 public class Flag extends Item {
-    private ArrayList<Flag> flags=new ArrayList<>();
+
+    private ArrayList<Flag> flags = new ArrayList<>();
+
     private Cell cell;
+
 
     public void addFlag(Flag flag){}
 
