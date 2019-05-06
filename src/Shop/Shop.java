@@ -108,7 +108,7 @@ public class Shop {
             makeNewFromFile (typeOfFile.name() + "/" + card.getName() + ".json", typeOfFile.toString());
         }
         cards.remove (card);
-        Card.addToCards (card);
+        Card.addCards(card);
         return card;
     }
 
