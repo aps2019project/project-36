@@ -13,7 +13,9 @@ public class ShopMenu{
         return;
     }
 
-    //public void showCollection() {}
+    public void showCollection() {
+
+    }
     public void search(String name) {
         boolean found= false;
         for(Card x: cards){

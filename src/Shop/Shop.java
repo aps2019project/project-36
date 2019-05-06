@@ -29,8 +29,6 @@ public class Shop {
                 }
             }
         }
-
-
     }
 
     public void makeNewFromFile(String path, String type) {
