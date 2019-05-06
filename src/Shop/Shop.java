@@ -69,35 +69,35 @@ public class Shop {
 
     }
 
-//    public Card makeNewCardByName(String name) {
-//        Card card = checkName (name);
-//        TypeOfFiles typeOfFile = null;
-//
-//        if (card instanceof Hero) {
-//            typeOfFile = TypeOfFiles.Hero;
-//
-//        }
-//        if (card instanceof Minion) {
-//            typeOfFile = TypeOfFiles.Minion;
-//        }
-//        if (card instanceof Spell) {
-//            typeOfFile = TypeOfFiles.Spell;
-//        }
-//        if (card != null) {
-//            makeNewFromFile (typeOfFile.name ( ) + "/" + card.getName ( ) + ".json", typeOfFile.toString ( ));
-//        }
-//        cards.remove (card);
-//        return card;
-//    }
+    public Card makeNewCardByName(String name) {
+        Card card = checkName (name);
+        TypeOfFiles typeOfFile = null;
 
-//    public Card checkName(String name) {
-//        for (Card x : cards) {
-//            if (x.getName ( ).compareTo (name) == 0) {
-//                return x;
-//
-//            }
-//        }
-//    }
+        if (card instanceof Hero) {
+            typeOfFile = TypeOfFiles.Hero;
+
+        }
+        if (card instanceof Minion) {
+            typeOfFile = TypeOfFiles.Minion;
+        }
+        if (card instanceof Spell) {
+            typeOfFile = TypeOfFiles.Spell;
+        }
+        if (card != null) {
+            makeNewFromFile (typeOfFile.name ( ) + "/" + card.getName ( ) + ".json", typeOfFile.toString ( ));
+        }
+        cards.remove (card);
+        return card;
+    }
+
+    public Card checkName(String name) {
+        for (Card x : cards) {
+            if (x.getName ( ).compareTo (name) == 0) {
+                return x;
+            }
+        }
+        return null;
+    }
 
 
 }
