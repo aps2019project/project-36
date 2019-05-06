@@ -20,7 +20,7 @@ public class ShopMenu{
             if(x.getType ().compareTo ("Hero")== 0){
                 System.out.println ((i+1) +" Name: " + x.getName () +" - AP: "+x.getAP ()+" - HP: "+
                         x.getHP ()+" - Class: " +x.getClass () +" - Special Power: "+
-                       x.getSpecialPower() + " - Sell Cost: " + x.getPrice ());
+                       x.getDesc () + " - Sell Cost: " + x.getPrice ());
                 i++;
             }
         }
@@ -37,12 +37,12 @@ public class ShopMenu{
             if(x.getType ().compareTo ("Spell")== 0){
                 System.out.println ((i+1) +"Type "+ x.getType ()+ " - Name: " + x.getName () +
                         " - MP: "+x.getMP ()+" - Class: " +x.getClass () +" - Description: "+
-                        x.getSpecialPower() + " - Sell Cost: " + x.getPrice ());
+                        x.getDesc () + " - Sell Cost: " + x.getPrice ());
             }
             else if(Shop.getCards ().get(i).getType ().compareTo ("Minion")== 0){
                 System.out.println ((i+1) +"Type "+ x.getType ()+ " - Name: " + x.getName () +
                         " - Class: " +x.getClass () +" - AP: "+x.getAP ()+" - HP: "+x.getHP ()+" - MP"+x.getMP ()+" - SpecialPower: "+
-                       x.getSpecialPower() + " - Sell Cost: " + x.getPrice ());
+                       x.getDesc () + " - Sell Cost: " + x.getPrice ());
             }
             i++;
         }
@@ -174,7 +174,7 @@ public class ShopMenu{
             for(int i= 0 ; i<Shop.getCards().size ();i++){
                 if(Shop.getCards ().get(i).getType ().compareTo ("Hero")==0){
                     System.out.println ((i+1) +" Name: " + Shop.getCards ().get(i).getName () +" - AP: "+Shop.getCards ().get(i).getAP ()+
-                            " - HP: "+ Shop.getCards ().get(i).getHP ()+" - Special Power: "+ Shop.getCards ().get(i).getSpecialPower() +
+                            " - HP: "+ Shop.getCards ().get(i).getHP ()+" - Special Power: "+ Shop.getCards ().get(i).getDesc () +
                             " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
                 }
             }
@@ -188,14 +188,14 @@ public class ShopMenu{
                 if(Shop.getCards ().get(i).getType ().compareTo ("Spell")== 0){
                     System.out.println ((i+1) +"Type "+ Shop.getCards ().get (i).getType ()+ " - Name: " + Shop.getCards ().get(i).getName () +
                             " - MP: "+Shop.getCards ().get(i).getMP ()+" - Class: " +Shop.getCards ().getClass () +" - Description: "+
-                            Shop.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
+                            Shop.getCards ().get(i).getDesc () + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
                 }
                 else if(Shop.getCards ().get(i).getType ().compareTo ("Minion")== 0){
                     System.out.println ((i+1) +"Type "+ Shop.getCards ().get (i).getType ()+ " - Name: " +
                             Shop.getCards ().get(i).getName () + " - Class: " +Shop.getCards ().getClass () +
                             " - AP: "+Shop.getCards ().get(i).getAP ()+" - HP: "+Shop.getCards ().get (i).getHP ()+
                             " - MP"+Shop.getCards ().get (i).getMP ()+" - SpecialPower: "+
-                            Shop.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
+                            Shop.getCards ().get(i).getDesc () + " - Buy Cost: " + Shop.getCards ().get (i).getPrice ());
                 }
             }
     }
