@@ -372,8 +372,3 @@ public class Menu {
         System.out.println("Help");
     }
 }
-
-class Pair{
-    Card card;
-    Deck deck;
-}

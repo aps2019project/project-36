@@ -10,11 +10,9 @@ import com.sun.tools.javac.Main;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static java.lang.Math.abs;
-
 import java.util.ArrayList;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 public class Battle {
     Game game = new Game();
@@ -244,14 +242,8 @@ public class Battle {
             insertCard(currentPlayer.getMainDeck().getHand().getCards().get(5).getName(), random.nextInt(8), random.nextInt(4));
         }
         if(rand == 1){
+            rand = getNumOfCardsInField(currentPlayer, random);
             int cnt = 0;
-            for(int i = 0; i < Map.getCardsInMap().size(); i++){
-                if (Map.getCardsInMap().get(i).getOwner().equals(currentPlayer)){
-                    cnt ++;
-                }
-            }
-            rand = random.nextInt(cnt);
-            cnt = 0;
             for(int i = 0; i < Map.getCardsInMap().size(); i++){
                 if (Map.getCardsInMap().get(i).getOwner().equals(currentPlayer)){
                     cnt ++;
@@ -263,7 +255,21 @@ public class Battle {
             }
         }
         if(rand == 2){
-
+            Player opponent = new Player();
+            int cnt = 0;
+            if(game.getPlayer1().equals(currentPlayer)){
+                opponent = game.getPlayer2();
+            }
+            rand = getNumOfCardsInField(opponent, random);
+            cnt = 0;
+            for(int i = 0; i < Map.getCardsInMap().size(); i++){
+                if (Map.getCardsInMap().get(i).getOwner().equals(opponent)){
+                    cnt ++;
+                    if(cnt - 1 == rand){
+                        attack(Map.getCardsInMap().get(i));
+                    }
+                }
+            }
         }
     }
 
@@ -275,5 +281,17 @@ public class Battle {
     }
     public void help(){
         //todo
+    }
+
+    public int getNumOfCardsInField(Player player, Random random){
+        int cnt = 0;
+        int rand;
+        for(int i = 0; i < Map.getCardsInMap().size(); i++){
+            if (Map.getCardsInMap().get(i).getOwner().equals(player)){
+                cnt ++;
+            }
+        }
+        rand = random.nextInt(cnt);
+        return rand;
     }
 }
