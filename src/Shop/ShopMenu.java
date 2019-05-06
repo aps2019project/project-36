@@ -101,6 +101,7 @@ public class ShopMenu{
                 wantedCard.setPrice (x.getPrice ());
                 wantedCard.setName (x.getName ());
                 wantedCard.setMP (x.getMP ());
+                //todo add to cards in Card.card
                 found= true;
                 if(found){
                     if(wantedCard.getPrice ()> account.getDaric ()){
