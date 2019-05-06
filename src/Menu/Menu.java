@@ -2,6 +2,7 @@ package Menu;
 
 import Battle.AccountMenu;
 import Collective.Card;
+import Collective.Item;
 import Player.*;
 import Battle.BattleMenu;
 import Shop.ShopMenu;
@@ -92,6 +93,7 @@ public class Menu {
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
         } else if (input.compareToIgnoreCase("show") == 0) {
+            //todo
 
         } else if (input.length() > 7 && input.substring(0, 5).compareToIgnoreCase("search") == 0) {
             int temp = loggedInPlayer.getCollection().search(input.substring(6));
@@ -126,25 +128,69 @@ public class Menu {
                 System.out.println("Deck doesn't exist!");
             }
         }
-        // todo ba regex remove & add ro bzan
-        else if(input.substring(0,2).compareToIgnoreCase("add") == 0){
+        else if(input.substring(0,2).compareToIgnoreCase("add") == 0 ||
+                input.substring(0,5).compareToIgnoreCase("remove") == 0){
             String[] str = input.split(" ");
             outer:
             for (Deck deck: Deck.getDecks()) {
                 if(deck.getName().equals(str[3])){
                     for (Card card: loggedInPlayer.getCollection().getCards()) {
                         if(card.getCardID().equals(str[2])){
-                            deck.addToCards(card);
-                            if(!deck.validateDeck()){
-                                System.out.println("can not ");
+                            if (card.getType().equals("Hero")){
+                                if(deck.getHero() != null){
+                                    if(str[0].equals("add")) {
+                                        System.out.println("cannot add any hero to deck");
+                                    }
+                                    else{
+                                        deck.setHero(null);
+                                    }
+                                    break outer;
+                                }
+                                else {
+                                    deck.setHero(card);
+                                    break outer;
+                                }
+                            }
+                            if(str[0].equals("add")) {
+                                deck.addToCards(card);
+                                if(!deck.validateDeck()){
+                                    System.out.println("cannot add any cart to deck");
+                                    deck.removeFromCards(card);
+                                }
+                            }
+                            else
+                            if(deck.contains(card)) {
+                                deck.removeFromCards(card);
+                            }
+                            else {
+                                System.out.println("Deck doesn't contain this card");
                             }
                             break outer;
                         }
                     }
-                    System.out.println("selected cart is not in the collection");
+                    for (Item item : loggedInPlayer.getCollection().getItems()){
+                        if(item.getItemID().equals(str[2])){
+                            if (str[0].equals("add")) {
+                                deck.addToItems(item);
+                                if (!deck.validateDeck()) {
+                                    System.out.println("cannot add any item to deck");
+                                    deck.removeFromItems(item);
+                                }
+                            }
+                            else {
+                                if(deck.contains(item)) {
+                                    deck.removeFromItems(item);
+                                }
+                                else {
+                                    System.out.println("Deck doesn't contain this item");
+                                }
+                            }
+                            break outer;
+                        }
+                    }
+                    System.out.println("selected card/item is not in the collection");
                 }
             }
-
         }
         else if(input.substring(0,5).compareToIgnoreCase("remove") == 0){
             String[] str = input.split(" ");
@@ -267,6 +313,9 @@ public class Menu {
         //todo
     }
 
+    public static void showDeck(){
+        //todo
+    }
     public static String getInput() {
         return scanner.nextLine();
     }
