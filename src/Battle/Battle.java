@@ -7,6 +7,8 @@ import Map.*;
 import Player.*;
 import com.sun.tools.javac.Main;
 
+import java.util.Random;
+
 public class Battle {
     Game game = new Game();
     Player currentPlayer = new Player();
@@ -109,9 +111,9 @@ public class Battle {
     }
 
     public void setSelectedCard(String cardID) {
-        for(int i = 0; i < Card.getCards().size(); i++){
-            if(Card.getCards().get(i).getCardID().equals(cardID)){
-                selectedCard = Card.getCards().get(i);
+        for(int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++){
+            if(currentPlayer.getMainDeck().getHand().getCards().get(i).getCardID().equals(cardID)){
+                selectedCard = currentPlayer.getMainDeck().getHand().getCards().get(i);
                 return;
             }
         }
@@ -132,8 +134,9 @@ public class Battle {
         this.selectedItem = selectedItem;
     }
 
-    public void playTurn(){
-
+    public void playRandomTurn(){
+        Random random = new Random();
+        int rand = random.nextInt(3);
     }
     public void help(){
         //todo
