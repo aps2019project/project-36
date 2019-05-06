@@ -19,7 +19,6 @@ public abstract class Card {
 
     protected Cell cell;
     protected int price;
-    protected int cardNumber;
     protected String cardID;
     protected String name;
     protected Player owner;
@@ -84,10 +83,6 @@ public abstract class Card {
         this.MP = MP;
     }
 
-    public int getCardNumber() {
-        return cardNumber;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -107,10 +102,6 @@ public abstract class Card {
 
     public int getMP() {
         return MP;
-    }
-
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
     }
 
     public String getCardID() {

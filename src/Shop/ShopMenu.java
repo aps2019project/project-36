@@ -3,6 +3,8 @@ package Shop;
 import Collective.Card;
 import Collective.Item;
 import Player.Account;
+import Player.Player;
+
 import java.util.ArrayList;
 
 public class ShopMenu{
@@ -101,8 +103,10 @@ public class ShopMenu{
                     }
                     else if(x.getPrice ()<= account.getDaric ()){
                         System.out.println ("You bought this card successfully");
+                        Shop.makeNewCardByName (x.getName ()).setCardID (makeID (x.getName (),account)); //set card iD
                         account.getCollection ().addToCards (Shop.makeNewCardByName (x.getName ()));
                         account.changeDaric (account.getDaric()- x.getPrice());
+
                     }
                     break;
                 }
@@ -123,6 +127,7 @@ public class ShopMenu{
                             System.out.println ("You bought this item successfully");
                             account.changeDaric (account.getDaric ()- x.getPrice());
                             account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned ()+ 1);
+                            Shop.makeNewItemByName (x.getName ()).setItemID (makeID (x.getName (),account));
                             account.getCollection ().addToItems (Shop.makeNewItemByName (x.getName ()));
                         }
                     }
@@ -206,5 +211,30 @@ public class ShopMenu{
         System.out.println ("help");
     }
 
-}
+    public String makeID(String name, Account account){
+        String ID;
+        ID=account.getUsername ()+"_"+name+"_"+getMaxNumber (name,account);
+        return ID;
 
+    }
+    public int getMaxNumber(String name,Account account){
+        boolean found= false;
+        int maxNumber= 0;
+        for(Card x:account.getCollection ().getCards ()){
+            if(x.getName ().compareTo (name)==0){
+                maxNumber++;
+                found=true;
+            }
+        }
+        if(!found){
+            for(Item x:account.getCollection ().getItems ()){
+                if(x.getName ().compareTo (name)==0){
+                    maxNumber++;
+                    found=true;
+                }
+            }
+        }
+        return maxNumber++;
+    }
+
+}

@@ -1,6 +1,7 @@
 package Shop;
 
 import Collective.*;
+import Player.Account;
 import com.google.gson.Gson;
 
 import java.io.*;

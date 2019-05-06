@@ -137,6 +137,7 @@ public class Battle {
     public void playRandomTurn(){
         Random random = new Random();
         int rand = random.nextInt(3);
+        //todo
     }
     public void help(){
         //todo
