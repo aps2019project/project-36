@@ -6,30 +6,35 @@ import Player.Player;
 import java.util.ArrayList;
 
 public abstract class Card {
-    public enum AttackType {
-        ON_SPAWN,
-        PASSIVE,
-        ON_DEATH,
-        ON_ATTACK,
-        ON_DEFEND,
-        ON_TURN,
-        COMBO,
-        NONE
-    }
-
     protected Cell cell;
     protected int price;
     protected int cardNumber;
-    protected String cardID;
+    protected String cardID;//todo
     protected String name;
     protected Player owner;
     protected int HP;
+    protected int changeHP;
     protected int AP;
     protected int MP;
     protected String id;
-    protected int neededMAnna;
+    protected int neededManna;
+    protected String type;
+    private String desc;
     protected static ArrayList<Card> cards=new ArrayList<>();
     public abstract String getType();
+    protected static ArrayList<Card> card=new ArrayList<>();
+    protected String targetArea;
+    private String[] targetAreas = new String[]{ "two" ,"three"," enemy", "friend", "random", "minion", "eight_arounds"};
+
+    public String getTargetArea() {
+        return targetArea;
+    }
+
+    public void setTargetAreas(String nameOfTargetArea) {
+        //todo
+        this.targetArea=nameOfTargetArea;
+    }
+
 
     public static ArrayList<Card> getCards() {
         return cards;
@@ -39,12 +44,15 @@ public abstract class Card {
         cards.add(card);
     }
 
+    public void setChangeHP(){
+
+    }
 
     public Card(String id, String name, int price, int manna) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.neededMAnna = manna;
+        this.neededManna = manna;
     }
 
     public Cell getCell() {
@@ -131,9 +139,6 @@ public abstract class Card {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setType(String type) {
     }
 
     public Card(){}
