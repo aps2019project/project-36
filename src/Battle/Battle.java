@@ -7,8 +7,6 @@ import Map.*;
 import Player.*;
 import com.sun.tools.javac.Main;
 
-import java.util.Random;
-
 public class Battle {
     Game game = new Game();
     Player currentPlayer = new Player();
@@ -117,7 +115,13 @@ public class Battle {
                 return;
             }
         }
-        System.out.println("Invalid card id");
+        for(int i = 0; i < currentPlayer.getMainDeck().getItems().size(); i++){
+            if(currentPlayer.getMainDeck().getItems().get(i).getItemID().equals(cardID)){
+                selectedItem = currentPlayer.getMainDeck().getItems().get(i);
+                return;
+            }
+        }
+        System.out.println("Invalid card/item id");
     }
 
     public void enterGraveyardShowCards(GraveYard graveYard){
@@ -130,6 +134,9 @@ public class Battle {
         return selectedItem;
     }
 
+    public void showNextCard(){
+        //todo hand.getNextCard
+    }
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
     }
@@ -137,6 +144,13 @@ public class Battle {
     public void playRandomTurn(){
         Random random = new Random();
         int rand = random.nextInt(3);
+        //todo
+    }
+
+    public void use(int x, int y){
+        //todo
+    }
+    public void showCollectables(){
         //todo
     }
     public void help(){

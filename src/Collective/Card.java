@@ -28,34 +28,17 @@ public abstract class Card {
     protected String id;
     protected int neededMAnna;
     protected static ArrayList<Card> cards=new ArrayList<>();
-    private String type;
-    private String specialPower;
-
-    public String getSpecialPower() {
-        return specialPower;
-    }
-
     public abstract String getType();
 
     public static ArrayList<Card> getCards() {
         return cards;
     }
 
-    public static void addToCards(Card card) {
+    public static void addCards(Card card) {
         cards.add(card);
     }
 
-    public static void removeFromCards(Card card){
-        cards.remove(card);
-    }
-    public static Card getCardByID(String id){
-        for (Card card:cards) {
-            if (card.getCardID().equals(id)){
-                return card;
-            }
-        }
-        return null;
-    }
+
     public Card(String id, String name, int price, int manna) {
         this.id = id;
         this.name = name;
@@ -146,5 +129,16 @@ public abstract class Card {
 
     public Card(){}
 
+    public static void removeFromCards(Card card){
+        cards.remove(card);
+    }
+    public static Card getCardByID(String id){
+        for (Card card:cards) {
+            if (card.getCardID().equals(id)){
+                return card;
+            }
+        }
+        return null;
+    }
 
 }

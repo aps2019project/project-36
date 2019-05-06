@@ -1,6 +1,6 @@
 package Collective;
 
-public class Buff {
+public abstract class Buff {
     public enum BuffType {
         HOLY,
         DE_HOLY,
@@ -30,6 +30,7 @@ public class Buff {
     private boolean isContinuous;
     private boolean isActive;
     private int damagePerTurn;
+    private int initialTurn;
 
     public Buff(int durationTurn, boolean isDispellable, boolean isContinuous) {
         this.durationTurn = durationTurn;
