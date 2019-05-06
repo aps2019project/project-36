@@ -30,6 +30,11 @@ public abstract class Card {
     protected int neededMAnna;
     protected static ArrayList<Card> cards=new ArrayList<>();
     private String type;
+    private String specialPower;
+
+    public String getSpecialPower() {
+        return specialPower;
+    }
 
     public abstract String getType();
 
