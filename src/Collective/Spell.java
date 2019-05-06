@@ -3,7 +3,6 @@ package Collective;
 import Consts.Consts;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Spell extends Card {
@@ -84,6 +83,7 @@ public class Spell extends Card {
     }
 
     public void setType(String type) {
+        this.type="Spell";
     }
 
     public String getType(){

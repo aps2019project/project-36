@@ -7,6 +7,10 @@ import Map.*;
 import Player.*;
 import com.sun.tools.javac.Main;
 
+import java.util.ArrayList;
+
+import static java.lang.Math.abs;
+
 public class Battle {
     Game game = new Game();
     Player currentPlayer = new Player();
@@ -53,8 +57,8 @@ public class Battle {
         Cell cell = new Cell();
         cell.setY(y);
         cell.setX(x);
-        if(Math.abs(cell.getX() - selectedCard.getCell().getX()) +
-                Math.abs(cell.getY() - selectedCard.getCell().getY()) > 2) {
+        if(abs(cell.getX() - selectedCard.getCell().getX()) +
+                abs(cell.getY() - selectedCard.getCell().getY()) > 2) {
             //todo age betune bishtar az 2 khune bere barresi she
             selectedCard.setCell(cell);
         }
@@ -62,9 +66,94 @@ public class Battle {
             System.out.println("invalid target");
     }
 
-    public void attack(){
-        //todo
+        public void attack(Card defender) {
+            int x1, y1, x2, y2;
+            boolean flag_for_soldier_validity = false;
+            boolean flag_for_attack = false;
+            for (int i = 0; i < Map.getCardsInMap().size(); i++) {
+                if (Map.getCardsInMap().contains(selectedCard)) {
+                    flag_for_soldier_validity = true;
+                    for (int j = 0; j < Map.getCardsInMap().size(); j++) {
+                        if (Map.getCardsInMap().contains(defender)) {
+                            flag_for_soldier_validity = true;
+                            x1 = Map.getCardsInMap().get(i).getCell().getX();
+                            y1 = Map.getCardsInMap().get(i).getCell().getY();
+                            x2 = Map.getCardsInMap().get(j).getCell().getX();
+                            y2 = Map.getCardsInMap().get(j).getCell().getX();
+                            if (Card.getCards().get(i).getTargetArea().equals("two")) {
+                                if (abs(x1 - x2) <= 1 && abs(y1 - y2) <= 1) {
+                                    flag_for_attack = true;
+                                    Map.getCardsInMap().get(i).getCell().setX(x2);
+                                    Map.getCardsInMap().get(i).getCell().setY(y2);
+                                }
+                            }
+                            if (Card.getCards().get(i).getTargetArea().equals("three")) {
+                                if (abs(x1 - x2) <= 2 && abs(y1 - y2) <= 2) {
+                                    flag_for_attack = true;
+                                    Map.getCardsInMap().get(i).getCell().setX(x2);
+                                    Map.getCardsInMap().get(i).getCell().setY(y2);
+                                }
+                            }
+
+                            if (Card.getCards().get(i).getTargetArea().equals("enemy")) {
+                                ArrayList<Integer> Ys_In_Same_Column = new ArrayList();
+                                for (int k = 0; k < Map.getCardsInMap().size(); k++) {
+                                    if (Map.getCardsInMap().get(k).getCell().getY() == y1
+                                            && Map.getCardsInMap().get(k).getOwner() != selectedCard.getOwner()) {
+                                        Ys_In_Same_Column.add(Map.getCardsInMap().get(k).getCell().getY());
+                                    }
+                                }
+                                if (Ys_In_Same_Column.contains(y2)) {
+                                    flag_for_attack = true;
+                                    Map.getCardsInMap().get(i).getCell().setX(x2);
+                                    Map.getCardsInMap().get(i).getCell().setY(y2);
+                                }
+                            }
+
+                            if (Card.getCards().get(i).getTargetArea().equals("friend")) {
+                                ArrayList<Integer> Ys_In_Same_Column = new ArrayList();
+                                for (int k = 0; k < Map.getCardsInMap().size(); k++) {
+                                    if (Map.getCardsInMap().get(k).getCell().getY() == y1
+                                            && Map.getCardsInMap().get(k).getOwner() == selectedCard.getOwner()) {
+                                        Ys_In_Same_Column.add(Map.getCardsInMap().get(k).getCell().getY());
+                                    }
+                                }
+                                if (Ys_In_Same_Column.contains(y2)) {
+                                    flag_for_attack = true;
+                                    Map.getCardsInMap().get(i).getCell().setX(x2);
+                                    Map.getCardsInMap().get(i).getCell().setY(y2);
+                                }
+                            }
+
+                            if (Card.getCards().get(i).getTargetArea().equals("eight_arounds")) {
+                                ArrayList<Cell> around_cells = new ArrayList();
+                                for (int k = 0; k < Map.getCardsInMap().size(); k++) {
+                                    if (Map.getCardsInMap().get(k).getCell().getX()-x1<=2
+                                            && Map.getCardsInMap().get(k).getCell().getY()-y1<=2) {
+                                        around_cells.add(Map.getCardsInMap().get(k).getCell());
+                                    }
+                                }
+                                if (around_cells.contains(defender)) {
+                                    flag_for_attack = true;
+                                    Map.getCardsInMap().get(i).getCell().setX(x2);
+                                    Map.getCardsInMap().get(i).getCell().setY(y2);
+                                }
+                            }
+
+
+
+
+
+                        }
+                    }
+
+                }
+            }
+            if (!flag_for_soldier_validity) {
+                System.out.println("Invalid card id");
+            }
     }
+
     public void comboAttack(){
         //todo
     }
@@ -81,7 +170,7 @@ public class Battle {
             if(cardName.equals(currentPlayer.getMainDeck().getHand().getCards().get(i).getName())){
                 for (Card card:
                      Map.getCardsInMap()) {
-                    if(Math.abs(card.getCell().getX() - x) + Math.abs(card.getCell().getY() - y) <= 1){
+                    if(abs(card.getCell().getX() - x) + abs(card.getCell().getY() - y) <= 1){
                         Cell cell = new Cell();
                         cell.setX(x);
                         cell.setY(y);
