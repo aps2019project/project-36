@@ -138,5 +138,16 @@ public abstract class Card {
 
     public Card(){}
 
+    public static void removeFromCards(Card card){
+        cards.remove(card);
+    }
+    public static Card getCardByID(String id){
+        for (Card card:cards) {
+            if (card.getCardID().equals(id)){
+                return card;
+            }
+        }
+        return null;
+    }
 
 }
