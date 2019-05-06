@@ -1,5 +1,0 @@
-{"name":"SoulEater",
-  "desc":"Only for Melee : Add 2 HP after a hit",
-  "type": "Usable",
-  "price": 25000,
-"changeHP": 2}

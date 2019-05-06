@@ -1,5 +1,0 @@
-{"name":"AssassinationDagger",
-  "desc":"Hero hits 8 more times when attacking the enemy's hero",
-  "type": "Usable",
-  "changeAP": 8,
-"price": 5000}
