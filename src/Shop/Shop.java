@@ -1,11 +1,104 @@
 package Shop;
 
-import Collective.Card;
-import Collective.Item;
+import Collective.*;
+import com.google.gson.Gson;
+
+import java.io.*;
 import java.util.ArrayList;
 
 
 public class Shop {
-    private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Card> cards = new ArrayList<> ( );
+    private ArrayList<Item> items = new ArrayList<> ( );
+
+    public enum TypeOfFiles {
+        Collectible,
+        Usable,
+        Hero,
+        Spell,
+        Minion
+    }
+
+    private void init() {
+        for (TypeOfFiles typeOfFiles : TypeOfFiles.values ( )) {
+            File folder = new File (typeOfFiles.name ( ));
+            File[] listOfFiles = folder.listFiles ( );
+            if (!(listOfFiles == null || typeOfFiles.name ( ).compareTo ("Buff") == 0)) {
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    makeNewFromFile (listOfFiles[i].getPath ( ), typeOfFiles.toString ( ));
+                }
+            }
+        }
+
+
+    }
+
+    public void makeNewFromFile(String path, String type) {
+        try {
+            Gson gson = new Gson ( );
+            InputStream input = new FileInputStream (path);
+            Reader reader = new InputStreamReader (input);
+            switch (type) {
+                case "Collectible":
+                    Collectible collectible = gson.fromJson (reader, Collective.Collectible.class);
+                    items.add (collectible);
+                    break;
+                case "Usable":
+                    Usable usable = gson.fromJson (reader, Collective.Usable.class);
+                    items.add (usable);
+                    break;
+                case "Hero":
+                    Hero hero = gson.fromJson (reader, Collective.Hero.class);
+                    cards.add (hero);
+                    break;
+                case "Spell":
+                    Spell spell = gson.fromJson (reader, Collective.Spell.class);
+                    cards.add (spell);
+                    break;
+                case "Minion":
+                    Minion minion = gson.fromJson (reader, Collective.Minion.class);
+                    cards.add (minion);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace ( );
+        }
+    }
+
+    public void makeNewFromItem() {
+
+    }
+
+//    public Card makeNewCardByName(String name) {
+//        Card card = checkName (name);
+//        TypeOfFiles typeOfFile = null;
+//
+//        if (card instanceof Hero) {
+//            typeOfFile = TypeOfFiles.Hero;
+//
+//        }
+//        if (card instanceof Minion) {
+//            typeOfFile = TypeOfFiles.Minion;
+//        }
+//        if (card instanceof Spell) {
+//            typeOfFile = TypeOfFiles.Spell;
+//        }
+//        if (card != null) {
+//            makeNewFromFile (typeOfFile.name ( ) + "/" + card.getName ( ) + ".json", typeOfFile.toString ( ));
+//        }
+//        cards.remove (card);
+//        return card;
+//    }
+
+//    public Card checkName(String name) {
+//        for (Card x : cards) {
+//            if (x.getName ( ).compareTo (name) == 0) {
+//                return x;
+//
+//            }
+//        }
+//    }
+
+
 }
+
