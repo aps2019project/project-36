@@ -94,8 +94,8 @@ public class Menu {
             //todo
 
         } else if (input.length() > 7 && input.substring(0, 5).compareToIgnoreCase("search") == 0) {
-            int temp = loggedInPlayer.getCollection().search(input.substring(6));
-            if (temp != 0) {
+            String temp = loggedInPlayer.getCollection().search(input.substring(6));
+            if (temp != "") {
                 System.out.println(temp);
             } else
                 System.out.println("entered card/item does not exist in this collection");

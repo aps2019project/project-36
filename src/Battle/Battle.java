@@ -251,6 +251,16 @@ public class Battle {
                 }
             }
             rand = random.nextInt(cnt);
+            cnt = 0;
+            for(int i = 0; i < Map.getCardsInMap().size(); i++){
+                if (Map.getCardsInMap().get(i).getOwner().equals(currentPlayer)){
+                    cnt ++;
+                    if(cnt - 1 == rand){
+                        setSelectedCard(Map.getCardsInMap().get(i).getCardID());
+                        moveTo(random.nextInt(8), random.nextInt(4));
+                    }
+                }
+            }
         }
         if(rand == 2){
 
