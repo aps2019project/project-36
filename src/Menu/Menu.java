@@ -233,6 +233,7 @@ public class Menu {
             secondMenu();
         }
         if (input.compareToIgnoreCase("show collection") == 0) {
+            menu.showCollection (loggedInPlayer);
         }
         if (input.length() > 7 && input.substring(0, 5).compareToIgnoreCase("search") == 0) {
             String name = input.substring(6);
@@ -251,7 +252,7 @@ public class Menu {
             menu.sell(input.substring(4), loggedInPlayer);
         }
         if (input.compareToIgnoreCase("show") == 0) {
-            //todo
+            menu.show ();
         }
         if (input.compareToIgnoreCase("help") == 0) {
             menu.help();
