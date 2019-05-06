@@ -92,50 +92,38 @@ public class ShopMenu{
 
     public void buy(String name, Account account) {
         boolean found= false;
-        /*for(Card x: cards ){
+        for(Card x: Shop.getCards () ){
             if(name.compareToIgnoreCase (x.getName ())== 0){
-                Card wantedCard= new Card();
-                wantedCard.setAP(x.getAP ());
-                wantedCard.setOwner (account);
-                wantedCard.setHP(x.getHP ());
-                wantedCard.setPrice (x.getPrice ());
-                wantedCard.setName (x.getName ());
-                wantedCard.setMP (x.getMP ());
-                //todo add to cards in Card.card
                 found= true;
                 if(found){
-                    if(wantedCard.getPrice ()> account.getDaric ()){
+                    if(x.getPrice ()> account.getDaric ()){
                         System.out.println ("You don't have enough money");
                     }
-                    else if(wantedCard.getPrice ()<= account.getDaric ()){
+                    else if(x.getPrice ()<= account.getDaric ()){
                         System.out.println ("You bought this card successfully");
-                        //account.getCollection ().add(wantedCard.getCardID ());
-                        account.changeDaric (account.getDaric()- wantedCard.getPrice());
+                        account.getCollection ().addToCards (Shop.makeNewCardByName (x.getName ()));
+                        account.changeDaric (account.getDaric()- x.getPrice());
                     }
                     break;
                 }
             }
         }
         if(!found){
-            for(Item x: items){
+            for(Item x: Shop.getItems ()){
                 if(name.compareToIgnoreCase (x.getName ())== 0){
-                    Item wantedItem= new Item ();
-                    wantedItem.setName (name);
-                    wantedItem.setType (x.getType ());
-                    //wantedItem.setOwner (account);
                     found= true;
                     if(found){
-                        if(wantedItem.getPrice()> account.getDaric ()){
+                        if(x.getPrice()> account.getDaric ()){
                             System.out.println ("You don't have enough money.");
                         }
                         else if(account.getNumberOfItemsOwned ()>= 3){
                             System.out.println ("You can't have more than 3 items.");
                         }
-                        else if(account.getNumberOfItemsOwned ()< 3 && wantedItem.getPrice()<= account.getDaric ()){
+                        else if(account.getNumberOfItemsOwned ()< 3 && x.getPrice()<= account.getDaric ()){
                             System.out.println ("You bought this item successfully");
-                            account.changeDaric (account.getDaric ()- wantedItem.getPrice());
-                            //account.getCollection ().addItem (wantedItem);
+                            account.changeDaric (account.getDaric ()- x.getPrice());
                             account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned ()+ 1);
+                            account.getCollection ().addToItems (Shop.makeNewItemByName (x.getName ()));
                         }
                     }
                 }
@@ -143,7 +131,7 @@ public class ShopMenu{
         }
         if(!found){
             System.out.println ("This Card/Item is not in the shop");
-        }*/
+        }
 
     }
 
@@ -152,8 +140,9 @@ public class ShopMenu{
         for(Card x: Shop.getCards ()){
             if(x.getCardID ().compareToIgnoreCase (ID)== 0){
                 System.out.println ("You sold this card successfully");
-                account.changeDaric (account.getDaric () - x.getPrice ());
+                account.changeDaric (account.getDaric () + x.getPrice ());
                 account.getCollection ().removeFromCards (x);
+                Card.removeFromCards (x);
                 found= true;
                 break;
             }
@@ -162,7 +151,8 @@ public class ShopMenu{
             for(Item x: Shop.getItems ()){
                 if(x.getItemID ().compareToIgnoreCase (ID)== 00){
                     System.out.println ("You sold this item successfully");
-                    account.changeDaric (account.getDaric ()- x.getPrice ());
+                    account.getCollection ().removeFromItems (x);
+                    account.changeDaric (account.getDaric () + x.getPrice ());
                     account.changeNumberOfItemsOwned (account.getNumberOfItemsOwned ()- 1);
                     found= true;
                     break;

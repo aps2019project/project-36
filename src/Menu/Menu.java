@@ -312,7 +312,7 @@ public class Menu {
         //todo
     }
 
-    public static void showDeck(){
+    public static void showDeck(Deck deck){
         //todo
     }
     public static String getInput() {
