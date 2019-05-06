@@ -75,16 +75,64 @@ public class BattleMenu {
                 battle.showCardInfo(Card.getCardByID(input.substring(15)));
             }
             else if (input.length() >= 6 && input.substring(0,5).compareToIgnoreCase("Select") == 0){
-                battle.setSelectedCard(Card.getCardByID(input.substring(15)));
+                battle.setSelectedCard(input.substring(8));
             }
-            game.setMana(1);
-            game.setMana(2);
-            game.changeTurn();
-            if(game.getTurn() % 2 == 1){
-                currentPlayer = player1;
+            else if (input.length() >= 7 && input.substring(0,6).compareToIgnoreCase("Move to") == 0){
+                battle.moveTo(Integer.parseInt(input.substring(8, 8)), Integer.parseInt((input.substring(10, 10))));
             }
-            else currentPlayer = player2;
+            else if (input.length() >= 6 && input.substring(0,5).compareToIgnoreCase("Attack") == 0){
+                battle.attack(Card.getCardByID(input.substring(7)));
+            }
+            // todo attack combo
+            else if(input.length() >= 17 && input.substring(0,16).compareToIgnoreCase("Use special power") == 0){
+                battle.useSpecialPower(Integer.parseInt(input.substring(18, 18)), Integer.parseInt((input.substring(20, 20))));
+            }
+            else if(input.equals("Show hand")){
+                battle.showHand();
+            }
+            else if(input.length() >= 5 && input.substring(0,4).compareToIgnoreCase("Insert") == 0){
+                String[] str = input.split(" ");
+                battle.insertCard(str[1], Integer.parseInt(str[3]), Integer.parseInt(str[4]));
+            }
+            else if (input.equals("Show collectibles")) {
+                battle.showCollectables();
+            }
+            else if(input.length() >= 3 && input.substring(0,2).compareToIgnoreCase("use") == 0){
+                String[] str = input.split(" ");
+                battle.use(Integer.parseInt(str[1]), Integer.parseInt(str[2]));
+            }
+            else if(input.equals("Show Next Card")){
+                battle.showNextCard();
+            }
+            else if(input.equals("Enter graveyard")){
+                input = Menu.getInput();
+                if(input.length() >= 9 && input.substring(0, 8).equals("Show info")){
+                    battle.enterGraveyardShowInfo(graveYard, Card.getCardByID(input.substring(10)));
+                }
+                else if (input.equals("Show cards")){
+                    battle.enterGraveyardShowCards(graveYard);
+                }
+            }
+            else if(input.equals("Help")){
+                battle.help();
+            }
+            else if (input.equals("end turn")) {
+
+                game.setMana(1);
+                game.setMana(2);
+                game.changeTurn();
+                if (game.getTurn() % 2 == 1) {
+                    currentPlayer = player1;
+                } else currentPlayer = player2;
+            }
         }
+        if (game.checkIsOver() == 1){
+            match.setWinner(player1);
+        }
+        else
+            match.setWinner(player2);
+        Match.addToMatches(match);
+        System.out.println("winner is : " + match.getWinner().getUsername());
         match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
         Map.clearMap();
     }

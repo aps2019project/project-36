@@ -49,7 +49,7 @@ public class Battle {
         //todo
     }
 
-    public void ShowCardInfo(int cartID){
+    public void showCardInfo(Card card){
         //todo
     }
 
@@ -198,13 +198,19 @@ public class Battle {
     }
 
     public void setSelectedCard(String cardID) {
-        for(int i = 0; i < Card.getCards().size(); i++){
-            if(Card.getCards().get(i).getCardID().equals(cardID)){
-                selectedCard = Card.getCards().get(i);
+        for(int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++){
+            if(currentPlayer.getMainDeck().getHand().getCards().get(i).getCardID().equals(cardID)){
+                selectedCard = currentPlayer.getMainDeck().getHand().getCards().get(i);
                 return;
             }
         }
-        System.out.println("Invalid card id");
+        for(int i = 0; i < currentPlayer.getMainDeck().getItems().size(); i++){
+            if(currentPlayer.getMainDeck().getItems().get(i).getItemID().equals(cardID)){
+                selectedItem = currentPlayer.getMainDeck().getItems().get(i);
+                return;
+            }
+        }
+        System.out.println("Invalid card/item id");
     }
 
     public void enterGraveyardShowCards(GraveYard graveYard){
@@ -217,12 +223,24 @@ public class Battle {
         return selectedItem;
     }
 
+    public void showNextCard(){
+        //todo hand.getNextCard
+    }
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
     }
 
-    public void playTurn(){
+    public void playRandomTurn(){
+        Random random = new Random();
+        int rand = random.nextInt(3);
+        //todo
+    }
 
+    public void use(int x, int y){
+        //todo
+    }
+    public void showCollectables(){
+        //todo
     }
     public void help(){
         //todo
