@@ -317,7 +317,7 @@ public class Menu {
         for(int i = 0; i< deck.getCards ().size (); i++){
             if(deck.getCards ().get(i).getType ().compareTo ("Hero")==0){
                 System.out.println ((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
-                        " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getSpecialPower() +
+                        " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getDesc () +
                         " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
             }
         }
@@ -331,14 +331,14 @@ public class Menu {
             if(deck.getCards ().get(i).getType ().compareTo ("Spell")== 0){
                 System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
                         " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
-                        deck.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
             }
             else if(deck.getCards ().get(i).getType ().compareTo ("Minion")== 0){
                 System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
                         deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
                         " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
                         " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
-                        deck.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
             }
         }
     }
