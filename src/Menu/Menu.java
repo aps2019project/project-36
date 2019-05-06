@@ -5,6 +5,7 @@ import Collective.Card;
 import Collective.Item;
 import Player.*;
 import Battle.BattleMenu;
+import Shop.Shop;
 import Shop.ShopMenu;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -25,10 +26,6 @@ public class Menu {
             }
             secondMenu();
         }
-    }
-
-    public static void Saba() {
-        System.out.println("Saba is Dead.");
     }
 
     public static void firstMenu() {
@@ -216,7 +213,7 @@ public class Menu {
                 System.out.println("Deck doesnt exist!");
             }
         } else if (input.compareToIgnoreCase("show all decks") == 0) {
-            showAllDecks();
+            showAllDecks(loggedInPlayer);
         } else if (input.length() > 10 && input.substring(0, 8).compareToIgnoreCase("show deck") == 0) {
 
         } else if (input.compareToIgnoreCase("help") == 0) {
@@ -279,7 +276,7 @@ public class Menu {
             if (input.compareToIgnoreCase("story") == 0) {
                 menu.singlePlayerStory(loggedInPlayer);
             } else if (input.compareToIgnoreCase("custom") == 0) {
-                showAllDecks();
+                showAllDecks(loggedInPlayer);
                 System.out.println("mode 1: kill competitor's hero");
                 System.out.println("mode 2: keep the only flag for six turns");
                 System.out.println("mode 3:collect half of flags");
@@ -308,12 +305,42 @@ public class Menu {
         battleMenu();
     }
 
-    public static void showAllDecks() {
+    public static void showAllDecks(Account account) {
+        for(Deck x:account.getDecks ()){
+            showDeck (x);
+        }
         //todo
     }
 
     public static void showDeck(Deck deck){
-        //todo
+        System.out.println ("Heroes:" );
+        for(int i = 0; i< deck.getCards ().size (); i++){
+            if(deck.getCards ().get(i).getType ().compareTo ("Hero")==0){
+                System.out.println ((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
+                        " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getSpecialPower() +
+                        " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+            }
+        }
+        System.out.println ("Items:" );
+        for(int i= 0; i< deck.getItems ().size(); i++){
+            System.out.println ((i+1) + ": Name:" + deck.getItems ().get(i).getName () + "- Desc:" + deck.getItems ().get (i).getDesc () +
+                    "Buy Cost:" + deck.getItems ().get(i).getPrice ());
+        }
+        System.out.println ("Cards:" );
+        for(int i= 0; i< deck.getCards ().size (); i++){
+            if(deck.getCards ().get(i).getType ().compareTo ("Spell")== 0){
+                System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
+                        " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
+                        deck.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+            }
+            else if(deck.getCards ().get(i).getType ().compareTo ("Minion")== 0){
+                System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
+                        deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
+                        " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
+                        " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
+                        deck.getCards ().get(i).getSpecialPower() + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+            }
+        }
     }
     public static String getInput() {
         return scanner.nextLine();

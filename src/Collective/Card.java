@@ -28,6 +28,12 @@ public abstract class Card {
     protected String id;
     protected int neededMAnna;
     protected static ArrayList<Card> cards=new ArrayList<>();
+    private String specialPower;
+
+    public String getSpecialPower() {
+        return specialPower;
+    }
+
     public abstract String getType();
 
     public static ArrayList<Card> getCards() {
