@@ -4,7 +4,7 @@ import Collective.*;
 import Collective.Flag;
 import Collective.Item;
 import Map.*;
-import Player.Player;
+import Player.*;
 import com.sun.tools.javac.Main;
 
 public class Battle {
@@ -62,6 +62,40 @@ public class Battle {
             System.out.println("invalid target");
     }
 
+    public void attack(){
+        //todo
+    }
+    public void comboAttack(){
+        //todo
+    }
+
+    public void useSpecialPower(){
+        //todo
+    }
+
+    public void showHand(){
+        currentPlayer.getMainDeck().getHand().getCards().forEach(i -> System.out.println(i.getCardID()));
+    }
+    public void insertCard(String cardName, int x, int y){
+        for(int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++){
+            if(cardName.equals(currentPlayer.getMainDeck().getHand().getCards().get(i).getName())){
+                for (Card card:
+                     Map.getCardsInMap()) {
+                    if(Math.abs(card.getCell().getX() - x) + Math.abs(card.getCell().getY() - y) <= 1){
+                        Cell cell = new Cell();
+                        cell.setX(x);
+                        cell.setY(y);
+                        currentPlayer.getMainDeck().getHand().getCards().get(i).setCell(cell);
+                        Map.addToCardsInMap(currentPlayer.getMainDeck().getHand().getCards().get(i));
+                        return;
+                    }
+                }
+                System.out.println("invalid target");
+            }
+        }
+        System.out.println("Invalid card name");
+    }
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -84,6 +118,12 @@ public class Battle {
         System.out.println("Invalid card id");
     }
 
+    public void enterGraveyardShowCards(GraveYard graveYard){
+        graveYard.getCards().forEach(i -> System.out.println(i.getName()));
+    }
+    public void enterGraveyardShowInfo(GraveYard graveYard, Card card){
+        //todo
+    }
     public Item getSelectedItem() {
         return selectedItem;
     }
@@ -94,5 +134,8 @@ public class Battle {
 
     public void playTurn(){
 
+    }
+    public void help(){
+        //todo
     }
 }

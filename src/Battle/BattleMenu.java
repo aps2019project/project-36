@@ -31,10 +31,16 @@ public class BattleMenu {
 
     }
     public void singlePlayerCustom(Player player, int mode, int numOfFlags){
+        Match match = new Match();
+
+
+
+        match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
     }
 
     public void multiPlayer(Player player1, Player player2, int mode, int numOfFlags){
         Battle battle = new Battle();
+        GraveYard graveYard = new GraveYard();
         Game game = new Game();
         Cell cell = new Cell();
         cell.setX(0);
@@ -49,6 +55,7 @@ public class BattleMenu {
         game.setMode(mode);
         while(game.checkIsOver() == 0){
             battle.gameInfo();
+            //todo
             String input = Menu.getInput();
             if (input.compareToIgnoreCase("") == 0){
 
