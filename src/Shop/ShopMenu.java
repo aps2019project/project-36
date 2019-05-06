@@ -1,11 +1,8 @@
 package Shop;
 
-import Collective.Card;
+import Collective.Card.Card;
 import Collective.Item;
 import Player.Account;
-import Player.Player;
-
-import java.util.ArrayList;
 
 public class ShopMenu{
 

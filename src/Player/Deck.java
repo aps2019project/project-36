@@ -1,7 +1,7 @@
 package Player;
 
-import Collective.Card;
-import Collective.Hero;
+import Collective.Card.Card;
+import Collective.Card.Hero;
 import Collective.Item;
 import java.util.ArrayList;
 

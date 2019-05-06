@@ -1,5 +1,8 @@
-package Collective;
+package Collective.Card.Minion;
 
+
+import Collective.Card.Card;
+import Collective.Card.Spell;
 
 public class Minion extends Card {
 
@@ -8,7 +11,15 @@ public class Minion extends Card {
     protected int typeOfActivation;
     protected int rangeOfAttack;
     protected String typeOfImpact;
+    protected boolean canAttack;
 
+    public Minion(){
+        this.canAttack=true;
+    }
+
+    public boolean canAttack() {
+        return canAttack;
+    }
 
     public int getNeededManna() {
         return neededManna;
@@ -35,4 +46,7 @@ public class Minion extends Card {
         this.HP-=number;
     }
 
+    public int getRangeOfAttack(){
+        return this.rangeOfAttack;
+    }
 }

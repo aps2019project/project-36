@@ -1,4 +1,6 @@
-package Collective;
+package Collective.Buff;
+
+import Collective.Card.Card;
 
 public class StunBuff extends Buff {
 
@@ -7,7 +9,6 @@ public class StunBuff extends Buff {
 
         public StunBuff(int durationTurn, boolean isDispellable, boolean isContinuous) {
             super(durationTurn, isDispellable, isContinuous);
-            setPositiveOrNegative(Consts.Consts.NEGATIVE);
         }
 
 }

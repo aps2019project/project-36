@@ -1,8 +1,8 @@
 package Battle;
 
-import Collective.Card;
+import Collective.Card.Card;
 import Collective.Item;
-import Collective.Minion;
+import Collective.Card.Minion.Minion;
 import Map.Cell;
 import Map.Map;
 import Player.GraveYard;
@@ -10,8 +10,6 @@ import Player.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import java.util.ArrayList;
 
 import static java.lang.Math.*;
 
@@ -79,6 +77,16 @@ public class Battle {
         int x1, y1, x2=0, y2=0;
         boolean flag_for_soldier_validity = false;
         boolean flag_for_attack = false;
+        boolean flag_for_minion_attack=false;
+        if(selectedCard.getType().equals("Minion") ){
+            Minion m=new Minion();
+            m=(Minion) selectedCard;
+            if(m.canAttack()){
+                flag_for_minion_attack=true;
+            }
+        }
+        if(!selectedCard.getType().equals("Minion") || flag_for_minion_attack){
+
         for (int i = 0; i < Map.getCardsInMap().size(); i++) {
             if (Map.getCardsInMap().contains(selectedCard)) {
                 flag_for_soldier_validity = true;
@@ -141,6 +149,7 @@ public class Battle {
                         }
                     }
                 }
+            }
 
             }
         }
@@ -162,6 +171,10 @@ public class Battle {
         }
     }
 
+    public void counterAttack(){
+
+    }
+
     public void comboAttack() {
         //todo
     }
@@ -178,8 +191,7 @@ public class Battle {
         boolean flag = false;
         for (int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++) {
             if (cardName.equals(currentPlayer.getMainDeck().getHand().getCards().get(i).getName())) {
-                for (Card card :
-                        Map.getCardsInMap()) {
+                for (Card card : Map.getCardsInMap()) {
                     if (abs(card.getCell().getX() - x) + abs(card.getCell().getY() - y) <= 1) {
                         if (game.getPlayer1() == currentPlayer) {
                             if (currentPlayer.getMainDeck().getHand().getCards().get(i).getMP() <= game.getManaPlayer1()) {

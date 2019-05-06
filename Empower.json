@@ -1,8 +1,0 @@
-{
-  "neededManna": "1",
-  "price": "250",
-  "targetArea": "one own force",
-  "Class": "Spell",
-  "Effect": "add 2 points to AP force",
-  "Name": "Empower"
-}

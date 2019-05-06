@@ -1,4 +1,4 @@
-package Collective;
+package Collective.Card;
 
 import Map.Cell;
 import Player.Player;

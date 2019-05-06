@@ -1,8 +1,8 @@
 package Map;
 
 import java.util.ArrayList;
-import Collective.Buff;
-import Collective.Card;
+import Collective.Buff.Buff;
+import Collective.Card.Card;
 import Collective.CellEffect;
 import Collective.Item;
 

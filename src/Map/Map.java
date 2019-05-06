@@ -1,6 +1,6 @@
 package Map;
 
-import Collective.Card;
+import Collective.Card.Card;
 import Collective.Flag;
 
 import java.util.ArrayList;
