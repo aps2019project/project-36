@@ -15,6 +15,11 @@ import java.util.ArrayList;
 
 import static java.lang.Math.*;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import static java.lang.Math.abs;
+
 public class Battle {
     Game game = new Game();
     Player currentPlayer = new Player();
@@ -192,6 +197,12 @@ public class Battle {
                             cell.setY(y);
                             currentPlayer.getMainDeck().getHand().getCards().get(i).setCell(cell);
                             Map.addToCardsInMap(currentPlayer.getMainDeck().getHand().getCards().get(i));
+                            currentPlayer.getMainDeck().getHand().removeCard(card);
+                            currentPlayer.getMainDeck().removeFromCards(card);
+                            currentPlayer.getMainDeck().getHand().addNewCard(currentPlayer.getMainDeck().getHand().getNextCard());
+                            Random random = new Random();
+                            int rand = random.nextInt(currentPlayer.getMainDeck().getCards().size());
+                            currentPlayer.getMainDeck().getHand().setNextCard(currentPlayer.getMainDeck().getCards().get(rand));
                             return;
                         }
                     }
