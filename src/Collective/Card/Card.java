@@ -1,5 +1,6 @@
 package Collective.Card;
 
+import Collective.Card.Minion.Minion;
 import Map.Cell;
 import Player.Player;
 
@@ -17,27 +18,52 @@ public abstract class Card {
     protected int MP;
     protected int neededManna;
     protected String type;
-    private String desc;
+    private String buff2;
+    private String buff;
+    protected static ArrayList<Card> cards = new ArrayList<>();
+    protected static ArrayList<Card> card = new ArrayList<>();
+    protected String targetArea;
+    private String[] targetAreas = new String[]{"two", "three", " enemy", "friend", "random", "minion", "eight_arounds"};
 
-    public String getDesc() {
-        return desc;
+    public String getBuff() {
+        return buff;
     }
 
-    protected static ArrayList<Card> cards=new ArrayList<>();
-    public abstract String getType();
-    protected static ArrayList<Card> card=new ArrayList<>();
-    protected String targetArea;
-    private String[] targetAreas = new String[]{ "two" ,"three"," enemy", "friend", "random", "minion", "eight_arounds"};
+    public String  getBuff2() {
+        return buff2;
+    }
+
 
     public String getTargetArea() {
         return targetArea;
     }
 
+    public abstract String getType();
+
     public void setTargetAreas(String nameOfTargetArea) {
         //todo
-        this.targetArea=nameOfTargetArea;
+        this.targetArea = nameOfTargetArea;
     }
 
+    public void setEffect(Card defender, Card selectedCard) {
+        if (defender.getType().equals("Minion")) {
+            Minion m = new Minion();
+            m = (Minion) defender;
+            m.minionEffect(defender, selectedCard);
+        }
+
+        if (defender.getType().equals("Spell")) {
+            Spell s = new Spell();
+            s = (Spell) defender;
+            s.spellEffect(defender, selectedCard);
+        }
+
+        if (defender.getType().equals("Hero")) {
+            Hero h = new Hero();
+            h = (Hero) defender;
+            h.heroEffect(defender, selectedCard);
+        }
+    }
 
     public static ArrayList<Card> getCards() {
         return cards;
@@ -98,12 +124,13 @@ public abstract class Card {
         this.name = name;
     }
 
-    public static void removeFromCards(Card card){
+    public static void removeFromCards(Card card) {
         cards.remove(card);
     }
-    public static Card getCardByID(String id){
-        for (Card card:cards) {
-            if (card.getCardID().equals(id)){
+
+    public static Card getCardByID(String id) {
+        for (Card card : cards) {
+            if (card.getCardID().equals(id)) {
                 return card;
             }
         }

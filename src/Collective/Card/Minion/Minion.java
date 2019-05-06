@@ -12,41 +12,50 @@ public class Minion extends Card {
     protected int rangeOfAttack;
     protected String typeOfImpact;
     protected boolean canAttack;
+    protected boolean canDefend;
+    protected String classtype;
 
-    public Minion(){
-        this.canAttack=true;
+    public Minion() {
+        this.canAttack = true;
     }
 
-    public boolean canAttack() {
+    public String getClasstype() {
+        return classtype;
+    }
+
+    public boolean getCanAttack() {
         return canAttack;
+    }
+
+    public void setCanAttack(boolean canAttack) {
+        this.canAttack = canAttack;
     }
 
     public int getNeededManna() {
         return neededManna;
     }
 
-    public void setNeededManna(int neededManna) {
-        this.neededManna = neededManna;
-    }
-
-    public void attack() {
-    }
 
     public void move() {
-    }
-
-    public void setPrice(int price) {
     }
 
     public String getType() {
         return "Minion";
     }
 
-    public void setHP(int number){
-        this.HP-=number;
+    public void setHP(int number) {
+        this.HP += number;
     }
 
-    public int getRangeOfAttack(){
+    public void setAP(int number) {
+        this.AP += number;
+    }
+
+    public int getRangeOfAttack() {
         return this.rangeOfAttack;
+    }
+
+    public void minionEffect(Card defender, Card selectedCard){
+
     }
 }

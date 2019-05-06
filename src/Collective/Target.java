@@ -5,17 +5,6 @@ import Map.Cell;
 import java.util.ArrayList;
 import java.util.List;
 public class Target{
-public enum TargetType {
-    ENEMY,
-    INSIDER,
-    ENEMY_HERO,
-    INSIDER_HERO,
-    CELL,
-    PLAYER,
-    SELF_NOT_MELEE,
-    INSIDER_NOT_MELEE,
-    NONE
-}
 
     private String typeOfTarget;
     private String friendlyOrEnemy;
