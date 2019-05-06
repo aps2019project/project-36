@@ -37,7 +37,6 @@ public class BattleMenu {
 
         match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
     }
-
     public void multiPlayer(Player player1, Player player2, int mode, int numOfFlags){
         Battle battle = new Battle();
         GraveYard graveYard = new GraveYard();

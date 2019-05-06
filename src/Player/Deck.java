@@ -18,8 +18,8 @@ public class Deck {
         return hero;
     }
 
-    public void setHero(Hero hero) {
-        this.hero = hero;
+    public void setHero(Card hero) {
+        this.hero = (Hero)hero;
     }
 
     public static ArrayList<Deck> getDecks() {
@@ -45,6 +45,15 @@ public class Deck {
     public void addToItems(Item item){
         items.add(item);
     }
+
+    public void removeFromCards(Card card){
+        cards.remove(card);
+    }
+
+    public void removeFromItems(Item item){
+        items.remove(item);
+    }
+
     public String getName() {
         return name;
     }
@@ -66,8 +75,30 @@ public class Deck {
     }
 
     public boolean validateDeck(){
-        if(this.getCards().size() == 20 && this.getHero() != null){
+        if(this.getCards().size() == 20 && this.getHero() != null && this.getItems().size() <= 1){
             return true;
+        }
+        return false;
+    }
+
+    public boolean contains(Card card){
+        for (Card card1:cards
+        ) {
+            if (card1.equals(card)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean contains(Item item){
+        for (Item item1:items
+             ) {
+            if (item1.equals(item)){
+                return true;
+            }
+
         }
         return false;
     }
