@@ -4,6 +4,8 @@ import Map.Cell;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class Card {
     public enum AttackType {
@@ -29,7 +31,18 @@ public abstract class Card {
     protected String id;
     protected int neededMAnna;
     protected static ArrayList<Card> cards=new ArrayList<>();
+    protected String targetArea;
+    private String[] targetAreas = new String[]{ "two" ,"three"," enemy", "friend", "random", "minion", "eight_arounds"};
     public abstract String getType();
+
+    public String getTargetArea() {
+        return targetArea;
+    }
+
+    public void setTargetAreas(String nameOfTargetArea) {
+        //todo
+        this.targetArea=nameOfTargetArea;
+    }
 
     public static ArrayList<Card> getCards() {
         return cards;
