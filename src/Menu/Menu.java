@@ -251,6 +251,7 @@ public class Menu {
             menu.sell(input.substring(4), loggedInPlayer);
         }
         if (input.compareToIgnoreCase("show") == 0) {
+            //todo
         }
         if (input.compareToIgnoreCase("help") == 0) {
             menu.help();
@@ -309,10 +310,22 @@ public class Menu {
     }
 
     public static void showAllDecks(Account account) {
-        for(Deck x:account.getDecks ()){
-            showDeck (x);
+        boolean haveMainDeck=false;
+        if(account.getMainDeck ()!=null){
+            System.out.println (account.getMainDeck ().getName () );
+            showDeck (account.getMainDeck ());
+            haveMainDeck=true;
         }
-        //todo
+        for(Deck x:account.getDecks ()){
+            if(!haveMainDeck){
+                System.out.println (x.getName () );
+                showDeck (x);
+            }
+            else if(!(x.equals (account.getMainDeck ()))){
+                System.out.println (x.getName () );
+                showDeck (x);
+            }
+        }
     }
 
     public static void showDeck(Deck deck){
