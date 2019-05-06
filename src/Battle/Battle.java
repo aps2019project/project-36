@@ -1,6 +1,7 @@
 package Battle;
 
 import Collective.Card;
+import Collective.Collectible;
 import Collective.Item;
 import Collective.Minion;
 import Map.Cell;
@@ -301,12 +302,18 @@ public class Battle {
         }
     }
 
-    public void use(int x, int y) {
-        //todo
+    public void use(Item item,int x, int y) {
+        for(Card card:Map.getCardsInMap ()){
+            if(card.getCell ().getX ()== x && card.getCell ().getY ()==y){
+                card.setCollectibleItem(item);
+            }
+        }
     }
 
-    public void showCollectables() {
-        //todo
+    public void showCollectibles(Player player) {
+        for(Item x:player.getCollectibles ()){
+            System.out.println ("Name: "+x.getName ()+" - Desc:"+x.getDesc ());
+        }
     }
 
     public void help() {
@@ -323,5 +330,30 @@ public class Battle {
         }
         rand = random.nextInt(cnt);
         return rand;
+    }
+
+    public void showCardInfo(String ID){
+        for(Card x:Map.getCardsInMap ()){
+            if(x.getName ().compareTo (ID)==0){
+                if(x.getType ().compareTo ("Hero")== 0){
+                    System.out.println (" Name: " + x.getName () +" - AP: "+x.getAP ()+" - MP: "+
+                            x.getMP ()+" - Class: " +x.getClass () +" - Special Power: "+
+                            x.getDesc () + " - Cost: " + x.getPrice ());
+                }
+                if(x.getType ().compareTo ("Spell")== 0){
+                    System.out.println (" - Name: " + x.getName () +
+                            " - MP: "+x.getMP ()+" - Description: "+
+                            x.getDesc () + " - Cost: " + x.getPrice ());
+                }
+                if(x.getType ().compareTo ("Minion")== 0){
+                   // System.out.println (" - Name: " + x.getName () +
+                      //      " - Class: " +x.getClass () +" - AP: "+x.getAP ()+" - HP: "+x.getHP ()+" - MP"+x.getMP ()+" - SpecialPower: "+
+                    //        x.getDesc () + " -Cost: " + x.getPrice ()+" -Range:" + x.getRange + " - combo ability: "+x.getComboAbility());
+                    //todo in do ta tabe ro ba esmhayi ke sara barashun gozashte biad zad
+
+                }
+
+            }
+        }
     }
 }

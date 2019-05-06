@@ -53,6 +53,14 @@ public class Consts {
         return deckStory3;
     }
 
+    public static void setDeck1(Deck deck){
+
+    }
+    public static void setDeck2(Deck deck){
+
+    }
+    public static void setDeck3(Deck deck){}
+
     public static Consts getInstance() {
         if(consts == null)
             consts = new Consts();

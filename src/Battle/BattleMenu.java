@@ -105,11 +105,11 @@ public class BattleMenu {
                 battle.insertCard(str[1], Integer.parseInt(str[3]), Integer.parseInt(str[4]));
             }
             else if (input.equals("Show collectibles")) {
-                battle.showCollectables();
+                battle.showCollectibles(player1);
             }
             else if(input.length() >= 3 && input.substring(0,2).compareToIgnoreCase("use") == 0){
                 String[] str = input.split(" ");
-                battle.use(Integer.parseInt(str[1]), Integer.parseInt(str[2]));
+                //battle.use(Integer.parseInt(str[1]), Integer.parseInt(str[2]));//todo
             }
             else if(input.equals("Show Next Card")){
                 battle.showNextCard();

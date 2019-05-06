@@ -18,6 +18,15 @@ public abstract class Card {
     protected int neededManna;
     protected String type;
     private String desc;
+    private Item collectibleItem;
+
+    public Item getCollectibleItem() {
+        return collectibleItem;
+    }
+
+    public void setCollectibleItem(Item collectibleItem) {
+        this.collectibleItem = collectibleItem;
+    }
 
     public String getDesc() {
         return desc;
