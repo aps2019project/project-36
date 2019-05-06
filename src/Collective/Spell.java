@@ -3,6 +3,7 @@ package Collective;
 import Consts.Consts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Spell extends Card {
@@ -12,17 +13,7 @@ public class Spell extends Card {
         GHAZABOKHORJOONBEGIRI, ALLPOWER, ALLATTACK, WEAKENING, SACRIFICE, KINGSGUARD, SHOCK
     }
 
-    public enum TargetArea {
-        ONE,
-        TWO,
-        THREE,
-        ALL_IN_COLUMN,
-        SELF,
-        ENEMY,
-        RANDOM,//SELF OR ENEMY
-        MINION,
-        EIGHT_AROUNDS
-    }
+
 
     public enum SpellActivationType {
         ON_CARD_INSERTION,
@@ -38,7 +29,6 @@ public class Spell extends Card {
     private SpellTypes spellArr[] = SpellTypes.values();
     private CellEffect effect;
     private String desc;
-    private TargetArea targetArea;
     private Buff.BuffType buffType;
     private int neededManna;
     private int APChange;
@@ -50,6 +40,12 @@ public class Spell extends Card {
     private SpellActivationType activationType;
     private String description;
     private boolean isDispeller;
+    private int number_of_simultaneous_attacks;
+
+    public int getNumber_of_simultaneous_attacks() {
+        return number_of_simultaneous_attacks;
+    }
+
 
 
     public Spell(String id, String name, int price, int HPneededManna,
@@ -68,13 +64,6 @@ public class Spell extends Card {
         this.addedBuffs.add(addedBuff);
     }
 
-    public String getTargetArea() {
-        return targetArea.values().toString();
-    }
-
-    public void setTargetArea(String targetArea) {
-        this.targetArea = TargetArea.valueOf(targetArea);
-    }
 
     public String getEffect() {
         return buffType.values().toString();
@@ -125,125 +114,125 @@ public class Spell extends Card {
                 case TOTALDIARM:
                     setPrice(1000);
                     setNeededManna(0);
-                    setTargetArea("ONE");
+                    setTargetAreas("ONE");
                     setEffect("DISARM");
                     break;
                 case AREADISPAL:
                     setPrice(1500);
                     setNeededManna(2);
-                    setTargetArea("TWO");
+                    setTargetAreas("TWO");
                     setEffect("ANTI");
                     break;
                 case EMPOWER:
                     setPrice(250);
                     setNeededManna(1);
-                    setTargetArea("SELF");
+                    setTargetAreas("SELF");
                     setEffect("APCHANGE");
                     break;
                 case FIREBALL:
                     setPrice(400);
                     setNeededManna(1);
-                    setTargetArea("ENEMY");
+                    setTargetAreas("ENEMY");
                     setEffect("ATTACK");
                     break;
                 case GODSTRENGTH:
                     setPrice(450);
                     setNeededManna(2);
-                    setTargetArea("SELF");
+                    setTargetAreas("SELF");
                     setEffect("CHAMPIONAP");
                     break;
                 case HELLFIRE:
                     setPrice(600);
                     setNeededManna(3);
-                    setTargetArea("TWO");
+                    setTargetAreas("TWO");
                     setEffect("STUN");
                     break;
                 case LIGHTINGBOLT:
                     setPrice(1250);
                     setNeededManna(2);
-                    setTargetArea("ENEMY");
+                    setTargetAreas("ENEMY");
                     setEffect("ATTACK");
                     break;
                 case POISONLAKE:
                     setPrice(900);
                     setNeededManna(5);
-                    setTargetArea("THREE");
+                    setTargetAreas("THREE");
                     setEffect("POISON");
                     break;
                 case MADNESS:
                     setPrice(650);
                     setNeededManna(0);
-                    setTargetArea("SELF");
+                    setTargetAreas("SELF");
                     setEffect("APCHANGE");
                     setEffect("DISARM");
                     break;
                 case ALLDISARM:
                     setPrice(2000);
                     setNeededManna(9);
-                    setTargetArea("ENEMY");
+                    setTargetAreas("ENEMY");
                     setEffect("DISARM");
                     break;
                 case ALLPOISON:
                     setPrice(1500);
                     setNeededManna(8);
-                    setTargetArea("ENEMY");
+                    setTargetAreas("ENEMY");
                     setEffect("POISON");
                     break;
                 case DISPEL:
                     setPrice(2100);
                     setNeededManna(0);
-                    setTargetArea("RANDOM");
+                    setTargetAreas("RANDOM");
                     setEffect("ANTI");
                     break;
                 case HEALTHWITHPROFIT:
                     setPrice(2250);
                     setNeededManna(0);
-                    setTargetArea("SELF");
+                    setTargetAreas("SELF");
                     setEffect("WEAKNESS");
                     setEffect("HOLY");
                     break;
                 case GHAZABOKHORJOONBEGIRI:
                     setPrice(2500);
                     setNeededManna(2);
-                    setTargetArea("SELF");
+                    setTargetAreas("SELF");
                     setEffect("POWER");
                     break;
                 case ALLPOWER:
                     setPrice(2000);
                     setNeededManna(4);
-                    setTargetArea("SELF");
+                    setTargetAreas("SELF");
                     setEffect("POWER");
                     break;
                 case ALLATTACK:
                     setPrice(1500);
                     setNeededManna(4);
-                    setTargetArea("ALL_IN_COLUMN");
+                    setTargetAreas("ALL_IN_COLUMN");
                     setEffect("ATTACK");
                     break;
                 case WEAKENING:
                     setPrice(1000);
                     setNeededManna(1);
-                    setTargetArea("MINION");
-                    setTargetArea("ENEMY");
+                    setTargetAreas("MINION");
+                    setTargetAreas("ENEMY");
                     setEffect("WEAKNESS");
                     break;
                 case SACRIFICE:
                     setPrice(1600);
                     setNeededManna(3);
-                    setTargetArea("MINION");
-                    setTargetArea("SELF");
+                    setTargetAreas("MINION");
+                    setTargetAreas("SELF");
                     setEffect("KILL");
                     break;
                 case KINGSGUARD:
                     setPrice(1750);
                     setNeededManna(3);
-                    setTargetArea("EIGHT_AROUNDS");
+                    setTargetAreas("EIGHT_AROUNDS");
                     setEffect("KILL");
                     break;
                 case SHOCK:
                     setPrice(1200);
                     setNeededManna(1);
-                    setTargetArea("ENEMY");
+                    setTargetAreas("ENEMY");
                     setEffect("STUN");
                     break;
             }
@@ -275,8 +264,8 @@ public class Spell extends Card {
 
 
         Target hellFireTarget = new Target(Consts.CELL, 2, 2, Consts.NONE, false, false, 0, Consts.NONE);
-        Buff hellFireBuff = new Buff(2, false, false, 1);
-        Spell hellFire = new Spell("shop_hellFire_1", "hellFire", 600, 3, 0, 0, 0, hellFireTarget, hellFireBuff, SpellActivationType.ON_CAST, "", false);
+     //   Buff hellFireBuff = new Buff(2, false, false, 1);
+     //   Spell hellFire = new Spell("shop_hellFire_1", "hellFire", 600, 3, 0, 0, 0, hellFireTarget, hellFireBuff, SpellActivationType.ON_CAST, "", false);
 
 
         Target lightingBoltTarget = new Target(Consts.HERO, Integer.MAX_VALUE, Integer.MAX_VALUE, Consts.ENEMY, false, false, 0, Consts.ALL);

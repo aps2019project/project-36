@@ -7,8 +7,6 @@ import Map.*;
 import Player.*;
 import com.sun.tools.javac.Main;
 
-import java.util.Random;
-
 public class Battle {
     Game game = new Game();
     Player currentPlayer = new Player();
