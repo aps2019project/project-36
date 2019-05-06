@@ -60,15 +60,20 @@ public class BattleMenu {
         cell.setX(8);
         player2.getMainDeck().getHero().setCell(cell);
         game.setMode(mode);
+        Player currentPlayer = player1;
         while(game.checkIsOver() == 0){
             battle.gameInfo();
             String input = Menu.getInput();
-            if (input.compareToIgnoreCase("") == 0){
-
+            if (input.compareToIgnoreCase("Show my minions") == 0){
+                battle.showMyMinions(currentPlayer);
             }
             game.setMana(1);
             game.setMana(2);
             game.changeTurn();
+            if(game.getTurn() % 2 == 1){
+                currentPlayer = player1;
+            }
+            else currentPlayer = player2;
         }
         match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
         Map.clearMap();
