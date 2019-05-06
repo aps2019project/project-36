@@ -1,6 +1,6 @@
 package Collective;
 
-import Player.Player;
+import Collective.Card.Card;
 
 public class Item {
     private String name;

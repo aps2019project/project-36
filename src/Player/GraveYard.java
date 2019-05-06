@@ -1,7 +1,6 @@
 package Player;
 
 import Collective.Card;
-
 import java.util.ArrayList;
 
 public class GraveYard {
@@ -45,4 +44,3 @@ public class GraveYard {
         }
     }
 }
-

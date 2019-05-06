@@ -1,4 +1,4 @@
-package Collective;
+package Collective.Buff;
 
 import Consts.Consts;
 
@@ -8,7 +8,6 @@ public class HolyBuff extends Buff {
     public HolyBuff(int durationTurn, boolean isDispellable
             , boolean isContinuous, int armor) {
         super(durationTurn, isDispellable, isContinuous);
-        setPositiveOrNegative(Consts.POSITIVE);
         this.armor = armor;
     }
 }

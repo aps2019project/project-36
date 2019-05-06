@@ -1,7 +1,7 @@
 package Battle;
 
 
-import Collective.Card;
+import Collective.Card.Card;
 import Consts.Consts;
 import Map.Cell;
 import Map.Map;

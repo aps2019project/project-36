@@ -1,6 +1,6 @@
 package Player;
 
-import Collective.Card;
+import Collective.Card.Card;
 
 import java.util.ArrayList;
 

@@ -1,28 +1,8 @@
-package Collective;
+package Collective.Buff;
 
 public abstract class Buff {
-    public enum BuffType {
-        HOLY,
-        DE_HOLY,
-        WEAKNESS,
-        STUN,
-        DISARM,
-        APCHANGE,
-        CHAMPION_AP,
-        CLEAR,
-        FIRE_CELL,
-        POISON_CELL,
-        HOLY_CELL,
-        POISON,
-        ANTI,
-        ANTI_ALL_POSITIVE,
-        CHANGE_MANA,
-        ADD_BUFF,
-        DIE,
-        ATTACK,
-        PUTT_IN_GROUND
-    }
-
+    private String name;
+    private boolean haveAffect;
     private String positiveOrNegative;
     private int startTurn;
     private int durationTurn;
@@ -31,6 +11,8 @@ public abstract class Buff {
     private boolean isActive;
     private int damagePerTurn;
     private int initialTurn;
+    private int APChange;
+    private int HPChange;
 
     public Buff(int durationTurn, boolean isDispellable, boolean isContinuous) {
         this.durationTurn = durationTurn;
@@ -45,8 +27,18 @@ public abstract class Buff {
         this.damagePerTurn = damagePerTurn;
     }
 
-    public void setPositiveOrNegative(String positiveOrNegative) {
-        this.positiveOrNegative = positiveOrNegative;
+    public String getName() {
+        return name;
     }
+
+    public boolean haveAffect() {
+        return haveAffect;
+    }
+
+    public String getPositiveOrNegative() {
+        return positiveOrNegative;
+    }
+
+
 
 }

@@ -1,7 +1,10 @@
 package Shop;
 
 import Collective.*;
-import Player.Account;
+import Collective.Card.Card;
+import Collective.Card.Hero;
+import Collective.Card.Minion.Minion;
+import Collective.Card.Spell;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -55,15 +58,15 @@ public class Shop {
                     items.add (usable);
                     break;
                 case "Hero":
-                    Hero hero = gson.fromJson (reader, Collective.Hero.class);
+                    Hero hero = gson.fromJson (reader, Hero.class);
                     cards.add (hero);
                     break;
                 case "Spell":
-                    Spell spell = gson.fromJson (reader, Collective.Spell.class);
+                    Spell spell = gson.fromJson (reader, Spell.class);
                     cards.add (spell);
                     break;
                 case "Minion":
-                    Minion minion = gson.fromJson (reader, Collective.Minion.class);
+                    Minion minion = gson.fromJson (reader, Minion.class);
                     cards.add (minion);
                     break;
             }

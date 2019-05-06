@@ -1,7 +1,6 @@
 package Battle;
 
 import Collective.Card;
-import Collective.Collectible;
 import Collective.Item;
 import Collective.Minion;
 import Map.Cell;
@@ -80,6 +79,16 @@ public class Battle {
         int x1, y1, x2=0, y2=0;
         boolean flag_for_soldier_validity = false;
         boolean flag_for_attack = false;
+        boolean flag_for_minion_attack=false;
+        if(selectedCard.getType().equals("Minion") ){
+            Minion m=new Minion();
+            m=(Minion) selectedCard;
+            if(m.canAttack()){
+                flag_for_minion_attack=true;
+            }
+        }
+        if(!selectedCard.getType().equals("Minion") || flag_for_minion_attack){
+
         for (int i = 0; i < Map.getCardsInMap().size(); i++) {
             if (Map.getCardsInMap().contains(selectedCard)) {
                 flag_for_soldier_validity = true;
@@ -163,6 +172,10 @@ public class Battle {
         }
     }
 
+    public void counterAttack(){
+
+    }
+
     public void comboAttack() {
         //todo
     }
@@ -179,8 +192,7 @@ public class Battle {
         boolean flag = false;
         for (int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++) {
             if (cardName.equals(currentPlayer.getMainDeck().getHand().getCards().get(i).getName())) {
-                for (Card card :
-                        Map.getCardsInMap()) {
+                for (Card card : Map.getCardsInMap()) {
                     if (abs(card.getCell().getX() - x) + abs(card.getCell().getY() - y) <= 1) {
                         if (game.getPlayer1() == currentPlayer) {
                             if (currentPlayer.getMainDeck().getHand().getCards().get(i).getMP() <= game.getManaPlayer1()) {
@@ -330,30 +342,5 @@ public class Battle {
         }
         rand = random.nextInt(cnt);
         return rand;
-    }
-
-    public void showCardInfo(String ID){
-        for(Card x:Map.getCardsInMap ()){
-            if(x.getName ().compareTo (ID)==0){
-                if(x.getType ().compareTo ("Hero")== 0){
-                    System.out.println (" Name: " + x.getName () +" - AP: "+x.getAP ()+" - MP: "+
-                            x.getMP ()+" - Class: " +x.getClass () +" - Special Power: "+
-                            x.getDesc () + " - Cost: " + x.getPrice ());
-                }
-                if(x.getType ().compareTo ("Spell")== 0){
-                    System.out.println (" - Name: " + x.getName () +
-                            " - MP: "+x.getMP ()+" - Description: "+
-                            x.getDesc () + " - Cost: " + x.getPrice ());
-                }
-                if(x.getType ().compareTo ("Minion")== 0){
-                   // System.out.println (" - Name: " + x.getName () +
-                      //      " - Class: " +x.getClass () +" - AP: "+x.getAP ()+" - HP: "+x.getHP ()+" - MP"+x.getMP ()+" - SpecialPower: "+
-                    //        x.getDesc () + " -Cost: " + x.getPrice ()+" -Range:" + x.getRange + " - combo ability: "+x.getComboAbility());
-                    //todo in do ta tabe ro ba esmhayi ke sara barashun gozashte biad zad
-
-                }
-
-            }
-        }
     }
 }

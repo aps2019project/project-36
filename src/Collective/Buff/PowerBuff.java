@@ -1,4 +1,4 @@
-package Collective;
+package Collective.Buff;
 
 class PowerBuff extends Buff {
     private int APPlus;
@@ -10,7 +10,6 @@ class PowerBuff extends Buff {
     public PowerBuff(int durationTurn, boolean isDispellable
             , boolean isContinuous, int hpPlus, int apPlus) {
         super(durationTurn, isDispellable, isContinuous);
-        setPositiveOrNegative(Consts.Consts.POSITIVE);
         this.HPPlus = hpPlus;
         this.APPlus = apPlus;
     }

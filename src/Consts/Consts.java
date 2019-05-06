@@ -1,6 +1,6 @@
 package Consts;
 
-import Collective.Card;
+import Collective.Card.Card;
 import Collective.Item;
 import Player.*;
 

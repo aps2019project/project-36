@@ -1,6 +1,8 @@
-package Collective;
+package Collective.Card;
 
-import Consts.Consts;
+import Collective.Buff.Buff;
+import Collective.CellEffect;
+import Collective.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,6 @@ public class Spell extends Card {
 
     private CellEffect effect;
     private String desc;
-    private Buff.BuffType buffType;
     private int neededManna;
     private int APChange;
     private int HPChange;
@@ -25,13 +26,13 @@ public class Spell extends Card {
         return number_of_simultaneous_attacks;
     }
 
-    public String getEffect() {
-        return buffType.values().toString();
-    }
-
-    public void setEffect(String buffType) {
-        this.buffType = Buff.BuffType.valueOf(buffType);
-    }
+//    public String getEffect() {
+//        return buffType.values().toString();
+//    }
+//
+//    public void setEffect(String buffType) {
+//        this.buffType = Buff.BuffType.valueOf(buffType);
+//    }
 
     public void setNeededManna(int manna) {
         neededManna = manna;

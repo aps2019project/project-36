@@ -1,4 +1,4 @@
-package Collective;
+package Collective.Card.Minion;
 
 
 public class Ranged extends Minion {

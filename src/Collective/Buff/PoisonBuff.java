@@ -1,5 +1,7 @@
-package Collective;
+package Collective.Buff;
 
+
+import Collective.Card.Card;
 
 class PoisonBuff extends Buff {
     public void decreaseHP(Card card) {
@@ -10,7 +12,6 @@ class PoisonBuff extends Buff {
     public PoisonBuff(int durationTurn, boolean isDispellable
             , boolean isContinuous, int damagePerTurn) {
         super(durationTurn, isDispellable, isContinuous);
-        setPositiveOrNegative(Consts.Consts.NEGATIVE);
         this.damagePerTurn = damagePerTurn;
     }
 }
