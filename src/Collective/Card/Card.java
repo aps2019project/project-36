@@ -23,7 +23,17 @@ public abstract class Card {
     private String buff;
     private String desc;
     private boolean attacked;
+
+    public boolean isCounterAttack() {
+        return counterAttack;
+    }
+
     protected boolean counterAttack;
+
+    public boolean isCanDefend() {
+        return canDefend;
+    }
+
     protected boolean canDefend;
     protected boolean canAttack;
 

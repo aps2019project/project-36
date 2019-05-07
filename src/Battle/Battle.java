@@ -9,6 +9,7 @@ import Collective.Item;
 import Collective.Target;
 import Map.Cell;
 import Map.Map;
+import Menu.Menu;
 import Player.*;
 
 import Player.Player;
@@ -109,7 +110,10 @@ public class Battle {
         cell.setY(y);
         cell.setX(x);
         if (abs(cell.getX() - selectedCard.getCell().getX()) +
-                abs(cell.getY() - selectedCard.getCell().getY()) > 2) {
+                abs(cell.getY() - selectedCard.getCell().getY()) > 2 || selectedCard.getName().equals("Arash")
+        || selectedCard.getName().equals("Legend")
+        || selectedCard.getName().equals("Esfandiar")
+        || selectedCard.getName().equals("Rostam")) {
             //age betune bishtar az 2 khune bere barresi she
             selectedCard.setCell(cell);
         } else
@@ -257,13 +261,14 @@ public class Battle {
     }
 
     public void counterAttack() {
+        if(selectedCard.getCanAttack() && selectedCard.getCanDefend())
+            selectedCard.setCounterAttack(true);
     }
-    //todo
+
 
 
     public void comboAttack() {
-        Scanner scanner = new Scanner(System.in);
-        String order = scanner.nextLine();
+        String order = Menu.getInput();
         Card defender = null;
         Buff b=new Buff() {
             @Override
