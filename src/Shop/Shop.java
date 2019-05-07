@@ -50,7 +50,6 @@ public class Shop {
             Gson gson = new Gson ( );
             InputStream input = new FileInputStream (path);
             Reader reader = new InputStreamReader (input);
-
             switch (type) {
                 case "Collectible":
                     Collectible collectible = gson.fromJson (reader, Collective.Collectible.class);
