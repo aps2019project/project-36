@@ -1,8 +1,8 @@
 package Battle;
 
 import Collective.Card.Card;
-import Collective.Card.Minion.Minion;
 import Collective.Item;
+import Collective.Card.Minion.Minion;
 import Map.Cell;
 import Map.Map;
 import Player.GraveYard;
@@ -10,6 +10,12 @@ import Player.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static java.lang.Math.*;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 import static java.lang.Math.abs;
 
 public class Battle {
@@ -55,6 +61,12 @@ public class Battle {
         //todo
     }
 
+    public void chechTypeOfMinion(Card selectedCard,Card defender){
+        if(defender.getType().equals("Minion")){
+
+        }
+    }
+
     public void moveTo(int x, int y) {
         Cell cell = new Cell();
         cell.setY(y);
@@ -68,6 +80,7 @@ public class Battle {
     }
 
     public void attack(Card defender) {
+        //todo for turn
         int x1, y1, x2 = 0, y2 = 0;
         boolean flag_for_soldier_validity = false;
         boolean flag_for_attack = false;
@@ -75,7 +88,7 @@ public class Battle {
         if (selectedCard.getType ( ).equals ("Minion")) {
             Minion m = new Minion ( );
             m = (Minion) selectedCard;
-            if (m.canAttack ( )) {
+            if (m.getCanAttack ( )) {
                 flag_for_minion_attack = true;
             }
         }
@@ -102,7 +115,7 @@ public class Battle {
                                 }
                             }
 
-                            if (Card.getCards ( ).get (i).getTargetArea ( ).equals ("enemy")) {
+                            if (Card.getCards ( ).get (i).getTargetArea ( ).equals ("all_in_one_column")) {
                                 ArrayList<Integer> Ys_In_Same_Column = new ArrayList ( );
                                 for (int k = 0; k < Map.getCardsInMap ( ).size ( ); k++) {
                                     if (Map.getCardsInMap ( ).get (k).getCell ( ).getY ( ) == y1
@@ -115,15 +128,26 @@ public class Battle {
                                 }
                             }
 
-                            if (Card.getCards ( ).get (i).getTargetArea ( ).equals ("friend")) {
-                                ArrayList<Integer> Ys_In_Same_Column = new ArrayList ( );
+                            if (Card.getCards ( ).get (i).getTargetArea ( ).equals ("enemy")) {
+                                ArrayList<Integer> enemies = new ArrayList ( );
                                 for (int k = 0; k < Map.getCardsInMap ( ).size ( ); k++) {
-                                    if (Map.getCardsInMap ( ).get (k).getCell ( ).getY ( ) == y1
-                                            && Map.getCardsInMap ( ).get (k).getOwner ( ) == selectedCard.getOwner ( )) {
-                                        Ys_In_Same_Column.add (Map.getCardsInMap ( ).get (k).getCell ( ).getY ( ));
+                                    if (Map.getCardsInMap ( ).get (k).getOwner ( ) != selectedCard.getOwner ( )) {
+                                        enemies.add (Map.getCardsInMap ( ).get (k).getCell ( ).getY ( ));
                                     }
                                 }
-                                if (Ys_In_Same_Column.contains (y2)) {
+                                if (enemies.contains (y2)) {
+                                    flag_for_attack = true;
+                                }
+                            }
+
+                            if (Card.getCards ( ).get (i).getTargetArea ( ).equals ("friend")) {
+                                ArrayList<Integer> friends = new ArrayList ( );
+                                for (int k = 0; k < Map.getCardsInMap ( ).size ( ); k++) {
+                                    if (Map.getCardsInMap ( ).get (k).getOwner ( ) == selectedCard.getOwner ( )) {
+                                        friends.add (Map.getCardsInMap ( ).get (k).getCell ( ).getY ( ));
+                                    }
+                                }
+                                if (friends.contains (y2)) {
                                     flag_for_attack = true;
                                 }
                             }
@@ -146,15 +170,19 @@ public class Battle {
 
                 }
             }
+
+            chechTypeOfMinion (selectedCard, defender);
+
             if (flag_for_attack && flag_for_soldier_validity) {
                 for (int i = 0; i < Map.getCardsInMap ( ).size ( ); i++) {
                     if (Map.getCardsInMap ( ).contains (selectedCard)) {
                         Map.getCardsInMap ( ).get (i).getCell ( ).setX (x2);
                         Map.getCardsInMap ( ).get (i).getCell ( ).setY (y2);
+                        defender.setEffect (defender, selectedCard);
                         if (defender.getType ( ).equals ("Minion")) {
                             Minion defender2 = new Minion ( );
                             defender2 = (Minion) defender;
-                            defender2.setHP (selectedCard.getAP ( ));
+                            defender2.setHP (-selectedCard.getAP ( ));
                         }
                     }
                 }
@@ -164,12 +192,13 @@ public class Battle {
             }
         }
     }
-
     public void counterAttack(){}
             //todo
 
-    public void comboAttack() {}
+
+    public void comboAttack() {
         //todo
+    }
 
     public void useSpecialPower() {
         //todo

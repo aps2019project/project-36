@@ -5,7 +5,7 @@ public abstract class Buff {
     private boolean haveAffect;
     private String positiveOrNegative;
     private int startTurn;
-    private int durationTurn;
+    private int duration;
     private boolean isDispellable;
     private boolean isContinuous;
     private boolean isActive;
@@ -14,18 +14,14 @@ public abstract class Buff {
     private int APChange;
     private int HPChange;
 
-    public Buff(int durationTurn, boolean isDispellable, boolean isContinuous) {
-        this.durationTurn = durationTurn;
-        this.isDispellable = isDispellable;
-        this.isContinuous = isContinuous;
+    public int getAPChange() {
+        return APChange;
     }
 
-    public Buff(int durationTurn, boolean isDispellable, boolean isContinuous, int damagePerTurn) {
-        this.durationTurn = durationTurn;
-        this.isDispellable = isDispellable;
-        this.isContinuous = isContinuous;
-        this.damagePerTurn = damagePerTurn;
+    public int getHPChange() {
+        return HPChange;
     }
+
 
     public String getName() {
         return name;
@@ -38,6 +34,7 @@ public abstract class Buff {
     public String getPositiveOrNegative() {
         return positiveOrNegative;
     }
+
 
 
 

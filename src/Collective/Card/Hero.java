@@ -29,7 +29,7 @@ public class Hero extends Card {
         this.coolDown = cooldown;
     }
 
-    public Hero(){
+    public void heroEffect(Card defender,Card selectedCard){
 
     }
 }

@@ -1,16 +1,11 @@
 package Collective;
 
 public class SpellChange {
-    public enum TimeToActivateSpecialPower
-    {
-        passive, onAttack, onSpawn, onDeath, combo, onDefend, onTurn
-    }
         private int turnsToApplyChange;
         private boolean positiveChange;
         private boolean applyChangeUntilEndOfTheGame;
         private boolean removeOpponentPositiveBuffs;
         private boolean removeOwnNegativeBuffs;
-        private TimeToActivateSpecialPower timeToActivateSpecialPower;
         private int changeAP;
         private int changeHP;
         private int changeMP;
@@ -29,7 +24,7 @@ public class SpellChange {
         private boolean currentTurn;
 
         public SpellChange(int turnsToApplyChange, boolean positiveChange,
-                           boolean applyChangeUntilEndOfTheGame, TimeToActivateSpecialPower timeToActivateSpecialPower,
+                           boolean applyChangeUntilEndOfTheGame/*TimeToActivateSpecialPower timeToActivateSpecialPower*/,
                            int changeAP, int changeHP, int changeMP, boolean stunOpponent, boolean disarmOpponent,
                            boolean activateHolyBuff , boolean activateReverseHolyBuff, boolean madeCellToxic,
                            boolean madeCellHoly, boolean madeCellFiery , boolean deleteAllPositiveBuff,
@@ -38,7 +33,7 @@ public class SpellChange {
             this.turnsToApplyChange = turnsToApplyChange;
             this.positiveChange = positiveChange;
             this.applyChangeUntilEndOfTheGame = applyChangeUntilEndOfTheGame;
-            this.timeToActivateSpecialPower = timeToActivateSpecialPower;
+           // this.timeToActivateSpecialPower = timeToActivateSpecialPower;
             this.changeAP = changeAP;
             this.changeHP = changeHP;
             this.changeMP = changeMP;
@@ -119,13 +114,13 @@ public class SpellChange {
             this.applyChangeUntilEndOfTheGame = applyChangeUntilEndOfTheGame;
         }
 
-        public TimeToActivateSpecialPower getTimeToActivateSpecialPower() {
-            return timeToActivateSpecialPower;
-        }
-
-        public void setTimeToActivateSpecialPower(TimeToActivateSpecialPower timeToActivateSpecialPower) {
-            this.timeToActivateSpecialPower = timeToActivateSpecialPower;
-        }
+//        public TimeToActivateSpecialPower getTimeToActivateSpecialPower() {
+//            return timeToActivateSpecialPower;
+//        }
+//
+//        public void setTimeToActivateSpecialPower(TimeToActivateSpecialPower timeToActivateSpecialPower) {
+//            this.timeToActivateSpecialPower = timeToActivateSpecialPower;
+//        }
 
         public int getChangeAP() {
             return changeAP;

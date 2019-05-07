@@ -1,11 +1,20 @@
 package Collective.Card.Minion;
 
 
+import Collective.Card.Card;
+
+import static java.lang.Math.abs;
+
 public class Hybrid extends Minion {
 
-    enum HybridTypes{
-        NEIZEDAREFARS,NEIZEDARETOORANI,DIVESIAH,GHOOLETAKCHESHM,GHOOLEBOZORG;
+    public void hybridDefend(Card selected, Card defender) {
+            defender.setCanDefend(true);
     }
 
-    public void attack(){}
+    public void hybridattack(Card selected, Card defender) {
+        defender.setCanDefend(true);
+    }
+
+
 }
+
