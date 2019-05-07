@@ -1,12 +1,13 @@
 {
   "name": "Kaveh",
   "price": 8000,
-  "health": 50,
-  "attackPoint": 4,
+  "HP": 50,
+  "AP": 4,
   "attackType": "Melee",
   "range": 0,
-  "specialPower": "",
+  "specialPower": "HolyBuff",
   "MP": 1,
   "coolDown": 3,
-  "desc": ""
+  "desc": "HolyBuff",
+  "extraIntByTypeOfBuffNeeded":2
 }

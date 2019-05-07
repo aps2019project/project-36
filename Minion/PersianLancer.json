@@ -3,11 +3,12 @@
   "price": 500,
   "MP": 1,
   "HP": 5,
-  "attackPoint": 3,
+  "AP": 3,
   "classType": "Hybrid",
   "range": 3,
   "specialPower": null,
   "specialPowerActivate": null,
   "type": "Minion",
-  "desc": ""
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
 }

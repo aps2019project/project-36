@@ -1,12 +1,13 @@
 {
   "name": "Arash",
   "price": 10000,
-  "health": 30,
-  "attackPoint": 2,
+  "HP": 30,
+  "AP": 2,
   "attackType": "Ranged",
   "range": 6,
-  "specialPower": "",
+  "specialPower": "PowerBuff",
   "MP": 2,
   "coolDown": 2,
-  "desc": ""
+  "desc": "attack all enemies of column",
+  "extraIntByTypeOfBuffNeeded":4
 }

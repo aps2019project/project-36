@@ -1,12 +1,13 @@
 {
   "name": "Legend",
   "price": 11000,
-  "health": 40,
-  "attackPoint": 3,
+  "HP": 40,
+  "AP": 3,
   "attackType": "Ranged",
   "range": 3,
-  "specialPower": "",
+  "specialPower": "DisarmBuff",
   "MP": 1,
   "coolDown": 2,
-  "desc": ""
+  "desc": "dispel an enemy",
+  "extraIntByTypeOfBuffNeeded":1
 }

@@ -1,18 +1,20 @@
-{"name":"BladesOfAgility",
-  "desc":"Add 6 points to AttackPower",
+{
+  "name": "BladesOfAgility",
+  "desc": "Add 6 points to AttackPower",
   "type": "Collectible",
   "changeAP": 6,
   "target": 0,
-  "turn" : 1,
-  "changeHP" :0,
-  "changeMP" :0,
-"continuous": true,
-"beginningTurn": 0,
+  "turn": 1,
+  "changeHP": 0,
+  "changeMP": 0,
+  "continuous": true,
+  "beginningTurn": 0,
   "numberOfTurns": 1,
   "activateBuff": false,
   "numberOfHolyBuff": 0,
   "changeRange": 0,
-  "multipleHP": 0}
+  "multipleHP": 0
+}
 
 
 

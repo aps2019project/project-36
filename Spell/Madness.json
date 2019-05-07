@@ -6,5 +6,6 @@
   "buff": "Power",
   "buff2": "Disarm",
   "type": "Spell",
-  "desc": ""
+  "desc": "powerBuff and Disarm",
+  "extraIntByTypeOfBuffNeeded":-1
 }

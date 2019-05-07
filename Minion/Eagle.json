@@ -3,11 +3,12 @@
   "price": 200,
   "MP": 2,
   "HP": 0,
-  "attackPoint": 2,
+  "AP": 2,
   "classType": "Ranged",
   "range": 3,
   "specialPower": "",
   "specialPowerActivate": "PASSIVE",
   "type": "Minion",
-  "desc": ""
+  "desc": "powerBuff with HP increment",
+  "extraIntByTypeOfBuffNeeded":10
 }

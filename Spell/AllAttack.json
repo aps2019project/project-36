@@ -4,7 +4,8 @@
   "MP":4,
   "targetArea": "friend",
   "buff": "Poison",
-  "buff2": "",
+  "buff2": "-",
   "type": "Spell",
-  "desc": ""
+  "desc": "disarm for whole game",
+  "extraIntByTypeOfBuffNeeded": -1
 }

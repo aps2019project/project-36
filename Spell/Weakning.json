@@ -4,7 +4,8 @@
   "MP":1,
   "targetArea": "enemy",
   "buff": "Weaknenig",
-  "buff2": "",
+  "buff2": "-",
   "type": "Spell",
-  "desc": ""
+  "desc": "weakening",
+  "extraIntByTypeOfBuffNeeded":4
 }

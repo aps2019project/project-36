@@ -1,12 +1,13 @@
 {
   "name": "SevenHeadDragon",
   "price": 8000,
-  "health": 50,
-  "attackPoint": 4,
+  "HP": 50,
+  "AP": 4,
   "attackType": "Melee",
   "range": 0,
-  "specialPower": "",
+  "specialPower": null,
   "MP": 0,
   "coolDown": 1,
-  "desc": ""
+  "desc": "disarm",
+  "extraIntByTypeOfBuffNeeded":0
 }

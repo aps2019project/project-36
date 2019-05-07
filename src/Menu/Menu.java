@@ -7,6 +7,8 @@ import Player.*;
 import Battle.BattleMenu;
 import Shop.ShopMenu;
 
+import java.util.Random;
+import java.util.RandomAccess;
 import java.util.Scanner;
 
 public class Menu {

@@ -3,13 +3,14 @@
   "price": 600,
   "MP": 2,
   "HP": 1,
-  "attackPoint": 8,
+  "AP": 8,
   "classType": "Melee",
   "range": 0,
   "specialPower": {},
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
-  "desc": ""
+  "desc": "no negative buff",
+  "extraIntByTypeOfBuffNeeded":0
 }
 
 

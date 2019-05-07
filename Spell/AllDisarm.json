@@ -4,7 +4,8 @@
   "MP":9,
   "targetArea": "enemy",
   "buff": "Disarm",
-  "buff2": "",
+  "buff2": "-",
   "type": "Spell",
-  "desc": ""
+  "desc": "all forces will disarm once",
+  "extraIntByTypeOfBuffNeeded":1
 }

@@ -1,12 +1,13 @@
 {
   "name": "Rakhsh",
   "price": 8000,
-  "health": 50,
-  "attackPoint": 4,
+  "HP": 50,
+  "AP": 4,
   "attackType": "Melee",
   "range": 0,
-  "specialPower": "",
+  "specialPower": "StunBuff",
   "MP": 1,
   "coolDown": 2,
-  "desc": ""
+  "desc": "stun one enemy",
+  "extraIntByTypeOfBuffNeeded":1
 }

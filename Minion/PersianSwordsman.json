@@ -3,11 +3,12 @@
   "price": 400,
   "MP": 2,
   "HP": 6,
-  "attackPoint": 4,
+  "AP": 4,
   "classType": "Melee",
   "range": 0,
   "specialPower": "",
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
-  "desc": ""
+  "desc": "stun while attacking",
+  "extraIntByTypeOfBuffNeeded":0
 }

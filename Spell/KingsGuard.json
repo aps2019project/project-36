@@ -4,7 +4,8 @@
   "MP":9,
   "targetArea": "eight_arounds",
   "buff": "Kill",
-  "buff2": "",
+  "buff2": "-",
   "type": "Spell",
-  "desc": ""
+  "desc": "kill enemy",
+  "extraIntByTypeOfBuffNeeded":0
 }

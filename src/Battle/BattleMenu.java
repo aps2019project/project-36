@@ -9,6 +9,8 @@ import Player.*;
 import Menu.Menu;
 import Player.ComputerPlayer;
 
+import java.util.Random;
+
 public class BattleMenu {
     private static boolean check = false;
     //mode 1 : kill competitor's hero 2: keep the only flag for six turns 3: collect half of flags
@@ -41,13 +43,23 @@ public class BattleMenu {
     }
     public void singlePlayerCustom(Player player, int mode, int numOfFlags){
         Match match = new Match();
+        Deck tempDeck;
+        tempDeck = player.getMainDeck ();
+        setHand(player);
         ComputerPlayer player2 = new ComputerPlayer();
         player2.setUsername("comp");
         multiPlayer(player, player2, mode, numOfFlags);
         match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
+        player.setMainDeck (tempDeck);
         Map.clearMap();
     }
     public void multiPlayer(Player player1, Player player2, int mode, int numOfFlags){
+        Deck tempDeck1;
+        tempDeck1 = player1.getMainDeck ();
+        setHand(player1);
+        Deck tempDeck2;
+        tempDeck2 = player2.getMainDeck ();
+        setHand(player2);
         Match match = new Match();
         Battle battle = new Battle();
         GraveYard graveYard = new GraveYard();
@@ -95,13 +107,13 @@ public class BattleMenu {
             } else if (input.compareToIgnoreCase ("Enter graveyard") == 0) {
                 input = Menu.getInput ( );
                 String[] str1 = input.split (" ");
-                //if(input.length() >= 9 && input.substring(0, 8).equals("Show info")){
-//                if(str1[0].compareToIgnoreCase("show") == 0 && str1[1].compareToIgnoreCase("info") == 0){
-//                    battle.enterGraveyardShowInfo(graveYard, Card.getCardByID(str1[2]));
-//                }
-//                else if (input.compareToIgnoreCase("Show cards") == 0){
-//                    battle.enterGraveyardShowCards(graveYard);
-//                }
+                if(input.length() >= 9 && input.substring(0, 8).equals("Show info")) {
+                    if (str1[0].compareToIgnoreCase("show") == 0 && str1[1].compareToIgnoreCase("info") == 0) {
+                        battle.enterGraveyardShowInfo(graveYard, Card.getCardByID(str1[2]));
+                    } else if (input.compareToIgnoreCase("Show cards") == 0) {
+                        battle.enterGraveyardShowCards(graveYard);
+                    }
+                }
             } else if (input.compareToIgnoreCase ("Help") == 0) {
                 //battle.help();
             } else if (input.compareToIgnoreCase ("end game") == 0) {
@@ -141,8 +153,27 @@ public class BattleMenu {
                 match.setWinner (player2);
             Match.addToMatches (match);
             System.out.println ("winner is : " + match.getWinner ( ).getUsername ( ));
-            match.getWinner ( ).changeDaric (match.getWinner ( ).getDaric ( ) + 1000);
+            if(!player2.getUsername().equals("comp"))
+                match.getWinner ( ).changeDaric (match.getWinner ( ).getDaric ( ) + 1000);
+            player1.setMainDeck (tempDeck1);
+            player2.setMainDeck (tempDeck2);
             Map.clearMap ( );
         }
+    }
+    public void setHand(Player player){
+        boolean[] used = new boolean[20];
+        Hand hand = new Hand();
+        Random random = new Random();
+        for (int j = 0; j < 5; j++){
+            int rand = random.nextInt(20);
+            if(!used[rand]){
+                hand.addNewCard(player.getMainDeck().getCards().get(rand));
+                player.getMainDeck().removeFromCards(player.getMainDeck().getCards().get(rand));
+                used[rand] = true;
+            }
+            else
+                j--;
+        }
+        player.getMainDeck().setHand(hand);
     }
 }
