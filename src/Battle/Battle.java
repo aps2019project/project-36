@@ -11,11 +11,6 @@ import Player.Player;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static java.lang.Math.*;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 import static java.lang.Math.abs;
 
 public class Battle {

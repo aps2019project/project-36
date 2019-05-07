@@ -3,6 +3,7 @@ package Consts;
 import Collective.Card.Card;
 import Collective.Item;
 import Player.*;
+import Shop.Shop;
 
 public class Consts {
     private static Consts consts = null;
@@ -54,8 +55,10 @@ public class Consts {
     }
 
     public static void setDeck1(Deck deck){
-
+        //todo Shop.makeNewCardByName(TajDanaei)
     }
+
+
     public static void setDeck2(Deck deck){
 
     }

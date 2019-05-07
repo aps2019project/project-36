@@ -1,0 +1,4 @@
+{"name":"BladesOfAgility",
+  "desc":"Add 6 points to AttackPower",
+  "type": "Collectible",
+  "changeAP": 6}
