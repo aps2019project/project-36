@@ -1,6 +1,6 @@
 package Player;
+import Collective.Card.Card;
 
-import Collective.Card;
 import java.util.ArrayList;
 
 public class GraveYard {

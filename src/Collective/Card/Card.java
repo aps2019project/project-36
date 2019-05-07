@@ -1,5 +1,6 @@
 package Collective.Card;
 
+import Collective.Item;
 import Map.Cell;
 import Player.Player;
 
