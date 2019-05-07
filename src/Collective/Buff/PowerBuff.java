@@ -5,7 +5,15 @@ import Collective.Card.Minion.Minion;
 
 class PowerBuff extends Buff {
 
+    private int duration;
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
     public void setPowerBuffEffect(Buff b, Card defender){
         if(b.getName().equals("Power")){
             PowerBuff p=new PowerBuff();

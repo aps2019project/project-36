@@ -28,6 +28,10 @@ public class Minion extends Card {
         this.canAttack = canAttack;
     }
 
+    public int getNeededManna() {
+        return neededManna;
+    }
+
 
     public void move() {
     }
@@ -48,7 +52,21 @@ public class Minion extends Card {
         return this.rangeOfAttack;
     }
 
-    public void minionEffect(Card defender, Card selectedCard){
-
+    public void minionEffect(Card defender, Card selectedCard, String classtype) {
+        if (classtype.equals("Ranged")) {
+            Ranged r = new Ranged();
+            r = (Ranged) selectedCard;
+            r.rangedAttack(selectedCard, defender);
+        }
+        if (classtype.equals("Hybrid")) {
+            Hybrid h = new Hybrid();
+            h = (Hybrid) selectedCard;
+            h.hybridattack(selectedCard, defender);
+        }
+        if (classtype.equals("Melee")) {
+            Melee m= new Melee();
+            m=(Melee) selectedCard;
+            m.meleeAttack(selectedCard,defender);
+        }
     }
 }
