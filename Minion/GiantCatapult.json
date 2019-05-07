@@ -1,0 +1,13 @@
+{
+  "name": "Giant Catapult",
+  "price": 300,
+  "MP": 9,
+  "HP": 12,
+  "attackPoint": 12,
+  "classType": "Ranged",
+  "range": 7,
+  "specialPower": null,
+  "specialPowerActivate": null,
+  "type": "Minion",
+  "desc": ""
+}

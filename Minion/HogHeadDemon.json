@@ -1,0 +1,13 @@
+{
+  "name": "Hog Head Demon",
+  "price": 300,
+  "MP": 6,
+  "HP": 16,
+  "attackPoint": 8,
+  "classType": "Melee",
+  "range": 0,
+  "specialPower": null,
+  "specialPowerActivate": null,
+  "type": "Minion",
+  "desc": ""
+}

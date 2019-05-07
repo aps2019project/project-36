@@ -1,0 +1,13 @@
+{
+  "name": "Persian Archer",
+  "price": 300,
+  "MP": 2,
+  "HP": 6,
+  "attackPoint": 4,
+  "classType": "Ranged",
+  "range": 7,
+  "specialPower": null,
+  "specialPowerActivate": "ON_ATTACK",
+  "type": "Minion",
+  "desc": ""
+}

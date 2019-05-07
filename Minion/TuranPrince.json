@@ -1,0 +1,13 @@
+{
+  "name": "Turan Prince",
+  "price": 800,
+  "MP": 6,
+  "HP": 6,
+  "attackPoint": 10,
+  "classType": "Melee",
+  "range": 0,
+  "specialPower": "COMBO",
+  "specialPowerActivate": "COMBO",
+  "type": "Minion",
+  "desc": ""
+}
