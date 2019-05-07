@@ -1,6 +1,5 @@
 package Collective.Card;
 
-import Collective.Buff.Buff;
 import Collective.Card.Minion.Minion;
 import Collective.Item;
 import Map.Cell;
@@ -46,7 +45,7 @@ public abstract class Card {
 
     protected boolean canComboAttack;
     protected int extraIntByTypeOfBuffNeeded;
-    
+
     public int getextraIntByTypeOfBuffNeeded() {
         return extraIntByTypeOfBuffNeeded;
     }

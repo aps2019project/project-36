@@ -2,7 +2,6 @@ package Collective.Card.Minion;
 
 
 import Collective.Card.Card;
-import Collective.Card.Spell;
 
 public class Minion extends Card {
 
@@ -32,6 +31,9 @@ public class Minion extends Card {
         return neededManna;
     }
 
+    public String getSpecialPower(){
+        return specialPower;
+    }
 
     public void move() {
     }
