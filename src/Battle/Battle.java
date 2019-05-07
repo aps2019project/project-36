@@ -9,6 +9,7 @@ import Collective.Item;
 import Collective.Target;
 import Map.Cell;
 import Map.Map;
+import Menu.Menu;
 import Player.*;
 
 import Player.Player;
@@ -265,8 +266,7 @@ public class Battle {
 
 
     public void comboAttack() {
-        Scanner scanner = new Scanner(System.in);
-        String order = scanner.nextLine();
+        String order = Menu.getInput();
         Card defender = null;
         Buff b=new Buff() {
             @Override

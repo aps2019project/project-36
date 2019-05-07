@@ -19,6 +19,7 @@ public class Spell extends Card {
     private String description;
     private boolean isDispeller;
     private int number_of_simultaneous_attacks;
+    private String type;
 
     public int getNumber_of_simultaneous_attacks() {
         return number_of_simultaneous_attacks;
