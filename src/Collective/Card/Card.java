@@ -21,6 +21,7 @@ public abstract class Card {
     private String buff2;
     private String buff;
     private String desc;
+    private boolean counterAttack;
     private boolean canDefend;
     private boolean canAttack;
     protected static ArrayList<Card> cards = new ArrayList<>();
@@ -64,6 +65,14 @@ public abstract class Card {
 
     public void setCanAttack(boolean canAttack) {
         this.canAttack = canAttack;
+    }
+
+    public boolean getCounterAttack() {
+        return counterAttack;
+    }
+
+    public void setCounterAttack(boolean counterAttack) {
+        this.counterAttack = counterAttack;
     }
 
     public String getBuff() {
