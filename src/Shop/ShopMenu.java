@@ -3,6 +3,7 @@ package Shop;
 import Collective.Card.Card;
 import Collective.Item;
 import Player.Account;
+import Player.ComputerPlayer;
 
 public class ShopMenu {
 

@@ -73,7 +73,6 @@ public class Shop {
                     break;
             }
         } catch (Exception e) {
-            System.out.println ("Shop.makeNewFromFile");
             e.printStackTrace ( );
         }
     }
@@ -132,6 +131,26 @@ public class Shop {
         for(Item x: items){
             if(x.getName ().compareTo (name)== 0){
                 return x;
+            }
+        }
+        return null;
+    }
+
+    public static Card buyCardForStoryDeck(String name){
+        for (Card card1 : cards) {
+            if (name.compareToIgnoreCase(card1.getName()) == 0) {
+                Card card = Shop.makeNewCardByName(card1.getName());
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public static Item buyItemForStoryDeck(String name){
+        for (Item x : items) {
+            if (name.compareToIgnoreCase(x.getName()) == 0) {
+                Item item = Shop.makeNewItemByName (x.getName ( ));
+                return item;
             }
         }
         return null;
