@@ -14,9 +14,8 @@ class DisarmBuff extends Buff {
 
     public void setHolyBuffEffect(Buff b, Card defender){
         if(b.getName().equals("Disarm")){
-            DisarmBuff p=new DisarmBuff();
-            //todo
-            //counter attack nemikonad
+           // DisarmBuff p=new DisarmBuff();
+            defender.setCounterAttack(false);
         }
     }
 

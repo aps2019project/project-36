@@ -1,6 +1,5 @@
 package Collective.Card;
 
-import Collective.Card.Minion.Minion;
 import Collective.Item;
 import Map.Cell;
 import Player.Player;
@@ -22,10 +21,13 @@ public abstract class Card {
     private String buff2;
     private String buff;
     private String desc;
+    private boolean counterAttack;
     private boolean canDefend;
     private boolean canAttack;
     protected static ArrayList<Card> cards = new ArrayList<>();
     protected static ArrayList<Card> card = new ArrayList<>();
+    protected String targetArea;
+    private String[] targetAreas = new String[]{"two", "three", " enemy", "friend", "random", "minion", "eight_arounds"};
     private Item collectibleItem;
 
     public Item getCollectibleItem() {
@@ -40,9 +42,15 @@ public abstract class Card {
         return desc;
     }
 
+    protected static ArrayList<Card> cards=new ArrayList<>();
+    public abstract String getType();
+    protected static ArrayList<Card> card=new ArrayList<>();
     protected String targetArea;
     private String[] targetAreas = new String[]{"two", "three", " enemy", "friend", "random", "minion", "eight_arounds"};
 
+    public String getDesc() {
+        return desc;
+    }
 
     public boolean getCanDefend() {
         return canDefend;
@@ -60,6 +68,14 @@ public abstract class Card {
         this.canAttack = canAttack;
     }
 
+    public boolean getCounterAttack() {
+        return counterAttack;
+    }
+
+    public void setCounterAttack(boolean counterAttack) {
+        this.counterAttack = counterAttack;
+    }
+
     public String getBuff() {
         return buff;
     }
@@ -67,6 +83,7 @@ public abstract class Card {
     public String getBuff2() {
         return buff2;
     }
+
 
 
     public String getTargetArea() {
@@ -82,7 +99,7 @@ public abstract class Card {
 
     public void setEffect(Card defender, Card selectedCard) {
         if (defender.getType().equals("Minion")) {
-            Minion m = new Minion();
+            Minion m=new Minion();
             m = (Minion) defender;
             m.minionEffect(defender, selectedCard);
         }

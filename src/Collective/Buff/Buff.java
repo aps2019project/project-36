@@ -1,5 +1,7 @@
 package Collective.Buff;
 
+import java.util.ArrayList;
+
 public abstract class Buff {
     private String name;
     private boolean haveAffect;
@@ -13,6 +15,16 @@ public abstract class Buff {
     private int initialTurn;
     private int APChange;
     private int HPChange;
+
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
+    }
+
+    private ArrayList<Buff> buffs=new ArrayList<>();
+
+    public void addNewBuff(Buff b){
+        buffs.add(b);
+    }
 
     public int getAPChange() {
         return APChange;
