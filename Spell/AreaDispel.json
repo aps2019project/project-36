@@ -1,5 +1,5 @@
 {
-  "name": "Area Dispel",
+  "name": "AreaDispel",
   "price":1500,
   "MP":2,
   "targetArea": "two",

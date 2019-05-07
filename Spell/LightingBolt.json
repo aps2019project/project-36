@@ -1,5 +1,5 @@
 {
-  "name": "Lighting Bolt",
+  "name": "LightingBolt",
   "price":1250,
   "MP":2,
   "targetArea": "enemy",
