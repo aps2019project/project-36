@@ -261,8 +261,10 @@ public class Battle {
     }
 
     public void counterAttack() {
+        if(selectedCard.getCanAttack() && selectedCard.getCanDefend())
+            selectedCard.setCounterAttack(true);
     }
-    //todo
+
 
 
     public void comboAttack() {
