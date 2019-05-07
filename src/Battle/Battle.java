@@ -438,4 +438,5 @@ public class Battle {
         rand = random.nextInt(cnt);
         return rand;
     }
+
 }

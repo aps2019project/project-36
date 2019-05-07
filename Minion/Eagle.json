@@ -6,7 +6,7 @@
   "attackPoint": 2,
   "classType": "Ranged",
   "range": 3,
-  "specialPower": {},
+  "specialPower": "",
   "specialPowerActivate": "PASSIVE",
   "type": "Minion",
   "desc": ""

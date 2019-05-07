@@ -6,13 +6,10 @@ import Collective.Card.Spell;
 
 public class Minion extends Card {
 
-    protected Spell specialPower;
-    protected int neededManna;
+    protected String specialPower;
     protected int typeOfActivation;
     protected int rangeOfAttack;
     protected String typeOfImpact;
-    protected boolean canAttack;
-    protected boolean canDefend;
     protected String classtype;
 
     public Minion() {

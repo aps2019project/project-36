@@ -122,12 +122,12 @@ public class BattleMenu {
                 input = Menu.getInput();
                 String[] str1 = input.split(" ");
                 //if(input.length() >= 9 && input.substring(0, 8).equals("Show info")){
-                if(str1[0].compareToIgnoreCase("show") == 0 && str1[1].compareToIgnoreCase("info") == 0){
-                    battle.enterGraveyardShowInfo(graveYard, Card.getCardByID(str1[2]));
-                }
-                else if (input.compareToIgnoreCase("Show cards") == 0){
-                    battle.enterGraveyardShowCards(graveYard);
-                }
+//                if(str1[0].compareToIgnoreCase("show") == 0 && str1[1].compareToIgnoreCase("info") == 0){
+//                    battle.enterGraveyardShowInfo(graveYard, Card.getCardByID(str1[2]));
+//                }
+//                else if (input.compareToIgnoreCase("Show cards") == 0){
+//                    battle.enterGraveyardShowCards(graveYard);
+//                }
             }
             else if(input.compareToIgnoreCase("Help") == 0){
                 battle.help();

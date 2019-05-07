@@ -22,9 +22,9 @@ public abstract class Card {
     private String buff2;
     private String buff;
     private String desc;
-    private boolean counterAttack;
-    private boolean canDefend;
-    private boolean canAttack;
+    protected boolean counterAttack;
+    protected boolean canDefend;
+    protected boolean canAttack;
     protected static ArrayList<Card> cards = new ArrayList<>();
     protected static ArrayList<Card> card = new ArrayList<>();
     protected String targetArea;
