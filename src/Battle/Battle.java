@@ -1,13 +1,13 @@
 package Battle;
 
 import Collective.Card.Card;
-import Collective.Item;
+import Collective.Card.Hero;
 import Collective.Card.Minion.Minion;
+import Collective.Card.Spell;
 import Collective.Item;
 import Collective.Target;
 import Map.Cell;
 import Map.Map;
-import Player.GraveYard;
 import Player.Player;
 
 import java.util.ArrayList;
@@ -15,7 +15,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 import static java.lang.Math.abs;
 
@@ -95,10 +94,25 @@ public class Battle {
                 Minion m1 = new Minion();
                 m1 = (Minion) selectedCard;
                 if (m1.getCanAttack()) {
-                    flag_for_minion_attack = true;
+                    m1.minionEffect(defender, selectedCard);
+                    chechTypeOfMinion(selectedCard, defender);
                 }
             }
-            if (!selectedCard.getType().equals("Minion") || flag_for_minion_attack) {
+            if (selectedCard.getType().equals("Hero")) {
+                Hero h1 = new Hero();
+                h1 = (Hero) selectedCard;
+                if (h1.getCanAttack()) {
+                    h1.heroEffect(defender, selectedCard);
+                }
+            }
+            if (selectedCard.getType().equals("Spell")) {
+                Spell s1 = new Spell();
+                s1 = (Spell) selectedCard;
+                if (s1.getCanAttack()) {
+                    s1.spellEffect(defender, selectedCard);
+                }
+            }
+            if (flag_for_minion_attack) {
                 for (int i = 0; i < Map.getCardsInMap().size(); i++) {
                     if (Map.getCardsInMap().contains(selectedCard)) {
                         flag_for_soldier_validity = true;
@@ -176,8 +190,6 @@ public class Battle {
                     }
                 }
 
-                chechTypeOfMinion(selectedCard, defender);
-
                 if (flag_for_attack && flag_for_soldier_validity) {
                     for (int i = 0; i < Map.getCardsInMap().size(); i++) {
                         if (Map.getCardsInMap().contains(selectedCard)) {
@@ -230,10 +242,25 @@ public class Battle {
                 Minion m1 = new Minion();
                 m1 = (Minion) selectedCard;
                 if (m1.getCanAttack()) {
-                    flag_for_minion_attack = true;
+                    m1.minionEffect(defender, selectedCard);
+                    chechTypeOfMinion(selectedCard, defender);
                 }
             }
-            if (!selectedCard.getType().equals("Minion") || flag_for_minion_attack) {
+            if (selectedCard.getType().equals("Hero")) {
+                Hero h1 = new Hero();
+                h1 = (Hero) selectedCard;
+                if (h1.getCanAttack()) {
+                    h1.heroEffect(defender, selectedCard);
+                }
+            }
+            if (selectedCard.getType().equals("Spell")) {
+                Spell s1 = new Spell();
+                s1 = (Spell) selectedCard;
+                if (s1.getCanAttack()) {
+                    s1.spellEffect(defender, selectedCard);
+                }
+            }
+            if (flag_for_minion_attack) {
                 for (int i = 0; i < Map.getCardsInMap().size(); i++) {
                     if (Map.getCardsInMap().contains(selectedCard)) {
                         flag_for_soldier_validity = true;
@@ -276,7 +303,38 @@ public class Battle {
     }
 
     public void useSpecialPower() {
-        //todo
+        Scanner scanner = new Scanner(System.in);
+        String order = scanner.nextLine();
+        Card defender = null;
+
+        if (order.contains("On Spawn")) {
+            if (Map.getCardsInMap().contains(selectedCard)) {
+                selectedCard.setSpecialPowerActivated(true);
+            }
+        }
+
+        if (order.contains("Passive")) {
+            selectedCard.setSpecialPowerActivated(true);
+        }
+        if (order.contains("On Death")) {
+            if (selectedCard.getHP() == 0) {
+                selectedCard.setSpecialPowerActivated(true);
+            }
+        }
+
+        if (order.contains("On Attack")) {
+            if (selectedCard.getCanAttack()) {
+                defender.setSpecialPowerActivated(true);
+            }
+        }
+
+        if (order.contains("On Defend")) {
+            int x1=defender.getCell().getX();
+            int y1=defender.getCell().getY();
+            if (selectedCard.getType().equals("Spell")|| defender.getAttacked()){
+                defender.setSpecialPowerActivated(true);
+            }
+        }
     }
 
     public void showHand() {

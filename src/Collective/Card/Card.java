@@ -22,9 +22,28 @@ public abstract class Card {
     private String buff2;
     private String buff;
     private String desc;
+    private boolean attacked;
     protected boolean counterAttack;
     protected boolean canDefend;
     protected boolean canAttack;
+
+    public boolean getAttacked() {
+        return attacked;
+    }
+
+    public void setAttacked(boolean attacked) {
+        this.attacked = attacked;
+    }
+
+    public boolean getSpecialPowerActivated() {
+        return specialPowerActivated;
+    }
+
+    public void setSpecialPowerActivated(boolean specialPowerActivated) {
+        this.specialPowerActivated = specialPowerActivated;
+    }
+
+    protected boolean specialPowerActivated;
     protected static ArrayList<Card> cards = new ArrayList<>();
     protected static ArrayList<Card> card = new ArrayList<>();
     protected String targetArea;
@@ -76,7 +95,6 @@ public abstract class Card {
     }
 
 
-
     public String getTargetArea() {
         return targetArea;
     }
@@ -90,7 +108,7 @@ public abstract class Card {
 
     public void setEffect(Card defender, Card selectedCard) {
         if (defender.getType().equals("Minion")) {
-            Minion m=new Minion();
+            Minion m = new Minion();
             m = (Minion) defender;
             m.minionEffect(defender, selectedCard);
         }
