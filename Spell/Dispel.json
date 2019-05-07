@@ -4,7 +4,8 @@
   "MP":0,
   "targetArea": "enemy",
   "buff": "Power",
-  "buff2": "",
+  "buff2": "-",
   "type": "Spell",
-  "desc": ""
+  "desc": "remove negative buffs of self and positives of enemy",
+  "extraIntByTypeOfBuffNeeded": 0
 }

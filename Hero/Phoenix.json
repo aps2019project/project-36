@@ -1,12 +1,13 @@
 {
   "name": "Phoenix",
   "price": 9000,
-  "health": 50,
-  "attackPoint": 4,
+  "HP": 50,
+  "AP": 4,
   "attackType": "Melee",
   "range": 0,
-  "specialPower": "",
+  "specialPower": "HolyBuff",
   "MP": 5,
   "coolDown": 8,
-  "desc": ""
+  "desc": "all cells around have holyBuff",
+  "extraIntByTypeOfBuffNeeded":2
 }

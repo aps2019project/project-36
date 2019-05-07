@@ -4,7 +4,8 @@
   "MP":9,
   "targetArea": "enemy",
   "buff": "Stun",
-  "buff2": "",
+  "buff2": "-",
   "type": "Spell",
-  "desc": ""
+  "desc": "stun",
+  "extraIntByTypeOfBuffNeeded":2
 }

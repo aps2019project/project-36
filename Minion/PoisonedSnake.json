@@ -3,11 +3,12 @@
   "price": 300,
   "MP": 4,
   "HP": 5,
-  "attackPoint": 6,
+  "AP": 6,
   "classType": "Ranged",
   "range": 4,
   "specialPower": "",
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
-  "desc": ""
+  "desc": "poisonBuff for enemy 3 times",
+  "extraIntByTypeOfBuffNeeded":3
 }

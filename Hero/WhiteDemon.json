@@ -1,12 +1,13 @@
 {
   "name": "WhiteDemon",
   "price": 8000,
-  "health": 50,
-  "attackPoint": 4,
+  "HP": 50,
+  "AP": 4,
   "attackType": "Melee",
   "range": 0,
-  "specialPower": "",
+  "specialPower": "PowerBuff",
   "MP": 1,
   "coolDown": 2,
-  "desc": ""
+  "desc": "powerBuff",
+  "extraIntByTypeOfBuffNeeded":4
 }

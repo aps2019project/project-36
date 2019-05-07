@@ -1,12 +1,13 @@
 {
   "name": "Esfandiar",
   "price": 12000,
-  "health": 35,
-  "attackPoint": 3,
+  "HP": 35,
+  "AP": 3,
   "attackType": "Hybrid",
   "range": 3,
-  "specialPower": "",
+  "specialPower": "HolyBuff",
   "MP": -1,
   "coolDown": -1,
-  "desc": ""
+  "desc": "3 passive holyBuffs",
+  "extraIntByTypeOfBuffNeeded": 2
 }

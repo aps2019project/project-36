@@ -3,11 +3,12 @@
   "price": 800,
   "MP": 7,
   "HP": 12,
-  "attackPoint": 4,
+  "AP": 4,
   "classType": "Ranged",
   "range": 5,
   "specialPower": null,
   "specialPowerActivate": null,
   "type": "Minion",
-  "desc": ""
+  "desc": "for each combo,4 more APs",
+  "extraIntByTypeOfBuffNeeded":4
 }

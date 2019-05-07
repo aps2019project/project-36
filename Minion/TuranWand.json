@@ -3,11 +3,12 @@
   "price": 450,
   "MP": 2,
   "HP": 3,
-  "attackPoint": 10,
+  "AP": 10,
   "classType": "Melee",
   "range": 0,
   "specialPower": null,
   "specialPowerActivate": null,
   "type": "Minion",
-  "desc": ""
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
 }

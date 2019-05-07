@@ -6,5 +6,6 @@
   "buff": "Weakness",
   "buff2": "Holy",
   "type": "Spell",
-  "desc": ""
+  "desc": "weaknessBuff with HP decrement",
+  "extraIntByTypeOfBuffNeeded":6
 }

@@ -3,8 +3,9 @@
   "price":1600,
   "MP":2,
   "targetArea": "friend",
-  "buff": "Weakness",
+  "buff": "Kill",
   "buff2": "Power",
   "type": "Spell",
-  "desc": ""
+  "desc": "kill minion",
+  "extraIntByTypeOfBuffNeeded":0
 }

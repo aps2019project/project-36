@@ -422,7 +422,9 @@ public class Battle {
     }
 
     public void showNextCard() {
-        //todo
+        System.out.println("cardID : " + currentPlayer.getMainDeck().getHand().getNextCard().getCardID() + " Type : " +
+                currentPlayer.getMainDeck().getHand().getNextCard().getType() + " desc" +
+                currentPlayer.getMainDeck().getHand().getNextCard().getDesc());
     }
 
     public void setSelectedItem(Item selectedItem) {

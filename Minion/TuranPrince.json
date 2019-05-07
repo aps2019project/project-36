@@ -3,11 +3,12 @@
   "price": 800,
   "MP": 6,
   "HP": 6,
-  "attackPoint": 10,
+  "AP": 10,
   "classType": "Melee",
   "range": 0,
   "specialPower": "COMBO",
   "specialPowerActivate": "COMBO",
   "type": "Minion",
-  "desc": ""
+  "desc": "foreach combo, 4 more APs",
+  "extraIntByTypeOfBuffNeeded":4
 }
