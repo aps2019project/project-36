@@ -123,6 +123,7 @@ public class Menu {
             if (!check) {
                 loggedInPlayer.getCollection().addToDecks(deck);
             }
+            System.out.println("deck.getName() = " + deck.getName());
         } else if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("deck")==0) {
             boolean check = false;
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
@@ -139,10 +140,11 @@ public class Menu {
                 str[0].compareToIgnoreCase("remove") == 0){
             String[] str1 = input.split(" ");
             outer:
-            for (Deck deck: Deck.getDecks()) {
+            for (Deck deck: loggedInPlayer.getCollection().getDecks()) {
                 if(deck.getName().equals(str1[3])){
                     for (Card card: loggedInPlayer.getCollection().getCards()) {
-                        if(card.getCardID().equals(str1[2])){
+                        System.out.println("card.getName() = " + card.getName());
+                        if(card.getCardID().equals(str1[1])){
                             if (card.getType().equals("Hero")){
                                 if(deck.getHero() != null){
                                     if(str[0].equals("add")) {
@@ -160,7 +162,7 @@ public class Menu {
                             }
                             if(str1[0].compareToIgnoreCase("add")==0) {
                                 deck.addToCards(card);
-                                if(!deck.validateDeck()){
+                                if(deck.getCards().size() > 20){
                                     System.out.println("cannot add any card to deck");
                                     deck.removeFromCards(card);
                                 }
@@ -176,7 +178,7 @@ public class Menu {
                         }
                     }
                     for (Item item : loggedInPlayer.getCollection().getItems()){
-                        if(item.getItemID().equals(str[2])){
+                        if(item.getItemID().equals(str[1])){
                             if (str[0].compareToIgnoreCase("add")==0) {
                                 deck.addToItems(item);
                                 if (!deck.validateDeck()) {
@@ -222,7 +224,11 @@ public class Menu {
                 System.out.println("Deck doesnt exist!");
             }
         } else if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("deck") == 0) {
-
+            for (Deck deck: loggedInPlayer.getCollection().getDecks()) {
+                if(deck.getName().compareToIgnoreCase(str[2]) == 0){
+                    showDeck(deck);
+                }
+            }
         }
         collectionMenu();
     }
@@ -256,7 +262,7 @@ public class Menu {
         else if (str[0].compareToIgnoreCase("search") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
             menu.searchCollection(str[2], loggedInPlayer);
         }
-
+        shopMenu();
     }
 
     public static void battleMenu() {
@@ -329,6 +335,7 @@ public class Menu {
     }
 
     public static void showDeck(Deck deck){
+        System.out.println("deckname = " + deck.getName());
         System.out.println ("Heroes:" );
         for(int i = 0; i< deck.getCards ().size (); i++){
             if(deck.getCards ().get(i).getType ().compareTo ("Hero")==0){
@@ -343,7 +350,7 @@ public class Menu {
                     "Buy Cost:" + deck.getItems ().get(i).getPrice ());
         }
         System.out.println ("Cards:" );
-        for(int i= 0; i< deck.getCards ().size (); i++){
+        for(int i = 0; i< deck.getCards ().size (); i++){
             if(deck.getCards ().get(i).getType ().compareTo ("Spell")== 0){
                 System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
                         " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+

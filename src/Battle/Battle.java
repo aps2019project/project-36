@@ -8,6 +8,8 @@ import Collective.Item;
 import Collective.Target;
 import Map.Cell;
 import Map.Map;
+import Player.*;
+
 import Player.Player;
 import Player.GraveYard;
 import java.util.ArrayList;
@@ -454,7 +456,7 @@ public class Battle {
     }
 
     public void showNextCard() {
-        //todo hand.getNextCard
+        //todo
     }
 
     public void setSelectedItem(Item selectedItem) {
