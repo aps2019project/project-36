@@ -2,4 +2,7 @@
   "desc":"Add 6 points to AttackPower",
   "type": "Collectible",
   "changeAP": 6,
-  "target": 0}
+  "target": 0,
+  "turn" : 1,
+  "changeHP" :0,
+  "changeMP" :0}

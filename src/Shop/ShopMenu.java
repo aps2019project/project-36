@@ -111,7 +111,7 @@ public class ShopMenu{
         }
         if(!found){
             for(Item x: Shop.getItems ()){
-                if(name.compareToIgnoreCase (x.getName ())== 0){
+                if(name.compareToIgnoreCase (x.getName ())== 0 && x.getType ().compareToIgnoreCase ("Collectible")!= 0){
                     found= true;
                     if(found){
                         if(x.getPrice()> account.getDaric ()){

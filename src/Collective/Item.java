@@ -12,9 +12,20 @@ public class Item {
     private int changeHP;
     private int changeAP;
     private int changeMP;
-    private int turn; //tedad turnhayi ke baraye
+    private int turn;
+    private boolean continious; //if continious = true else false
+    private int beginningTurn; //if in anonymous turn = 0;
+
+    public int getBeginningTurn() {
+        return beginningTurn;
+    }
+
     public int getTarget() {
         return target;
+    }
+
+    public int getTurn() {
+        return turn;
     }
 
     private int target; // enemy=1 & khodi=0
