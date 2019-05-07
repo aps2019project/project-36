@@ -1,5 +1,6 @@
 package Collective.Card;
 
+import Collective.Card.Minion.Minion;
 import Collective.Item;
 import Map.Cell;
 import Player.Player;
@@ -37,16 +38,6 @@ public abstract class Card {
     public void setCollectibleItem(Item collectibleItem) {
         this.collectibleItem = collectibleItem;
     }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    protected static ArrayList<Card> cards=new ArrayList<>();
-    public abstract String getType();
-    protected static ArrayList<Card> card=new ArrayList<>();
-    protected String targetArea;
-    private String[] targetAreas = new String[]{"two", "three", " enemy", "friend", "random", "minion", "eight_arounds"};
 
     public String getDesc() {
         return desc;

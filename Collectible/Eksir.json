@@ -2,4 +2,5 @@
   "desc":"Add 3 points to AttackPower and HealthPoint of hero",
   "type": "Collectible",
   "changeAP": 3,
-  "changeHP": 3}
+  "changeHP": 3,
+  "target": 0}

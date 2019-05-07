@@ -12,6 +12,12 @@ public class Item {
     private int changeHP;
     private int changeAP;
     private int changeMP;
+    private int turn; //tedad turnhayi ke baraye
+    public int getTarget() {
+        return target;
+    }
+
+    private int target; // enemy=1 & khodi=0
 
     public String getDesc() {
         return desc;
