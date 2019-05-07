@@ -23,12 +23,12 @@ public class GraveYard {
                             " - Buy Cost: " +x.getPrice ());
                 }
                 if(x.getType ().compareTo ("Spell")== 0){
-                    System.out.println ("Type "+ x.getType ()+ " - Name: " + x.getName () +
+                    System.out.println ("Type: "+ x.getType ()+ " - Name: " + x.getName () +
                             " - MP: "+x.getMP ()+" - Class: " +x.getClass () +" - Description: "+
                             x.getDesc () + " - Buy Cost: " + x.getPrice ());
                 }
                 else if(x.getType ().compareTo ("Minion")== 0){
-                    System.out.println ("Type "+ x.getType ()+ " - Name: " +
+                    System.out.println ("Type: "+ x.getType ()+ " - Name: " +
                             x.getName () + " - Class: " +x.getClass () +
                             " - AP: "+x.getAP ()+" - HP: "+x.getHP ()+
                             " - MP"+x.getMP ()+" - SpecialPower: "+
