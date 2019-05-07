@@ -1,0 +1,12 @@
+{
+  "name": "Zahak",
+  "price": 10000,
+  "health": 50,
+  "attackPoint": 2,
+  "attackType": "Melee",
+  "range": 0,
+  "specialPower": {},
+  "MP": -1,
+  "coolDown": -1,
+  "desc": ""
+}

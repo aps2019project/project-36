@@ -1,0 +1,12 @@
+{
+  "name": "Legend",
+  "price": 11000,
+  "health": 40,
+  "attackPoint": 3,
+  "attackType": "Ranged",
+  "range": 3,
+  "specialPower": {},
+  "MP": 1,
+  "coolDown": 2,
+  "desc": ""
+}

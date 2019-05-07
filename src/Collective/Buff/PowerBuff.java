@@ -1,6 +1,5 @@
 package Collective.Buff;
 
-import Battle.Battle;
 import Collective.Card.Card;
 import Collective.Card.Minion.Minion;
 

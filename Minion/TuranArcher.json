@@ -1,0 +1,13 @@
+{
+  "name": "Turan Archer",
+  "price": 500,
+  "MP": 1,
+  "HP": 3,
+  "attackPoint": 4,
+  "classType": "Ranged",
+  "range": 5,
+  "specialPower": null,
+  "specialPowerActivate": null,
+  "type": "Minion",
+  "desc": ""
+}

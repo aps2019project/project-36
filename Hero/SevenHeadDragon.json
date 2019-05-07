@@ -1,0 +1,12 @@
+{
+  "name": "SevenHead Dragon",
+  "price": 8000,
+  "health": 50,
+  "attackPoint": 4,
+  "attackType": "Melee",
+  "range": 0,
+  "specialPower": {},
+  "MP": 0,
+  "coolDown": 1,
+  "desc": ""
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Arash",
+  "price": 10000,
+  "health": 30,
+  "attackPoint": 2,
+  "attackType": "Ranged",
+  "range": 6,
+  "specialPower": {},
+  "MP": 2,
+  "coolDown": 2,
+  "desc": ""
+}

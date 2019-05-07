@@ -1,0 +1,13 @@
+{
+  "name": "Persian Lancer",
+  "price": 500,
+  "MP": 1,
+  "HP": 5,
+  "attackPoint": 3,
+  "classType": "Hybrid",
+  "range": 3,
+  "specialPower": null,
+  "specialPowerActivate": null,
+  "type": "Minion",
+  "desc": ""
+}

@@ -1,0 +1,12 @@
+ {
+    "name": "Rostam",
+    "price": 8000,
+    "health": 55,
+    "attackPoint": 7,
+    "attackType": "Hybrid",
+    "range": 4,
+    "specialPower": null,
+    "MP": -1,
+    "coolDown": -1,
+    "desc": ""
+  }

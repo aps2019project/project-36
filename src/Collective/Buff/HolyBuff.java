@@ -2,7 +2,6 @@ package Collective.Buff;
 
 import Collective.Card.Card;
 import Collective.Card.Minion.Minion;
-import Consts.Consts;
 
 public class HolyBuff extends Buff {
 

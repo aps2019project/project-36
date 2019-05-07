@@ -1,0 +1,13 @@
+{
+  "name": "Turan Sling",
+  "price": 600,
+  "MP": 1,
+  "HP": 4,
+  "attackPoint": 2,
+  "classType": "Ranged",
+  "range": 7,
+  "specialPower": null,
+  "specialPowerActivate": null,
+  "type": "Minion",
+  "desc": ""
+}
