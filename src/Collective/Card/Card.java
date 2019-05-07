@@ -17,7 +17,6 @@ public abstract class Card {
     protected int changeHP;
     protected int AP;
     protected int MP;
-    protected int neededManna;
     protected String type;
     private String buff2;
     private String buff;
