@@ -5,7 +5,7 @@
   "attackPoint": 3,
   "attackType": "Hybrid",
   "range": 3,
-  "specialPower": {},
+  "specialPower": "",
   "MP": -1,
   "coolDown": -1,
   "desc": ""

@@ -5,7 +5,7 @@
   "attackPoint": 2,
   "attackType": "Melee",
   "range": 0,
-  "specialPower": {},
+  "specialPower": "",
   "MP": -1,
   "coolDown": -1,
   "desc": ""

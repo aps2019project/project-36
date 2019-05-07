@@ -349,13 +349,13 @@ public class Battle {
         System.out.println("Invalid card/item id");
     }
 
-//    public void enterGraveyardShowCards(GraveYard graveYard) {
-//        //todo graveYard.getCards().forEach(i -> System.out.println(i.getName()));
-//    }
-//
-//    public void enterGraveyardShowInfo(GraveYard graveYard, Card card) {
-//        //todo
-//    }
+    public void enterGraveyardShowCards(GraveYard graveYard) {
+        graveYard.getCards().forEach(i -> System.out.println(i.getName()));
+    }
+
+    public void enterGraveyardShowInfo(GraveYard graveYard, Card card) {
+        graveYard.showInfo(card.getCardID ());
+    }
 
     public Item getSelectedItem() {
         return selectedItem;

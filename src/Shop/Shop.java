@@ -73,6 +73,7 @@ public class Shop {
                     break;
             }
         } catch (Exception e) {
+            System.out.println ("Shop.makeNewFromFile");
             e.printStackTrace ( );
         }
     }
@@ -113,7 +114,7 @@ public class Shop {
             makeNewFromFile (typeOfFile.name() + "/" + card.getName() + ".json", typeOfFile.toString());
         }
         cards.remove (card);
-        Card.addToCards(card);
+        //Card.addToCards(card);
         return card;
     }
 

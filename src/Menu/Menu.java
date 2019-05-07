@@ -30,18 +30,9 @@ public class Menu {
         AccountMenu menu = new AccountMenu();
         menu.help();
         input = scanner.nextLine();
+        String[] str = input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             EXIT = true;
-        }
-        String[] str = input.split(" ");
-        if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("account")==0){
-            if (!Player.takenUsernames(str[2])) {
-                String username = str[2];
-                System.out.println("enter pass");
-                input = scanner.nextLine();
-                menu.createAccount(username, input);
-            } else
-                System.out.println("This username is already taken!");
         }
         else if(str[0].compareToIgnoreCase("login")==0){
             if (loggedInPlayer != null) {
@@ -62,8 +53,16 @@ public class Menu {
         } else if (input.compareToIgnoreCase("help") == 0) {
             menu.help();
         }
+        else if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("account")==0){
+            if (!Player.takenUsernames(str[2])) {
+                String username = str[2];
+                System.out.println("enter pass");
+                input = scanner.nextLine();
+                menu.createAccount(username, input);
+            } else
+                System.out.println("This username is already taken!");
+        }
         if (loggedInPlayer == null) {
-            System.out.println("here");
             firstMenu();
         }
     }
@@ -91,7 +90,13 @@ public class Menu {
         String[] str = input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
-        } else if (input.compareToIgnoreCase("show") == 0) {
+        }
+        else if (input.compareToIgnoreCase("show all decks") == 0) {
+            showAllDecks(loggedInPlayer);
+        }
+        else if (input.compareToIgnoreCase("help") == 0) {
+            collecionHelp();
+        }else if (input.compareToIgnoreCase("show") == 0) {
 
             //todo
 
@@ -156,7 +161,7 @@ public class Menu {
                             if(str1[0].compareToIgnoreCase("add")==0) {
                                 deck.addToCards(card);
                                 if(!deck.validateDeck()){
-                                    System.out.println("cannot add any cart to deck");
+                                    System.out.println("cannot add any card to deck");
                                     deck.removeFromCards(card);
                                 }
                             }
@@ -216,12 +221,8 @@ public class Menu {
             if (!check) {
                 System.out.println("Deck doesnt exist!");
             }
-        } else if (input.compareToIgnoreCase("show all decks") == 0) {
-            showAllDecks(loggedInPlayer);
         } else if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("deck") == 0) {
 
-        } else if (input.compareToIgnoreCase("help") == 0) {
-            collecionHelp();
         }
         collectionMenu();
     }
@@ -234,26 +235,26 @@ public class Menu {
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
         }
-        if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
-            menu.showCollection (loggedInPlayer);
-        }
-        if (str[0].compareToIgnoreCase("search") == 0) {
-            menu.search(str[1]);
-        }
-        if (str[0].compareToIgnoreCase("search") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
-            menu.searchCollection(str[2], loggedInPlayer);
-        }
-        if (str[0].compareToIgnoreCase("buy") == 0) {
+        else if (str[0].compareToIgnoreCase("buy") == 0) {
             menu.buy(str[1], loggedInPlayer);
         }
-        if (str[0].compareToIgnoreCase("sell") == 0) {
+        else if (str[0].compareToIgnoreCase("sell") == 0) {
             menu.sell(str[1], loggedInPlayer);
         }
-        if (input.compareToIgnoreCase("show") == 0) {
+        else if (input.compareToIgnoreCase("show") == 0) {
             menu.show ();
         }
-        if (input.compareToIgnoreCase("help") == 0) {
+        else if (input.compareToIgnoreCase("help") == 0) {
             menu.help();
+        }
+        else if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
+            menu.showCollection (loggedInPlayer);
+        }
+        else if (str[0].compareToIgnoreCase("search") == 0) {
+            menu.search(str[1]);
+        }
+        else if (str[0].compareToIgnoreCase("search") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
+            menu.searchCollection(str[2], loggedInPlayer);
         }
 
     }

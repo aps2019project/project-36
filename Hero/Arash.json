@@ -5,7 +5,7 @@
   "attackPoint": 2,
   "attackType": "Ranged",
   "range": 6,
-  "specialPower": {},
+  "specialPower": "",
   "MP": 2,
   "coolDown": 2,
   "desc": ""

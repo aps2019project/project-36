@@ -26,6 +26,7 @@ public class Collection {
     public ArrayList<String> getSearchedList() {
         return searchedList;
     }
+
     public String addToSearchedList (String id) {
         searchedList.add(id);
         return id;
@@ -46,6 +47,7 @@ public class Collection {
     public void removeFromItems(Item item){
         items.remove(item);
     }
+
     public void addToDecks(Deck deck){
         decks.add(deck);
     }
