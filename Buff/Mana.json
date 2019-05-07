@@ -1,0 +1,11 @@
+{
+    "name": "Mana",
+    "positiveOrNegative": "negative",
+    "haveAffect": false,
+    "APChange": 0,
+    "HPChange": 0,
+    "Move": false,
+    "Attack": false,
+    "CounterAttack": false,
+    "HPChangeAfterAttack": false
+}

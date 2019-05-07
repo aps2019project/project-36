@@ -1,0 +1,11 @@
+{
+    "name": "Weakness",
+    "positiveOrNegative": "negative",
+    "haveAffect": true,
+    "APChange": -1,
+    "HPChange": -1,
+    "Move": false,
+    "Attack": false,
+    "CounterAttack": false,
+    "HPChangeAfterAttack": false
+}

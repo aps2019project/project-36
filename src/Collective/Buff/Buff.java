@@ -16,13 +16,13 @@ public abstract class Buff {
     private int APChange;
     private int HPChange;
 
+    private ArrayList<Buff> buffs = new ArrayList<>();
+
     public ArrayList<Buff> getBuffs() {
         return buffs;
     }
 
-    private ArrayList<Buff> buffs=new ArrayList<>();
-
-    public void addNewBuff(Buff b){
+    public void addNewBuff(Buff b) {
         buffs.add(b);
     }
 
@@ -46,8 +46,6 @@ public abstract class Buff {
     public String getPositiveOrNegative() {
         return positiveOrNegative;
     }
-
-
 
 
 }
