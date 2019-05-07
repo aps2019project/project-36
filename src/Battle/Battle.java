@@ -48,17 +48,51 @@ public class Battle {
     }
 
     public void showMyMinions(Player player) {
-        for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
-            //todo
+        for(Card card:player.getMainDeck ().getCards ()){
+            for(Card cardInMap:Map.getCardsInMap ()){
+                if(card.getCardID ().compareToIgnoreCase (cardInMap.getCardID ())== 0){
+                    System.out.println ("Card ID: "+ card.getName ()+ "- Health: "+card.getHP ()+"- Location: "+
+                            card.getCell ().getX ()+" "+card.getCell ().getY ()+ "- Power: "+card.getAP ());
+                }
+            }
         }
     }
 
     public void showOpponentMinions(Player player) {
-        //todo
+       for(Card cardInMap:Map.getCardsInMap ()){
+           if(!(cardInMap.getOwner ().equals (player))){
+               System.out.println ("Card ID: "+ cardInMap.getName ()+ "- Health: "+cardInMap.getHP ()+"- Location: "+
+                       cardInMap.getCell ().getX ()+" "+cardInMap.getCell ().getY ()+ "- Power: "+cardInMap.getAP ());
+           }
+       }
     }
 
     public void showCardInfo(Card card) {
-        //todo
+        if(card.getType ().compareToIgnoreCase ("Hero")== 0){
+            System.out.println ("Hero:" );
+            System.out.println ("Name: " + card.getName ());
+            System.out.println ("Cost: "+card.getPrice () );
+            System.out.println ("Desc: "+card.getDesc () );
+        }
+        else if(card.getType ().compareToIgnoreCase ("Minion")== 0){
+            System.out.println ("MInion:" );
+            System.out.println ("Name: " + card.getName ());
+            System.out.println ("HP: " + card.getHP ());
+            System.out.println ("AP: " + card.getAP ());
+            System.out.println ("MP: " + card.getMP ());
+            System.out.println ("Range: "+card.getTargetArea () );
+           //todo System.out.println ("ComboAbility: "+card.getComboAttack );
+            System.out.println ("Cost: "+card.getPrice () );
+            System.out.println ("Desc: "+card.getDesc () );
+        }
+        else if(card.getType ().compareToIgnoreCase ("Spell")== 0){
+            System.out.println ("Spell:" );
+            System.out.println ("Name: " + card.getName ());
+            System.out.println ("MP: " + card.getMP ());
+            System.out.println ("Cost: "+card.getPrice () );
+            System.out.println ("Desc: "+card.getDesc () );
+        }
+
     }
 
     public void chechTypeOfMinion(Card selectedCard, Card defender) {
