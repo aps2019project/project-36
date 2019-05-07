@@ -61,6 +61,12 @@ public class Battle {
         //todo
     }
 
+    public void chechTypeOfMinion(Card selectedCard,Card defender){
+        if(defender.getType().equals("Minion")){
+
+        }
+    }
+
     public void moveTo(int x, int y) {
         Cell cell = new Cell();
         cell.setY(y);
@@ -166,6 +172,9 @@ public class Battle {
 
             }
         }
+
+        chechTypeOfMinion(selectedCard,defender);
+
         if (flag_for_attack &&  flag_for_soldier_validity ) {
             for (int i = 0; i < Map.getCardsInMap().size(); i++) {
                 if (Map.getCardsInMap().contains(selectedCard)) {

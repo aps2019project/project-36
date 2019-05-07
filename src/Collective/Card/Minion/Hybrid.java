@@ -1,13 +1,18 @@
 package Collective.Card.Minion;
 
 
+import Collective.Card.Card;
+
+import static java.lang.Math.abs;
+
 public class Hybrid extends Minion {
 
-    public void attack(){}
+    public void hybridDefend(Card selected, Card defender) {
+            defender.setCanDefend(true);
+    }
 
-    public Hybrid(){
-        canAttack=true;
-        canDefend=true;
+    public void hybridattack(Card selected, Card defender) {
+        defender.setCanDefend(true);
     }
 
 
