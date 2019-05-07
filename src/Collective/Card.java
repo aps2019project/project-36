@@ -43,7 +43,7 @@ public abstract class Card {
         return cards;
     }
 
-    public static void addCards(Card card) {
+    public static void addToCards(Card card) {
         cards.add(card);
     }
 
