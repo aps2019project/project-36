@@ -9,5 +9,4 @@ public class StunBuff extends Buff {
         card.setCanAttack(false);
         card.setCanDefend(false);
     }
-
 }

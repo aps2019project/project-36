@@ -36,7 +36,7 @@ public class Spell extends Card {
     }
 
     public void setType(String type) {
-        this.type="Spell";
+        this.type= "Spell";
     }
 
     public String getType(){
