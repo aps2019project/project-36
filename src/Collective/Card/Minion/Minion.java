@@ -28,10 +28,6 @@ public class Minion extends Card {
         this.canAttack = canAttack;
     }
 
-    public int getNeededManna() {
-        return neededManna;
-    }
-
 
     public void move() {
     }
