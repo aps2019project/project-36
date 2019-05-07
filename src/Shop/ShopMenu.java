@@ -91,8 +91,6 @@ public class ShopMenu {
     public void buy(String name, Account account) {
         boolean found = false;
         for (Card x : Shop.getCards()) {
-            System.out.println (name );
-            System.out.println (x.getName () );
             if (name.compareToIgnoreCase(x.getName()) == 0) {
                 found = true;
                 if (found) {
