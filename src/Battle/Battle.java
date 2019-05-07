@@ -108,7 +108,10 @@ public class Battle {
         cell.setY(y);
         cell.setX(x);
         if (abs(cell.getX() - selectedCard.getCell().getX()) +
-                abs(cell.getY() - selectedCard.getCell().getY()) > 2) {
+                abs(cell.getY() - selectedCard.getCell().getY()) > 2 || selectedCard.getName().equals("Arash")
+        || selectedCard.getName().equals("Legend")
+        || selectedCard.getName().equals("Esfandiar")
+        || selectedCard.getName().equals("Rostam")) {
             //age betune bishtar az 2 khune bere barresi she
             selectedCard.setCell(cell);
         } else
