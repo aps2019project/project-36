@@ -1,0 +1,10 @@
+{
+  "name": "All Attack",
+  "price":1500,
+  "MP":4,
+  "targetArea": "friend",
+  "buff": "Poison",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}
