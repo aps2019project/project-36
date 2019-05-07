@@ -1,7 +1,7 @@
 {
-  "name": "Empower",
-  "price":250,
-  "MP":1,
+  "name": "Power Up",
+  "price":2500,
+  "MP":2,
   "targetArea": "friend",
   "buff": "Power",
   "buff2": "",

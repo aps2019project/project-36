@@ -1,10 +1,10 @@
 {
-  "name": "Empower",
-  "price":250,
-  "MP":1,
+  "name": "Madness",
+  "price":650,
+  "MP":0,
   "targetArea": "friend",
   "buff": "Power",
-  "buff2": "",
+  "buff2": "Disarm",
   "type": "Spell",
   "desc": ""
 }
