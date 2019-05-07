@@ -16,7 +16,7 @@ public class ShopMenu {
         System.out.println("Heroes:");
         for (Card x : account.getCollection().getCards()) {
             if (x.getType().compareTo("Hero") == 0) {
-                System.out.println((i + 1) + " Name: " + x.getName() + " - AP: " + x.getAP() + " - HP: " +
+                System.out.println((i + 1) + ": Name: " + x.getName() + " - AP: " + x.getAP() + " - HP: " +
                         x.getHP() + " - Class: " + x.getClass() + " - Special Power: " +
                         x.getDesc() + " - Sell Cost: " + x.getPrice());
                 i++;
@@ -25,22 +25,22 @@ public class ShopMenu {
         i = 0;
         System.out.println("Items:");
         for (Item x : account.getCollection().getItems()) {
-            System.out.println((i + 1) + ": Name:" + x.getName() + "- Desc:" + x.getDesc() +
-                    "Sell Cost:" + x.getPrice());
+            System.out.println((i + 1) + ": Name:" + x.getName() + " - Desc: " + x.getDesc() +
+                    " - Sell Cost: " + x.getPrice());
             i++;
         }
         i = 0;
         System.out.println("Cards:");
         for (Card x : account.getCollection().getCards()) {
             if (x.getType().compareTo("Spell") == 0) {
-                System.out.println((i + 1) + "Type " + x.getType() + " - Name: " + x.getName() +
+                System.out.println((i + 1) + ": Type: " + x.getType() + " - Name: " + x.getName() +
                         " - MP: " + x.getMP() + " - Class: " + x.getClass() + " - Description: " +
                         x.getDesc() + " - Sell Cost: " + x.getPrice());
 
             }
             else if (x.getType().compareTo("Minion") == 0) {
-                System.out.println ((i + 1) + " Type " + x.getType ( ) + " - Name: " + x.getName ( ) +
-                        " - Class: " + x.getClass ( ) + " - AP: " + x.getAP ( ) + " - HP: " + x.getHP ( ) + " - MP" + x.getMP ( ) + " - SpecialPower: " +
+                System.out.println ((i + 1) + ": Type " + x.getType ( ) + " - Name: " + x.getName ( ) +
+                        " - Class: " + x.getClass ( ) + " - AP: " + x.getAP ( ) + " - HP: " + x.getHP ( ) + " - MP: " + x.getMP ( ) + " - SpecialPower: " +
                         x.getDesc ( ) + " - Sell Cost: " + x.getPrice ( ));
             }
                 i++;
@@ -187,11 +187,11 @@ public class ShopMenu {
         System.out.println ("Cards:");
         for (int i = 0; i < Shop.getCards ( ).size ( ); i++) {
             if (Shop.getCards ( ).get (i).getType ( ).compareTo ("Spell") == 0) {
-                System.out.println ((i + 1) + "Type " + Shop.getCards ( ).get (i).getType ( ) + " - Name: " + Shop.getCards ( ).get (i).getName ( ) +
+                System.out.println ((i + 1) + ": Type: " + Shop.getCards ( ).get (i).getType ( ) + " - Name: " + Shop.getCards ( ).get (i).getName ( ) +
                         " - MP: " + Shop.getCards ( ).get (i).getMP ( ) + " - Class: " + Shop.getCards ( ).getClass ( ) + " - Description: " +
                         Shop.getCards ( ).get (i).getDesc ( ) + " - Buy Cost: " + Shop.getCards ( ).get (i).getPrice ( ) + " - CardID: " + Shop.getCards ( ).get (i).getCardID ( ));
             } else if (Shop.getCards ( ).get (i).getType ( ).compareTo ("Minion") == 0) {
-                System.out.println ((i + 1) + "Type " + Shop.getCards ( ).get (i).getType ( ) + " - Name: " +
+                System.out.println ((i + 1) + ": Type: " + Shop.getCards ( ).get (i).getType ( ) + " - Name: " +
                         Shop.getCards ( ).get (i).getName ( ) + " - Class: " + Shop.getCards ( ).getClass ( ) +
                         " - AP: " + Shop.getCards ( ).get (i).getAP ( ) + " - HP: " + Shop.getCards ( ).get (i).getHP ( ) +
                         " - MP" + Shop.getCards ( ).get (i).getMP ( ) + " - SpecialPower: " +
