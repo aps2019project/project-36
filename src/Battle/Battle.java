@@ -8,7 +8,7 @@ import Collective.Item;
 import Collective.Target;
 import Map.Cell;
 import Map.Map;
-import Player.Player;
+import Player.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -420,7 +420,7 @@ public class Battle {
     }
 
     public void showNextCard() {
-        //todo hand.getNextCard
+        //todo
     }
 
     public void setSelectedItem(Item selectedItem) {
