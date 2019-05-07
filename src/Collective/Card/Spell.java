@@ -45,9 +45,8 @@ public class Spell extends Card {
 
   public void spellEffect(Card defender,Card selected){
       if(selected.getType().equals("Spell")){
-          switch (selected.getName()){
-             // case
-          }
+          selected.setEffect(defender,selected);
+          selected.setTargetAreas(selected.targetArea);
       }
   }
 

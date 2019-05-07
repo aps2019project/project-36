@@ -1,5 +1,6 @@
 package Battle;
 
+import Collective.Buff.Buff;
 import Collective.Card.Card;
 import Collective.Card.Hero;
 import Collective.Card.Minion.Minion;
@@ -121,6 +122,12 @@ public class Battle {
     public void attack(Card defender) {
         Scanner scanner = new Scanner(System.in);
         String order = scanner.nextLine();
+        Buff b=new Buff() {
+            @Override
+            public void setBuff(Card card) {
+                super.setBuff(card);
+            }
+        };
         Pattern dataPattern = Pattern.compile("(Attack).(\\w+)");
         Matcher m = dataPattern.matcher(dataPattern.pattern());
         if (m.matches()) {
@@ -133,7 +140,7 @@ public class Battle {
                 Minion m1 = new Minion();
                 m1 = (Minion) selectedCard;
                 if (m1.getCanAttack()) {
-                    m1.minionEffect(defender, selectedCard);
+                    m1.minionEffect(defender, selectedCard,selectedCard.getType());
                     chechTypeOfMinion(selectedCard, defender);
                 }
             }
@@ -239,6 +246,8 @@ public class Battle {
                                 Minion defender2 = new Minion();
                                 defender2 = (Minion) defender;
                                 defender2.setHP(-selectedCard.getAP());
+                                defender2.setEffect(defender,selectedCard);
+                                b.setBuff(selectedCard);
                             }
                         }
                     }
@@ -259,6 +268,12 @@ public class Battle {
         Scanner scanner = new Scanner(System.in);
         String order = scanner.nextLine();
         Card defender = null;
+        Buff b=new Buff() {
+            @Override
+            public void setBuff(Card card) {
+                super.setBuff(card);
+            }
+        };
         ArrayList<String> cardIDs = new ArrayList<>();
         if (order.substring(0, 12).equals("Attack combo")) {
             String[] arrOfStr = order.split(" ");
@@ -281,7 +296,7 @@ public class Battle {
                 Minion m1 = new Minion();
                 m1 = (Minion) selectedCard;
                 if (m1.getCanAttack()) {
-                    m1.minionEffect(defender, selectedCard);
+                    m1.minionEffect(defender, selectedCard,selectedCard.getType());
                     chechTypeOfMinion(selectedCard, defender);
                 }
             }
@@ -330,6 +345,18 @@ public class Battle {
                                             Minion defender2 = new Minion();
                                             defender2 = (Minion) defender;
                                             defender2.setHP(-selectedCard.getAP());
+                                            b.setBuff(selectedCard);
+                                        }
+                                        if (defender.getType().equals("Hero")) {
+                                            Hero defender2 = new Hero();
+                                            defender2 = (Hero) defender;
+                                            b.setBuff(selectedCard);
+                                        }
+
+                                        if(defender.getType().equals("Spell")){
+                                            Spell defender2=new Spell();
+                                            defender2=(Spell) defender;
+                                            b.setBuff(selectedCard);
                                         }
                                     }
                                 }

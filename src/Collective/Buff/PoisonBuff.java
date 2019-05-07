@@ -22,7 +22,11 @@ class PoisonBuff extends Buff {
        numberOfTurns--;
     }
 
-    public void setHolyBuffEffect(Buff b, Card defender) {
+    public void setNumberOfTurns(int number) {
+        numberOfTurns=number;
+    }
+
+    public void setPoisonBuffEffect(Buff b, Card defender) {
         if (b.getName().equals("Poison") && numberOfTurns>=0) {
             PoisonBuff p = new PoisonBuff();
             if (defender.getType().equals("Minion")) {

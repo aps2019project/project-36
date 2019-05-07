@@ -2,7 +2,6 @@ package Collective.Card.Minion;
 
 
 import Collective.Card.Card;
-import Collective.Card.Spell;
 
 public class Minion extends Card {
 
@@ -32,6 +31,9 @@ public class Minion extends Card {
         return neededManna;
     }
 
+    public String getSpecialPower(){
+        return specialPower;
+    }
 
     public void move() {
     }
@@ -52,7 +54,21 @@ public class Minion extends Card {
         return this.rangeOfAttack;
     }
 
-    public void minionEffect(Card defender, Card selectedCard){
-
+    public void minionEffect(Card defender, Card selectedCard, String classtype) {
+        if (classtype.equals("Ranged")) {
+            Ranged r = new Ranged();
+            r = (Ranged) selectedCard;
+            r.rangedAttack(selectedCard, defender);
+        }
+        if (classtype.equals("Hybrid")) {
+            Hybrid h = new Hybrid();
+            h = (Hybrid) selectedCard;
+            h.hybridattack(selectedCard, defender);
+        }
+        if (classtype.equals("Melee")) {
+            Melee m= new Melee();
+            m=(Melee) selectedCard;
+            m.meleeAttack(selectedCard,defender);
+        }
     }
 }
