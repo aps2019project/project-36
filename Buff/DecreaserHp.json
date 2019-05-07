@@ -1,0 +1,12 @@
+{
+    "name": "DecreaserHp",
+  "positiveOrNegative": "negative",
+    "haveAffect": false,
+    "APChange": 0,
+    "HPChange": 0,
+    "Move": false,
+    "Attack": false,
+    "CounterAttack": true,
+    "HPChangeAfterAttack": false,
+    "changeInSecondTurn": true
+}

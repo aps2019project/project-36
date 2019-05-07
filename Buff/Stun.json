@@ -1,0 +1,11 @@
+{
+    "name": "Stun",
+  "positiveOrNegative": "negative",
+    "haveAffect": true,
+    "APChange": 0,
+    "HPChange": 0,
+    "Move": false,
+    "Attack": false,
+    "CounterAttack": true,
+    "HPChangeAfterAttack": false
+  }

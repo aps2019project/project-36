@@ -1,0 +1,11 @@
+{
+    "name": "Holy",
+  "positiveOrNegative": "positive",
+    "haveAffect": false,
+    "APChange": -1,
+    "HPChange": 0,
+    "Move": false,
+    "Attack": false,
+    "CounterAttack": false,
+    "HPChangeAfterAttack": true
+  }

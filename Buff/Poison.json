@@ -1,0 +1,11 @@
+{
+    "name": "Poison",
+    "positiveOrNegative": "negative",
+    "haveAffect": false,
+    "APChange": 0,
+    "HPChange": -1,
+    "Move": false,
+    "Attack": false,
+    "CounterAttack": false,
+    "HPChangeAfterAttack": false
+}
