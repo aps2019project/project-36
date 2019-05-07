@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Account extends Player {
     private static ArrayList<Account> accounts = new ArrayList<>();
-    private ArrayList<Deck> decks;
-    private ArrayList<Match> matchHistory;
+    private ArrayList<Deck> decks = new ArrayList<>();
+    private ArrayList<Match> matchHistory = new ArrayList<>();
     private String password;
-    private Collection collection;
-    private GraveYard graveYard;
+    private Collection collection = new Collection();
+    private GraveYard graveYard = new GraveYard();
     private int numberOfItemsOwned;
 
     public int getNumberOfItemsOwned() {
