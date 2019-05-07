@@ -1,0 +1,10 @@
+{
+  "name": "Power Up",
+  "price":2500,
+  "MP":2,
+  "targetArea": "friend",
+  "buff": "Power",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

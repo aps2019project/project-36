@@ -1,0 +1,10 @@
+{
+  "name": "Fireball",
+  "price":400,
+  "MP":1,
+  "targetArea": "enemy",
+  "buff": "Poison",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

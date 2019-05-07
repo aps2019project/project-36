@@ -1,0 +1,10 @@
+{
+  "name": "Madness",
+  "price":650,
+  "MP":0,
+  "targetArea": "friend",
+  "buff": "Power",
+  "buff2": "Disarm",
+  "type": "Spell",
+  "desc": ""
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Area Dispel",
+  "price":1500,
+  "MP":2,
+  "targetArea": "two",
+  "buff": "Kill",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

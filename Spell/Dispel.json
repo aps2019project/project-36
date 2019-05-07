@@ -1,0 +1,10 @@
+{
+  "name": "Dispel",
+  "price":2100,
+  "MP":0,
+  "targetArea": "enemy",
+  "buff": "Power",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

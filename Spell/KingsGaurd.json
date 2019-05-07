@@ -1,0 +1,10 @@
+{
+  "name": "Kings Guard",
+  "price":1750,
+  "MP":9,
+  "targetArea": "eight_arounds",
+  "buff": "Kill",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

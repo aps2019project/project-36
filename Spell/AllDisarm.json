@@ -1,0 +1,10 @@
+{
+  "name": "All Disarm",
+  "price":2000,
+  "MP":9,
+  "targetArea": "enemy",
+  "buff": "Disarm",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

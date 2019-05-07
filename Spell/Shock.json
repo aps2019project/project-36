@@ -1,0 +1,10 @@
+{
+  "name": "Shock",
+  "price":1200,
+  "MP":9,
+  "targetArea": "enemy",
+  "buff": "Stun",
+  "buff2": "",
+  "type": "Spell",
+  "desc": ""
+}

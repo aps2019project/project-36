@@ -1,0 +1,10 @@
+{
+  "name": "Health With Profit",
+  "price":2250,
+  "MP":0,
+  "targetArea": "friend",
+  "buff": "Weakness",
+  "buff2": "Holy",
+  "type": "Spell",
+  "desc": ""
+}
