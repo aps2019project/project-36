@@ -78,7 +78,7 @@ public class Battle {
             System.out.println ("Desc: "+card.getDesc () );
         }
         else if(card.getType ().compareToIgnoreCase ("Minion")== 0){
-            System.out.println ("MInion:" );
+            System.out.println ("Minion:" );
             System.out.println ("Name: " + card.getName ());
             System.out.println ("HP: " + card.getHP ());
             System.out.println ("AP: " + card.getAP ());

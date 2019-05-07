@@ -34,10 +34,6 @@ public class Spell extends Card {
     public void setPrice(int price) {
     }
 
-    public void setType(String type) {
-        this.type= "Spell";
-    }
-
     public String getType(){
         return "Spell";
     }
