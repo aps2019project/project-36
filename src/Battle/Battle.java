@@ -109,7 +109,7 @@ public class Battle {
         cell.setX(x);
         if (abs(cell.getX() - selectedCard.getCell().getX()) +
                 abs(cell.getY() - selectedCard.getCell().getY()) > 2) {
-            //todo age betune bishtar az 2 khune bere barresi she
+            //age betune bishtar az 2 khune bere barresi she
             selectedCard.setCell(cell);
         } else
             System.out.println("invalid target");
@@ -430,6 +430,14 @@ public class Battle {
     public void setSelectedCard(String cardID) {
         for (int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++) {
             if (currentPlayer.getMainDeck().getHand().getCards().get(i).getCardID().equals(cardID)) {
+                if (currentPlayer.getMainDeck().getHand().getCards().get(i).getType().equals("Minion")){
+                    selectedCard = new Minion();
+                }
+                else if (currentPlayer.getMainDeck().getHand().getCards().get(i).getType().equals("Hero")){
+                    selectedCard = new Hero();
+                }
+                else
+                    selectedCard = new Spell();
                 selectedCard = currentPlayer.getMainDeck().getHand().getCards().get(i);
                 return;
             }
@@ -461,8 +469,7 @@ public class Battle {
                 currentPlayer.getMainDeck().getHand().getNextCard().getDesc());
     }
 
-    public void setSelectedItem(Item selectedItem) {
-        this.selectedItem = selectedItem;
+    public void setSelectedItem(Item selectedItem) { this.selectedItem = selectedItem;
     }
 
     public void playRandomTurn() {
