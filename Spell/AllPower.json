@@ -2,7 +2,7 @@
   "name": "All Power",
   "price":2500,
   "MP":2,
-  "targetArea": {},
+  "targetArea": "",
   "buff": "Power",
   "buff2": "",
   "type": "Spell",

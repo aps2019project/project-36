@@ -6,7 +6,7 @@
   "attackPoint": 4,
   "classType": "Melee",
   "range": 0,
-  "specialPower": {},
+  "specialPower": "",
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
   "desc": ""
