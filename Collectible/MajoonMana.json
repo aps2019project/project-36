@@ -2,4 +2,19 @@
   "desc":"Add 3 Mana",
   "type": "Collectible",
   "changeMP": 3,
-"target" : 0}
+  "changeAP": 0,
+  "changeHP": 0,
+  "target" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfActiveBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0}
+
+
+
+
+
+

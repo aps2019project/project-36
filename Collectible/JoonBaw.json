@@ -1,5 +1,15 @@
 {"name":"JoonBaw",
   "desc":"Add 6 points to HealthPoint",
   "type": "Collectible",
-  "changeHP": 6,
-   "target": 0}
+   "target": 0,
+  "changeMP": 0,
+  "changeAP": 0,
+  "changeHP" : 6,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0}
+

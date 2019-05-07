@@ -1,4 +1,20 @@
 {"name":"KingKiller",
   "desc":"Kill enemy's hero after 15 turns",
   "type": "Usable",
-  "price": 9000}
+  "price": 9000,
+  "target": 0,
+  "changeMP": -1,
+  "changeAP": 0,
+  "changeHP" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  true,
+  "numberOfTurns": 15,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+  "numberOfEnemies": 0,
+  "numberOfHits": 0,
+  "numberOfWeaknessBuff": 0}
+
+

@@ -12,9 +12,50 @@ public class Item {
     private int changeHP;
     private int changeAP;
     private int changeMP;
-    private int turn;
-    private boolean continious; //if continious = true else false
+    private int numberOfTurns;
+    private boolean continuous; //if continious = true else false
     private int beginningTurn; //if in anonymous turn = 0;
+    private int target; // enemy=1 & khodi=0
+    private boolean activateBuff; // aya buff faal mikonad
+    private int numberOfHolyfBuff;
+    private int changeRange;
+    private int multipleHP;
+    private boolean heroTarget;
+    private int numberOfEnemies;
+    private int numberOfHits;
+    private int numberOfWeaknessBuff;
+    private int numberOfPoisonBuff;
+    public int getChangeRange() {
+        return changeRange;
+    }
+
+    public boolean isActivateBuff() {
+        return activateBuff;
+    }
+
+    public int getNumberOfActiveBuff() {
+        return numberOfHolyfBuff;
+    }
+
+    public int getChangeHP() {
+        return changeHP;
+    }
+
+    public int getChangeAP() {
+        return changeAP;
+    }
+
+    public int getChangeMP() {
+        return changeMP;
+    }
+
+    public int getNumberOfTurns() {
+        return numberOfTurns;
+    }
+
+    public boolean isContinuous() {
+        return continuous;
+    }
 
     public int getBeginningTurn() {
         return beginningTurn;
@@ -23,12 +64,6 @@ public class Item {
     public int getTarget() {
         return target;
     }
-
-    public int getTurn() {
-        return turn;
-    }
-
-    private int target; // enemy=1 & khodi=0
 
     public String getDesc() {
         return desc;

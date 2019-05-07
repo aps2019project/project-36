@@ -1,4 +1,19 @@
 {"name":"TirSeShakh",
   "desc":"Add 2 AttackPower to a ranged or hybrid hero",
   "type": "Collectible",
-  "changeAP": 2}
+  "changeAP": 2,
+  "target": 0,
+  "changeMP": 0,
+  "changeHP" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfActiveBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+"heroTarget": true}
+
+
+
+

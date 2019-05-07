@@ -1,4 +1,20 @@
 {"name":"NefrinMarg",
   "desc":"Enables a minion to hit a random nearby 8 times",
-  "type": "Collectible"
+  "type": "Collectible",
+  "target": 0,
+  "changeMP": 0,
+  "changeAP": 0,
+  "changeHP" : 6,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+  "heroTarget" : false,
+  "numberOfEnemies" : 1,
+  "numberOfHits": 8
 }
+
+

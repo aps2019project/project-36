@@ -2,6 +2,25 @@
   "desc":"Activate 10 holybuffs for 2 turns",
   "type": "Collectible",
   "target": 0,
-  "numberOfHolyBuffs" : 3,
-  "turn" : 2
+  "numberOfHolyBuff" : 3,
+  "changeMP": 3,
+  "changeAP": 0,
+  "changeHP": 0,
+  "target" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  true,
+  "numberOfTurns": 2,
+  "activateBuff": true,
+  "numberOfHolyBuff": 10,
+  "changeRange": 0,
+  "multipleHP": 0
 }
+
+
+
+
+
+
+
+
+

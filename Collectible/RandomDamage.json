@@ -1,4 +1,17 @@
 {"name":"RandomDamage",
   "desc":"Hit 3 random forces 2 times",
-  "type": "Collectible"
+  "type": "Collectible",
+  "target": 0,
+  "changeMP": 0,
+  "changeAP": 0,
+  "changeHP" : 6,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+  "numberOfEnemies": 3,
+  "numberOfHits": 2
 }

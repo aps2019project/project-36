@@ -1,4 +1,17 @@
 {"name":"KamanDamool",
   "desc":"Add 2 to Hero's Range",
   "type": "Usable",
-  "price": 3000}
+  "price": 3000,
+  "changeMP": 0,
+  "changeAP": 0,
+  "changeHP" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "target": 0,
+  "numberOfTurns": 0,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 2,
+  "multipleHP": 0}
+
+

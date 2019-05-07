@@ -1,5 +1,21 @@
 {"name":"AssassinationDagger",
   "desc":"Hero hits 8 more times when attacking the enemy's hero",
   "type": "Usable",
+  "changeAP": 0,
+  "price": 5000,
+  "target": 0,
+  "changeMP": 0,
   "changeAP": 8,
-  "price": 5000}
+  "changeHP" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+  "numberOfEnemies": 0,
+  "numberOfHits": 0,
+  "numberOfWeaknessBuff": 0,
+"heroTarget" :  true}
+

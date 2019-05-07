@@ -1,4 +1,16 @@
 {"name":"ParSimorgh",
   "desc":"Multiple Hero's life by 2",
   "type": "Usable",
-  "price": 3000}
+  "price": 3000,
+  "target": 0,
+  "changeMP": 0,
+  "changeHP" : 6,
+  "changeAP": 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+"multipleHP": 2}
+
