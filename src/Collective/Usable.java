@@ -4,7 +4,7 @@ import Battle.Game;
 import Player.Player;
 
 public class Usable extends Item {
-    private int price;
+//    private int price;
     /*public void usableEffect(String name, Card card, Game game) {
         switch (name) {
             case "SOULEATER":

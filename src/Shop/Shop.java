@@ -31,7 +31,9 @@ public class Shop {
         return items;
     }
 
-    private static void init() {
+   // private static void init()
+    static
+   {
         for (TypeOfFiles typeOfFiles : TypeOfFiles.values ( )) {
             File folder = new File (typeOfFiles.name ( ));
             File[] listOfFiles = folder.listFiles ( );
@@ -48,6 +50,7 @@ public class Shop {
             Gson gson = new Gson ( );
             InputStream input = new FileInputStream (path);
             Reader reader = new InputStreamReader (input);
+
             switch (type) {
                 case "Collectible":
                     Collectible collectible = gson.fromJson (reader, Collective.Collectible.class);
