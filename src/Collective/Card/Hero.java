@@ -1,17 +1,10 @@
-package Collective;
+package Collective.Card;
 
 public class Hero extends Card {
 
-    enum HeroTypes {
-        DIVESEFID, SIMORGH, EZHDEHA, RAKHSH, ZAHAK,
-        KAVEH, ARASH, AFSANE, EFANDIAR, ROSTAM;
-    }
-
-    private Spell specialPower;
-    private HeroTypes heroArr[] = HeroTypes.values();
     private int RangeOfAttack;
     private String kindOfAttack;
-    private int cooldown;
+    private int coolDown;
 
     public int getRangeOfAttack() {
         return RangeOfAttack;
@@ -28,19 +21,15 @@ public class Hero extends Card {
         return "Hero";
     }
 
-    public HeroTypes[] getHeroType() {
-        return heroArr;
-    }
-
     public int getCooldown() {
-        return cooldown;
+        return coolDown;
     }
 
     public void setCooldown(int cooldown) {
-        this.cooldown = cooldown;
+        this.coolDown = cooldown;
     }
 
-    public Hero(){
+    public void heroEffect(Card defender,Card selectedCard){
 
     }
 }
