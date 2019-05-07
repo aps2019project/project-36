@@ -1,0 +1,5 @@
+{"name":"JoonBaw",
+  "desc":"Add 6 points to HealthPoint",
+  "type": "Collectible",
+  "changeHP": 6,
+   "target": 0}

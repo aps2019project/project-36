@@ -75,14 +75,13 @@ public abstract class Card {
         return buff2;
     }
 
-    public String getType() {
-        return type;
-    }
 
 
     public String getTargetArea() {
         return targetArea;
     }
+
+    public abstract String getType();
 
     public void setTargetAreas(String nameOfTargetArea) {
         //todo

@@ -1,0 +1,5 @@
+{"name":"TajDanaei",
+  "desc":"Add mana after third turn",
+  "type": "Usable",
+  "price": 300,
+  "changeMP": 1}

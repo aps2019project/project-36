@@ -6,10 +6,10 @@ import Collective.Item;
 import java.util.ArrayList;
 
 public class Collection {
-    private ArrayList<Card> cards;
-    private ArrayList<Item> items;
-    private ArrayList<Deck> decks;
-    private ArrayList<String> searchedList;
+    private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Deck> decks = new ArrayList<> ();
+    private ArrayList<String> searchedList = new ArrayList<>();
 
     public ArrayList<Card> getCards() {
         return cards;

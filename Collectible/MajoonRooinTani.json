@@ -1,0 +1,7 @@
+{"name":"MajoonRooinTani",
+  "desc":"Activate 10 holybuffs for 2 turns",
+  "type": "Collectible",
+  "target": 0,
+  "numberOfHolyBuffs" : 3,
+  "turn" : 2
+}

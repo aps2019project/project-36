@@ -14,7 +14,7 @@ public class Menu {
     static boolean EXIT = false;
     static Scanner scanner = new Scanner(System.in);
     static String input = new String();
-    static Account loggedInPlayer = new Account();
+    static Account loggedInPlayer = null;
 
     public static void menu(){
         while (true) {
@@ -33,19 +33,22 @@ public class Menu {
         if (input.compareToIgnoreCase("exit") == 0) {
             EXIT = true;
         }
-        if (input.length() > 15 && input.substring(0, 13).compareToIgnoreCase("create account") == 0) {
-            if (!Player.takenUsernames(input.substring((14)))) {
-                String username = input.substring((14));
+        String[] str = input.split(" ");
+        if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("account")==0){
+            if (!Player.takenUsernames(str[2])) {
+                String username = str[2];
+                System.out.println("enter pass");
                 input = scanner.nextLine();
                 menu.createAccount(username, input);
             } else
                 System.out.println("This username is already taken!");
-        } else if (input.length() > 6 && input.substring(0, 4).compareToIgnoreCase("login") == 0) {
+        }
+        else if(str[0].compareToIgnoreCase("login")==0){
             if (loggedInPlayer != null) {
                 System.out.println("Another account is logged in! Please first logout!");
             }
-            if (Player.takenUsernames(input.substring((5)))) {
-                String username = input.substring((5));
+            if (Player.takenUsernames(str[1])) {
+                String username = str[1];
                 input = scanner.nextLine();
                 loggedInPlayer = menu.login(username, input);
             } else
@@ -60,6 +63,7 @@ public class Menu {
             menu.help();
         }
         if (loggedInPlayer == null) {
+            System.out.println("here");
             firstMenu();
         }
     }
@@ -84,25 +88,29 @@ public class Menu {
     public static void collectionMenu() {
         collecionHelp();
         input = scanner.nextLine();
+        String[] str = input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
         } else if (input.compareToIgnoreCase("show") == 0) {
+
             //todo
 
-        } else if (input.length() > 7 && input.substring(0, 5).compareToIgnoreCase("search") == 0) {
-            String temp = loggedInPlayer.getCollection().search(input.substring(6));
+        } //else if (input.length() > 7 && input.substring(0, 5).compareToIgnoreCase("search") == 0) {
+        else if(str[0].equals("search")){
+            String temp = loggedInPlayer.getCollection().search(str[1]);
             if (temp != "") {
                 System.out.println(temp);
             } else
                 System.out.println("entered card/item does not exist in this collection");
         } else if (input.compareToIgnoreCase("save") == 0) {
 
-        } else if (input.length() > 12 && input.substring(0, 10).compareToIgnoreCase("create deck") == 0) {
+        }
+        else if(str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("deck")==0){
             boolean check = false;
             Deck deck = new Deck();
-            deck.setName(input.substring(11));
+            deck.setName(str[2]);
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(11))) {
+                if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(str[2])) {
                     System.out.println("Deck already exists!");
                     check = true;
                 }
@@ -110,10 +118,10 @@ public class Menu {
             if (!check) {
                 loggedInPlayer.getCollection().addToDecks(deck);
             }
-        } else if (input.length() > 12 && input.substring(0, 10).compareToIgnoreCase("delete deck") == 0) {
+        } else if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("deck")==0) {
             boolean check = false;
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(11))) {
+                if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(str[2])) {
                     loggedInPlayer.getCollection().getDecks().remove(i);
                     check = true;
                 }
@@ -122,14 +130,14 @@ public class Menu {
                 System.out.println("Deck doesn't exist!");
             }
         }
-        else if(input.substring(0,2).compareToIgnoreCase("add") == 0 ||
-                input.substring(0,5).compareToIgnoreCase("remove") == 0){
-            String[] str = input.split(" ");
+        else if(str[0].compareToIgnoreCase("add") == 0 ||
+                str[0].compareToIgnoreCase("remove") == 0){
+            String[] str1 = input.split(" ");
             outer:
             for (Deck deck: Deck.getDecks()) {
-                if(deck.getName().equals(str[3])){
+                if(deck.getName().equals(str1[3])){
                     for (Card card: loggedInPlayer.getCollection().getCards()) {
-                        if(card.getCardID().equals(str[2])){
+                        if(card.getCardID().equals(str1[2])){
                             if (card.getType().equals("Hero")){
                                 if(deck.getHero() != null){
                                     if(str[0].equals("add")) {
@@ -145,7 +153,7 @@ public class Menu {
                                     break outer;
                                 }
                             }
-                            if(str[0].equals("add")) {
+                            if(str1[0].compareToIgnoreCase("add")==0) {
                                 deck.addToCards(card);
                                 if(!deck.validateDeck()){
                                     System.out.println("cannot add any cart to deck");
@@ -164,7 +172,7 @@ public class Menu {
                     }
                     for (Item item : loggedInPlayer.getCollection().getItems()){
                         if(item.getItemID().equals(str[2])){
-                            if (str[0].equals("add")) {
+                            if (str[0].compareToIgnoreCase("add")==0) {
                                 deck.addToItems(item);
                                 if (!deck.validateDeck()) {
                                     System.out.println("cannot add any item to deck");
@@ -186,12 +194,10 @@ public class Menu {
                 }
             }
         }
-        else if(input.substring(0,5).compareToIgnoreCase("remove") == 0){
-            String[] str = input.split(" ");
-        }
-        else if (input.length() > 14 && input.substring(0, 12).compareToIgnoreCase("validate deck") == 0) {
+
+        else if (str[0].compareToIgnoreCase("validate") == 0 && str[1].compareToIgnoreCase("deck")== 0) {
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(13))) {
+                if (loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(str[2])==0) {
                     if (loggedInPlayer.getCollection().validateDeck(loggedInPlayer.getCollection().getDecks().get(i))) {
                         System.out.println("valid");
                     } else
@@ -199,10 +205,10 @@ public class Menu {
                     break;
                 }
             }
-        } else if (input.length() > 12 && input.substring(0, 10).compareToIgnoreCase("select deck") == 0) {
+        } else if (str[0].compareToIgnoreCase("select") == 0 && str[1].compareToIgnoreCase("deck") == 0) {
             boolean check = false;
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(input.substring(11))) {
+                if (loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(str[2])==0) {
                     loggedInPlayer.setMainDeck(loggedInPlayer.getCollection().getDecks().get(i));
                     check = true;
                 }
@@ -212,7 +218,7 @@ public class Menu {
             }
         } else if (input.compareToIgnoreCase("show all decks") == 0) {
             showAllDecks(loggedInPlayer);
-        } else if (input.length() > 10 && input.substring(0, 8).compareToIgnoreCase("show deck") == 0) {
+        } else if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("deck") == 0) {
 
         } else if (input.compareToIgnoreCase("help") == 0) {
             collecionHelp();
@@ -224,27 +230,24 @@ public class Menu {
         ShopMenu menu = new ShopMenu();
         menu.help();
         input = scanner.nextLine();
+        String[] str= input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
         }
-        if (input.compareToIgnoreCase("show collection") == 0) {
+        if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
             menu.showCollection (loggedInPlayer);
         }
-        if (input.length() > 7 && input.substring(0, 5).compareToIgnoreCase("search") == 0) {
-            String name = input.substring(6);
-            menu.search(name);
+        if (str[0].compareToIgnoreCase("search") == 0) {
+            menu.search(str[1]);
         }
-        if (input.length() > 18 && input.substring(0, 16).compareToIgnoreCase("search collection") == 0) {
-            String name = input.substring(18);
-            menu.searchCollection(name, loggedInPlayer);
+        if (str[0].compareToIgnoreCase("search") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
+            menu.searchCollection(str[2], loggedInPlayer);
         }
-        if (input.length() > 4 && input.substring(0, 2).compareToIgnoreCase("buy") == 0) {
-            String name = input.substring(3);
-            menu.buy(name, loggedInPlayer);
+        if (str[0].compareToIgnoreCase("buy") == 0) {
+            menu.buy(str[1], loggedInPlayer);
         }
-        if (input.length() > 5 && input.substring(0, 3).compareToIgnoreCase("sell") == 0) {
-            //String id = input.substring(4);
-            menu.sell(input.substring(4), loggedInPlayer);
+        if (str[0].compareToIgnoreCase("sell") == 0) {
+            menu.sell(str[1], loggedInPlayer);
         }
         if (input.compareToIgnoreCase("show") == 0) {
             menu.show ();
