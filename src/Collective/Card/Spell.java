@@ -10,7 +10,6 @@ import java.util.List;
 public class Spell extends Card {
 
     private CellEffect effect;
-    private String desc;
     private int neededManna;
     private int APChange;
     private int HPChange;

@@ -20,6 +20,7 @@ public abstract class Card {
     protected String type;
     private String buff2;
     private String buff;
+    private String desc;
     private boolean canDefend;
     private boolean canAttack;
     protected static ArrayList<Card> cards = new ArrayList<>();
@@ -44,6 +45,10 @@ public abstract class Card {
     protected static ArrayList<Card> card=new ArrayList<>();
     protected String targetArea;
     private String[] targetAreas = new String[]{"two", "three", " enemy", "friend", "random", "minion", "eight_arounds"};
+
+    public String getDesc() {
+        return desc;
+    }
 
     public boolean getCanDefend() {
         return canDefend;
