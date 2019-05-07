@@ -2,4 +2,15 @@
   "desc":"Add mana after third turn",
   "type": "Usable",
   "price": 300,
-  "changeMP": 1}
+  "changeMP": 1,
+  "changeAP": 0,
+  "changeHP" : 0,
+  "beginningTurn" : 3,
+  "continuous" :  true,
+"target": 0,
+"numberOfTurns": 1,
+"activateBuff": false,
+"numberOfHolyBuff": 0,
+"changeRange": 0,
+  "multipleHP": 0,
+  "heroTarget" : true}

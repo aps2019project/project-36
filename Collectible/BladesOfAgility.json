@@ -5,4 +5,17 @@
   "target": 0,
   "turn" : 1,
   "changeHP" :0,
-  "changeMP" :0}
+  "changeMP" :0,
+"continuous": true,
+"beginningTurn": 0,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0}
+
+
+
+
+
+

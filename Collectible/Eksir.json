@@ -3,4 +3,20 @@
   "type": "Collectible",
   "changeAP": 3,
   "changeHP": 3,
-  "target": 0}
+  "target": 0,
+  "changeMP": 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "numberOfTurns": 1,
+  "activateBuff": false,
+  "numberOfActiveBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+  "heroTarget": true
+}
+
+
+
+
+
+

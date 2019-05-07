@@ -1,4 +1,18 @@
 {"name":"NamoosSepar",
   "desc":"Activate 2 passive HolyBuffs",
   "type": "Usable",
-  "price": 4000}
+  "price": 4000,
+  "changeMP": 1,
+  "changeAP": 0,
+  "changeHP" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  false,
+  "target": 0,
+  "numberOfTurns": 1,
+  "activateBuff": true,
+  "numberOfHolyBuff": 2,
+"changeRange": 0,
+  "multipleHP": 0,
+"heroTarget" : true}
+
+

@@ -1,6 +1,18 @@
 {"name":"ChineseSword",
   "desc":"Hit 5 more times until it gets hitted 5 times",
   "type": "Collectible",
-  "changeAP":6,
-  "target": 0
-}
+  "changeAP":5,
+  "target": 0,
+  "changeMP": 0,
+  "changeHP" : 0,
+  "beginningTurn" : 0,
+  "continuous" :  true,
+  "numberOfTurns": 0,
+  "activateBuff": false,
+  "numberOfHolyBuff": 0,
+  "changeRange": 0,
+  "multipleHP": 0,
+  "numberOfEnemies": 0,
+  "numberOfHits": 0,
+  "numberOfWeaknessBuff": 0,
+  "numberOfPoisonBuff": 0}
