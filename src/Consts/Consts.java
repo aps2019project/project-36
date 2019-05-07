@@ -3,7 +3,7 @@ package Consts;
 import Collective.Card.Card;
 import Collective.Item;
 import Player.*;
-import Shop.Shop;
+import Shop.*;
 
 public class Consts {
     private static Consts consts = null;
@@ -55,14 +55,77 @@ public class Consts {
     }
 
     public static void setDeck1(Deck deck){
-        //todo Shop.makeNewCardByName(TajDanaei)
+        deck.addToItems (Shop.buyItemForStoryDeck ("TajDanaei"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianArcher"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranLancer"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranGorzdar")); //todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("BlackDemon"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("OneEyeGiant"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GorgSefid"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("JadugarAzam"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDiv"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TotalDisarm"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("LightningBolt"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllPoison"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Dispel"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Sacrifice"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Shock"));
     }
 
 
     public static void setDeck2(Deck deck){
+        deck.addToItems (Shop.buyItemForStoryDeck ("SoulEater"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianSwordsman"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianLancer"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianChampion"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranSling"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranPrince"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Eagle"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("EzdehaAtashAndaz"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Palang"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Gene"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Giv"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Iraj"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("ShahGhul"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("AreaDispel"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Empower"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GodStrength"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PoisonLake"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Madness"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("HealthWithProfit"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("KingsGuard"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Zahahk"));
 
     }
-    public static void setDeck3(Deck deck){}
+    public static void setDeck3(Deck deck){
+        deck.addToItems (Shop.buyItemForStoryDeck ("TerrorHood"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianGeneral"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranArcher"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranSpy"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GhoolSangAndaz"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("DivGorazSavar"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("ShirDarande"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Gorg"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Wizard"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("GorazVahshi"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Piran"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Bahman"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("GhollBozorg"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("HellFire"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Dispel"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("GhazaBokhorJoonBegiri"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllPower"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllAttack"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Weakening"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Arash"));
+    }
 
     public static Consts getInstance() {
         if(consts == null)

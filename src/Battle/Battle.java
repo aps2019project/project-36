@@ -9,7 +9,7 @@ import Collective.Target;
 import Map.Cell;
 import Map.Map;
 import Player.Player;
-
+import Player.GraveYard;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
