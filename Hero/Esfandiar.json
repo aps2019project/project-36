@@ -1,0 +1,12 @@
+{
+  "name": "Esfandiar",
+  "price": 12000,
+  "health": 35,
+  "attackPoint": 3,
+  "attackType": "Hybrid",
+  "range": 3,
+  "specialPower": {},
+  "MP": -1,
+  "coolDown": -1,
+  "desc": ""
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Phoenix",
+  "price": 9000,
+  "health": 50,
+  "attackPoint": 4,
+  "attackType": "Melee",
+  "range": 0,
+  "specialPower": {},
+  "MP": 5,
+  "coolDown": 8,
+  "desc": ""
+}

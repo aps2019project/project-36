@@ -1,0 +1,12 @@
+{
+  "name": "Kaveh",
+  "price": 8000,
+  "health": 50,
+  "attackPoint": 4,
+  "attackType": "Melee",
+  "range": 0,
+  "specialPower": {},
+  "MP": 1,
+  "coolDown": 3,
+  "desc": ""
+}
