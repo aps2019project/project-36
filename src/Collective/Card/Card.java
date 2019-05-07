@@ -1,5 +1,6 @@
 package Collective.Card;
 
+import Collective.Buff.Buff;
 import Collective.Card.Minion.Minion;
 import Collective.Item;
 import Map.Cell;
@@ -17,7 +18,8 @@ public abstract class Card {
     protected int changeHP;
     protected int AP;
     protected int MP;
-    protected String type;
+    protected int neededManna;
+    protected String classType;
     private String buff2;
     private String buff;
     private String desc;
@@ -25,6 +27,37 @@ public abstract class Card {
     protected boolean counterAttack;
     protected boolean canDefend;
     protected boolean canAttack;
+
+    public String getClassType() {
+        return classType;
+    }
+
+    public void setClassType(String classType) {
+        this.classType = classType;
+    }
+
+    public boolean isCanComboAttack() {
+        return canComboAttack;
+    }
+
+    public void setCanComboAttack(boolean canComboAttack) {
+        this.canComboAttack = canComboAttack;
+    }
+
+    protected boolean canComboAttack;
+    protected int extraIntByTypeOfBuffNeeded;
+    
+    public int getextraIntByTypeOfBuffNeeded() {
+        return extraIntByTypeOfBuffNeeded;
+    }
+
+    public void setDisarmdDuration(int extraIntByTypeOfBuffNeeded) {
+        this.extraIntByTypeOfBuffNeeded = extraIntByTypeOfBuffNeeded;
+    }
+
+    public String getdesc(){
+        return desc;
+    }
 
     public boolean getAttacked() {
         return attacked;
@@ -101,7 +134,6 @@ public abstract class Card {
     public abstract String getType();
 
     public void setTargetAreas(String nameOfTargetArea) {
-        //todo
         this.targetArea = nameOfTargetArea;
     }
 
@@ -109,7 +141,7 @@ public abstract class Card {
         if (defender.getType().equals("Minion")) {
             Minion m = new Minion();
             m = (Minion) defender;
-            m.minionEffect(defender, selectedCard);
+            m.minionEffect(defender, selectedCard,defender.getType());
         }
 
         if (defender.getType().equals("Spell")) {
@@ -124,7 +156,6 @@ public abstract class Card {
             h.heroEffect(defender, selectedCard);
         }
     }
-
     public static ArrayList<Card> getCards() {
         return cards;
     }

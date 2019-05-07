@@ -17,32 +17,22 @@ public class Target{
     private String targetUnitClass;
     private int width;
     private int length;
-    private int Distance;
+    private int distance;
     private boolean isRandomSelecting;
     private boolean doesAffectAllCards;
 
-//    public Target(String typeOfTarget, int width, int length,
-//                  String friendlyOrEnemy, boolean isRandomSelecting,
-//                  boolean doesAffectAllCards, int Distance, String targetUnitClass) {
-//        this.typeOfTarget = typeOfTarget;
-//        this.friendlyOrEnemy = friendlyOrEnemy;
-//        this.targetUnitClass = targetUnitClass;
-//        this.width = width;
-//        this.length = length;
-//        this.Distance = Distance;
-//        this.isRandomSelecting = isRandomSelecting;
-//        this.doesAffectAllCards = doesAffectAllCards;
-//    }
 
     public void setTargetType(Card defender, Card selected,int x1,int x2,int y1,int y2){
         if (selected.equals("two")) {
             if (abs(x1 - x2) <= 1 && abs(y1 - y2) <= 1) {
                 selected.setCanAttack(true);
+                this.distance=1;
             }
         }
         if (selected.equals("three")) {
             if (abs(x1 - x2) <= 2 && abs(y1 - y2) <= 2) {
                 selected.setCanAttack(true);
+                this.distance=2;
             }
         }
 

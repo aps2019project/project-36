@@ -1,8 +1,10 @@
 package Collective.Buff;
 
-public class KillBuff {
+import Collective.Card.Card;
+
+public class KillBuff extends Buff{
     //remove that buff
-    public void kill(Buff buff){
+    public void kill(Card card, Buff buff) {
         buff.getBuffs().remove(buff);
     }
 }
