@@ -73,7 +73,6 @@ public class Shop {
                     break;
             }
         } catch (Exception e) {
-            System.out.println ("Shop.makeNewFromFile");
             e.printStackTrace ( );
         }
     }

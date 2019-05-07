@@ -103,7 +103,7 @@ public class BattleMenu {
 //                    battle.enterGraveyardShowCards(graveYard);
 //                }
             } else if (input.compareToIgnoreCase ("Help") == 0) {
-                battle.help ( );
+                //battle.help();
             } else if (input.compareToIgnoreCase ("end game") == 0) {
                 if (game.getPlayer1 ( ).equals (currentPlayer)) {
                     match.setWinner (game.getPlayer2 ( ));

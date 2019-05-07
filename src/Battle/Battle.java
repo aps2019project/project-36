@@ -481,8 +481,38 @@ public class Battle {
         }
     }
 
-    public void help() {
-        //todo
+    public void help(Player player) {
+        boolean cardInMap= false;
+        System.out.println ("Cards you haven't played:" );
+        for(Card card:player.getMainDeck ().getCards ()){
+            for (Card mapCard:Map.getCardsInMap ()){
+                if(card.getCardID ().compareToIgnoreCase (mapCard.getCardID ())== 0){
+                    cardInMap= true;
+                }
+            }
+            if(!cardInMap){
+                System.out.println (card.getName ());
+            }
+            cardInMap=false;
+        }
+
+        System.out.println ();
+        System.out.println ("You can move these cards:" );
+        for(Card card:player.getMainDeck ().getCards ()){
+            for (Card mapCard:Map.getCardsInMap ()){
+                if(card.getCardID ().compareToIgnoreCase (mapCard. getCardID ())== 0){
+                    System.out.println (card.getName ());
+                }
+            }
+        }
+
+        System.out.println ();
+        System.out.println ("You can attack this cards:" );
+        for(Card mapCard: Map.getCardsInMap ()){
+            if(!(mapCard.getOwner ().equals (player))){
+                System.out.println (mapCard.getName () );
+            }
+        }
     }
 
     public int getNumOfCardsInField(Player player, Random random) {
