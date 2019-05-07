@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public abstract class Card {
     protected Cell cell;
     protected int price;
-    protected String cardID;//todo
+    protected String cardID;
     protected String name;
     protected Player owner;
     protected int HP;
