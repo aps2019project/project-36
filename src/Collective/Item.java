@@ -29,6 +29,10 @@ public class Item {
         return changeRange;
     }
 
+    public void setBeginningTurn(int beginningTurn) {
+        this.beginningTurn = beginningTurn;
+    }
+
     public boolean isActivateBuff() {
         return activateBuff;
     }

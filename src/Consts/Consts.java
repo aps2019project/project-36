@@ -6,6 +6,7 @@ import Player.*;
 import Shop.*;
 
 public class Consts {
+
     private static Consts consts = null;
     private String[] usernames = {"Attacker", "Street Fighter", "King Arthas"};
     private Card[] cards;
@@ -41,6 +42,8 @@ public class Consts {
     public static final Deck deckStory1 = null;
     public static final Deck deckStory2 = null;
     public static final Deck deckStory3 = null;
+    public static final int height = 1000, width = 800;
+    public static final int distance = 50;
 
     public static Deck getDeckStory1() {
         return deckStory1;

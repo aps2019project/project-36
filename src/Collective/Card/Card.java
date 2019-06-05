@@ -23,6 +23,33 @@ public abstract class Card {
     private String buff;
     private String desc;
     private boolean attacked;
+    private int numberOfActiveBuffs;
+    private int hittedNumber;
+
+    public int getHittedNumber() {
+        return hittedNumber;
+    }
+
+    public void setHittedNumber(int hittedNumber) {
+        this.hittedNumber = hittedNumber;
+    }
+
+    public boolean isAttacker() {
+        return isAttacker;
+    }
+
+    public void setAttacker(boolean attacker) {
+        isAttacker = attacker;
+    }
+
+    private boolean isAttacker;
+    public int getNumberOfActiveBuffs() {
+        return numberOfActiveBuffs;
+    }
+
+    public void setNumberOfActiveBuffs(int numberOfActiveBuffs) {
+        this.numberOfActiveBuffs = numberOfActiveBuffs;
+    }
 
     public boolean isCounterAttack() {
         return counterAttack;
@@ -36,6 +63,18 @@ public abstract class Card {
 
     protected boolean canDefend;
     protected boolean canAttack;
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public void setAP(int AP) {
+        this.AP = AP;
+    }
+
+    public void setMP(int MP) {
+        this.MP = MP;
+    }
 
     public String getClassType() {
         return classType;
@@ -129,6 +168,14 @@ public abstract class Card {
 
     public String getBuff() {
         return buff;
+    }
+
+    public void setBuff2(String buff2) {
+        this.buff2 = buff2;
+    }
+
+    public void setBuff(String buff) {
+        this.buff = buff;
     }
 
     public String getBuff2() {

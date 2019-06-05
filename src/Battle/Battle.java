@@ -1,6 +1,7 @@
 package Battle;
 
 import Collective.Buff.Buff;
+import Collective.Buff.HolyBuff;
 import Collective.Card.Card;
 import Collective.Card.Hero;
 import Collective.Card.Minion.Minion;
@@ -545,9 +546,109 @@ public class Battle {
     }
 
     public void use(Item item, int x, int y) {
+        boolean used= false;
+        boolean change= false;
         for (Card card : Map.getCardsInMap()) {
             if (card.getCell().getX() == x && card.getCell().getY() == y) {
-                card.setCollectibleItem(item);
+                switch(card.getName ()){
+                    case "NamoosSepar":
+                        card.getOwner ().getMainDeck ().getHero ().setNumberOfActiveBuffs (2);
+                        card.getOwner ().getMainDeck ().getHero ().setBuff ("HolyBuff");
+                        break;
+                    case "KamanDamool":
+                        if(card.getClassType ().compareToIgnoreCase ("ranged")== 0
+                                || card.getClassType ().compareToIgnoreCase ("hybrid")== 0){
+                            card.getOwner ().getMainDeck ().getHero ().setRangeOfAttack (card.getOwner ().getMainDeck ().getHero ().getRangeOfAttack ()+2);
+                        }
+                        break;
+                    case "TirSeShakh":
+                        if(card.getClassType ().compareToIgnoreCase ("ranged")== 0
+                                || card.getClassType ().compareToIgnoreCase ("hybrid")== 0){
+                            card.setAP (card.getAP ()+item.getChangeAP ());
+                        }
+                        break;
+                    case "Eksir":
+                        card.getOwner ().getMainDeck ().getHero ().setHP(card.getOwner ().getMainDeck ().getHero ().getHP() + item.getChangeHP ());
+                        card.getOwner ().getMainDeck ().getHero ().setAP(card.getOwner ().getMainDeck ().getHero ().getAP() + item.getChangeAP ());
+                        break;
+                    case "AssassinationDagger":
+                        if(card.getClassType ().compareToIgnoreCase ("ranged")== 0
+                                || card.getClassType ().compareToIgnoreCase ("hybrid")== 0){
+                            card.getOwner ().getMainDeck ().getHero ().setAP (card.getOwner ().getMainDeck ().getHero ().getAP ()+item.getChangeAP ());
+                        }
+                        break;
+                    case "ParSimorgh":
+                        if(card.getOwner ().getMainDeck ().getHero ().getHP () < 15 && !used){
+                            card.getOwner ().getMainDeck ().getHero ().setHP (card.getOwner ().getMainDeck ().getHero ().getHP ()*2);
+                            used= true;
+                        }
+                        break;
+                    case "TajDanaei":
+                        if(game.getTurn () > 2){
+                           if(card.getOwner ().getUsername ().compareToIgnoreCase (game.getPlayer1 ().getUsername ())== 0){
+                               game.setManaPlayer1 (game.getManaPlayer1 ()+ 1);
+                           }
+                           else{
+                               game.setManaPlayer2 (game.getManaPlayer2 ()+ 1);
+                           }
+                        }
+                        break;
+                    case "MajoonRooinTan":
+                        item.setBeginningTurn (game.getTurn ());
+                        card.setNumberOfActiveBuffs (10);
+                        card.setBuff ("HolyBuff");
+                        if(game.getTurn ()- item.getBeginningTurn ()>= 2){
+                            card.setNumberOfActiveBuffs (0);
+                            card.setBuff (null);
+                        }
+
+                        break;
+                    case "SoulEater":
+                        if(card.getClassType ().compareToIgnoreCase ("melee")== 0){
+                            if(card.isAttacker ()){
+                                card.setHP (card.getHP ()+ 2);
+                            }
+                        }
+                        break;
+                    case "KingKiller":
+                        if(card.getOwner ().getUsername ().compareToIgnoreCase (game.getPlayer1 ().getUsername ())== 0){
+                            game.setManaPlayer1 (game.getManaPlayer1 ()- 1);
+                            if(game.getTurn ()> 15){
+                                game.getPlayer2 ().getMainDeck ().getHero ().setHP (0);
+                            }
+                        }
+                        else
+                            game.setManaPlayer2 (game.getManaPlayer2 ()- 1);
+                        if(game.getTurn ()> 15){
+                            game.getPlayer1 ().getMainDeck ().getHero ().setHP (0);
+                        }
+                        break;
+                    case "GhoslTamid":
+                        item.setBeginningTurn (game.getTurn ());
+                        card.setNumberOfActiveBuffs (2);
+                        if(game.getTurn () - item.getBeginningTurn ()>= 2){
+                            card.setNumberOfActiveBuffs (0);
+                        }
+                        break;
+                    case "ChineseSword":
+                        if(card.getHittedNumber ()< 5 && !change){
+                            card.setAP (card.getAP ()+ 5);
+                            change= true;
+                        }
+                        else if(change && card.getHittedNumber ()>= 5)
+                            card.setAP (card.getAP () - 5);
+                        break;
+                    default:
+                            if(item.getChangeHP ()!= 0){
+                                card.setHP (card.getHP ()+item.getChangeHP ());
+                            }
+                            if(item.getChangeMP ()!= 0){
+                                card.setMP (card.getMP ()+item.getChangeMP ());
+                            }
+                            if(item.getChangeAP ()!= 0){
+                                card.setAP (card.getAP ()+item.getChangeAP ());
+                            }
+                }
             }
         }
     }
