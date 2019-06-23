@@ -1,9 +1,9 @@
-package Consts;
+package sample.Consts;
 
-import Collective.Card.Card;
-import Collective.Item;
-import Player.Deck;
-import Shop.Shop;
+import sample.Collective.Card.Card;
+import sample.Collective.Item;
+import sample.Player.Deck;
+import sample.Shop.Shop;
 
 public class Consts {
 
