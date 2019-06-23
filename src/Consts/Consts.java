@@ -2,8 +2,8 @@ package Consts;
 
 import Collective.Card.Card;
 import Collective.Item;
-import Player.*;
-import Shop.*;
+import Player.Deck;
+import Shop.Shop;
 
 public class Consts {
 
@@ -42,8 +42,8 @@ public class Consts {
     public static final Deck deckStory1 = null;
     public static final Deck deckStory2 = null;
     public static final Deck deckStory3 = null;
-    public static final int height = 1000, width = 800;
-    public static final int distance = 50;
+    public static final int height = 700, width = 1200;
+    public static final int distance = 100;
 
     public static Deck getDeckStory1() {
         return deckStory1;

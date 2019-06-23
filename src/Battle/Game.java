@@ -5,8 +5,6 @@ import Collective.Flag;
 import Map.*;
 import Player.Player;
 import Player.Match;
-import com.sun.tools.javac.Main;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;

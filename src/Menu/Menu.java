@@ -1,37 +1,61 @@
 package Menu;
 
+import javafx.application.Platform;
+import javafx.scene.Scene;
 import Battle.AccountMenu;
+import Battle.BattleMenu;
 import Collective.Card.Card;
 import Collective.Item;
-import Player.*;
-import Battle.BattleMenu;
+import Player.Account;
+import Player.Deck;
+import Player.Player;
 import Shop.ShopMenu;
 
-import java.util.Random;
-import java.util.RandomAccess;
 import java.util.Scanner;
+
+import Menu.MainMenuView;
 
 public class Menu {
 
     static boolean EXIT = false;
-    static Scanner scanner = new Scanner(System.in);
-    static String input = new String();
+    static Scanner scanner = new Scanner (System.in);
+    static String input = new String ();
     static Account loggedInPlayer = null;
 
     public static void menu(){
-        while (true) {
+        firstMenu();
+        /*while (true) {
+            input = "1";
             firstMenu();
             if (EXIT) {
                 return;
             }
             secondMenu();
-        }
+        }*/
     }
 
     public static void firstMenu() {
+
+
+        //if (input == "1") {
+        MainMenuView menuView = new MainMenuView (input);
+        Graphics.changeScene(menuView.getMainMenuScene());
+        input = "";
+        //}
+
+        /*if (input == "" || input == "1"){
+            firstMenu();
+        }
+
+        if (loggedInPlayer == null) {
+            firstMenu();
+        }*/
+    }
+
+    public static void firstMenuCommand(String input) {
+
         AccountMenu menu = new AccountMenu();
         menu.help();
-        input = scanner.nextLine();
         String[] str = input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             EXIT = true;
@@ -42,11 +66,12 @@ public class Menu {
             }
             if (Player.takenUsernames(str[1])) {
                 String username = str[1];
-                input = scanner.nextLine();
-                loggedInPlayer = menu.login(username, input);
+                //input = scanner.nextLine();
+                loggedInPlayer = menu.login(str[1], str[2]);
             } else
                 System.out.println("This username does not exist!");
-        } else if (input.compareToIgnoreCase("show leaderboard") == 0) {
+            secondMenu();
+        } else if (input.compareToIgnoreCase("show leaderBoard") == 0) {
             menu.showLeaderboard();
         } else if (input.compareToIgnoreCase("save") == 0) {
 
@@ -56,22 +81,23 @@ public class Menu {
             menu.help();
         }
         else if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("account")==0){
+            System.out.println("here");
             if (!Player.takenUsernames(str[2])) {
-                String username = str[2];
-                System.out.println("enter pass");
-                input = scanner.nextLine();
-                menu.createAccount(username, input);
+                menu.createAccount(str[2], str[3]);
+                System.out.println("New Account Created!");
+                firstMenu();
             } else
                 System.out.println("This username is already taken!");
         }
-        if (loggedInPlayer == null) {
-            firstMenu();
-        }
+    }
+    public static void secondMenu() {
+        System.out.println("here");
+        //CollectionMenuView menuView = new CollectionMenuView();
+        //Main.changeScene(menuView.getCollectionMenuScene());
+        //input = "";
     }
 
-    public static void secondMenu() {
-        help();
-        input = scanner.nextLine();
+    public static void secondMenuCommand(String input) {
         if (input.compareToIgnoreCase("exit") == 0) {
             firstMenu();
         } else if (input.compareToIgnoreCase("collection") == 0) {
@@ -85,7 +111,6 @@ public class Menu {
         }
         secondMenu();
     }
-
     public static void collectionMenu() {
         collecionHelp();
         input = scanner.nextLine();

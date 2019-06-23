@@ -1,22 +1,25 @@
-import Menu.*;
+
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import Battle.Battle;
+import Consts.Consts;
+import Menu.MainMenuView;
+import Menu.*;
+import java.util.Scanner;
 
-public class Main extends Application {
+public class Main {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        MainMenuView mainMenu = new MainMenuView();
-
-        primaryStage.setTitle("duelyst");
-        primaryStage.setScene(mainMenu.getMainMenuScene());
-        primaryStage.show();
-    }
 
     public static void main(String[] args) {
-        Menu.menu();
 
-        launch(args);
+        Graphics.graphics(args);
     }
+
 }

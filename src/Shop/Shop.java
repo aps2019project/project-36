@@ -5,7 +5,6 @@ import Collective.Card.Card;
 import Collective.Card.Hero;
 import Collective.Card.Minion.Minion;
 import Collective.Card.Spell;
-import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -155,6 +154,5 @@ public class Shop {
         }
         return null;
     }
-
 }
 
