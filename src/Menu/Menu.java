@@ -114,7 +114,7 @@ public class Menu {
         //input = scanner.nextLine();
     }
 
-    public static void collectionMenuCommand() {
+    public static void collectionMenuCommand(String input) {
         String[] str = input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
@@ -152,7 +152,7 @@ public class Menu {
                 loggedInPlayer.getCollection().addToDecks(deck);
             }
             System.out.println("deck.getName() = " + deck.getName());
-        } else if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("deck")==0) {
+        } else if (str[0].compareToIgnoreCase("remove")==0 && str[1].compareToIgnoreCase("deck")==0) {
             boolean check = false;
             for (int i = 0; i < loggedInPlayer.getCollection().getDecks().size(); i++) {
                 if (loggedInPlayer.getCollection().getDecks().get(i).getName().equals(str[2])) {
