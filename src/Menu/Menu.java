@@ -1,7 +1,6 @@
 package Menu;
 
-import javafx.application.Platform;
-import javafx.scene.Scene;
+
 import Battle.AccountMenu;
 import Battle.BattleMenu;
 import Collective.Card.Card;
@@ -12,8 +11,6 @@ import Player.Player;
 import Shop.ShopMenu;
 
 import java.util.Scanner;
-
-import Menu.MainMenuView;
 
 public class Menu {
 
@@ -38,9 +35,9 @@ public class Menu {
 
 
         //if (input == "1") {
-        MainMenuView menuView = new MainMenuView (input);
-        Graphics.changeScene(menuView.getMainMenuScene());
-        input = "";
+            MainMenuView menuView = new MainMenuView(input);
+            Graphics.changeScene(menuView.getMainMenuScene());
+            input = "";
         //}
 
         /*if (input == "" || input == "1"){
@@ -72,7 +69,7 @@ public class Menu {
                 System.out.println("This username does not exist!");
             secondMenu();
         } else if (input.compareToIgnoreCase("show leaderBoard") == 0) {
-            menu.showLeaderboard();
+            //menu.showLeaderboard();
         } else if (input.compareToIgnoreCase("save") == 0) {
 
         } else if (input.compareToIgnoreCase("logout") == 0) {
@@ -91,13 +88,12 @@ public class Menu {
         }
     }
     public static void secondMenu() {
-        System.out.println("here");
-        //CollectionMenuView menuView = new CollectionMenuView();
-        //Menu.Main.changeScene(menuView.getCollectionMenuScene());
-        //input = "";
+        SecondMenuView menuView = new SecondMenuView();
+        Graphics.changeScene(menuView.getSecondMenuScene());
     }
 
     public static void secondMenuCommand(String input) {
+        System.out.println("input = " + input);
         if (input.compareToIgnoreCase("exit") == 0) {
             firstMenu();
         } else if (input.compareToIgnoreCase("collection") == 0) {
@@ -109,17 +105,22 @@ public class Menu {
         } else if (input.compareToIgnoreCase("help") == 0) {
             help();
         }
-        secondMenu();
+        //secondMenu();
     }
     public static void collectionMenu() {
+        CollectionMenuView menuView = new CollectionMenuView();
+        Graphics.changeScene(menuView.getCollectionMenuScene());
         collecionHelp();
-        input = scanner.nextLine();
+        //input = scanner.nextLine();
+    }
+
+    public static void collectionMenuCommand() {
         String[] str = input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
         }
         else if (input.compareToIgnoreCase("show all decks") == 0) {
-            showAllDecks(loggedInPlayer);
+            //showAllDecks(loggedInPlayer);
         }
         else if (input.compareToIgnoreCase("help") == 0) {
             collecionHelp();
@@ -165,68 +166,6 @@ public class Menu {
         }
         else if(str[0].compareToIgnoreCase("add") == 0 ||
                 str[0].compareToIgnoreCase("remove") == 0){
-            String[] str1 = input.split(" ");
-            outer:
-            for (Deck deck: loggedInPlayer.getCollection().getDecks()) {
-                if(deck.getName().equals(str1[3])){
-                    for (Card card: loggedInPlayer.getCollection().getCards()) {
-                        System.out.println("card.getName() = " + card.getName());
-                        if(card.getCardID().equals(str1[1])){
-                            if (card.getType().equals("Hero")){
-                                if(deck.getHero() != null){
-                                    if(str[0].equals("add")) {
-                                        System.out.println("cannot add any hero to deck");
-                                    }
-                                    else{
-                                        deck.setHero(null);
-                                    }
-                                    break outer;
-                                }
-                                else {
-                                    deck.setHero(card);
-                                    break outer;
-                                }
-                            }
-                            if(str1[0].compareToIgnoreCase("add")==0) {
-                                deck.addToCards(card);
-                                if(deck.getCards().size() > 20){
-                                    System.out.println("cannot add any card to deck");
-                                    deck.removeFromCards(card);
-                                }
-                            }
-                            else
-                            if(deck.contains(card)) {
-                                deck.removeFromCards(card);
-                            }
-                            else {
-                                System.out.println("Deck doesn't contain this card");
-                            }
-                            break outer;
-                        }
-                    }
-                    for (Item item : loggedInPlayer.getCollection().getItems()){
-                        if(item.getItemID().equals(str[1])){
-                            if (str[0].compareToIgnoreCase("add")==0) {
-                                deck.addToItems(item);
-                                if (!deck.validateDeck()) {
-                                    System.out.println("cannot add any item to deck");
-                                    deck.removeFromItems(item);
-                                }
-                            }
-                            else {
-                                if(deck.contains(item)) {
-                                    deck.removeFromItems(item);
-                                }
-                                else {
-                                    System.out.println("Deck doesn't contain this item");
-                                }
-                            }
-                            break outer;
-                        }
-                    }
-                    System.out.println("selected card/item is not in the collection");
-                }
-            }
         }
 
         else if (str[0].compareToIgnoreCase("validate") == 0 && str[1].compareToIgnoreCase("deck")== 0) {
@@ -253,17 +192,22 @@ public class Menu {
         } else if (str[0].compareToIgnoreCase("show") == 0 && str[1].compareToIgnoreCase("deck") == 0) {
             for (Deck deck: loggedInPlayer.getCollection().getDecks()) {
                 if(deck.getName().compareToIgnoreCase(str[2]) == 0){
-                    showDeck(deck);
+                    //showDeck(deck);
                 }
             }
         }
-        collectionMenu();
     }
 
     public static void shopMenu() {
+        ShopMenuView menu = new ShopMenuView();
+        Graphics.changeScene(menu.getShopMenuScene());
+
+    }
+
+    public static void shopMenuCommand(String input) {
         ShopMenu menu = new ShopMenu();
         menu.help();
-        input = scanner.nextLine();
+        //input = scanner.nextLine();
         String[] str= input.split(" ");
         if (input.compareToIgnoreCase("exit") == 0) {
             secondMenu();
@@ -289,10 +233,14 @@ public class Menu {
         else if (str[0].compareToIgnoreCase("search") == 0 && str[1].compareToIgnoreCase("collection") == 0) {
             menu.searchCollection(str[2], loggedInPlayer);
         }
-        shopMenu();
     }
 
     public static void battleMenu() {
+        BattleMenuView menu = new BattleMenuView();
+        Graphics.changeScene(menu.getBattleMenuScene());
+    }
+
+    public static void battleMenuCommand(String input) {
         BattleMenu menu = new BattleMenu();
         int mode;
         int numOfFlags = 0;
@@ -300,7 +248,7 @@ public class Menu {
             System.out.println("selected deck is invalid");
             secondMenu();
         }
-        input = scanner.nextLine();
+        //input = scanner.nextLine();
         System.out.println("single player");
         System.out.println("multi player");
         System.out.println("exit");
@@ -313,7 +261,7 @@ public class Menu {
             if (input.compareToIgnoreCase("story") == 0) {
                 menu.singlePlayerStory(loggedInPlayer);
             } else if (input.compareToIgnoreCase("custom") == 0) {
-                showAllDecks(loggedInPlayer);
+                //showAllDecks(loggedInPlayer);
                 System.out.println("mode 1: kill competitor's hero");
                 System.out.println("mode 2: keep the only flag for six turns");
                 System.out.println("mode 3:collect half of flags");
@@ -339,59 +287,8 @@ public class Menu {
                 numOfFlags = 1;
             menu.multiPlayer(loggedInPlayer, player2, mode, numOfFlags);
         }
-        battleMenu();
     }
 
-    public static void showAllDecks(Account account) {
-        boolean haveMainDeck=false;
-        if(account.getMainDeck ()!=null){
-            System.out.println (account.getMainDeck ().getName () );
-            showDeck (account.getMainDeck ());
-            haveMainDeck=true;
-        }
-        for(Deck x:account.getDecks ()){
-            if(!haveMainDeck){
-                System.out.println (x.getName () );
-                showDeck (x);
-            }
-            else if(!(x.equals (account.getMainDeck ()))){
-                System.out.println (x.getName () );
-                showDeck (x);
-            }
-        }
-    }
-
-    public static void showDeck(Deck deck){
-        System.out.println("deckname = " + deck.getName());
-        System.out.println ("Heroes:" );
-        for(int i = 0; i< deck.getCards ().size (); i++){
-            if(deck.getCards ().get(i).getType ().compareTo ("Hero")==0){
-                System.out.println ((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
-                        " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getDesc () +
-                        " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
-            }
-        }
-        System.out.println ("Items:" );
-        for(int i= 0; i< deck.getItems ().size(); i++){
-            System.out.println ((i+1) + ": Name:" + deck.getItems ().get(i).getName () + "- Desc:" + deck.getItems ().get (i).getDesc () +
-                    "Buy Cost:" + deck.getItems ().get(i).getPrice ());
-        }
-        System.out.println ("Cards:" );
-        for(int i = 0; i< deck.getCards ().size (); i++){
-            if(deck.getCards ().get(i).getType ().compareTo ("Spell")== 0){
-                System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
-                        " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
-                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
-            }
-            else if(deck.getCards ().get(i).getType ().compareTo ("Minion")== 0){
-                System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
-                        deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
-                        " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
-                        " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
-                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
-            }
-        }
-    }
     public static String getInput() {
         return scanner.nextLine();
     }

@@ -1,16 +1,21 @@
 package Menu;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -18,9 +23,18 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import Consts.*;
-import Menu.*;
+import Battle.*;
+import Consts.Consts;
 import Player.*;
+import Player.Player;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class MainMenuView {
 
@@ -28,45 +42,45 @@ public class MainMenuView {
     private Scene mainMenuScene;
     private GaussianBlur blur= new GaussianBlur ();
 
-    private Image buttonImage = new Image ("pics/button_secondary@2x.png");
-    private Image buttonImage1 = new Image ("pics/button_secondary_glow.png");
-    private Image logoImage = new Image ("pics/Duelyst_Logo.png");
-    private Image menuBackgroundImage = new Image ("pics/background.jpg");
+    private Image buttonImage = new Image("pics/button_secondary@2x.png");
+    private Image buttonImage1 = new Image("pics/button_secondary_glow.png");
+    private Image logoImage = new Image("pics/Duelyst_Logo.png");
+    private Image menuBackgroundImage = new Image("pics/background.jpg");
 
-    private Button createAccountButton = new Button ("Create New Account");
-    private Button loginButton = new Button ("login");
-    private Button showLeaderBoardButton = new Button ("show leaderboard");
-    private Button saveButton = new Button ("save");
-    private Button logoutButton = new Button ("logout");
-    private Button helpButton = new Button ("help");
+    private Button createAccountButton = new Button("Create New Account");
+    private Button loginButton = new Button("login");
+    private Button showLeaderBoardButton = new Button("show leaderboard");
+    private Button saveButton = new Button("save");
+    private Button logoutButton = new Button("logout");
+    private Button helpButton = new Button("help");
 
-    private Label createAccountLabel = new Label ("Create New Account");
-    private Label loginLabel = new Label ("login");
-    private Label showLeaderBoardLabel = new Label ("show leaderboard");
-    private Label saveLabel = new Label ("save");
-    private Label logoutLabel = new Label ("logout");
-    private Label helpLabel = new Label ("help");
+    private Label createAccountLabel = new Label("Create New Account");
+    private Label loginLabel = new Label("login");
+    private Label showLeaderBoardLabel = new Label("show leaderboard");
+    private Label saveLabel = new Label("save");
+    private Label logoutLabel = new Label("logout");
+    private Label helpLabel = new Label("help");
 
     private final int buttonSizeWidth = 250;
     private final int buttonSizeHeight = 80;
 
-    private ImageView createAccountButtonImageView = new ImageView (buttonImage);
-    private ImageView createAccountButtonImageView1 = new ImageView (buttonImage1);
-    private ImageView loginButtonImageView = new ImageView (buttonImage);
-    private ImageView loginButtonImageView1 = new ImageView (buttonImage1);
-    private ImageView showLeaderBoardButtonImageView = new ImageView (buttonImage);
-    private ImageView showLeaderBoardButtonImageView1 = new ImageView (buttonImage1);
-    private ImageView saveButtonImageView = new ImageView (buttonImage);
-    private ImageView saveButtonImageView1 = new ImageView (buttonImage1);
-    private ImageView logoutButtonImageView = new ImageView (buttonImage);
-    private ImageView logoutButtonImageView1 = new ImageView (buttonImage1);
-    private ImageView helpButtonImageView = new ImageView (buttonImage);
-    private ImageView helpButtonImageView1 = new ImageView (buttonImage1);
+    private ImageView createAccountButtonImageView = new ImageView(buttonImage);
+    private ImageView createAccountButtonImageView1 = new ImageView(buttonImage1);
+    private ImageView loginButtonImageView = new ImageView(buttonImage);
+    private ImageView loginButtonImageView1 = new ImageView(buttonImage1);
+    private ImageView showLeaderBoardButtonImageView = new ImageView(buttonImage);
+    private ImageView showLeaderBoardButtonImageView1 = new ImageView(buttonImage1);
+    private ImageView saveButtonImageView = new ImageView(buttonImage);
+    private ImageView saveButtonImageView1 = new ImageView(buttonImage1);
+    private ImageView logoutButtonImageView = new ImageView(buttonImage);
+    private ImageView logoutButtonImageView1 = new ImageView(buttonImage1);
+    private ImageView helpButtonImageView = new ImageView(buttonImage);
+    private ImageView helpButtonImageView1 = new ImageView(buttonImage1);
 
-    private ImageView logoImageView = new ImageView (logoImage);
-    private ImageView backgroundImageView = new ImageView (menuBackgroundImage);
+    private ImageView logoImageView = new ImageView(logoImage);
+    private ImageView backgroundImageView = new ImageView(menuBackgroundImage);
 
-    private Media mouseClicked = new Media (getClass ( ).getClassLoader ().getResource ("audio/Button-SoundBible.com-1420500901.mp3" ).toExternalForm ());
+    private Media mouseClicked = new Media(getClass ( ).getClassLoader ().getResource ("audio/Button-SoundBible.com-1420500901.mp3" ).toExternalForm ());
     private Media mouseEntered= new Media (getClass().getClassLoader().getResource ("audio/zapsplat_multimedia_click_003_19369.mp3").toExternalForm ());
     MediaPlayer clickedPlayer= new MediaPlayer (mouseClicked);
     MediaPlayer enteredPlayer= new MediaPlayer (mouseEntered);
@@ -74,10 +88,10 @@ public class MainMenuView {
     public MainMenuView(String input) {
 
         enteredPlayer.setVolume(0.1);
-        mainMenuRoot = new Group ();
+        mainMenuRoot = new Group();
         backgroundImageView.setFitHeight(Consts.height);
         backgroundImageView.setFitWidth(Consts.width);
-        mainMenuScene = new Scene (mainMenuRoot, Consts.width, Consts.height);
+        mainMenuScene = new Scene(mainMenuRoot, Consts.width, Consts.height);
         logoImageView.setX(Consts.width - 400);
         logoImageView.setY(50);
         logoImageView.setFitHeight(150);
@@ -164,7 +178,7 @@ public class MainMenuView {
 
     public void checkMovements(String input) {
 
-        createAccountButton.setOnMouseEntered(new EventHandler<MouseEvent> () {
+        createAccountButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -179,7 +193,7 @@ public class MainMenuView {
         });
 
 
-        createAccountButton.setOnMouseExited(new EventHandler<MouseEvent> () {
+        createAccountButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -192,7 +206,7 @@ public class MainMenuView {
 
 
 
-        loginButton.setOnMouseEntered(new EventHandler<MouseEvent> () {
+        loginButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -206,7 +220,7 @@ public class MainMenuView {
         });
 
 
-        loginButton.setOnMouseExited(new EventHandler<MouseEvent> () {
+        loginButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -217,7 +231,7 @@ public class MainMenuView {
             }
         });
 
-        showLeaderBoardButton.setOnMouseEntered(new EventHandler<MouseEvent> () {
+        showLeaderBoardButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -231,7 +245,7 @@ public class MainMenuView {
         });
 
 
-        showLeaderBoardButton.setOnMouseExited(new EventHandler<MouseEvent> () {
+        showLeaderBoardButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -242,7 +256,7 @@ public class MainMenuView {
             }
         });
 
-        saveButton.setOnMouseEntered(new EventHandler<MouseEvent> () {
+        saveButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -256,7 +270,7 @@ public class MainMenuView {
         });
 
 
-        saveButton.setOnMouseExited(new EventHandler<MouseEvent> () {
+        saveButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -267,7 +281,7 @@ public class MainMenuView {
             }
         });
 
-        logoutButton.setOnMouseEntered(new EventHandler<MouseEvent> () {
+        logoutButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -281,7 +295,7 @@ public class MainMenuView {
         });
 
 
-        logoutButton.setOnMouseExited(new EventHandler<MouseEvent> () {
+        logoutButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -292,7 +306,7 @@ public class MainMenuView {
             }
         });
 
-        helpButton.setOnMouseEntered(new EventHandler<MouseEvent> () {
+        helpButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -306,7 +320,7 @@ public class MainMenuView {
         });
 
 
-        helpButton.setOnMouseExited(new EventHandler<MouseEvent> () {
+        helpButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -340,6 +354,7 @@ public class MainMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                showLeaderBoardClicked();
             }
         });
 
@@ -348,6 +363,7 @@ public class MainMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                //todo
             }
         });
 
@@ -356,6 +372,11 @@ public class MainMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                Menu.loggedInPlayer = null;
+                Text text = new Text("logged out");
+                mainMenuRoot.getChildren().add(text);
+                //todo
+
             }
         });
 
@@ -421,14 +442,14 @@ public class MainMenuView {
         backgroundImageView.setEffect (blur);
         Label usernameLabel=new Label ("Username:");
         usernameLabel.relocate (430,200);
-        TextField username = new TextField ();
+        TextField username = new TextField();
         username.relocate (550,200);
         usernameLabel.setFont(Font.font(20));
         usernameLabel.setLabelFor (username);
         usernameLabel.setTextFill (Color.BLACK);
         mainMenuRoot.getChildren().addAll(username,usernameLabel);
         username.setPrefSize(200, 50);
-        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent> () {
+        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
             String str;
             public void handle(ActionEvent e) {
                 if (s.equals("login")) {
@@ -440,14 +461,14 @@ public class MainMenuView {
                 str += " ";
                 if(s.equals("login")){
                     if (Menu.loggedInPlayer != null) {
-                        Text taken = new Text ("Another account is logged in! Please first logout!");
+                        Text taken = new Text("Another account is logged in! Please first logout!");
                         taken.setFont(Font.font(40));
                         taken.relocate(Consts.width/5, 100);
                         mainMenuRoot.getChildren().add(taken);
                         return;
                     }
                     else if (!Player.takenUsernames(username.getText())){
-                        Text taken = new Text ("This username does not exist!");
+                        Text taken = new Text("This username does not exist!");
                         taken.setFont(Font.font(40));
                         taken.relocate(Consts.width/5, 100);
                         mainMenuRoot.getChildren().add(taken);
@@ -456,14 +477,14 @@ public class MainMenuView {
                 }
                 else {
                     if (Player.takenUsernames(username.getText())) {
-                        Text taken = new Text ("username is taken");
+                        Text taken = new Text("username is taken");
                         taken.setFont(Font.font(40));
                         taken.relocate(Consts.width / 5, 100);
                         mainMenuRoot.getChildren().add(taken);
                         return;
                     }
                 }
-                TextField pass = new TextField ();
+                TextField pass = new TextField();
                 Label passwordLabel= new Label ("Password:");
                 passwordLabel.relocate (440,300);
                 passwordLabel.setTextFill (Color.BLACK);
@@ -472,16 +493,16 @@ public class MainMenuView {
                 pass.setPrefSize(200, 50);
                 passwordLabel.setFont(Font.font(20));
                 passwordLabel.setLabelFor (pass);
-                EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent> () {
+                EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e) {
                         str += pass.getText();
                         pass.setVisible(false);
                         username.setVisible(false);
                         mainMenuRoot.getChildren ().removeAll (username,usernameLabel,pass,passwordLabel);
-                        Button exit = new Button ("exit");
+                        Button exit = new Button("exit");
                         exit.setPrefSize(100, 100);
                         exit.relocate(Consts.width/5  + 200, 270 + 100);
-                        Text text = new Text ("Your account was created successfully!");
+                        Text text = new Text("Your account was created successfully!");
                         if (s.equals("login")){
                             text.setText("you're logged in");
                         }
@@ -489,7 +510,7 @@ public class MainMenuView {
                         text.relocate(Consts.width/5 , 270);
                         mainMenuRoot.getChildren().add(exit);
                         mainMenuRoot.getChildren().add(text);
-                        exit.setOnMouseClicked(new EventHandler<MouseEvent> () {
+                        exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
                                 Menu.firstMenuCommand(str);
@@ -502,4 +523,45 @@ public class MainMenuView {
         };
         username.setOnAction(event1);
     }
+
+    public void showLeaderBoardClicked() {
+        mainMenuRoot.getChildren ().clear();
+        mainMenuRoot.getChildren().add(backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        ArrayList<Pair> ans = new ArrayList<Pair> ();
+        for(int i = 0; i < Account.getAccounts().size(); i++){
+            Account account;
+            account = Account.getAccounts().get(i);
+            int cnt = 0;
+            for (int j = 0; j < account.getMatchHistory().size(); j++){
+                if (account.getMatchHistory().get(j).getWinner().getUsername().equals(account.getUsername())){
+                    cnt++;
+                }
+            }
+            Pair pair = new Pair();
+            pair.wins = cnt;
+            pair.username = account.getUsername();
+            ans.add(pair);
+        }
+        for (int i = 0; i < ans.size(); i++){
+            for (int j = 0; j < ans.size(); j++){
+                if(ans.get(i).wins > ans.get(j).wins){
+                    Collections.swap(ans, i, j);
+                }
+            }
+        }
+        int changeY = 50;
+        for (int i = 0; i < ans.size(); i++) {
+            Text text = new Text(i + 1 + "- UserName : " + ans.get(i).username + "- Wins : " + ans.get(i).wins);
+            text.relocate(100, changeY);
+            changeY += 50;
+            mainMenuRoot.getChildren().add(text);
+            System.out.println(i + 1 + "- UserName : " + ans.get(i).username + "- Wins : " + ans.get(i).wins);
+        }
+    }
+}
+
+class Pair{
+    int wins;
+    String username;
 }
