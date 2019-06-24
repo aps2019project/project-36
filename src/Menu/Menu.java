@@ -93,7 +93,7 @@ public class Menu {
     public static void secondMenu() {
         System.out.println("here");
         //CollectionMenuView menuView = new CollectionMenuView();
-        //Main.changeScene(menuView.getCollectionMenuScene());
+        //Menu.Main.changeScene(menuView.getCollectionMenuScene());
         //input = "";
     }
 

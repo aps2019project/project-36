@@ -45,7 +45,7 @@ public class Shop {
     }
 
     public static void makeNewFromFile(String path, String type) {
-        try {
+        /*try {
             Gson gson = new Gson ( );
             InputStream input = new FileInputStream (path);
             Reader reader = new InputStreamReader (input);
@@ -73,7 +73,7 @@ public class Shop {
             }
         } catch (Exception e) {
             e.printStackTrace ( );
-        }
+        }*/
     }
 
     public static Item makeNewItemByName(String name) {

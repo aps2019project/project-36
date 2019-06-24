@@ -1,3 +1,4 @@
+package Menu;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -21,5 +22,10 @@ public class Main {
 
         Graphics.graphics(args);
     }
+
+    /*public static void main(String[] args) {
+
+        Graphics.graphics(args);
+    }*/
 
 }
