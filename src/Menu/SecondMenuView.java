@@ -72,8 +72,8 @@ public class SecondMenuView {
         setLabel(collectionLabel, 3);
         secondMenuRoot.getChildren().add(collectionButtonImageView);
         secondMenuRoot.getChildren().add(collectionButtonImageView1);
-        secondMenuRoot.getChildren().add(collectionButton);
         secondMenuRoot.getChildren().add(collectionLabel);
+        secondMenuRoot.getChildren().add(collectionButton);
 
         //shop
         setImageView(shopButtonImageView, 1);
