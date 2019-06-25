@@ -803,6 +803,17 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                collectionMenuRoot.getChildren ().clear();
+                collectionMenuRoot.getChildren().add(backgroundImageView);
+                backgroundImageView.setEffect(new GaussianBlur());
+                TextField textField = new TextField();
+                collectionMenuRoot.getChildren().add(textField);
+                textField.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        selectClicked(textField.getText());
+                    }
+                });
             }
         });
 
@@ -1083,8 +1094,10 @@ public class CollectionMenuView {
             }
             if (!check) {
                 Text text = new Text("added!");
-                
+
                 collectionMenuRoot.getChildren().add(text);
+                text.relocate(100, 100);
+                text.setFont(Font.font(40));
                 Menu.loggedInPlayer.getCollection().addToDecks(deck);
             }
             System.out.println("deck.getName() = " + deck.getName());
@@ -1103,4 +1116,22 @@ public class CollectionMenuView {
         }
     }
 
+    public void selectClicked(String name) {
+        boolean check = false;
+        for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
+            if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(name)==0) {
+                Menu.loggedInPlayer.setMainDeck(Menu.loggedInPlayer.getCollection().getDecks().get(i));
+                check = true;
+                Text text = new Text("selected");
+                collectionMenuRoot.getChildren().add(text);
+                text.relocate(100, 100);
+                text.setFont(Font.font(40));
+            }
+        }
+        if (!check) {
+            Text text = new Text("Deck doesnt exist!");
+            collectionMenuRoot.getChildren().add(text);
+            System.out.println("Deck doesnt exist!");
+        }
+    }
 }
