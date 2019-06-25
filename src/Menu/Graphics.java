@@ -23,14 +23,14 @@ public class Graphics extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        BattleView menu = new BattleView();
+        /*BattleView menu = new BattleView();
 
         primaryStage.setTitle("duelyst");
         primaryStage.setScene(menu.getBattleScene());
-        primaryStage.show();
+        primaryStage.show();*/
 
 
-        /*stage = primaryStage;
+        stage = primaryStage;
 
         Image iconImage = new Image("pics/icon.png");
         ImageView imageView = new ImageView(iconImage);
@@ -51,7 +51,7 @@ public class Graphics extends Application {
                 Menu.menu();
             }
         });
-        thread.start();*/
+        thread.start();
     }
 
     public static void graphics(String[] args) {

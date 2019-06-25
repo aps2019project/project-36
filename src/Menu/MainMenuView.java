@@ -561,7 +561,7 @@ public class MainMenuView {
 
     public void showMessage(){
         try {
-            Image warning = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/notification_your_turn@2x.png"));
+            Image warning = new Image(new FileInputStream ("/Users/ygnh/Downloads/project-3/src/pics/notification_your_turn@2x.png"));
             ImageView warningImageView= new ImageView (warning);
             warningImageView.relocate (250,270);
             warningImageView.setFitHeight (160);
