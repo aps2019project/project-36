@@ -104,6 +104,17 @@ public class BattleView {
     private Button rightButton = new Button();
 
     private Label rightLabel= new Label("QUIT");
+
+    // hand :
+    private int handSize = 100;
+    private int handX = 340;
+    private int handY = 560;
+
+    private Image handImage;// = new Image("pics/lesson_ring_glow@2x.png");
+    //private Image handImage;// = new Image("pics/replace_outer_ring_shine@2x.png");
+    private ImageView[] handImageViews = new ImageView[5];
+    private Button[] handButtons = new Button[5];
+
     // cells :
 
     private int cellSize = 70;
@@ -114,6 +125,7 @@ public class BattleView {
     public BattleView() {
 
         try {
+            handImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/lesson_ring_glow@2x.png"));
             DeckImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/replace_background@2x.png"));
             //battleBoardImage = new Image(new FileInputStream("pics/replace_background@2x.png"));
         } catch (
@@ -121,14 +133,13 @@ public class BattleView {
             e.printStackTrace();
         }
 
+
         ImageView DeckImageView = new ImageView(DeckImage);
 
         battleBoardImageView = new ImageView(battleBoardImage);
         battleBoardImageView.setFitHeight(Consts.height);
         battleBoardImageView.setFitWidth(Consts.width);
         battleRoot.getChildren().addAll(battleBoardImageView);
-        drawRects();
-        drawButtons();
 
         // hero :
 
@@ -201,23 +212,26 @@ public class BattleView {
         battleRoot.getChildren().add(rightLabel);
         battleRoot.getChildren().add(rightButton);
 
-        DeckImageView.setFitWidth(100);
-        DeckImageView.setFitHeight(100);
-        DeckImageView.relocate(100, 600);
-        DeckButton.setPrefSize(100, 100);
-        DeckButton.relocate(950, 500);
+        DeckImageView.setFitWidth(200);
+        DeckImageView.setFitHeight(200);
+        DeckImageView.relocate(100, 500);
+        DeckButton.setPrefSize(200, 200);
+        DeckButton.relocate(100, 500);
         DeckButton.setOpacity(0);
         DeckLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
         DeckLabel.setTextFill(Color.WHITE);
-        DeckLabel.relocate(100, 600);
+        DeckLabel.relocate(175, 585);
         battleRoot.getChildren().add(DeckImageView);
         battleRoot.getChildren().add(DeckLabel);
         battleRoot.getChildren().add(DeckButton);
 
+        setHand();
+
+        drawRects();
+        drawButtons();
         for (int i = 0; i < 9; i++) {
             battleRoot.getChildren().addAll(cell[i]);
         }
-
         checkOnMovements();
 
     }
@@ -322,6 +336,33 @@ public class BattleView {
             }
         });
 
+        for (int i = 0; i < 5; i++) {
+            final int x = i;
+            handButtons[i].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    handImageViews[x].relocate(handImageViews[x].getLayoutX() - handSize / 3.8, handImageViews[x].getLayoutY() - handSize / 3);
+                    handImageViews[x].setFitHeight(1.5*handSize);
+                    handImageViews[x].setFitWidth(1.5*handSize);
+
+                    //todo ax haye cart ha
+
+                    for (int k = 0; k < 9; k++) {
+                        for (int t = 0; t < 5; t++){
+                            cell[k][t].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent mouseEvent) {
+                                    handImageViews[x].relocate(handX + x * (handSize + 10), handY);
+                                    handImageViews[x].setFitHeight(handSize);
+                                    handImageViews[x].setFitWidth(handSize);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 final int x = i, y = j;
@@ -363,6 +404,22 @@ public class BattleView {
         perspectiveTransform.setLrx(1030);    // Lower right
         perspectiveTransform.setLry(560);
         //battleRoot.setEffect(perspectiveTransform);
+    }
+
+    public void setHand() {
+        for (int i = 0 ; i < 5; i++) {
+            handButtons[i] = new Button();
+            handButtons[i].setPrefSize(handSize, handSize);
+            handButtons[i].relocate(handX+ i * (handSize + 10), handY);
+            handButtons[i].setOpacity(0);
+
+            handImageViews[i] = new ImageView(handImage);
+            handImageViews[i].setFitWidth(handSize);
+            handImageViews[i].setFitHeight(handSize);
+            handImageViews[i].relocate(handX+ i * (handSize + 10), handY );
+        }
+        battleRoot.getChildren().addAll(handButtons);
+        battleRoot.getChildren().addAll(handImageViews);
     }
 
     public void setCurrentGame(Game currentGame) {
