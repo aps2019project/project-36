@@ -3,35 +3,30 @@ package Menu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import Battle.*;
 import Consts.Consts;
 import Player.*;
 import Player.Player;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -82,8 +77,10 @@ public class MainMenuView {
 
     private Media mouseClicked = new Media(getClass ( ).getClassLoader ().getResource ("audio/Button-SoundBible.com-1420500901.mp3" ).toExternalForm ());
     private Media mouseEntered= new Media (getClass().getClassLoader().getResource ("audio/zapsplat_multimedia_click_003_19369.mp3").toExternalForm ());
+
     MediaPlayer clickedPlayer= new MediaPlayer (mouseClicked);
     MediaPlayer enteredPlayer= new MediaPlayer (mouseEntered);
+
 
     public MainMenuView(String input) {
 
@@ -462,15 +459,17 @@ public class MainMenuView {
                 if(s.equals("login")){
                     if (Menu.loggedInPlayer != null) {
                         Text taken = new Text("Another account is logged in! Please first logout!");
-                        taken.setFont(Font.font(40));
                         taken.relocate(Consts.width/5, 100);
                         mainMenuRoot.getChildren().add(taken);
                         return;
                     }
                     else if (!Player.takenUsernames(username.getText())){
                         Text taken = new Text("This username does not exist!");
-                        taken.setFont(Font.font(40));
-                        taken.relocate(Consts.width/5, 100);
+                        taken.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 25));
+                        taken.setFill (Color.BLACK);
+                        taken.relocate(400, 320);
+                        showMessage ();
+                        mainMenuRoot.getChildren ().removeAll (username,usernameLabel);
                         mainMenuRoot.getChildren().add(taken);
                         return;
                     }
@@ -557,6 +556,19 @@ public class MainMenuView {
             changeY += 50;
             mainMenuRoot.getChildren().add(text);
             System.out.println(i + 1 + "- UserName : " + ans.get(i).username + "- Wins : " + ans.get(i).wins);
+        }
+    }
+
+    public void showMessage(){
+        try {
+            Image warning = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/notification_your_turn@2x.png"));
+            ImageView warningImageView= new ImageView (warning);
+            warningImageView.relocate (250,270);
+            warningImageView.setFitHeight (160);
+            warningImageView.setFitWidth (700);
+            mainMenuRoot.getChildren ().add(warningImageView);
+        } catch (FileNotFoundException ec) {
+            ec.printStackTrace();
         }
     }
 }
