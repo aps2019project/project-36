@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import Battle.Battle;
+import Battle.*;
 import Consts.Consts;
 import Menu.MainMenuView;
 import Menu.Menu;
@@ -23,13 +23,14 @@ public class Graphics extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        /*BattleMenuView menu = new BattleMenuView();
+        BattleView menu = new BattleView();
 
         primaryStage.setTitle("duelyst");
-        primaryStage.setScene(menu.getBattleMenuScene());
+        primaryStage.setScene(menu.getBattleScene());
         primaryStage.show();
-*/
-        stage = primaryStage;
+
+
+        /*stage = primaryStage;
 
         Image iconImage = new Image("pics/icon.png");
         ImageView imageView = new ImageView(iconImage);
@@ -50,7 +51,7 @@ public class Graphics extends Application {
                 Menu.menu();
             }
         });
-        thread.start();
+        thread.start();*/
     }
 
     public static void graphics(String[] args) {

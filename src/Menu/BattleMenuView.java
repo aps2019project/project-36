@@ -16,6 +16,8 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import Consts.Consts;
 
+import javax.sound.midi.Receiver;
+import java.awt.*;
 import java.io.File;
 
 public class BattleMenuView {
