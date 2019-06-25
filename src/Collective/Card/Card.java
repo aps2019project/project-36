@@ -25,6 +25,7 @@ public abstract class Card {
     private boolean attacked;
     private int numberOfActiveBuffs;
     private int hittedNumber;
+    private String address;
 
     public int getHittedNumber() {
         return hittedNumber;
@@ -285,4 +286,7 @@ public abstract class Card {
     }
 
 
+    public String getAddress() {
+        return address;
+    }
 }
