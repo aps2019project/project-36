@@ -6,7 +6,7 @@
   "AP": 6,
   "classType": "Melee",
   "range": 0,
-  "specialPower": "",
+  "specialPower": null,
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
   "desc": "5 more points AP for times that had attacked a force",

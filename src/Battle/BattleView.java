@@ -125,8 +125,8 @@ public class BattleView {
     public BattleView() {
 
         try {
-            handImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/lesson_ring_glow@2x.png"));
-            DeckImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/replace_background@2x.png"));
+            handImage = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/lesson_ring_glow@2x.png"));
+            DeckImage = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/replace_background@2x.png"));
             //battleBoardImage = new Image(new FileInputStream("pics/replace_background@2x.png"));
         } catch (
                 FileNotFoundException e) {

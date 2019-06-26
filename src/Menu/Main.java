@@ -1,5 +1,6 @@
 package Menu;
 
+import Shop.Shop;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -19,7 +20,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-
+        Shop shop=new Shop();
         Graphics.graphics(args);
     }
 

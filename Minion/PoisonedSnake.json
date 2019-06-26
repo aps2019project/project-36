@@ -6,7 +6,7 @@
   "AP": 6,
   "classType": "Ranged",
   "range": 4,
-  "specialPower": "",
+  "specialPower": null,
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
   "desc": "poisonBuff for enemy 3 times",
