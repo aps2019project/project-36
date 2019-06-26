@@ -1,7 +1,6 @@
 package Menu;
 
 import Shop.ShopMenu;
-import com.google.gson.Gson;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,9 +18,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
-import java.io.*;
-import Shop.Shop;
 import Consts.Consts;
+import Shop.Shop;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ShopMenuView {
     private Group shopMenuRoot;
@@ -71,6 +73,7 @@ public class ShopMenuView {
     private ImageView cardButtonImageView = new ImageView(buttonImage);
     private ImageView cardButtonImageView1 = new ImageView(buttonImage1);
 
+
     private ImageView backgroundImageView = new ImageView(shopBackgroundImage);
 
 
@@ -79,12 +82,10 @@ public class ShopMenuView {
     MediaPlayer clickedPlayer= new MediaPlayer (mouseClicked);
     MediaPlayer enteredPlayer= new MediaPlayer (mouseEntered);
 
-
-
     public ShopMenuView() {
 
         enteredPlayer.setVolume(0.1);
-        this.shopMenuRoot = new Group();
+        shopMenuRoot = new Group();
         backgroundImageView.setFitHeight(Consts.height);
         backgroundImageView.setFitWidth(Consts.width);
         shopMenuScene = new Scene(shopMenuRoot, Consts.width, Consts.height);
@@ -301,7 +302,6 @@ public class ShopMenuView {
         });
 
 
-
         showButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -356,9 +356,10 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                buyButtonClicked();
+                buyButtonClicked ();
             }
         });
+
 
         searchButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
@@ -377,6 +378,46 @@ public class ShopMenuView {
             }
         });
 
+        Button exit = new Button("");
+        try {
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
+            ImageView exitButtonImageView = new ImageView(image);
+            exitButtonImageView.setFitWidth(50);
+            exitButtonImageView.setFitHeight(50);
+            exitButtonImageView.setX(10);
+            exitButtonImageView.setY(10);
+            shopMenuRoot.getChildren().add(exitButtonImageView);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Image image1 = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
+            ImageView exitButtonImageView1 = new ImageView(image1);
+            exitButtonImageView1.setFitWidth(50);
+            exitButtonImageView1.setFitHeight(50);
+            exitButtonImageView1.setX(10);
+            exitButtonImageView1.setY(10);
+            shopMenuRoot.getChildren().add(exitButtonImageView1);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(20, 20);
+        exit.setOpacity(0);
+        shopMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+                //todo
+                //faqat be safheye qabl bargarde na be main menu
+            }
+        });
 
     }
 
@@ -637,7 +678,7 @@ public class ShopMenuView {
         TextField wanted=new TextField ();
         Label label=new Label("What are you looking for?" );
         label.setTextFill (Color.BLACK);
-        label.setFont (Font.font("Verdana", FontWeight.BOLD,FontPosture.REGULAR, 20));
+        label.setFont (Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
         label.relocate (320,300);
         wanted.setPrefSize (200, 50);
         label.setLabelFor (wanted);
@@ -647,5 +688,4 @@ public class ShopMenuView {
 
 
     }
-
 }
