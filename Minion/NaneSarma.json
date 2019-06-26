@@ -1,0 +1,14 @@
+{
+  "name": "NaneSarma",
+  "price": 500,
+  "MP": 3,
+  "HP": 3,
+  "AP": 4,
+  "classType": "Ranged",
+  "range": 5,
+  "specialPower": null,
+  "specialPowerActivate": "STUN",
+  "type": "Minion",
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
+}

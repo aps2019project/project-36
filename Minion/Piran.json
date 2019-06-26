@@ -1,0 +1,14 @@
+{
+  "name": "TuranLancer",
+  "price": 400,
+  "MP": 8,
+  "HP": 20,
+  "AP": 12,
+  "classType": "Melee",
+  "range": "",
+  "specialPower": null,
+  "specialPowerActivate": null,
+  "type": "Minion",
+  "desc": "no poison",
+  "extraIntByTypeOfBuffNeeded":0
+}

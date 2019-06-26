@@ -1,0 +1,14 @@
+{
+  "name": "WhiteWolf",
+  "price": 400,
+  "MP": 5,
+  "HP": 8,
+  "AP": 2,
+  "classType": "Melee",
+  "range": 0,
+  "specialPower": null,
+  "specialPowerActivate": "ON_ATTACK",
+  "type": "Minion",
+  "desc": "HP decrease in Minion attack",
+  "extraIntByTypeOfBuffNeeded":0
+}

@@ -1,0 +1,14 @@
+{
+  "name": "GreatMagician",
+  "price": 550,
+  "MP": 6,
+  "HP": 6,
+  "AP": 6,
+  "classType": "Ranged",
+  "range": 5,
+  "specialPower": null,
+  "specialPowerActivate": "Passive",
+  "type": "Minion",
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
+}

@@ -1,0 +1,14 @@
+{
+  "name": "ShahGhool",
+  "price": 600,
+  "MP": 5,
+  "HP": 10,
+  "AP": 4,
+  "classType": "Melee",
+  "range": 7,
+  "specialPower": null,
+  "specialPowerActivate": "Combo",
+  "type": "Minion",
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
+}
