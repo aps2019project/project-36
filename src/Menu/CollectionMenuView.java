@@ -26,6 +26,8 @@ import Player.Collection;
 import Player.Deck;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class CollectionMenuView {
     private Group collectionMenuRoot;
@@ -40,7 +42,6 @@ public class CollectionMenuView {
     private Button showAllDecksButton = new Button("Show All Decks");
     private Button createDeckButton = new Button("Create Deck");
     private Button deleteDeckButton = new Button("Delete Deck");
-    private Button helpButton = new Button("Help");
     private Button showButton= new Button("Show");
     private Button addCardButton= new Button("Add Card");
     private Button removeCardButton= new Button("Remove Card");
@@ -54,7 +55,6 @@ public class CollectionMenuView {
     private Label showAllDecksLabel = new Label("Show All Decks");
     private Label createDeckLabel = new Label("Create Deck");
     private Label deleteDeckLabel = new Label("Delete Deck");
-    private Label helpLabel = new Label("Help");
     private Label showLabel= new Label ("Show");
     private Label addCardLabel= new Label ("Add Card");
     private Label removeCardLabel = new Label("Remove Card");
@@ -78,8 +78,6 @@ public class CollectionMenuView {
     private ImageView addCardButtonImageView1 = new ImageView(buttonImage1);
     private ImageView removeCardButtonImageView = new ImageView(buttonImage);
     private ImageView removeCardButtonImageView1 = new ImageView(buttonImage1);
-    private ImageView helpButtonImageView = new ImageView(buttonImage);
-    private ImageView helpButtonImageView1 = new ImageView(buttonImage1);
     private ImageView validateDeckButtonImageView = new ImageView(buttonImage);
     private ImageView validateDeckButtonImageView1 = new ImageView(buttonImage1);
     private ImageView showDeckButtonImageView = new ImageView(buttonImage);
@@ -123,11 +121,11 @@ public class CollectionMenuView {
         collectionMenuRoot.getChildren().add(showAllDecksLabel);
 
         //search
-        setImageView(searchButtonImageView, 3);
-        setImageView(searchButtonImageView1, 3);
+        setImageView(searchButtonImageView, 2);
+        setImageView(searchButtonImageView1, 2);
         searchButtonImageView1.setOpacity(0);
-        setButton(searchButton, 3);
-        setLabel(searchLabel, 3);
+        setButton(searchButton, 2);
+        setLabel(searchLabel, 2);
         collectionMenuRoot.getChildren().add(searchButtonImageView);
         collectionMenuRoot.getChildren().add(searchButtonImageView1);
         collectionMenuRoot.getChildren().add(searchLabel);
@@ -167,16 +165,6 @@ public class CollectionMenuView {
         collectionMenuRoot.getChildren().add(addCardLabel);
         collectionMenuRoot.getChildren().add(addCardButton);
 
-        //help button
-        setImageView(helpButtonImageView, 1);
-        setImageView(helpButtonImageView1, 1);
-        helpButtonImageView1.setOpacity(0);
-        setButton(helpButton, 1);
-        setLabel(helpLabel, 1);
-        collectionMenuRoot.getChildren().add(helpButtonImageView);
-        collectionMenuRoot.getChildren().add(helpButtonImageView1);
-        collectionMenuRoot.getChildren().add(helpLabel);
-        collectionMenuRoot.getChildren().add(helpButton);
 
         //show
         setImageView(showButtonImageView, 6);
@@ -223,11 +211,11 @@ public class CollectionMenuView {
         collectionMenuRoot.getChildren().add(validateDeckButton);
 
         //save
-        setImageView(saveButtonImageView, 2);
-        setImageView(saveButtonImageView1, 2);
+        setImageView(saveButtonImageView, 1);
+        setImageView(saveButtonImageView1, 1);
         saveButtonImageView1.setOpacity(0);
-        setButton(saveButton, 2);
-        setLabel(saveLabel, 2);
+        setButton(saveButton, 1);
+        setLabel(saveLabel, 1);
         collectionMenuRoot.getChildren().add(saveButtonImageView);
         collectionMenuRoot.getChildren().add(saveButtonImageView1);
         collectionMenuRoot.getChildren().add(saveLabel);
@@ -253,6 +241,7 @@ public class CollectionMenuView {
         collectionMenuRoot.getChildren().add(selectDeckButtonImageView);
         collectionMenuRoot.getChildren().add(selectDeckButtonImageView1);
         collectionMenuRoot.getChildren().add(selectDeckLabel);
+        collectionMenuRoot.getChildren().add(selectDeckButton);
 
         checkMovements();
 
@@ -520,30 +509,6 @@ public class CollectionMenuView {
         });
 
 
-        helpButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (helpButtonImageView.getOpacity() == 100)
-                    helpButtonImageView.setOpacity(0);
-                if (helpButtonImageView1.getOpacity() == 0)
-                    helpButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        helpButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (helpButtonImageView1.getOpacity() == 100)
-                    helpButtonImageView1.setOpacity(0);
-                if (helpButtonImageView.getOpacity() == 0)
-                    helpButtonImageView.setOpacity(100);
-            }
-        });
 
         mainMenuButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -680,13 +645,6 @@ public class CollectionMenuView {
             }
         });
 
-        helpButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-            }
-        });
 
         searchButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
@@ -825,6 +783,47 @@ public class CollectionMenuView {
                 //todo
             }
         });
+
+
+        Button exit = new Button("");
+        try {
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
+            ImageView exitButtonImageView = new ImageView(image);
+            exitButtonImageView.setFitWidth(50);
+            exitButtonImageView.setFitHeight(50);
+            exitButtonImageView.setX(10);
+            exitButtonImageView.setY(10);
+            collectionMenuRoot.getChildren().add(exitButtonImageView);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Image image1 = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
+            ImageView exitButtonImageView1 = new ImageView(image1);
+            exitButtonImageView1.setFitWidth(50);
+            exitButtonImageView1.setFitHeight(50);
+            exitButtonImageView1.setX(10);
+            exitButtonImageView1.setY(10);
+            collectionMenuRoot.getChildren().add(exitButtonImageView1);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(20, 20);
+        exit.setOpacity(0);
+        collectionMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+            }
+        });
+        //faqat be safheye qabl bargarde na be main menu
     }
 
     public void setImageView(ImageView buttonImageView, int n) {

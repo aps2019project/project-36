@@ -19,6 +19,8 @@ import Consts.Consts;
 import javax.sound.midi.Receiver;
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class BattleMenuView {
     private Group battleMenuRoot;
@@ -30,12 +32,10 @@ public class BattleMenuView {
 
     private Button singlePlayerButton = new Button("Single Player");
     private Button multiPlayerButton = new Button("Multi Player");
-    private Button helpButton = new Button("Help");
     private Button mainMenuButton= new Button("Home");
 
     private Label singlePlayerLabel = new Label("Single Player");
     private Label multiPlayerLabel = new Label("Multi Player");
-    private Label helpLabel = new Label("Help");
     private Label mainMenuLabel= new Label ("Home");
 
     private final int buttonSizeWidth = 250;
@@ -47,8 +47,6 @@ public class BattleMenuView {
     private ImageView multiPlayerButtonImageView1 = new ImageView(buttonImage1);
     private ImageView mainMenuButtonImageView = new ImageView(buttonImage);
     private ImageView mainMenuButtonImageView1 = new ImageView(buttonImage1);
-    private ImageView helpButtonImageView = new ImageView(buttonImage);
-    private ImageView helpButtonImageView1 = new ImageView(buttonImage1);
 
     private ImageView backgroundImageView = new ImageView(battleBackgroundImage);
 
@@ -89,16 +87,6 @@ public class BattleMenuView {
         battleMenuRoot.getChildren().add(multiPlayerLabel);
         battleMenuRoot.getChildren().add(multiPlayerButton);
 
-        //help button
-        setImageView(helpButtonImageView, 3);
-        setImageView(helpButtonImageView1, 3);
-        helpButtonImageView1.setOpacity(0);
-        setButton(helpButton, 3);
-        setLabel(helpLabel, 3);
-        battleMenuRoot.getChildren().add(helpButtonImageView);
-        battleMenuRoot.getChildren().add(helpButtonImageView1);
-        battleMenuRoot.getChildren().add(helpLabel);
-        battleMenuRoot.getChildren().add(helpButton);
 
         //main menu
         setImageView(mainMenuButtonImageView, 0);
@@ -175,31 +163,6 @@ public class BattleMenuView {
         });
 
 
-        helpButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (helpButtonImageView.getOpacity() == 100)
-                    helpButtonImageView.setOpacity(0);
-                if (helpButtonImageView1.getOpacity() == 0)
-                    helpButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        helpButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (helpButtonImageView1.getOpacity() == 100)
-                    helpButtonImageView1.setOpacity(0);
-                if (helpButtonImageView.getOpacity() == 0)
-                    helpButtonImageView.setOpacity(100);
-            }
-        });
-
         mainMenuButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -250,14 +213,46 @@ public class BattleMenuView {
             }
         });
 
-        helpButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+        Button exit = new Button("");
+        try {
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
+            ImageView exitButtonImageView = new ImageView(image);
+            exitButtonImageView.setFitWidth(50);
+            exitButtonImageView.setFitHeight(50);
+            exitButtonImageView.setX(10);
+            exitButtonImageView.setY(10);
+            battleMenuRoot.getChildren().add(exitButtonImageView);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Image image1 = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
+            ImageView exitButtonImageView1 = new ImageView(image1);
+            exitButtonImageView1.setFitWidth(50);
+            exitButtonImageView1.setFitHeight(50);
+            exitButtonImageView1.setX(10);
+            exitButtonImageView1.setY(10);
+            battleMenuRoot.getChildren().add(exitButtonImageView1);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(20, 20);
+        exit.setOpacity(0);
+        battleMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+                //todo
+                //faqat be safheye qabl bargarde na be main menu
             }
         });
-
     }
 
     public void setImageView(ImageView buttonImageView, int n) {
