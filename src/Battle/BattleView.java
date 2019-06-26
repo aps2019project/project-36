@@ -16,6 +16,7 @@ import javafx.scene.effect.Glow;
 import javafx.scene.effect.PerspectiveTransform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -32,6 +33,11 @@ import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
 public class BattleView {
+
+    private boolean insertClicked;
+    private boolean moveClicked;
+    private int movedFromX, movedFromY;
+    private int insertPosition;
 
     private int finalHandCard = 6;
 
@@ -162,8 +168,8 @@ public class BattleView {
             }
             handImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/lesson_ring_glow@2x.png"));
             DeckImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/replace_background@2x.png"));
-            handImage = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/lesson_ring_glow@2x.png"));
-            DeckImage = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/replace_background@2x.png"));
+            handImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/lesson_ring_glow@2x.png"));
+            DeckImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/replace_background@2x.png"));
             //battleBoardImage = new Image(new FileInputStream("pics/replace_background@2x.png"));
         } catch (
                 FileNotFoundException e) {
@@ -288,7 +294,7 @@ public class BattleView {
                 rectangle[i][j] = new Rectangle((Consts.width - (2 * 8) - (cellSize * 9)) / 2 + (cellSize + 2) * i,
                         (Consts.height - (2 * 4) - (cellSize * 5)) / 2 + (cellSize + 2) * j,cellSize , cellSize);
                 rectangle[i][j].setFill(javafx.scene.paint.Color.rgb(143, 254, 250));
-                rectangle[i][j].setOpacity(0.2);
+                rectangle[i][j].setOpacity(0.05);
             }
             battleRoot.getChildren().addAll(rectangle[i]);
         }
@@ -396,65 +402,9 @@ public class BattleView {
                     cardHandImageViews[x].setFitHeight(150);
                     cardHandImageViews[x].relocate(cardHandImageViews[x].getLayoutX(), cardHandImageViews[x].getLayoutY() - 30);
 
-                    for (int i = 0; i < currentMap.getCardsInMap().size(); i++){
-                        for (int j = 0; j < 9; j++){
-                            for (int k = 0; k < 5; k++){
-                                if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) + abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) <= 1) {
-                                    rectangle[j][k].setOpacity(0.5);
-                                }
-                                else if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) == 1 && abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) == 1){
-                                    rectangle[j][k].setOpacity(0.5);
-                                }
-                            }
-                        }
-                    }
-
-                    for (int k = 0; k < 9; k++) {
-                        for (int t = 0; t < 5; t++){
-                            int q = k, w = t;
-                            cell[k][t].setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent mouseEvent) {
-                                    handImageViews[x].relocate(handX + x * (handSize + 10), handY);
-                                    handImageViews[x].setFitHeight(handSize);
-                                    handImageViews[x].setFitWidth(handSize);
-
-                                    for (int i = 0; i < player1.getMainDeck().getCards().size(); i++) {
-                                        if (cardsImageView[i].equals(cardHandImageViews[x])) {
-                                            currentMap.addToCardsInMap(player1.getMainDeck().getCards().get(i));
-                                            Cell cellA = new Cell();
-                                            cellA.setX(q);
-                                            cellA.setY(w);
-                                            player1.getMainDeck().getCards().get(i).setCell(cellA);
-                                            cardsImageView[i].relocate(cell[q][w].getLayoutX() - 23, cell[q][w].getLayoutY() - 65);
-                                            for (int h = 0; h < player1.getMainDeck().getCards().size(); h++) {
-                                                if (!cardsImageView[h].isVisible()){
-                                                    cardHandImageViews[x] = new ImageView();
-                                                    cardHandImageViews[x] = cardsImageView[h];
-                                                    cardHandImageViews[x].setVisible(true);
-                                                    cardHandImageViews[x].relocate(handButtons[x].getLayoutX() - 13, handButtons[x].getLayoutY() - 25);
-                                                    //h =
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    /*for (Card b: player1.getMainDeck().getCards()) {
-                                        if (b.equals())
-                                    }
-                                    cardHandImageViews[x].relocate(cell[q][w].getLayoutX() - 23, cell[q][w].getLayoutY() - 65);*/
-                                    for (int j = 0; j < 9; j++){
-                                        for (int k = 0; k < 5; k++){
-                                            //if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) + abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) <= 1) {
-                                            rectangle[j][k].setOpacity(0.05);
-                                        }
-                                    }
-
-
-                                }
-                            });
-                        }
-                    }
+                    colorNearBy();
+                    insertClicked = true;
+                    insertPosition = x;
                 }
             });
         }
@@ -466,13 +416,12 @@ public class BattleView {
                     @Override
                     public void handle(MouseEvent event) {
 
-                        if (rectangle[x][y].getOpacity() != 0.5) {
+                        if (rectangle[x][y].getOpacity() != 0.25) {
                             Glow glow = new Glow();
                             glow.setLevel(1000);
                             rectangle[x][y].setEffect(glow);
                             rectangle[x][y].setOpacity(0.3);
                         }
-
                     }
                 });
 
@@ -481,18 +430,112 @@ public class BattleView {
                     @Override
                     public void handle(MouseEvent event) {
 
-                        if (rectangle[x][y].getOpacity() != 0.5) {
+                        if (rectangle[x][y].getOpacity() != 0.25) {
                             rectangle[x][y].setEffect(null);
                             rectangle[x][y].setOpacity(0.05);
                         }
 
                     }
                 });
+
+
+                cell[i][j].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if (insertClicked){
+                            handImageViews[insertPosition].relocate(handX + insertPosition * (handSize + 10), handY);
+                            handImageViews[insertPosition].setFitHeight(handSize);
+                            handImageViews[insertPosition].setFitWidth(handSize);
+
+                            for (int i = 0; i < player1.getMainDeck().getCards().size(); i++) {
+                                if (cardsImageView[i].equals(cardHandImageViews[insertPosition])) {
+                                    currentMap.addToCardsInMap(player1.getMainDeck().getCards().get(i));
+                                    Cell cellA = new Cell();
+                                    cellA.setX(x);
+                                    cellA.setY(y);
+                                    player1.getMainDeck().getCards().get(i).setCell(cellA);
+                                    cardsImageView[i].relocate(rectangle[x][y].getX() - 23, rectangle[x][y].getY() - 65);
+                                    for (int h = 0; h < player1.getMainDeck().getCards().size(); h++) {
+                                        if (!cardsImageView[h].isVisible()){
+                                            cardHandImageViews[insertPosition] = new ImageView();
+                                            cardHandImageViews[insertPosition] = cardsImageView[h];
+                                            cardHandImageViews[insertPosition].setVisible(true);
+                                            cardHandImageViews[insertPosition].relocate(handButtons[insertPosition].getLayoutX() - 13, handButtons[insertPosition].getLayoutY() - 25);
+                                        }
+                                    }
+                                }
+                            }
+                            for (int j = 0; j < 9; j++){
+                                for (int k = 0; k < 5; k++){
+                                    rectangle[j][k].setOpacity(0.05);
+                                }
+                            }
+                            insertClicked = false;
+                        }
+                        else{
+                        if (moveClicked) {
+                            int h = -1;
+                            for (Card i : player1.getMainDeck().getCards()) {
+                                h++;
+                                if (i.getCell() != null && i.getCell().getX() == movedFromX && i.getCell().getY() == movedFromY) {
+                                    cardsImageView[h].relocate(rectangle[x][y].getX() - 40, rectangle[x][y].getY() - 65);
+                                    Cell cell = new Cell();
+                                    cell.setX(x);
+                                    cell.setY(y);
+                                    i.setCell(cell);
+                                    for (int j = 0; j < 9; j++) {
+                                        for (int k = 0; k < 5; k++) {
+                                            rectangle[j][k].setOpacity(0.05);
+                                        }
+                                    }
+                                    moveClicked = false;
+                                }
+                            }
+                        }
+                        else if(!moveClicked) {
+                            for (int j = 0; j < 9; j++){
+                                for (int k = 0; k < 5; k++){
+                                    if (abs(x - j) + abs(y - k) <= 1) {
+                                        rectangle[j][k].setOpacity(0.25);
+                                    }
+                                    else if (abs(x - j) == 1 && abs(y - k) == 1){
+                                        rectangle[j][k].setOpacity(0.25);
+                                    }
+                                }
+                            }
+                            moveClicked = true;
+                            movedFromX = x;
+                            movedFromY = y;
+                        }
+                    }}
+                });
             }
         }
+
+        endTurnButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                currentGame.checkIsOver();
+                currentGame.changeTurn();
+            }
+        });
     }
 
 
+    public void colorNearBy() {
+        for (int i = 0; i < currentMap.getCardsInMap().size(); i++){
+            for (int j = 0; j < 9; j++){
+                for (int k = 0; k < 5; k++){
+                    if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) + abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) <= 1) {
+                        rectangle[j][k].setOpacity(0.25);
+                    }
+                    else if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) == 1 && abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) == 1){
+                        rectangle[j][k].setOpacity(0.25);
+                    }
+                }
+            }
+        }
+    }
     public void setHand() {
 
 

@@ -6,7 +6,7 @@
   "AP": 8,
   "classType": "Melee",
   "range": 0,
-  "specialPower": null,
+  "specialPower": "",
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
   "desc": "no negative buff",
