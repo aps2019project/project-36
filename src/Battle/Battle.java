@@ -25,6 +25,7 @@ import static java.lang.Math.abs;
 
 public class Battle {
     Game game = new Game();
+    Map map = new Map();
     Player currentPlayer = new Player();
     Card selectedCard;
     Item selectedItem = new Item();
@@ -37,25 +38,25 @@ public class Battle {
             System.out.println("Player 2 HealthPoint : " + game.getPlayer2().getMainDeck().getHero().getHP());
         }
         if (game.getMode() == 2) {
-            System.out.println("flag's position" + Map.getFlagsInMap().get(0).getCell().getX() + 1 + " "
-                    + Map.getFlagsInMap().get(0).getCell().getY() + 1);
-            if (Map.getFlagsInMap().get(0).getOwner().equals(game.getPlayer1())) {
+            System.out.println("flag's position" + map.getFlagsInMap().get(0).getCell().getX() + 1 + " "
+                    + map.getFlagsInMap().get(0).getCell().getY() + 1);
+            if (map.getFlagsInMap().get(0).getOwner().equals(game.getPlayer1())) {
                 System.out.println("flag's owner is player 1");
             } else
                 System.out.println("flag's owner is player 2");
         }
         if (game.getMode() == 3) {
-            for (int i = 0; i < Map.getFlagsInMap().size(); i++) {
-                System.out.println("flag owner's card id is : " + Map.getFlagsInMap().get(i).getOwner().getCardID());
-                System.out.println("from team : " + Map.getFlagsInMap().get(i).getOwner().getOwner().getUsername());
+            for (int i = 0; i < map.getFlagsInMap().size(); i++) {
+                System.out.println("flag owner's card id is : " + map.getFlagsInMap().get(i).getOwner().getCardID());
+                System.out.println("from team : " + map.getFlagsInMap().get(i).getOwner().getOwner().getUsername());
             }
         }
     }
 
     public void showMyMinions(Player player) {
         for(Card card:player.getMainDeck ().getCards ()){
-            for(Card cardInMap:Map.getCardsInMap ()){
-                if(card.getCardID ().compareToIgnoreCase (cardInMap.getCardID ())== 0){
+            for(Card cardInmap:map.getCardsInMap ()){
+                if(card.getCardID ().compareToIgnoreCase (cardInmap.getCardID ())== 0){
                     System.out.println ("Card ID: "+ card.getName ()+ "- Health: "+card.getHP ()+"- Location: "+
                             card.getCell ().getX ()+" "+card.getCell ().getY ()+ "- Power: "+card.getAP ());
                 }
@@ -64,12 +65,12 @@ public class Battle {
     }
 
     public void showOpponentMinions(Player player) {
-       for(Card cardInMap:Map.getCardsInMap ()){
-           if(!(cardInMap.getOwner ().equals (player))){
-               System.out.println ("Card ID: "+ cardInMap.getName ()+ "- Health: "+cardInMap.getHP ()+"- Location: "+
-                       cardInMap.getCell ().getX ()+" "+cardInMap.getCell ().getY ()+ "- Power: "+cardInMap.getAP ());
-           }
-       }
+        for(Card cardInmap:map.getCardsInMap ()){
+            if(!(cardInmap.getOwner ().equals (player))){
+                System.out.println ("Card ID: "+ cardInmap.getName ()+ "- Health: "+cardInmap.getHP ()+"- Location: "+
+                        cardInmap.getCell ().getX ()+" "+cardInmap.getCell ().getY ()+ "- Power: "+cardInmap.getAP ());
+            }
+        }
     }
 
     public void showCardInfo(Card card) {
@@ -86,7 +87,7 @@ public class Battle {
             System.out.println ("AP: " + card.getAP ());
             System.out.println ("MP: " + card.getMP ());
             System.out.println ("Range: "+card.getTargetArea () );
-           //todo System.out.println ("ComboAbility: "+card.getComboAttack );
+            //todo System.out.println ("ComboAbility: "+card.getComboAttack );
             System.out.println ("Cost: "+card.getPrice () );
             System.out.println ("Desc: "+card.getDesc () );
         }
@@ -112,9 +113,9 @@ public class Battle {
         cell.setX(x);
         if (abs(cell.getX() - selectedCard.getCell().getX()) +
                 abs(cell.getY() - selectedCard.getCell().getY()) > 2 || selectedCard.getName().equals("Arash")
-        || selectedCard.getName().equals("Legend")
-        || selectedCard.getName().equals("Esfandiar")
-        || selectedCard.getName().equals("Rostam")) {
+                || selectedCard.getName().equals("Legend")
+                || selectedCard.getName().equals("Esfandiar")
+                || selectedCard.getName().equals("Rostam")) {
             //age betune bishtar az 2 khune bere barresi she
             selectedCard.setCell(cell);
         } else
@@ -161,16 +162,16 @@ public class Battle {
                 }
             }
             if (flag_for_minion_attack) {
-                for (int i = 0; i < Map.getCardsInMap().size(); i++) {
-                    if (Map.getCardsInMap().contains(selectedCard)) {
+                for (int i = 0; i < map.getCardsInMap().size(); i++) {
+                    if (map.getCardsInMap().contains(selectedCard)) {
                         flag_for_soldier_validity = true;
-                        for (int j = 0; j < Map.getCardsInMap().size(); j++) {
-                            if (Map.getCardsInMap().contains(defender)) {
+                        for (int j = 0; j < map.getCardsInMap().size(); j++) {
+                            if (map.getCardsInMap().contains(defender)) {
                                 flag_for_soldier_validity = true;
-                                x1 = Map.getCardsInMap().get(i).getCell().getX();
-                                y1 = Map.getCardsInMap().get(i).getCell().getY();
-                                x2 = Map.getCardsInMap().get(j).getCell().getX();
-                                y2 = Map.getCardsInMap().get(j).getCell().getX();
+                                x1 = map.getCardsInMap().get(i).getCell().getX();
+                                y1 = map.getCardsInMap().get(i).getCell().getY();
+                                x2 = map.getCardsInMap().get(j).getCell().getX();
+                                y2 = map.getCardsInMap().get(j).getCell().getX();
                                 if (Card.getCards().get(i).getTargetArea().equals("two")) {
                                     if (abs(x1 - x2) <= 1 && abs(y1 - y2) <= 1) {
                                         flag_for_attack = true;
@@ -184,10 +185,10 @@ public class Battle {
 
                                 if (Card.getCards().get(i).getTargetArea().equals("all_in_one_column")) {
                                     ArrayList<Integer> Ys_In_Same_Column = new ArrayList();
-                                    for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                                        if (Map.getCardsInMap().get(k).getCell().getY() == y1
-                                                && Map.getCardsInMap().get(k).getOwner() != selectedCard.getOwner()) {
-                                            Ys_In_Same_Column.add(Map.getCardsInMap().get(k).getCell().getY());
+                                    for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                                        if (map.getCardsInMap().get(k).getCell().getY() == y1
+                                                && map.getCardsInMap().get(k).getOwner() != selectedCard.getOwner()) {
+                                            Ys_In_Same_Column.add(map.getCardsInMap().get(k).getCell().getY());
                                         }
                                     }
                                     if (Ys_In_Same_Column.contains(y2)) {
@@ -197,9 +198,9 @@ public class Battle {
 
                                 if (Card.getCards().get(i).getTargetArea().equals("enemy")) {
                                     ArrayList<Integer> enemies = new ArrayList();
-                                    for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                                        if (Map.getCardsInMap().get(k).getOwner() != selectedCard.getOwner()) {
-                                            enemies.add(Map.getCardsInMap().get(k).getCell().getY());
+                                    for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                                        if (map.getCardsInMap().get(k).getOwner() != selectedCard.getOwner()) {
+                                            enemies.add(map.getCardsInMap().get(k).getCell().getY());
                                         }
                                     }
                                     if (enemies.contains(y2)) {
@@ -209,9 +210,9 @@ public class Battle {
 
                                 if (Card.getCards().get(i).getTargetArea().equals("friend")) {
                                     ArrayList<Integer> friends = new ArrayList();
-                                    for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                                        if (Map.getCardsInMap().get(k).getOwner() == selectedCard.getOwner()) {
-                                            friends.add(Map.getCardsInMap().get(k).getCell().getY());
+                                    for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                                        if (map.getCardsInMap().get(k).getOwner() == selectedCard.getOwner()) {
+                                            friends.add(map.getCardsInMap().get(k).getCell().getY());
                                         }
                                     }
                                     if (friends.contains(y2)) {
@@ -221,10 +222,10 @@ public class Battle {
 
                                 if (Card.getCards().get(i).getTargetArea().equals("eight_arounds")) {
                                     ArrayList<Cell> around_cells = new ArrayList();
-                                    for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                                        if (Map.getCardsInMap().get(k).getCell().getX() - x1 <= 2
-                                                && Map.getCardsInMap().get(k).getCell().getY() - y1 <= 2) {
-                                            around_cells.add(Map.getCardsInMap().get(k).getCell());
+                                    for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                                        if (map.getCardsInMap().get(k).getCell().getX() - x1 <= 2
+                                                && map.getCardsInMap().get(k).getCell().getY() - y1 <= 2) {
+                                            around_cells.add(map.getCardsInMap().get(k).getCell());
                                         }
                                     }
                                     if (around_cells.contains(defender)) {
@@ -239,10 +240,10 @@ public class Battle {
                 }
 
                 if (flag_for_attack && flag_for_soldier_validity) {
-                    for (int i = 0; i < Map.getCardsInMap().size(); i++) {
-                        if (Map.getCardsInMap().contains(selectedCard)) {
-                            Map.getCardsInMap().get(i).getCell().setX(x2);
-                            Map.getCardsInMap().get(i).getCell().setY(y2);
+                    for (int i = 0; i < map.getCardsInMap().size(); i++) {
+                        if (map.getCardsInMap().contains(selectedCard)) {
+                            map.getCardsInMap().get(i).getCell().setX(x2);
+                            map.getCardsInMap().get(i).getCell().setY(y2);
                             defender.setEffect(defender, selectedCard);
                             if (defender.getType().equals("Minion")) {
                                 Minion defender2 = new Minion();
@@ -318,14 +319,14 @@ public class Battle {
                 }
             }
             if (flag_for_minion_attack) {
-                for (int i = 0; i < Map.getCardsInMap().size(); i++) {
-                    if (Map.getCardsInMap().contains(selectedCard)) {
+                for (int i = 0; i < map.getCardsInMap().size(); i++) {
+                    if (map.getCardsInMap().contains(selectedCard)) {
                         flag_for_soldier_validity = true;
-                        for (int j = 0; j < Map.getCardsInMap().size(); j++) {
-                            if (Map.getCardsInMap().contains(defender)) {
+                        for (int j = 0; j < map.getCardsInMap().size(); j++) {
+                            if (map.getCardsInMap().contains(defender)) {
                                 flag_for_soldier_validity = true;
-                                x1 = Map.getCardsInMap().get(i).getCell().getX();
-                                y1 = Map.getCardsInMap().get(i).getCell().getY();
+                                x1 = map.getCardsInMap().get(i).getCell().getX();
+                                y1 = map.getCardsInMap().get(i).getCell().getY();
                                 for (int k = 0; k < cardIDs.size(); i++) {
                                     for (Card c : Card.getCards()) {
                                         if (c.getCardID().equals(cardIDs.get(k))) {
@@ -339,10 +340,10 @@ public class Battle {
                             }
                             chechTypeOfMinion(selectedCard, defender);
                             if (flag_for_attack && flag_for_soldier_validity) {
-                                for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                                    if (Map.getCardsInMap().contains(selectedCard)) {
-                                        Map.getCardsInMap().get(k).getCell().setX(x2);
-                                        Map.getCardsInMap().get(k).getCell().setY(y2);
+                                for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                                    if (map.getCardsInMap().contains(selectedCard)) {
+                                        map.getCardsInMap().get(k).getCell().setX(x2);
+                                        map.getCardsInMap().get(k).getCell().setY(y2);
                                         defender.setEffect(defender, selectedCard);
                                         if (defender.getType().equals("Minion")) {
                                             Minion defender2 = new Minion();
@@ -377,7 +378,7 @@ public class Battle {
         Card defender = null;
 
         if (order.contains("On Spawn")) {
-            if (Map.getCardsInMap().contains(selectedCard)) {
+            if (map.getCardsInMap().contains(selectedCard)) {
                 selectedCard.setSpecialPowerActivated(true);
             }
         }
@@ -414,7 +415,7 @@ public class Battle {
         boolean flag = false;
         for (int i = 0; i < currentPlayer.getMainDeck().getHand().getCards().size(); i++) {
             if (cardName.equals(currentPlayer.getMainDeck().getHand().getCards().get(i).getName())) {
-                for (Card card : Map.getCardsInMap()) {
+                for (Card card : map.getCardsInMap()) {
                     if (abs(card.getCell().getX() - x) + abs(card.getCell().getY() - y) <= 1) {
                         if (game.getPlayer1() == currentPlayer) {
                             if (currentPlayer.getMainDeck().getHand().getCards().get(i).getMP() <= game.getManaPlayer1()) {
@@ -431,7 +432,7 @@ public class Battle {
                             cell.setX(x);
                             cell.setY(y);
                             currentPlayer.getMainDeck().getHand().getCards().get(i).setCell(cell);
-                            Map.addToCardsInMap(currentPlayer.getMainDeck().getHand().getCards().get(i));
+                            map.addToCardsInMap(currentPlayer.getMainDeck().getHand().getCards().get(i));
                             currentPlayer.getMainDeck().getHand().removeCard(card);
                             currentPlayer.getMainDeck().removeFromCards(card);
                             currentPlayer.getMainDeck().getHand().addNewCard(currentPlayer.getMainDeck().getHand().getNextCard());
@@ -516,11 +517,11 @@ public class Battle {
         if (rand == 1) {
             rand = getNumOfCardsInField(currentPlayer, random);
             int cnt = 0;
-            for (int i = 0; i < Map.getCardsInMap().size(); i++) {
-                if (Map.getCardsInMap().get(i).getOwner().equals(currentPlayer)) {
+            for (int i = 0; i < map.getCardsInMap().size(); i++) {
+                if (map.getCardsInMap().get(i).getOwner().equals(currentPlayer)) {
                     cnt++;
                     if (cnt - 1 == rand) {
-                        setSelectedCard(Map.getCardsInMap().get(i).getCardID());
+                        setSelectedCard(map.getCardsInMap().get(i).getCardID());
                         moveTo(random.nextInt(8), random.nextInt(4));
                     }
                 }
@@ -534,11 +535,11 @@ public class Battle {
             }
             rand = getNumOfCardsInField(opponent, random);
             cnt = 0;
-            for (int i = 0; i < Map.getCardsInMap().size(); i++) {
-                if (Map.getCardsInMap().get(i).getOwner().equals(opponent)) {
+            for (int i = 0; i < map.getCardsInMap().size(); i++) {
+                if (map.getCardsInMap().get(i).getOwner().equals(opponent)) {
                     cnt++;
                     if (cnt - 1 == rand) {
-                        attack(Map.getCardsInMap().get(i));
+                        attack(map.getCardsInMap().get(i));
                     }
                 }
             }
@@ -548,7 +549,7 @@ public class Battle {
     public void use(Item item, int x, int y) {
         boolean used= false;
         boolean change= false;
-        for (Card card : Map.getCardsInMap()) {
+        for (Card card : map.getCardsInMap()) {
             if (card.getCell().getX() == x && card.getCell().getY() == y) {
                 switch(card.getName ()){
                     case "NamoosSepar":
@@ -585,12 +586,12 @@ public class Battle {
                         break;
                     case "TajDanaei":
                         if(game.getTurn () > 2){
-                           if(card.getOwner ().getUsername ().compareToIgnoreCase (game.getPlayer1 ().getUsername ())== 0){
-                               game.setManaPlayer1 (game.getManaPlayer1 ()+ 1);
-                           }
-                           else{
-                               game.setManaPlayer2 (game.getManaPlayer2 ()+ 1);
-                           }
+                            if(card.getOwner ().getUsername ().compareToIgnoreCase (game.getPlayer1 ().getUsername ())== 0){
+                                game.setManaPlayer1 (game.getManaPlayer1 ()+ 1);
+                            }
+                            else{
+                                game.setManaPlayer2 (game.getManaPlayer2 ()+ 1);
+                            }
                         }
                         break;
                     case "MajoonRooinTan":
@@ -639,15 +640,15 @@ public class Battle {
                             card.setAP (card.getAP () - 5);
                         break;
                     default:
-                            if(item.getChangeHP ()!= 0){
-                                card.setHP (card.getHP ()+item.getChangeHP ());
-                            }
-                            if(item.getChangeMP ()!= 0){
-                                card.setMP (card.getMP ()+item.getChangeMP ());
-                            }
-                            if(item.getChangeAP ()!= 0){
-                                card.setAP (card.getAP ()+item.getChangeAP ());
-                            }
+                        if(item.getChangeHP ()!= 0){
+                            card.setHP (card.getHP ()+item.getChangeHP ());
+                        }
+                        if(item.getChangeMP ()!= 0){
+                            card.setMP (card.getMP ()+item.getChangeMP ());
+                        }
+                        if(item.getChangeAP ()!= 0){
+                            card.setAP (card.getAP ()+item.getChangeAP ());
+                        }
                 }
             }
         }
@@ -660,24 +661,24 @@ public class Battle {
     }
 
     public void help(Player player) {
-        boolean cardInMap= false;
+        boolean cardInmap= false;
         System.out.println ("Cards you haven't played:" );
         for(Card card:player.getMainDeck ().getCards ()){
-            for (Card mapCard:Map.getCardsInMap ()){
+            for (Card mapCard:map.getCardsInMap ()){
                 if(card.getCardID ().compareToIgnoreCase (mapCard.getCardID ())== 0){
-                    cardInMap= true;
+                    cardInmap= true;
                 }
             }
-            if(!cardInMap){
+            if(!cardInmap){
                 System.out.println (card.getName ());
             }
-            cardInMap=false;
+            cardInmap=false;
         }
 
         System.out.println ();
         System.out.println ("You can move these cards:" );
         for(Card card:player.getMainDeck ().getCards ()){
-            for (Card mapCard:Map.getCardsInMap ()){
+            for (Card mapCard:map.getCardsInMap ()){
                 if(card.getCardID ().compareToIgnoreCase (mapCard. getCardID ())== 0){
                     System.out.println (card.getName ());
                 }
@@ -686,7 +687,7 @@ public class Battle {
 
         System.out.println ();
         System.out.println ("You can attack this cards:" );
-        for(Card mapCard: Map.getCardsInMap ()){
+        for(Card mapCard: map.getCardsInMap ()){
             if(!(mapCard.getOwner ().equals (player))){
                 System.out.println (mapCard.getName () );
             }
@@ -696,8 +697,8 @@ public class Battle {
     public int getNumOfCardsInField(Player player, Random random) {
         int cnt = 0;
         int rand;
-        for (int i = 0; i < Map.getCardsInMap().size(); i++) {
-            if (Map.getCardsInMap().get(i).getOwner().equals(player)) {
+        for (int i = 0; i < map.getCardsInMap().size(); i++) {
+            if (map.getCardsInMap().get(i).getOwner().equals(player)) {
                 cnt++;
             }
         }

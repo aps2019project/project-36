@@ -60,21 +60,49 @@ public class Consts {
         return deckStory3;
     }
 
-    public static void setDeck1(Deck deck){
-        deck.addToItems (Shop.buyItemForStoryDeck ("TajDanaei"));
+
+    public static void setBattleDeck(Deck deck) {
+        deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));
+        deck.setHero(deck.getCards().get(deck.getCards().size() - 1));
+
+        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));
+        System.out.println(deck.getCards().get(deck.getCards().size() - 1).getName());
+
         deck.addToCards (Shop.buyCardForStoryDeck ("PersianArcher"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("TuranLancer"));
+        deck.addToItems (Shop.buyItemForStoryDeck ("ShahGhoul"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Eagle"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranSpy"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("BlackDemon"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("OneEyeGiant"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranPrince"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Ashkboos"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianSwordsman"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("LightningBolt"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllPoison"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Dispel"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Sacrifice"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Shock"));
+    }
+
+    public static void setDeck1(Deck deck){
+        //deck.addToItems (Shop.buyItemForStoryDeck ("TajDanaei"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PersianArcher"));
+        //deck.addToCards (Shop.buyCardForStoryDeck ("TuranLancer"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranWand"));
         deck.addToCards (Shop.buyCardForStoryDeck ("BlackDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("OneEyeGiant"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("WhiteWolf"));
+        //deck.addToCards (Shop.buyCardForStoryDeck ("WhiteWolf"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GreatMagician"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));
         deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));
         deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDemon"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));
+        //deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TotalDisarm"));
         deck.addToCards (Shop.buyCardForStoryDeck ("LightningBolt"));
         deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));

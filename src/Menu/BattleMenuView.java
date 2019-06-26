@@ -16,8 +16,6 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import Consts.Consts;
 
-import javax.sound.midi.Receiver;
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -253,6 +251,23 @@ public class BattleMenuView {
                 //faqat be safheye qabl bargarde na be main menu
             }
         });
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(20, 20);
+        exit.setOpacity(0);
+        battleMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+                //todo
+                //faqat be safheye qabl bargarde na be main menu
+            }
+        });
+
     }
 
     public void setImageView(ImageView buttonImageView, int n) {

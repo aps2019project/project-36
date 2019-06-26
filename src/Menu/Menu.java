@@ -35,9 +35,9 @@ public class Menu {
 
 
         //if (input == "1") {
-            MainMenuView menuView = new MainMenuView(input);
-            Graphics.changeScene(menuView.getMainMenuScene());
-            input = "";
+        MainMenuView menuView = new MainMenuView(input);
+        Graphics.changeScene(menuView.getMainMenuScene());
+        input = "";
         //}
 
         /*if (input == "" || input == "1"){

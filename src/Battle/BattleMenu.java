@@ -12,6 +12,7 @@ import Player.ComputerPlayer;
 import java.util.Random;
 
 public class BattleMenu {
+    Map map = new Map();
     private static boolean check = false;
     //mode 1 : kill competitor's hero 2: keep the only flag for six turns 3: collect half of flags
     //kind 1 : Story 2: Custom Game
@@ -37,7 +38,7 @@ public class BattleMenu {
                 multiPlayer (player,computerPlayer,i,7);
                 match.getWinner().changeDaric(match.getWinner().getDaric() + 1500);
             }
-            Map.clearMap();
+            map.clearMap();
         }
         player.setMainDeck (tempDeck);
     }
@@ -51,7 +52,7 @@ public class BattleMenu {
         multiPlayer(player, player2, mode, numOfFlags);
         match.getWinner().changeDaric(match.getWinner().getDaric() + 1000);
         player.setMainDeck (tempDeck);
-        Map.clearMap();
+        map.clearMap();
     }
     public void multiPlayer(Player player1, Player player2, int mode, int numOfFlags){
         Deck tempDeck1;
@@ -157,7 +158,7 @@ public class BattleMenu {
                 match.getWinner ( ).changeDaric (match.getWinner ( ).getDaric ( ) + 1000);
             player1.setMainDeck (tempDeck1);
             player2.setMainDeck (tempDeck2);
-            Map.clearMap ( );
+            map.clearMap ( );
         }
     }
     public void setHand(Player player){
