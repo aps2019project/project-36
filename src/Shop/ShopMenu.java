@@ -4,6 +4,13 @@ import Collective.Card.Card;
 import Collective.Item;
 import Player.Account;
 import Player.ComputerPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+
+import java.awt.*;
 
 public class ShopMenu {
 
@@ -50,6 +57,8 @@ public class ShopMenu {
     }
     public void search(String name) {
         boolean found = false;
+        Text wanted=new Text ();
+        wanted.setFont (Font.font ("Verdana",20));
         for (Card x : Shop.getCards()) {
             if (name.compareToIgnoreCase(x.getName()) == 0) {
                 System.out.println(x.getCardID());
