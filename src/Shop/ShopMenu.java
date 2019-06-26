@@ -4,6 +4,8 @@ import Collective.Card.Card;
 import Collective.Item;
 import Player.Account;
 import Player.ComputerPlayer;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -11,6 +13,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ShopMenu {
 
@@ -57,11 +61,13 @@ public class ShopMenu {
     }
     public void search(String name) {
         boolean found = false;
-        Text wanted=new Text ();
-        wanted.setFont (Font.font ("Verdana",20));
         for (Card x : Shop.getCards()) {
             if (name.compareToIgnoreCase(x.getName()) == 0) {
-                System.out.println(x.getCardID());
+                Text wanted=new Text (x.getCardID());
+                wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 25));
+                wanted.setFill (Color.BLACK);
+                wanted.relocate(400, 320);
+                //System.out.println(x.getCardID());
                 found = true;
                 break;
             }
@@ -69,15 +75,20 @@ public class ShopMenu {
         if (!found) {
             for (Item x : Shop.getItems()) {
                 if (name.compareToIgnoreCase(x.getName()) == 0) {
-                    System.out.println(x.getItemID());
+                    Text wanted=new Text(x.getItemID());
+                    wanted.setFont (Font.font ("Verdana",20));
+                    //System.out.println(x.getItemID());
                     found = true;
                     break;
                 }
             }
         }
         if (!found) {
-            System.out.println("This Card/Item is not in the shop");
+            Text wanted=new Text("This Card/Item is not in the shop");
+            wanted.setFont (Font.font ("Verdana",20));
+            //System.out.println("This Card/Item is not in the shop");
         }
+
     }
 
     public void searchCollection(String name, Account account) {
@@ -103,50 +114,50 @@ public class ShopMenu {
 
     public void buy(String name, Account account) {
         boolean found = false;
-        for (Card card1 : Shop.getCards()) {
-            if (name.compareToIgnoreCase(card1.getName()) == 0) {
-                found = true;
-                if (found) {
-                    if (card1.getPrice() > account.getDaric()) {
-                        System.out.println("You don't have enough money");
-                    } else if (card1.getPrice() <= account.getDaric()) {
-                        System.out.println("You bought this card successfully");
-                        Card card = Shop.makeNewCardByName(card1.getName());
-                        card.setCardID(makeID(card1.getName(), account)); //set card iD
-                        account.getCollection().addToCards(card);
-                        System.out.println (account.getCollection ().getCards ().get (0).getCardID ());
-                        account.changeDaric(account.getDaric() - card1.getPrice());
-
-                    }
-                    break;
-                }
-            }
-        }
-        if (!found) {
-            for (Item x : Shop.getItems()) {
-                if (name.compareToIgnoreCase(x.getName()) == 0 && x.getType ().compareToIgnoreCase ("Collectible")!=0) {
-                    found = true;
-                    if (found) {
-                        if (x.getPrice() > account.getDaric()) {
-                            System.out.println("You don't have enough money.");
-                        } else if (account.getNumberOfItemsOwned() >= 3) {
-                            System.out.println("You can't have more than 3 items.");
-                        } else if (account.getNumberOfItemsOwned() < 3 && x.getPrice() <= account.getDaric()) {
-                            System.out.println("You bought this item successfully");
-                            account.changeDaric(account.getDaric() - x.getPrice());
-                            account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() + 1);
-                            Item item = Shop.makeNewItemByName(x.getName());
-                            item.setItemID(makeID(x.getName(), account));
-                            account.getCollection().addToItems(item);
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-        if (!found) {
-            System.out.println("This Card/Item is not in the shop");
-        }
+//        for (Card card1 : Shop.getCards()) {
+//            if (name.compareToIgnoreCase(card1.getName()) == 0) {
+//                found = true;
+//                if (found) {
+//                    if (card1.getPrice() > account.getDaric()) {
+//                        System.out.println("You don't have enough money");
+//                    } else if (card1.getPrice() <= account.getDaric()) {
+//                        System.out.println("You bought this card successfully");
+//                        Card card = Shop.makeNewCardByName(card1.getName());
+//                        card.setCardID(makeID(card1.getName(), account)); //set card iD
+//                        account.getCollection().addToCards(card);
+//                        System.out.println (account.getCollection ().getCards ().get (0).getCardID ());
+//                        account.changeDaric(account.getDaric() - card1.getPrice());
+//
+//                    }
+//                    break;
+//                }
+//            }
+//        }
+//        if (!found) {
+//            for (Item x : Shop.getItems()) {
+//                if (name.compareToIgnoreCase(x.getName()) == 0 && x.getType ().compareToIgnoreCase ("Collectible")!=0) {
+//                    found = true;
+//                    if (found) {
+//                        if (x.getPrice() > account.getDaric()) {
+//                            System.out.println("You don't have enough money.");
+//                        } else if (account.getNumberOfItemsOwned() >= 3) {
+//                            System.out.println("You can't have more than 3 items.");
+//                        } else if (account.getNumberOfItemsOwned() < 3 && x.getPrice() <= account.getDaric()) {
+//                            System.out.println("You bought this item successfully");
+//                            account.changeDaric(account.getDaric() - x.getPrice());
+//                            account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() + 1);
+//                            Item item = Shop.makeNewItemByName(x.getName());
+//                            item.setItemID(makeID(x.getName(), account));
+//                            account.getCollection().addToItems(item);
+//                        }
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("This Card/Item is not in the shop");
+//        }
 
     }
 
@@ -246,5 +257,6 @@ public class ShopMenu {
         }
         return ++maxNumber;
     }
+
 
 }

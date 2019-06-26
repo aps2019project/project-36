@@ -1,6 +1,11 @@
 package Menu;
 
+import Collective.Card.Card;
+import Collective.Item;
+import Player.Account;
 import Shop.ShopMenu;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import Consts.Consts;
 import Shop.Shop;
@@ -378,47 +384,7 @@ public class ShopMenuView {
             }
         });
 
-        Button exit = new Button("");
-        try {
-            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
-            ImageView exitButtonImageView = new ImageView(image);
-            exitButtonImageView.setFitWidth(50);
-            exitButtonImageView.setFitHeight(50);
-            exitButtonImageView.setX(10);
-            exitButtonImageView.setY(10);
-            shopMenuRoot.getChildren().add(exitButtonImageView);
-
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        try {
-            Image image1 = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
-            ImageView exitButtonImageView1 = new ImageView(image1);
-            exitButtonImageView1.setFitWidth(50);
-            exitButtonImageView1.setFitHeight(50);
-            exitButtonImageView1.setX(10);
-            exitButtonImageView1.setY(10);
-            shopMenuRoot.getChildren().add(exitButtonImageView1);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        exit.setPrefSize(40, 40);
-        exit.relocate(20, 20);
-        exit.setOpacity(0);
-        shopMenuRoot.getChildren().add(exit);
-
-        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-                Menu.secondMenuCommand("exit");
-                //todo
-                //faqat be safheye qabl bargarde na be main menu
-            }
-        });
-
+        setExitButton ();
     }
 
     public void setImageView(ImageView buttonImageView, int n) {
@@ -471,39 +437,103 @@ public class ShopMenuView {
     }
 
     public void buyItemButtonClicked(){
-        Boolean rightPage=true;
-        Boolean leftPage=false;
+
         shopMenuRoot.getChildren ( ).clear ( );
         shopMenuRoot.getChildren ( ).addAll (backgroundImageView);
         backgroundImageView.setEffect (blur);
-//        Polygon rightArrow=new Polygon ();
-//        rightArrow.getPoints ().addAll (1110.0,310.0,1110.0,350.0,1150.0,330.0);
-//        Polygon leftArrow=new Polygon ();
-//        leftArrow.getPoints ().addAll (90.0,310.0,90.0,350.0,50.0,330.0);
-//        shopMenuRoot.getChildren ().addAll(rightArrow,leftArrow);
+        setExitButton();
+        itemPage (0);
+        Image rightArrow= null;
+        Image leftArrow=null;
+        //todo button
+
+        try {
+
+            rightArrow = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/battlelog_button_expand.png"));
+            ImageView rightArrowView=new ImageView (rightArrow);
+            rightArrowView.relocate (1140,320);
+            rightArrowView.prefHeight (300);
+            rightArrowView.prefWidth (200);
+            shopMenuRoot.getChildren ().add (rightArrowView);
+//            rightArrowView.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    Boolean rightPage=true;
+//                    Boolean leftPage=false;
+//                    if(rightPage){
+//                        shopMenuRoot.getChildren ().clear ();
+//                        shopMenuRoot.getChildren ( ).addAll (backgroundImageView,rightArrowView);
+//                        backgroundImageView.setEffect (blur);
+//                        setExitButton();
+//                        itemPage (1);
+//                        rightPage=false;
+//                        leftPage=true;
+//                    }
+//                }
+//            });
+        } catch (FileNotFoundException e) {
+            e.printStackTrace ( );
+        }
+        try {
+
+            leftArrow = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/battlelog_button_collapse.png"));
+            ImageView leftArrowView=new ImageView (rightArrow);
+            leftArrowView.relocate (50,320);
+            leftArrowView.prefHeight (300);
+            leftArrowView.prefWidth (200);
+            shopMenuRoot.getChildren ().add (leftArrowView);
+//            leftArrowView.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+//                @Override
+//                public void handle(MouseEvent mouseEvent) {
+//                    Boolean rightPage=false;
+//                    Boolean leftPage=true;
+//                    if(leftPage){
+//                        shopMenuRoot.getChildren ().clear ();
+//                        shopMenuRoot.getChildren ( ).addAll (backgroundImageView);
+//                        backgroundImageView.setEffect (blur);
+//                        setExitButton();
+//                        itemPage (0);
+//                        rightPage=true;
+//                        leftPage=false;
+//                    }
+//                }
+//            });
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace ( );
+        }
+        setExitButton ();
+
+
+    }
+
+    public void itemPage(int page){
         int j=0;
         try {
-            for (int i = 0; i < Shop.getItems ( ).size ( ); i++) {
-                if(Shop.getItems ().get (i).getType ().compareToIgnoreCase ("Usable")==0 && j<10){
-                    String itemName=Shop.getItems ().get (i).getName ();
-                    String address = "/Users/rostaroghani/Desktop/Items/";
-                    Image image = new Image (new FileInputStream (address + Shop.getItems ( ).get (i).getName ( ) + ".png"));
-                    ImageView imageView = new ImageView (image);
-                    imageView.setFitHeight (240);
-                    imageView.setFitWidth (200);
-                    shopMenuRoot.getChildren ( ).add (imageView);
-                    Button buyItemButton = new Button ( Shop.getItems ().get (i).getName ());
-                    buyItemButton.setOpacity (10);
-                    buyItemButton.setPrefSize (Consts.buyButtonWidth, Consts.buyButtonHeight);
-                    buyItemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            buyItemButton.setStyle ("-fx-border-color: #34BAF0; -fx-border-width: 2px;");
-                            shopMenu.buy (itemName,Menu.loggedInPlayer);
-
-                        }
-                    });
-                    shopMenuRoot.getChildren ( ).add (buyItemButton);
+            for (int i = 9 +page*10; i < 19+page*10; i++) {
+                String itemName=Shop.getItems ().get (i).getName ();
+                String address = "/Users/rostaroghani/Desktop/Items/";
+                Image image = new Image (new FileInputStream (address + Shop.getItems ( ).get (i).getName ( ) + ".png"));
+                ImageView imageView = new ImageView (image);
+                imageView.setFitHeight (240);
+                imageView.setFitWidth (200);
+                shopMenuRoot.getChildren ( ).add (imageView);
+                Button buyItemButton = new Button ( Shop.getItems ().get (i).getName ());
+                buyItemButton.setOpacity (10);
+                buyItemButton.setPrefSize (Consts.buyButtonWidth, Consts.buyButtonHeight);
+                shopMenuRoot.getChildren ( ).add (buyItemButton);
+                buyItemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        buyItemButton.setStyle ("-fx-border-color: #34BAF0; -fx-border-width: 2px;");
+                        shopMenuRoot.getChildren ().clear ();
+                        shopMenuRoot.getChildren ().add (backgroundImageView);
+                        backgroundImageView.setEffect (blur);
+                        setExitButton ();
+                        buy (itemName,Menu.loggedInPlayer);
+                    }
+                });
+                if(j<10){
                     if(j<2){
                         imageView.relocate (20,20+340*j);
                         buyItemButton.relocate (50,255+340*j);
@@ -520,36 +550,18 @@ public class ShopMenuView {
                         imageView.relocate (740,20+340*(j-6));
                         buyItemButton.relocate (770,255+340*(j-6));
                     }
-                    else if(j<10){
+                    else{
                         imageView.relocate (980,20+340*(j-8));
                         buyItemButton.relocate (1010,255+340*(j-8));
                     }
-                    j++;
                 }
-//                else if(Shop.getItems ().get (i).getType ().compareToIgnoreCase ("Usable")==0 && j>=10){
-//                    leftPage=true;
-//                    rightPage=false;
-//                }
-//                if(rightPage){
-//                    rightArrow.setFill (Color.rgb (1,154,215));
-//                }
-//                else if(!rightPage){
-//                    shopMenuRoot.getChildren ().remove (rightArrow);
-//                    //rightArrow.setFill (Color.rgb (111,111,111));
-//                }
-//                if(leftPage){
-//                    leftArrow.setFill (Color.rgb (1,154,215));
-//                }
-//                else if(!leftPage){
-//                    shopMenuRoot.getChildren ().remove (leftArrow);
-////                    leftArrow.setFill (Color.rgb (111,111,111));
-//                }
-
+                else
+                    j=j-10;
+                    j++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace ( );
         }
-
 
     }
 
@@ -684,7 +696,185 @@ public class ShopMenuView {
         label.setLabelFor (wanted);
         wanted.relocate (620,300);
         shopMenuRoot.getChildren ().addAll (wanted,label);
-        shopMenu.search (wanted.getText ());
+
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                String lookingFor=wanted.getText();
+                wanted.setVisible(false);
+                shopMenuRoot.getChildren ().removeAll (label,wanted);
+                backgroundImageView.setEffect (blur);
+                search(lookingFor);
+
+            }
+        };
+        wanted.setOnAction (event);
+        setExitButton ();
+
+
+    }
+
+    public void buy(String name, Account account) {
+        boolean found = false;
+        showMessage (0);
+        Text wanted=new Text ();
+        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        wanted.setFill (Color.BLACK);
+        wanted.relocate(400, 320);
+        shopMenuRoot.getChildren ().add (wanted);
+        for (Card card1 : Shop.getCards()) {
+            if (name.compareToIgnoreCase(card1.getName()) == 0) {
+                found = true;
+                if (found) {
+                    if (card1.getPrice() > account.getDaric()) {
+                        wanted.setText ("You don't have enough money");
+                    } else if (card1.getPrice() <= account.getDaric()) {
+                        wanted.setText ("You bought this card successfully");
+                        Card card = Shop.makeNewCardByName(card1.getName());
+                        card.setCardID(shopMenu.makeID(card1.getName(), account));
+                        account.getCollection().addToCards(card);
+                        account.changeDaric(account.getDaric() - card1.getPrice());
+
+                    }
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            for (Item x : Shop.getItems()) {
+                if (name.compareToIgnoreCase(x.getName()) == 0 && x.getType ().compareToIgnoreCase ("Collectible")!=0) {
+                    found = true;
+                    if (found) {
+                        if (x.getPrice() > account.getDaric()) {
+                            wanted.setText ("You don't have enough money.");
+                        } else if (account.getNumberOfItemsOwned() >= 3) {
+                            wanted.setText ("You can't have more than 3 items.");
+                        } else if (account.getNumberOfItemsOwned() < 3 && x.getPrice() <= account.getDaric()) {
+                            wanted.setText ("You bought this item successfully");
+                            account.changeDaric(account.getDaric() - x.getPrice());
+                            account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() + 1);
+                            Item item = Shop.makeNewItemByName(x.getName());
+                            item.setItemID(shopMenu.makeID(x.getName(), account));
+                            account.getCollection().addToItems(item);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        if (!found) {
+            wanted.setText ("This Card/Item is not in the shop");
+        }
+
+    }
+
+    public void search(String name) {
+        boolean found = false;
+        Text wanted=new Text ();
+        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        wanted.setFill (Color.BLACK);
+        wanted.relocate(400, 320);
+        for (Card x : Shop.getCards()) {
+            if (name.compareToIgnoreCase(x.getName()) == 0) {
+                wanted.setText ("Found it!");
+                wanted.relocate (830,100);
+                String cardName=x.getName ();
+                //todo
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            for (Item x : Shop.getItems()) {
+                if (name.compareToIgnoreCase(x.getName()) == 0) {
+                    wanted.setText("Found it!");
+                    wanted.relocate (830,100);
+                    String itemPic=x.getName ();
+                    String address = "/Users/rostaroghani/Desktop/Items/";
+                    Image image = null;
+                    try {
+                        image = new Image (new FileInputStream (address + x.getName ( ) + ".png"));
+                        ImageView imageView = new ImageView (image);
+                        imageView.setFitHeight (560);
+                        imageView.setFitWidth (430);
+                        imageView.relocate (350,20);
+                        shopMenuRoot.getChildren ().add (imageView);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace ( );
+                    }
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+           wanted.setText("This Card/Item is not in the shop");
+           showMessage (0);
+        }
+        shopMenuRoot.getChildren ().add (wanted);
+
+
+    }
+
+    public void showMessage(int position){
+        try {
+            Image warning = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/notification_your_turn@2x.png"));
+            ImageView warningImageView= new ImageView (warning);
+            if(position==0){
+                warningImageView.relocate (250,270);
+            }
+            else if(position==-1){
+                warningImageView.relocate (250,350);
+            }
+            warningImageView.setFitHeight (160);
+            warningImageView.setFitWidth (700);
+            shopMenuRoot.getChildren ().add(warningImageView);
+        } catch (FileNotFoundException ec) {
+            ec.printStackTrace();
+        }
+    }
+
+
+    public void setExitButton(){
+        Button exit = new Button(null);
+        try {
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
+            ImageView exitButtonImageView = new ImageView(image);
+            exitButtonImageView.setFitWidth(50);
+            exitButtonImageView.setFitHeight(50);
+            exitButtonImageView.setX(10);
+            exitButtonImageView.setY(10);
+            shopMenuRoot.getChildren().add(exitButtonImageView);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Image image1 = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
+            ImageView exitButtonImageView1 = new ImageView(image1);
+            exitButtonImageView1.setFitWidth(50);
+            exitButtonImageView1.setFitHeight(50);
+            exitButtonImageView1.setX(10);
+            exitButtonImageView1.setY(10);
+            shopMenuRoot.getChildren().add(exitButtonImageView1);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(5, 5);
+        exit.setOpacity(0);
+        shopMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+                //todo
+                //faqat be safheye qabl bargarde na be main menu
+            }
+        });
 
 
     }
