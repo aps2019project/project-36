@@ -70,7 +70,7 @@ public class Consts {
         deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
         deck.addToCards (Shop.buyCardForStoryDeck ("WhiteWolf"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("Magician"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("GreatMagician"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));
         deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));
         deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDemon"));
@@ -114,7 +114,7 @@ public class Consts {
         deck.addToCards (Shop.buyCardForStoryDeck ("PersianGeneral"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranArcher"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranSpy"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("GhoolSangAndaz"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
         deck.addToCards (Shop.buyCardForStoryDeck ("HogHeadDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PredatorLion"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Wolf"));
