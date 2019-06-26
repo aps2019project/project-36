@@ -64,16 +64,16 @@ public class Consts {
         deck.addToItems (Shop.buyItemForStoryDeck ("TajDanaei"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PersianArcher"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranLancer"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("TuranGorzdar")); //todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranWand"));
         deck.addToCards (Shop.buyCardForStoryDeck ("BlackDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("OneEyeGiant"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("GorgSefid"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("JadugarAzam"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDiv"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("WhiteWolf"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Magician"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TotalDisarm"));
         deck.addToCards (Shop.buyCardForStoryDeck ("LightningBolt"));
@@ -93,12 +93,12 @@ public class Consts {
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranSling"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranPrince"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Eagle"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("EzdehaAtashAndaz"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Palang"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Gene"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Giv"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Iraj"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("ShahGhul"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("FireDragon"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Tiger"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Jinn"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Giv"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Iraj"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("ShahGhool"));
         deck.addToCards (Shop.buyCardForStoryDeck ("AreaDispel"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Empower"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GodStrength"));
@@ -115,18 +115,18 @@ public class Consts {
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranArcher"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranSpy"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GhoolSangAndaz"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("DivGorazSavar"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("ShirDarande"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Gorg"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Wizard"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("GorazVahshi"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Piran"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Bahman"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("GhollBozorg"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("HellFire"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Dispel"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("GhazaBokhorJoonBegiri"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("HogHeadDemon"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("PredatorLion"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Wolf"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Magician"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("WildHog"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Piran"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Bahman"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GiantDemon"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("HellFire"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Dispel"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GhazaBokhorJoonBegiri"));
         deck.addToCards (Shop.buyCardForStoryDeck ("AllPower"));
         deck.addToCards (Shop.buyCardForStoryDeck ("AllAttack"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Weakening"));
