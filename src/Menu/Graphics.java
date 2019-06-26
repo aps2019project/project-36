@@ -1,7 +1,8 @@
 package Menu;
 
 
-import Player.Player;
+import Collective.Card.Hero;
+import Player.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -20,23 +21,25 @@ import java.util.Scanner;
 public class Graphics extends Application {
 
     public static Stage stage;
+    public static Player player = new Player();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        stage = primaryStage;
+        /*stage = primaryStage;
 
-        Player player = new Player();
         player.setUsername("yegi");
-        player.setMainDeck(Consts.getDeckStory1());
+        Deck deck = new Deck();
+        Consts.setBattleDeck(deck);
+        player.setMainDeck(deck);
 
         BattleView battle = new BattleView();
         primaryStage.setTitle("duelyst");
         primaryStage.setScene(battle.getBattleScene());
-        primaryStage.show();
+        primaryStage.show();*/
 
 
-        /*stage = primaryStage;
+        stage = primaryStage;
 
         Image iconImage = new Image("pics/icon.png");
         ImageView imageView = new ImageView(iconImage);
@@ -57,7 +60,7 @@ public class Graphics extends Application {
                 Menu.menu();
             }
         });
-        thread.start();*/
+        thread.start();
     }
 
     public static void graphics(String[] args) {

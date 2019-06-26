@@ -16,9 +16,9 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import Consts.Consts;
 
-import javax.sound.midi.Receiver;
-import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class BattleMenuView {
     private Group battleMenuRoot;
@@ -257,6 +257,49 @@ public class BattleMenuView {
                 clickedPlayer.seek(Duration.ZERO);
             }
         });
+
+
+        Button exit = new Button("");
+        try {
+            Image image = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close.png"));
+            ImageView exitButtonImageView = new ImageView(image);
+            exitButtonImageView.setFitWidth(50);
+            exitButtonImageView.setFitHeight(50);
+            exitButtonImageView.setX(10);
+            exitButtonImageView.setY(10);
+            battleMenuRoot.getChildren().add(exitButtonImageView);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Image image1 = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close@2x.png"));
+            ImageView exitButtonImageView1 = new ImageView(image1);
+            exitButtonImageView1.setFitWidth(50);
+            exitButtonImageView1.setFitHeight(50);
+            exitButtonImageView1.setX(10);
+            exitButtonImageView1.setY(10);
+            battleMenuRoot.getChildren().add(exitButtonImageView1);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(20, 20);
+        exit.setOpacity(0);
+        battleMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+                //todo
+                //faqat be safheye qabl bargarde na be main menu
+            }
+        });
+
 
     }
 

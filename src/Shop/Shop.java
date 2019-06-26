@@ -5,6 +5,7 @@ import Collective.Card.Card;
 import Collective.Card.Hero;
 import Collective.Card.Minion.Minion;
 import Collective.Card.Spell;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -45,8 +46,8 @@ public class Shop {
     }
 
     public static void makeNewFromFile(String path, String type) {
-        /*try {
-            Gson gson = new Gson ( );
+        try {
+            Gson gson = new Gson( );
             InputStream input = new FileInputStream (path);
             Reader reader = new InputStreamReader (input);
             switch (type) {
@@ -73,7 +74,7 @@ public class Shop {
             }
         } catch (Exception e) {
             e.printStackTrace ( );
-        }*/
+        }
     }
 
     public static Item makeNewItemByName(String name) {

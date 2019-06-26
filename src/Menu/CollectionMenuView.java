@@ -26,6 +26,8 @@ import Player.Collection;
 import Player.Deck;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class CollectionMenuView {
     private Group collectionMenuRoot;
@@ -601,9 +603,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
                 showAllDecksClicked(Menu.loggedInPlayer);
             }
         });
@@ -693,16 +692,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField ID = new TextField();
-                ID.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        searchClicked(ID.getText());
-                    }
-                });
             }
         });
 
@@ -711,18 +700,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                collectionMenuRoot.getChildren().add(textField);
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        collectionMenuRoot.getChildren().remove(textField);
-                        createOrRemoveDeck("create", textField.getText());
-                    }
-                });
             }
         });
 
@@ -731,16 +708,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        createOrRemoveDeck("remove", textField.getText());
-                    }
-                });
             }
         });
 
@@ -749,29 +716,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-                            if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(textField.getText())==0) {
-                                if (Menu.loggedInPlayer.getCollection().validateDeck(Menu.loggedInPlayer.getCollection().getDecks().get(i))) {
-                                    Text text = new Text("valid");
-                                    collectionMenuRoot.getChildren().add(text);
-                                    System.out.println("valid");
-                                } else {
-                                    Text text = new Text("invalid");
-                                    collectionMenuRoot.getChildren().add(text);
-                                    System.out.println("invalid");
-                                }
-                                break;
-                            }
-                        }
-                    }
-                });
             }
         });
 
@@ -780,21 +724,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                collectionMenuRoot.getChildren().add(textField);
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        for (Deck deck: Menu.loggedInPlayer.getCollection().getDecks()) {
-                            if(deck.getName().compareToIgnoreCase(textField.getText()) == 0){
-                                showDeck(deck);
-                            }
-                        }
-                    }
-                });
             }
         });
 
@@ -803,17 +732,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                collectionMenuRoot.getChildren().add(textField);
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        selectClicked(textField.getText());
-                    }
-                });
             }
         });
 
@@ -822,9 +740,48 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                //todo
             }
         });
+
+        Button exit = new Button("");
+        try {
+            Image image = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close.png"));
+            ImageView exitButtonImageView = new ImageView(image);
+            exitButtonImageView.setFitWidth(50);
+            exitButtonImageView.setFitHeight(50);
+            exitButtonImageView.setX(10);
+            exitButtonImageView.setY(10);
+            collectionMenuRoot.getChildren().add(exitButtonImageView);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            Image image1 = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close@2x.png"));
+            ImageView exitButtonImageView1 = new ImageView(image1);
+            exitButtonImageView1.setFitWidth(50);
+            exitButtonImageView1.setFitHeight(50);
+            exitButtonImageView1.setX(10);
+            exitButtonImageView1.setY(10);
+            collectionMenuRoot.getChildren().add(exitButtonImageView1);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        exit.setPrefSize(40, 40);
+        exit.relocate(20, 20);
+        exit.setOpacity(0);
+        collectionMenuRoot.getChildren().add(exit);
+
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                Menu.secondMenuCommand("exit");
+            }
+        });
+        //faqat be safheye qabl bargarde na be main menu
     }
 
     public void setImageView(ImageView buttonImageView, int n) {
@@ -888,6 +845,9 @@ public class CollectionMenuView {
     }
 
     public void showAllDecksClicked(Account account) {
+        collectionMenuRoot.getChildren ().clear();
+        collectionMenuRoot.getChildren().add(backgroundImageView);
+        backgroundImageView.setEffect(new GaussianBlur());
         boolean haveMainDeck=false;
         if(account.getMainDeck ()!=null){
             System.out.println (account.getMainDeck ().getName () );
@@ -907,7 +867,6 @@ public class CollectionMenuView {
     }
 
     public void showDeck(Deck deck){
-
         Button exit = new Button("back");
         exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -1063,75 +1022,6 @@ public class CollectionMenuView {
                 collectionMenuRoot.getChildren().add(text);
                 System.out.println("selected card/item is not in the collection");
             }
-        }
-    }
-
-    public void searchClicked(String name) {
-        String temp = Menu.loggedInPlayer.getCollection().search(name);
-        if (temp != "") {
-            Text text = new Text(temp);
-            collectionMenuRoot.getChildren().add(text);
-            System.out.println(temp);
-        } else {
-            Text text = new Text("entered card/item does not exist in this collection");
-            System.out.println("entered card/item does not exist in this collection");
-        }
-    }
-
-    public void createOrRemoveDeck(String order, String name) {
-
-        if(order.equals("create")) {
-            boolean check = false;
-            Deck deck = new Deck();
-            deck.setName(name);
-            for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().equals(name)) {
-                    Text text = new Text("Deck already exists!");
-                    collectionMenuRoot.getChildren().add(text);
-                    System.out.println("Deck already exists!");
-                    check = true;
-                }
-            }
-            if (!check) {
-                Text text = new Text("added!");
-
-                collectionMenuRoot.getChildren().add(text);
-                text.relocate(100, 100);
-                text.setFont(Font.font(40));
-                Menu.loggedInPlayer.getCollection().addToDecks(deck);
-            }
-            System.out.println("deck.getName() = " + deck.getName());
-        }
-        else{
-            boolean check = false;
-            for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().equals(name)) {
-                    Menu.loggedInPlayer.getCollection().getDecks().remove(i);
-                    check = true;
-                }
-            }
-            if (!check) {
-                System.out.println("Deck doesn't exist!");
-            }
-        }
-    }
-
-    public void selectClicked(String name) {
-        boolean check = false;
-        for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-            if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(name)==0) {
-                Menu.loggedInPlayer.setMainDeck(Menu.loggedInPlayer.getCollection().getDecks().get(i));
-                check = true;
-                Text text = new Text("selected");
-                collectionMenuRoot.getChildren().add(text);
-                text.relocate(100, 100);
-                text.setFont(Font.font(40));
-            }
-        }
-        if (!check) {
-            Text text = new Text("Deck doesnt exist!");
-            collectionMenuRoot.getChildren().add(text);
-            System.out.println("Deck doesnt exist!");
         }
     }
 }

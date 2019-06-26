@@ -14,6 +14,7 @@ public class Game {
 
     private Player player1 = new Player();
     private Player player2 = new Player();
+    Map map = new Map();
     private int turn = 1;
     private int reachingFlag = 0;
     private int mode;
@@ -95,34 +96,34 @@ public class Game {
                 return 2;
             }
         }
-        if(mode == 2){
-            if(reachingFlag != 0 && turn - reachingFlag >= 6){
-                if(Map.getFlagsInMap().get(0).getOwner().equals(player1)){
-                    return 1;
-                }
-                else if(Map.getFlagsInMap().get(0).getOwner().equals(player2)){
-                    return 2;
-                }
-            }
-        }
-        if(mode == 3){
-            int cnt1 = 0;
-            int cnt2 = 0;
-            for(int i = 0; i < Map.getFlagsInMap().size(); i++){
-                if(Map.getFlagsInMap().get(0).getOwner().getOwner().equals(player1)){
-                    cnt1 ++;
-                }
-                else if(Map.getFlagsInMap().get(0).getOwner().getOwner().equals(player2)){
-                    cnt2 ++;
-                }
-            }
-            if(cnt1 >= Map.getFlagsInMap().size()/2){
-                return 1;
-            }
-            else if(cnt2 >= Map.getFlagsInMap().size() / 2){
-                return 2;
-            }
-        }
+         if(mode == 2){
+         if(reachingFlag != 0 && turn - reachingFlag >= 6){
+         if(map.getFlagsInMap().get(0).getOwner().equals(player1)){
+         return 1;
+         }
+         else if(map.getFlagsInMap().get(0).getOwner().equals(player2)){
+         return 2;
+         }
+         }
+         }
+         if(mode == 3){
+         int cnt1 = 0;
+         int cnt2 = 0;
+         for(int i = 0; i < map.getFlagsInMap().size(); i++){
+         if(map.getFlagsInMap().get(0).getOwner().getOwner().equals(player1)){
+         cnt1 ++;
+         }
+         else if(map.getFlagsInMap().get(0).getOwner().getOwner().equals(player2)){
+         cnt2 ++;
+         }
+         }
+         if(cnt1 >= map.getFlagsInMap().size()/2){
+         return 1;
+         }
+         else if(cnt2 >= map.getFlagsInMap().size() / 2){
+         return 2;
+         }
+         }
         return 0;
     }
 
@@ -131,7 +132,7 @@ public class Game {
             Cell cell = new Cell();
             cell.setX(5);
             cell.setY(3);
-            Map.addToFlagsInMap(cell);
+            map.addToFlagsInMap(cell);
         }
         if(numOfFlags > 1){
             Random random = new Random();
@@ -142,7 +143,7 @@ public class Game {
                 Cell cell = new Cell();
                 cell.setX(random.nextInt(4));
                 cell.setY(random.nextInt(3));
-                Map.addToFlagsInMap(cell);
+                //map.addToFlagsInmap(cell);
                 cell.setX(random.nextInt(4));
                 cell.setY(8 - random.nextInt(3));
             }

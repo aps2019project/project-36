@@ -1,5 +1,11 @@
 package Battle;
 
+import Collective.Card.Card;
+import Collective.Card.Hero;
+import Map.*;
+import Menu.Graphics;
+import Menu.Main;
+import Player.Player;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
@@ -20,10 +26,24 @@ import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.security.cert.TrustAnchor;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.max;
 
 public class BattleView {
 
-    Game currentGame;
+    private int finalHandCard = 6;
+
+    Game currentGame = new Game();
+
+    public void setCurrentMap(Map currentMap) {
+        this.currentMap = currentMap;
+    }
+
+    Map currentMap = new Map();
+
+    Player player1 = new Player();
 
     private Group battleRoot = new Group();
     private Group TableRoot=new Group();
@@ -47,7 +67,9 @@ public class BattleView {
     private ImageView hero1ImageView = new ImageView(hero1Image);
     private ImageView hero2ImageView = new ImageView(hero2Image);
 
-    private Image[] cardsImage = new Image[20];
+
+    private Image[] cardsImage = new Image[21];
+    private ImageView[] cardsImageView = new ImageView[21];
 
     // buttons :
 
@@ -115,6 +137,8 @@ public class BattleView {
     private ImageView[] handImageViews = new ImageView[5];
     private Button[] handButtons = new Button[5];
 
+    private ImageView[] cardHandImageViews = new ImageView[5];
+
     // cells :
 
     private int cellSize = 70;
@@ -124,7 +148,18 @@ public class BattleView {
 
     public BattleView() {
 
+        setPlayer1(Graphics.player);
+        System.out.println(player1.getUsername());
+        System.out.println(player1.getMainDeck().getHero().getName() + "here");
+
         try {
+            cardsImage[0] = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/HeroGifs/"
+                    + player1.getMainDeck().getHero().getName() + ".gif"));
+            for (int i = 1; i < 13; i++){
+                System.out.println("/Users/ygnh/Downloads/project-3/src/MinionGifs/" + player1.getMainDeck().getCards().get(i).getName() + ".gif");
+                cardsImage[i] = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/MinionGifs/"
+                        + player1.getMainDeck().getCards().get(i).getName() + ".gif"));
+            }
             handImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/lesson_ring_glow@2x.png"));
             DeckImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/replace_background@2x.png"));
             //battleBoardImage = new Image(new FileInputStream("pics/replace_background@2x.png"));
@@ -225,10 +260,19 @@ public class BattleView {
         battleRoot.getChildren().add(DeckLabel);
         battleRoot.getChildren().add(DeckButton);
 
-        setHand();
-
         drawRects();
         drawButtons();
+
+        setHand();
+        setCards();
+        changeHand();
+
+        /*for (int i = 0; i < 4; i++) {
+            battleRoot.getChildren().add(cardsImageView[i]);
+        }*/
+
+
+
         for (int i = 0; i < 9; i++) {
             battleRoot.getChildren().addAll(cell[i]);
         }
@@ -242,7 +286,7 @@ public class BattleView {
                 rectangle[i][j] = new Rectangle((Consts.width - (2 * 8) - (cellSize * 9)) / 2 + (cellSize + 2) * i,
                         (Consts.height - (2 * 4) - (cellSize * 5)) / 2 + (cellSize + 2) * j,cellSize , cellSize);
                 rectangle[i][j].setFill(javafx.scene.paint.Color.rgb(143, 254, 250));
-                rectangle[i][j].setOpacity(0.2);
+                rectangle[i][j].setOpacity(0.05);
             }
             battleRoot.getChildren().addAll(rectangle[i]);
         }
@@ -345,16 +389,66 @@ public class BattleView {
                     handImageViews[x].setFitHeight(1.5*handSize);
                     handImageViews[x].setFitWidth(1.5*handSize);
 
-                    //todo ax haye cart ha
+
+                    cardHandImageViews[x].setFitHeight(150);
+                    cardHandImageViews[x].setFitHeight(150);
+                    cardHandImageViews[x].relocate(cardHandImageViews[x].getLayoutX(), cardHandImageViews[x].getLayoutY() - 30);
+
+                    for (int i = 0; i < currentMap.getCardsInMap().size(); i++){
+                        for (int j = 0; j < 9; j++){
+                            for (int k = 0; k < 5; k++){
+                                if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) + abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) <= 1) {
+                                    rectangle[j][k].setOpacity(0.5);
+                                }
+                                else if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) == 1 && abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) == 1){
+                                    rectangle[j][k].setOpacity(0.5);
+                                }
+                            }
+                        }
+                    }
 
                     for (int k = 0; k < 9; k++) {
                         for (int t = 0; t < 5; t++){
+                            int q = k, w = t;
                             cell[k][t].setOnMouseClicked(new EventHandler<MouseEvent>() {
                                 @Override
                                 public void handle(MouseEvent mouseEvent) {
                                     handImageViews[x].relocate(handX + x * (handSize + 10), handY);
                                     handImageViews[x].setFitHeight(handSize);
                                     handImageViews[x].setFitWidth(handSize);
+
+                                    for (int i = 0; i < player1.getMainDeck().getCards().size(); i++) {
+                                        if (cardsImageView[i].equals(cardHandImageViews[x])) {
+                                            currentMap.addToCardsInMap(player1.getMainDeck().getCards().get(i));
+                                            Cell cellA = new Cell();
+                                            cellA.setX(q);
+                                            cellA.setY(w);
+                                            player1.getMainDeck().getCards().get(i).setCell(cellA);
+                                            cardsImageView[i].relocate(cell[q][w].getLayoutX() - 23, cell[q][w].getLayoutY() - 65);
+                                            for (int h = 0; h < player1.getMainDeck().getCards().size(); h++) {
+                                                if (!cardsImageView[h].isVisible()){
+                                                    cardHandImageViews[x] = new ImageView();
+                                                    cardHandImageViews[x] = cardsImageView[h];
+                                                    cardHandImageViews[x].setVisible(true);
+                                                    cardHandImageViews[x].relocate(handButtons[x].getLayoutX() - 13, handButtons[x].getLayoutY() - 25);
+                                                    //h =
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    /*for (Card b: player1.getMainDeck().getCards()) {
+                                        if (b.equals())
+                                    }
+                                    cardHandImageViews[x].relocate(cell[q][w].getLayoutX() - 23, cell[q][w].getLayoutY() - 65);*/
+                                    for (int j = 0; j < 9; j++){
+                                        for (int k = 0; k < 5; k++){
+                                            //if (abs(currentMap.getCardsInMap().get(i).getCell().getX() - j) + abs(currentMap.getCardsInMap().get(i).getCell().getY() - k) <= 1) {
+                                            rectangle[j][k].setOpacity(0.05);
+                                        }
+                                    }
+
+
                                 }
                             });
                         }
@@ -370,10 +464,12 @@ public class BattleView {
                     @Override
                     public void handle(MouseEvent event) {
 
-                        Glow glow = new Glow();
-                        glow.setLevel(1000);
-                        rectangle[x][y].setEffect(glow);
-                        rectangle[x][y].setOpacity(0.3);
+                        if (rectangle[x][y].getOpacity() != 0.5) {
+                            Glow glow = new Glow();
+                            glow.setLevel(1000);
+                            rectangle[x][y].setEffect(glow);
+                            rectangle[x][y].setOpacity(0.3);
+                        }
 
                     }
                 });
@@ -383,8 +479,10 @@ public class BattleView {
                     @Override
                     public void handle(MouseEvent event) {
 
-                        rectangle[x][y].setEffect(null);
-                        rectangle[x][y].setOpacity(0.2);
+                        if (rectangle[x][y].getOpacity() != 0.5) {
+                            rectangle[x][y].setEffect(null);
+                            rectangle[x][y].setOpacity(0.05);
+                        }
 
                     }
                 });
@@ -392,22 +490,13 @@ public class BattleView {
         }
     }
 
-    public void perspective(){
-
-        PerspectiveTransform perspectiveTransform = new PerspectiveTransform();
-        perspectiveTransform.setUlx(250);    // Upper left
-        perspectiveTransform.setUly(120);
-        perspectiveTransform.setUrx(840);    // Upper right
-        perspectiveTransform.setUry(130);
-        perspectiveTransform.setLlx(270);      // Lower left
-        perspectiveTransform.setLly(580);
-        perspectiveTransform.setLrx(1030);    // Lower right
-        perspectiveTransform.setLry(560);
-        //battleRoot.setEffect(perspectiveTransform);
-    }
 
     public void setHand() {
+
+
+
         for (int i = 0 ; i < 5; i++) {
+
             handButtons[i] = new Button();
             handButtons[i].setPrefSize(handSize, handSize);
             handButtons[i].relocate(handX+ i * (handSize + 10), handY);
@@ -418,7 +507,7 @@ public class BattleView {
             handImageViews[i].setFitHeight(handSize);
             handImageViews[i].relocate(handX+ i * (handSize + 10), handY );
         }
-        battleRoot.getChildren().addAll(handButtons);
+
         battleRoot.getChildren().addAll(handImageViews);
     }
 
@@ -426,8 +515,62 @@ public class BattleView {
         this.currentGame = currentGame;
     }
 
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
     public Scene getBattleScene() {
         return BattleScene;
     }
+
+    public void setCards() {
+
+        for (int i = 0; i < player1.getMainDeck().getCards().size(); i++){
+            cardsImageView[i] = new ImageView(cardsImage[i]);
+            cardsImageView[i].setFitWidth(150);
+            cardsImageView[i].setFitHeight(150);
+            cardsImageView[i].setVisible(false);
+            battleRoot.getChildren().add(cardsImageView[i]);
+        }
+
+        cardsImageView[0].relocate(rectangle[0][2].getX() - 40, rectangle[0][2].getY() - 65);
+        System.out.println(player1.getMainDeck().getCards().get(0).getName());
+        currentMap.addToCardsInMap(player1.getMainDeck().getCards().get(0));
+        Cell cell = new Cell();
+        cell.setX(0);
+        cell.setY(2);
+        player1.getMainDeck().getCards().get(0).setCell(cell);
+        //battleRoot.getChildren().addAll(cardsImageView);
+        cardsImageView[0].setVisible(true);
+        //battleRoot.getChildren().addAll(cardsImageView);
+        /*ImageView im = new ImageView(cardsImage[0]);
+        im.setFitWidth(150);
+        im.setFitHeight(150);
+        im.relocate(rectangle[0][2].getX() - 40, rectangle[0][2].getY() - 65);
+        battleRoot.getChildren().add(im);*/
+    }
+
+    public void changeHand() {
+        for (int i = 1; i < 6; i++) {
+            cardHandImageViews[i - 1] = new ImageView();
+            cardHandImageViews[i - 1] = cardsImageView[i];
+
+
+            cardsImageView[i].setFitWidth(100);
+            cardsImageView[i].setFitHeight(100);
+            cardsImageView[i].setVisible(true);
+            cardsImageView[i].relocate(handX+ i * (handSize + 10) - 113, handY - 25);
+        }
+        battleRoot.getChildren().addAll(handButtons);
+    }
+
+    /*public boolean checkOnValidInsert(int x) {
+        for (int i = 0; i < player1.getMainDeck().getCards().size()) {
+            if (cardsImageView[i].equals(cardHandImageViews[x])) {
+
+            }
+        }
+        return false;
+    }*/
 }
 

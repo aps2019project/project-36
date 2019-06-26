@@ -2,8 +2,7 @@ package Collective;
 import Battle.Battle;
 import Collective.Card.Card;
 import Consts.Consts;
-import Map.Cell;
-import Map.Map;
+import Map.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,8 @@ import static java.lang.Math.abs;
 
 public class Target{
 
+    Map map
+             = new Map();
     private String typeOfTarget;
     private String friendlyOrEnemy;
     private String targetUnitClass;
@@ -38,10 +39,10 @@ public class Target{
 
         if (selected.equals("all_in_one_column")) {
             ArrayList<Integer> Ys_In_Same_Column = new ArrayList();
-            for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                if (Map.getCardsInMap().get(k).getCell().getY() == y1
-                        && Map.getCardsInMap().get(k).getOwner() != selected.getOwner()) {
-                    Ys_In_Same_Column.add(Map.getCardsInMap().get(k).getCell().getY());
+            for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                if (map.getCardsInMap().get(k).getCell().getY() == y1
+                        && map.getCardsInMap().get(k).getOwner() != selected.getOwner()) {
+                    Ys_In_Same_Column.add(map.getCardsInMap().get(k).getCell().getY());
                 }
             }
             if (Ys_In_Same_Column.contains(y2)) {
@@ -51,9 +52,9 @@ public class Target{
 
         if (selected.equals("enemy")) {
             ArrayList<Integer> enemies = new ArrayList();
-            for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                if (Map.getCardsInMap().get(k).getOwner() != selected.getOwner()) {
-                    enemies.add(Map.getCardsInMap().get(k).getCell().getY());
+            for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                if (map.getCardsInMap().get(k).getOwner() != selected.getOwner()) {
+                    enemies.add(map.getCardsInMap().get(k).getCell().getY());
                 }
             }
             if (enemies.contains(y2)) {
@@ -63,9 +64,9 @@ public class Target{
 
         if (selected.equals("friend")) {
             ArrayList<Integer> friends = new ArrayList();
-            for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                if (Map.getCardsInMap().get(k).getOwner() == selected.getOwner()) {
-                    friends.add(Map.getCardsInMap().get(k).getCell().getY());
+            for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                if (map.getCardsInMap().get(k).getOwner() == selected.getOwner()) {
+                    friends.add(map.getCardsInMap().get(k).getCell().getY());
                 }
             }
             if (friends.contains(y2)) {
@@ -75,10 +76,10 @@ public class Target{
 
         if (selected.equals("eight_arounds")) {
             ArrayList<Cell> around_cells = new ArrayList();
-            for (int k = 0; k < Map.getCardsInMap().size(); k++) {
-                if (Map.getCardsInMap().get(k).getCell().getX() - x1 <= 2
-                        && Map.getCardsInMap().get(k).getCell().getY() - y1 <= 2) {
-                    around_cells.add(Map.getCardsInMap().get(k).getCell());
+            for (int k = 0; k < map.getCardsInMap().size(); k++) {
+                if (map.getCardsInMap().get(k).getCell().getX() - x1 <= 2
+                        && map.getCardsInMap().get(k).getCell().getY() - y1 <= 2) {
+                    around_cells.add(map.getCardsInMap().get(k).getCell());
                 }
             }
             if (around_cells.contains(defender)) {
