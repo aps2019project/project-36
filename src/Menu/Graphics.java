@@ -30,13 +30,13 @@ public class Graphics extends Application {
         player.setUsername("yegi");
         player.setMainDeck(Consts.getDeckStory1());
 
-        BattleView battle = new BattleView();
-        primaryStage.setTitle("duelyst");
-        primaryStage.setScene(battle.getBattleScene());
-        primaryStage.show();
+//        BattleView battle = new BattleView();
+//        primaryStage.setTitle("duelyst");
+//        primaryStage.setScene(battle.getBattleScene());
+//        primaryStage.show();
 
 
-        /*stage = primaryStage;
+        stage = primaryStage;
 
         Image iconImage = new Image("pics/icon.png");
         ImageView imageView = new ImageView(iconImage);
@@ -57,7 +57,7 @@ public class Graphics extends Application {
                 Menu.menu();
             }
         });
-        thread.start();*/
+        thread.start();
     }
 
     public static void graphics(String[] args) {
