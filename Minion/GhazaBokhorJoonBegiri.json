@@ -1,0 +1,11 @@
+{
+  "name": "GhazaBokhorjoonBegiri",
+  "price":2500,
+  "MP":2,
+  "targetArea": "",
+  "buff": "Power",
+  "buff2": null,
+  "type": "Minion",
+  "desc": "PowerBuff with attack equal to current health",
+  "extraIntByTypeOfBuffNeeded": -1
+}

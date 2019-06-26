@@ -1,0 +1,14 @@
+{
+  "name": "FooladZere",
+  "price": 650,
+  "MP": 3,
+  "HP": 1,
+  "AP": 1,
+  "classType": "Melee",
+  "range": 7,
+  "specialPower": null,
+  "specialPowerActivate": "On_RESPAWN",
+  "type": "Minion",
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
+}

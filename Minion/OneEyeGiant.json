@@ -6,7 +6,7 @@
   "AP": 11,
   "classType": "Hybrid",
   "range": 3,
-  "specialPower": "",
+  "specialPower": null,
   "specialPowerActivate": "ON_DEATH",
   "type": "Minion",
   "desc": "-",

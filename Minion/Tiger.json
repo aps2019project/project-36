@@ -1,14 +1,21 @@
 {
-  "name": "TuranSpy",
-  "price": 700,
+  "name": "Tiger",
+  "price": 400,
   "MP": 4,
   "HP": 6,
-  "AP": 6,
+  "AP": 2,
   "classType": "Melee",
   "range": 0,
   "specialPower": null,
   "specialPowerActivate": "ON_ATTACK",
   "type": "Minion",
-  "desc": "-",
-  "extraIntByTypeOfBuffNeeded":4
+  "desc": "8 point hp decrease for next minion",
+  "extraIntByTypeOfBuffNeeded":0
 }
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+{
+  "name": "Magician",
+  "price": 550,
+  "MP": 4,
+  "HP": 5,
+  "AP": 4,
+  "classType": "Ranged",
+  "range": 8,
+  "specialPower": null,
+  "specialPowerActivate": "PASSIVE",
+  "type": "Minion",
+  "desc": "-",
+  "extraIntByTypeOfBuffNeeded":0
+}

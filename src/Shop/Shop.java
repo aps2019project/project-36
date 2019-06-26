@@ -47,7 +47,7 @@ public class Shop {
 
     public static void makeNewFromFile(String path, String type) {
         try {
-            Gson gson = new Gson( );
+            Gson gson = new Gson ( );
             InputStream input = new FileInputStream (path);
             Reader reader = new InputStreamReader (input);
             switch (type) {

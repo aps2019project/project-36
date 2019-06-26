@@ -162,6 +162,8 @@ public class BattleView {
             }
             handImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/lesson_ring_glow@2x.png"));
             DeckImage = new Image(new FileInputStream("/Users/ygnh/Downloads/project-3/src/pics/replace_background@2x.png"));
+            handImage = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/lesson_ring_glow@2x.png"));
+            DeckImage = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/replace_background@2x.png"));
             //battleBoardImage = new Image(new FileInputStream("pics/replace_background@2x.png"));
         } catch (
                 FileNotFoundException e) {
@@ -286,7 +288,7 @@ public class BattleView {
                 rectangle[i][j] = new Rectangle((Consts.width - (2 * 8) - (cellSize * 9)) / 2 + (cellSize + 2) * i,
                         (Consts.height - (2 * 4) - (cellSize * 5)) / 2 + (cellSize + 2) * j,cellSize , cellSize);
                 rectangle[i][j].setFill(javafx.scene.paint.Color.rgb(143, 254, 250));
-                rectangle[i][j].setOpacity(0.05);
+                rectangle[i][j].setOpacity(0.2);
             }
             battleRoot.getChildren().addAll(rectangle[i]);
         }

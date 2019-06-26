@@ -6,7 +6,7 @@
   "AP": 2,
   "classType": "Ranged",
   "range": 3,
-  "specialPower": "",
+  "specialPower": null,
   "specialPowerActivate": "PASSIVE",
   "type": "Minion",
   "desc": "powerBuff with HP increment",
