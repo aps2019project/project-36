@@ -254,6 +254,7 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                buyOrShowCollectionButtonClicked ("show collection");
             }
         });
 
@@ -263,7 +264,7 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                buyButtonClicked ();
+                buyOrShowCollectionButtonClicked ("buy");
             }
         });
 
@@ -273,7 +274,7 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                searchButtonClicked ();
+                searchButtonClicked ("search");
             }
         });
 
@@ -282,6 +283,7 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                searchButtonClicked ("search collection");
             }
         });
 
@@ -319,7 +321,7 @@ public class ShopMenuView {
 
 
 
-    public void buyButtonClicked() {
+    public void buyOrShowCollectionButtonClicked(String menu) {
         shopMenuRoot.getChildren ( ).clear ( );
         shopMenuRoot.getChildren ( ).add(backgroundImageView);
         backgroundImageView.setEffect (blur);
@@ -405,7 +407,11 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                buyItemButtonClicked ();
+                if(menu.compareToIgnoreCase ("buy")==0){
+                    buyItemButtonClicked ();
+                }
+                else
+                    showCollectionItemButtonClicked(Menu.loggedInPlayer);
             }
         });
 
@@ -440,11 +446,17 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                buyCardButtonClicked();
+                if(menu.compareToIgnoreCase ("buy")==0){
+                    buyCardButtonClicked();
+                }
+                else
+                    showCollectionCardButtonClicked(Menu.loggedInPlayer);
+
             }
         });
 
     }
+
 
     public void buyItemButtonClicked(){
         final Boolean[] rightPage = {true};
@@ -563,7 +575,8 @@ public class ShopMenuView {
         //todo
     }
 
-    public void searchButtonClicked(){
+
+    public void searchButtonClicked(String menu){
         shopMenuRoot.getChildren ().clear ();
         shopMenuRoot.getChildren ().add (backgroundImageView);
         backgroundImageView.setEffect (blur);
@@ -583,7 +596,11 @@ public class ShopMenuView {
                 wanted.setVisible(false);
                 shopMenuRoot.getChildren ().removeAll (label,wanted);
                 backgroundImageView.setEffect (blur);
-                search(lookingFor);
+                if(menu.compareToIgnoreCase ("search")==0){
+                    search(lookingFor);
+                }
+                else
+                    searchCollection(lookingFor,Menu.loggedInPlayer);
 
             }
         };
@@ -593,13 +610,51 @@ public class ShopMenuView {
 
     }
 
+
+    public void searchCollection(String name, Account account) {
+        boolean found = false;
+        Text wanted=setText ();
+        shopMenuRoot.getChildren ().add (wanted);
+        for (Card x : account.getCollection().getCards()) {
+            if (name.compareToIgnoreCase(x.getName()) == 0) {
+                wanted.setText ("Found it!");
+                //todo
+                found = true;
+            }
+        }
+        if (!found) {
+            for (Item x : account.getCollection().getItems()) {
+                if (name.compareToIgnoreCase(x.getName()) == 0) {
+                    wanted.setText ("Found it!");
+                    wanted.relocate (830,100);
+                    String itemPic=x.getName ();
+                    String address = "/Users/rostaroghani/Desktop/Items/";
+                    Image image = null;
+                    try {
+                        image = new Image (new FileInputStream (address + x.getName ( ) + ".png"));
+                        ImageView imageView = new ImageView (image);
+                        imageView.setFitHeight (560);
+                        imageView.setFitWidth (430);
+                        imageView.relocate (350,20);
+                        shopMenuRoot.getChildren ().add (imageView);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace ( );
+                    }
+                    found = true;
+                }
+            }
+        }
+        if (!found) {
+            showMessage (0);
+            wanted.setText ("You don't have this item/card!");
+        }
+    }
+
+
     public void buy(String name, Account account) {
         boolean found = false;
         showMessage (0);
-        Text wanted=new Text ();
-        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
-        wanted.setFill (Color.BLACK);
-        wanted.relocate(400, 320);
+        Text wanted=setText ();
         shopMenuRoot.getChildren ().add (wanted);
         for (Card card1 : Shop.getCards()) {
             if (name.compareToIgnoreCase(card1.getName()) == 0) {
@@ -649,10 +704,8 @@ public class ShopMenuView {
 
     public void search(String name) {
         boolean found = false;
-        Text wanted=new Text ();
-        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
-        wanted.setFill (Color.BLACK);
-        wanted.relocate(400, 320);
+        Text wanted=setText ();
+        shopMenuRoot.getChildren ().add (wanted);
         for (Card x : Shop.getCards()) {
             if (name.compareToIgnoreCase(x.getName()) == 0) {
                 wanted.setText ("Found it!");
@@ -694,6 +747,110 @@ public class ShopMenuView {
 
 
     }
+
+
+    public void showCollectionItemButtonClicked(Account account){
+        shopMenuRoot.getChildren ( ).clear ( );
+        shopMenuRoot.getChildren ( ).addAll (backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        setExitButton();
+        int j=0;
+        for(int i=0;i<account.getCollection ().getItems ().size ();i++){
+            String itemName=account.getCollection ().getItems ().get (i).getName ();
+            String ID=account.getCollection ().getItems ().get (i).getItemID ();
+            String address = "/Users/rostaroghani/Desktop/Items/";
+            Image image = null;
+            try {
+                image = new Image (new FileInputStream (address + account.getCollection ().getItems ().get (i).getName ( ) + ".png"));
+                ImageView imageView = new ImageView (image);
+                imageView.setFitHeight (240);
+                imageView.setFitWidth (200);
+                shopMenuRoot.getChildren ( ).add (imageView);
+                Button sellItemButton = new Button ( account.getCollection ().getItems ().get (i).getName ());
+                sellItemButton.setOpacity (10);
+                sellItemButton.setPrefSize (Consts.buyButtonWidth, Consts.buyButtonHeight);
+                shopMenuRoot.getChildren ( ).add (sellItemButton);
+                sellItemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        shopMenuRoot.getChildren ().clear ();
+                        shopMenuRoot.getChildren ().add (backgroundImageView);
+                        backgroundImageView.setEffect (blur);
+                        setExitButton ();
+                        sell (ID,Menu.loggedInPlayer);
+                    }
+                });
+                if(j<10){
+                    if(j<2){
+                        imageView.relocate (20,20+340*j);
+                        sellItemButton.relocate (50,255+340*j);
+                    }
+                    else if(j<4){
+                        imageView.relocate (260,20+340*(j-2));
+                        sellItemButton.relocate (290,255+340*(j-2));
+                    }
+                    else if(j<6){
+                        imageView.relocate (500,20+340*(j-4));
+                        sellItemButton.relocate (530,255+340*(j-4));
+                    }
+                    else if(j<8){
+                        imageView.relocate (740,20+340*(j-6));
+                        sellItemButton.relocate (770,255+340*(j-6));
+                    }
+                    else{
+                        imageView.relocate (980,20+340*(j-8));
+                        sellItemButton.relocate (1010,255+340*(j-8));
+                    }
+                }
+                j++;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace ( );
+            }
+
+        }
+
+
+    }
+
+
+    public void showCollectionCardButtonClicked(Account account){
+        //todo
+    }
+
+
+    public void sell(String ID, Account account) {
+        boolean found = false;
+        showMessage (0);
+        Text wanted=setText ();
+        shopMenuRoot.getChildren ().add (wanted);
+        for (Card x : account.getCollection ().getCards()) {
+            if (x.getCardID().compareToIgnoreCase(ID) == 0) {
+                wanted.setText ("You sold this card successfully");
+                account.changeDaric(account.getDaric() + x.getPrice());
+                account.getCollection().removeFromCards(x);
+                Card.removeFromCards(x);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            for (Item x : account.getCollection ().getItems()) {
+                if (x.getItemID().compareToIgnoreCase(ID) == 00) {
+                    wanted.setText ("You sold this item successfully");
+                    account.getCollection().removeFromItems(x);
+                    account.changeDaric(account.getDaric() + x.getPrice());
+                    account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() - 1);
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            wanted.setText ("This Card/Item is not in the shop");
+        }
+
+    }
+
 
     public void showMessage(int position){
         try {
@@ -750,7 +907,7 @@ public class ShopMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                Menu.secondMenuCommand("exit");
+                Menu.secondMenu();
                 //todo
                 //faqat be safheye qabl bargarde na be main menu
             }
@@ -758,4 +915,13 @@ public class ShopMenuView {
 
 
     }
+
+    public Text setText(){
+        Text wanted=new Text ();
+        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        wanted.setFill (Color.BLACK);
+        wanted.relocate(400, 320);
+        return wanted;
+    }
+
 }

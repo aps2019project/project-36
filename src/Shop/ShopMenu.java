@@ -95,20 +95,20 @@ public class ShopMenu {
         boolean found = false;
         for (Card x : account.getCollection().getCards()) {
             if (name.compareToIgnoreCase(x.getName()) == 0) {
-                System.out.println(x.getCardID());
+                //System.out.println(x.getCardID());
                 found = true;
             }
         }
         if (!found) {
             for (Item x : account.getCollection().getItems()) {
                 if (name.compareToIgnoreCase(x.getName()) == 0) {
-                    System.out.println(x.getItemID());
+                    //System.out.println(x.getItemID());
                     found = true;
                 }
             }
         }
         if (!found) {
-            System.out.println("This Card/Item is not in the shop");
+            //System.out.println("This Card/Item is not in the shop");
         }
     }
 
@@ -163,28 +163,28 @@ public class ShopMenu {
 
     public void sell(String ID, Account account) {
         boolean found = false;
-        for (Card x : Shop.getCards()) {
-            if (x.getCardID().compareToIgnoreCase(ID) == 0) {
-                System.out.println("You sold this card successfully");
-                account.changeDaric(account.getDaric() + x.getPrice());
-                account.getCollection().removeFromCards(x);
-                Card.removeFromCards(x);
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            for (Item x : Shop.getItems()) {
-                if (x.getItemID().compareToIgnoreCase(ID) == 00) {
-                    System.out.println("You sold this item successfully");
-                    account.getCollection().removeFromItems(x);
-                    account.changeDaric(account.getDaric() + x.getPrice());
-                    account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() - 1);
-                    found = true;
-                    break;
-                }
-            }
-        }
+//        for (Card x : Shop.getCards()) {
+//            if (x.getCardID().compareToIgnoreCase(ID) == 0) {
+//                System.out.println("You sold this card successfully");
+//                account.changeDaric(account.getDaric() + x.getPrice());
+//                account.getCollection().removeFromCards(x);
+//                Card.removeFromCards(x);
+//                found = true;
+//                break;
+//            }
+//        }
+//        if (!found) {
+//            for (Item x : Shop.getItems()) {
+//                if (x.getItemID().compareToIgnoreCase(ID) == 00) {
+//                    System.out.println("You sold this item successfully");
+//                    account.getCollection().removeFromItems(x);
+//                    account.changeDaric(account.getDaric() + x.getPrice());
+//                    account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() - 1);
+//                    found = true;
+//                    break;
+//                }
+//            }
+//        }
         if (!found) {
             System.out.println("This Card/Item is not in the shop");
         }
