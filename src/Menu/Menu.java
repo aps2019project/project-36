@@ -336,7 +336,7 @@ public class Menu {
         System.out.println ("here" );
         Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
         try{
-            FileWriter fileWriter = new FileWriter ("AccountInfo/accountList.json");
+            FileWriter fileWriter = new FileWriter ("AccountInfo/accountList.txt");
             fileWriter.append (username);
             fileWriter.close ();
         } catch (IOException e) {
@@ -346,6 +346,7 @@ public class Menu {
 
 
     public static void readAccountInfo(String username){
+
         Gson gson = new Gson ();
         InputStream input = null;
         try {
