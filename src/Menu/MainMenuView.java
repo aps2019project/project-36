@@ -3,8 +3,8 @@ package Menu;
 import Consts.Consts;
 import Player.Account;
 import Player.Player;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -20,12 +20,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -492,15 +490,19 @@ public class MainMenuView {
                         taken.setFont (Font.font (40));
                         taken.relocate (450, 310);
                         mainMenuRoot.getChildren ().add (taken);
+                        Timeline timeline = new Timeline(new KeyFrame (
+                                Duration.millis(1500),
+                                ae -> Menu.secondMenu ()));
+                        timeline.play();
                         return;
                     }
                 }
 
                 else{
                     str = "create account ";
-                    str += username.getText ( );
-                    str += " ";
-                    str += pass.getText ( );
+//                    str += username.getText ( );
+//                    str += " ";
+//                    str += pass.getText ( );
 
 
                     if (Player.takenUsernames (username.getText ( ))) {

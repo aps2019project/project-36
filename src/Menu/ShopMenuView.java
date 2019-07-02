@@ -42,6 +42,7 @@ public class ShopMenuView {
     private Button searchButton = new Button("Search");
     private Button searchCollectionButton = new Button("Search Collection");
     private Button buyButton = new Button("Buy");
+    private Button customButton = new Button("Custom");
     private Button itemButton=new Button("Items");
     private Button cardButton=new Button("Cards");
 
@@ -51,6 +52,7 @@ public class ShopMenuView {
     private Label buyLabel = new Label("Buy");
     private Label itemButtonLabel=new Label("Items");
     private Label cardButtonLabel=new Label ("Cards");
+    private Label customButtonLabel = new Label ("Custom Card");
 
     private final int buttonSizeWidth = 250;
     private final int buttonSizeHeight = 80;
@@ -67,7 +69,8 @@ public class ShopMenuView {
     private ImageView itemButtonImageView1 = new ImageView(buttonImage1);
     private ImageView cardButtonImageView = new ImageView(buttonImage);
     private ImageView cardButtonImageView1 = new ImageView(buttonImage1);
-
+    private ImageView customButtonImageView = new ImageView(buttonImage);
+    private ImageView customButtonImageView1 = new ImageView(buttonImage1);
 
     private ImageView backgroundImageView = new ImageView(shopBackgroundImage);
 
@@ -125,14 +128,22 @@ public class ShopMenuView {
         setImageView(buyButtonImageView1, 0);
         buyButtonImageView1.setOpacity(0);
         setButton(buyButton, 0);
-        buyButton.setOpacity(0);
         setLabel(buyLabel, 0);
         shopMenuRoot.getChildren().add(buyButtonImageView);
         shopMenuRoot.getChildren().add(buyButtonImageView1);
         shopMenuRoot.getChildren().add(buyLabel);
         shopMenuRoot.getChildren().add(buyButton);
-
-
+        
+        //custom button
+        setImageView(customButtonImageView, 4);
+        setImageView(customButtonImageView1, 4);
+        customButtonImageView1.setOpacity(0);
+        setButton(customButton, 4);
+        setLabel(customButtonLabel, 4);
+        shopMenuRoot.getChildren().add(customButtonImageView);
+        shopMenuRoot.getChildren().add(customButtonImageView1);
+        shopMenuRoot.getChildren().add(customButtonLabel);
+        shopMenuRoot.getChildren().add(customButton);
 
 
         checkMovements();
@@ -248,6 +259,30 @@ public class ShopMenuView {
             }
         });
 
+        customButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                enteredPlayer.play();
+                enteredPlayer.seek(Duration.ZERO);
+                if ( customButtonImageView.getOpacity() == 100)
+                    customButtonImageView.setOpacity(0);
+                if (customButtonImageView1.getOpacity() == 0)
+                    customButtonImageView1.setOpacity(100);
+            }
+        });
+
+
+        customButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                if ( customButtonImageView1.getOpacity() == 100)
+                    customButtonImageView1.setOpacity(0);
+                if ( customButtonImageView.getOpacity() == 0)
+                    customButtonImageView.setOpacity(100);
+            }
+        });
 
         showCollectionButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
@@ -286,8 +321,20 @@ public class ShopMenuView {
                 searchButtonClicked ("search collection");
             }
         });
+        
+        customButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                customCard();
+            }
+        });
 
         setExitButton ();
+    }
+
+    private void customCard() {
     }
 
     public void setImageView(ImageView buttonImageView, int n) {
@@ -295,12 +342,12 @@ public class ShopMenuView {
         buttonImageView.setFitWidth(buttonSizeWidth);
         buttonImageView.setFitHeight(buttonSizeHeight);
         buttonImageView.setX(Consts.width / 2 + 70);
-        buttonImageView.setY(Consts.height / 2.7 + n * Consts.distance);
+        buttonImageView.setY(Consts.height / 2.7 + n * Consts.distance - 150);
     }
 
     public void setButton(Button button, int n) {
         button.setOpacity(0);
-        button.relocate(Consts.width / 2 + 70, Consts.height / 2.7 + n * Consts.distance);
+        button.relocate(Consts.width / 2 + 70, Consts.height / 2.7 + n * Consts.distance - 150);
         button.setPrefSize(buttonSizeWidth, buttonSizeHeight);
     }
 
@@ -308,13 +355,13 @@ public class ShopMenuView {
         label.setTextFill(Color.WHITE);
         label.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
         if(n == 3){
-            label.relocate(Consts.width / 2 + 120, Consts.height / 2.7 + n * Consts.distance + 27);
+            label.relocate(Consts.width / 2 + 120, Consts.height / 2.7 + n * Consts.distance + 27 - 150);
         }
         else if (n == 0){
-            label.relocate(Consts.width / 2 + 175, Consts.height / 2.7 + n * Consts.distance + 27);
+            label.relocate(Consts.width / 2 + 175, Consts.height / 2.7 + n * Consts.distance + 27 - 150);
         }
         else {
-            label.relocate(Consts.width / 2 + 150, Consts.height / 2.7 + n * Consts.distance + 27);
+            label.relocate(Consts.width / 2 + 150, Consts.height / 2.7 + n * Consts.distance + 27 - 150);
         }
 
     }
@@ -835,7 +882,7 @@ public class ShopMenuView {
         }
         if (!found) {
             for (Item x : account.getCollection ().getItems()) {
-                if (x.getItemID().compareToIgnoreCase(ID) == 00) {
+                if (x.getItemID().compareToIgnoreCase(ID) == 0) {
                     wanted.setText ("You sold this item successfully");
                     account.getCollection().removeFromItems(x);
                     account.changeDaric(account.getDaric() + x.getPrice());
