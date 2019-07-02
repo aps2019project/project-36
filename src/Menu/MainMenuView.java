@@ -443,140 +443,112 @@ public class MainMenuView {
         usernameLabel.setTextFill (Color.BLACK);
         mainMenuRoot.getChildren ( ).addAll (username, usernameLabel);
         username.setPrefSize (200, 50);
-        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent> ( ) {
-            String str;
+        TextField pass = new TextField ( );
+        Label passwordLabel = new Label ("Password:");
+        passwordLabel.relocate (440, 300);
+        passwordLabel.setTextFill (Color.BLACK);
+        pass.relocate (550, 300);
+        mainMenuRoot.getChildren ( ).addAll (pass, passwordLabel);
+        pass.setPrefSize (200, 50);
+        passwordLabel.setFont (Font.font (20));
+        passwordLabel.setLabelFor (pass);
 
-            public void handle(ActionEvent e) {
-                if (s.equals ("login")) {
+        Button button = new Button ("Enter"); //todo size
+        mainMenuRoot.getChildren ().add (button);
+        button.relocate (500, 400);
+        button.prefWidth (300);
+        button.prefHeight (80);
+        button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String str;
+                if(s.compareTo ("login")== 0){
                     str = "login ";
-                } else
-                    str = "create account ";
-                str += username.getText ( );
-                str += " ";
-                if (s.equals ("login")) {
-                    if (Menu.loggedInPlayer != null) {
-                        Text taken = new Text ("Another account is logged in! Please first logout!");
+                    if(Menu.loggedInPlayer!= null){
+                        mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
+                        Text taken = new Text("Another account is logged in! Please first logout!");
                         taken.setFont (Font.font (40));
                         taken.relocate (Consts.width / 5, 100);
                         mainMenuRoot.getChildren ( ).add (taken);
-                        return;
-                    } else if (!Player.takenUsernames (username.getText ( ))) {
+                    }
+                    else if (!Player.takenUsernames (username.getText())) {
+                        mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("This username does not exist!");
                         taken.setFont (Font.font (40));
                         taken.relocate (Consts.width / 5, 100);
                         mainMenuRoot.getChildren ( ).add (taken);
                         return;
                     }
-                } else {
+                    else if(!checkPassword (username.getText (),pass.getText ())){
+                        mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
+                        Text taken = new Text ("Wrong Password");
+                        taken.setFont (Font.font (40));
+                        taken.relocate (Consts.width / 5, 100);
+                        mainMenuRoot.getChildren ( ).add (taken);
+                        return;
+                    }
+                    else{
+                        mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
+                        Text taken = new Text ("You're Logged in");
+                        taken.setFont (Font.font (40));
+                        taken.relocate (Consts.width / 5, 100);
+                        mainMenuRoot.getChildren ().add (taken);
+                        //Menu.firstMenuCommand ("login "+username.getText ()+" "+pass.getText ());
+                        return;
+                    }
+                }
+
+                else{
+                    str = "create account ";
+                    str += username.getText ( );
+                    str += " ";
+                    str += pass.getText ( );
+
+
                     if (Player.takenUsernames (username.getText ( ))) {
+                        mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("username is taken");
                         taken.setFont (Font.font (40));
                         taken.relocate (Consts.width / 5, 100);
                         mainMenuRoot.getChildren ( ).add (taken);
                         return;
                     }
-                }
-                TextField pass = new TextField ( );
-                Label passwordLabel = new Label ("Password:");
-                passwordLabel.relocate (440, 300);
-                passwordLabel.setTextFill (Color.BLACK);
-                pass.relocate (550, 300);
-                mainMenuRoot.getChildren ( ).addAll (pass, passwordLabel);
-                pass.setPrefSize (200, 50);
-                passwordLabel.setFont (Font.font (20));
-                passwordLabel.setLabelFor (pass);
-                EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent> ( ) {
-                    public void handle(ActionEvent e) {
-                        str += pass.getText ( );
-                        pass.setVisible (false);
-                        username.setVisible (false);
-                        mainMenuRoot.getChildren ( ).removeAll (username, usernameLabel, pass, passwordLabel);
-                        Button exit = new Button ("");
-                        try {
-                            Image image = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
-                            ImageView exitButtonImageView = new ImageView (image);
-                            exitButtonImageView.setFitWidth (50);
-                            exitButtonImageView.setFitHeight (50);
-                            exitButtonImageView.setX (10);
-                            exitButtonImageView.setY (10);
-                            mainMenuRoot.getChildren ( ).add (exitButtonImageView);
-                            exit.setOnMouseEntered (new EventHandler<MouseEvent> ( ) {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    enteredPlayer.play ( );
-                                    enteredPlayer.seek (Duration.ZERO);
-                                    if (exitButtonImageView.getOpacity ( ) == 100)
-                                        exitButtonImageView.setOpacity (0);
-                                }
-                            });
-                            exit.setOnMouseExited (new EventHandler<MouseEvent> ( ) {
-                                @Override
-                                public void handle(MouseEvent event) {
-                                    if (exitButtonImageView.getOpacity ( ) == 0)
-                                        exitButtonImageView.setOpacity (100);
-                                }
-                            });
-                        } catch (FileNotFoundException ex) {
-                            ex.printStackTrace ( );
-                        }
-
-                        try {
-                            Image image1 = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
-                            ImageView exitButtonImageView1 = new ImageView (image1);
-                            exitButtonImageView1.setFitWidth (50);
-                            exitButtonImageView1.setFitHeight (50);
-                            exitButtonImageView1.setX (10);
-                            exitButtonImageView1.setY (10);
-                            mainMenuRoot.getChildren ( ).add (exitButtonImageView1);
-                            exit.setOnMouseEntered (new EventHandler<MouseEvent> ( ) {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    enteredPlayer.play ( );
-                                    enteredPlayer.seek (Duration.ZERO);
-                                    if (exitButtonImageView1.getOpacity ( ) == 0)
-                                        exitButtonImageView1.setOpacity (100);
-                                }
-                            });
-                            exit.setOnMouseExited (new EventHandler<MouseEvent> ( ) {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    if (exitButtonImageView1.getOpacity ( ) == 100)
-                                        exitButtonImageView1.setOpacity (0);
-                                }
-                            });
-                        } catch (FileNotFoundException ex) {
-                            ex.printStackTrace ( );
-                        }
-
-
-                        exit.setPrefSize (40, 40);
-                        exit.relocate (20, 20);
-                        exit.setOpacity (0);
-                        mainMenuRoot.getChildren ( ).add (exit);
+                    else{
+                        mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text text = new Text ("Your account was created successfully!");
-                        if (s.equals ("login")) {
-                            text.setText ("you're logged in");
-                        }
-                        text.setFont (Font.font (33));
-                        text.relocate (Consts.width / 5, 270);
-
+                        text.setFont (Font.font (40));
+                        text.relocate (Consts.width / 5, 100);
                         mainMenuRoot.getChildren ( ).add (text);
-                        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                Menu.firstMenuCommand (str);
-                            }
-                        });
+                        return;
                     }
-                };
-                pass.setOnAction (event2);
+                }
             }
-        };
-        username.setOnAction (event1);
+        });
+
+
+        Button exit = new Button ("");
+        try {
+            Image image = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
+            ImageView exitButtonImageView = new ImageView (image);
+            exitButtonImageView.setFitWidth (50);
+            exitButtonImageView.setFitHeight (50);
+            exitButtonImageView.setX (10);
+            exitButtonImageView.setY (10);
+            mainMenuRoot.getChildren ( ).add (exitButtonImageView);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace ( ); }
+        exit.setPrefSize (40, 40);
+        exit.relocate (20, 20);
+        exit.setOpacity (0);
+        mainMenuRoot.getChildren ( ).add (exit);
+        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                Menu.firstMenu ();
+            }
+        });
     }
+
 
     public void showLeaderBoardClicked() {
         mainMenuRoot.getChildren ( ).clear ( );
@@ -627,6 +599,17 @@ public class MainMenuView {
 //            }
 //        });
 //    }
+
+    public boolean checkPassword(String username,String password){
+        for(Account account:Account.getAccounts ()){
+            if(account.getUsername ().compareTo (username)== 0){
+                if(account.getPassword ().compareTo (password)== 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
 class Pair {
