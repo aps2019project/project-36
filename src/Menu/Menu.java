@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Menu {
@@ -333,7 +334,6 @@ public class Menu {
     }
 
     public static void accountsList(String username){
-        System.out.println ("here" );
         Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
         try{
             FileWriter fileWriter = new FileWriter ("AccountInfo/accountList.txt");
@@ -345,16 +345,27 @@ public class Menu {
     }
 
 
-    public static void readAccountInfo(String username){
-
-        Gson gson = new Gson ();
-        InputStream input = null;
+    public static void makeAllAccounts(){
         try {
-            input = new FileInputStream ("AccountInfo/"+username+".json");
+            FileReader fileReader = new FileReader ("AccountInfo/accountList.txt");
+            BufferedReader bufferedReader = new BufferedReader (fileReader);
+            while(true){
+                String line = bufferedReader.readLine();
+                if (line == null){
+                    break;
+                }
+                String userName= line.trim ();
+                Gson gson = new Gson();
+                InputStream input = new FileInputStream("AccountInfo/"+ userName+".json");
+                Reader reader = new InputStreamReader(input);
+                Account account = gson.fromJson (reader,Account.class);
+                Account.addToAccounts (account);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace ( );
+        } catch (IOException e) {
+            e.printStackTrace ( );
         }
-        Reader reader = new InputStreamReader (input);
-        Account account=gson.fromJson (reader, Account.class);
+
     }
 }
