@@ -452,10 +452,9 @@ public class MainMenuView {
         pass.setPrefSize (200, 50);
         passwordLabel.setFont (Font.font (20));
         passwordLabel.setLabelFor (pass);
-
-        Button button = new Button ("Enter"); //todo size
+        Button button = new Button ("Enter");
         mainMenuRoot.getChildren ().add (button);
-        button.relocate (500, 400);
+        button.relocate (550, 400);
         button.prefWidth (300);
         button.prefHeight (80);
         button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
@@ -468,14 +467,14 @@ public class MainMenuView {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text("Another account is logged in! Please first logout!");
                         taken.setFont (Font.font (40));
-                        taken.relocate (Consts.width / 5, 100);
+                        taken.relocate (Consts.width / 4, 310);
                         mainMenuRoot.getChildren ( ).add (taken);
                     }
                     else if (!Player.takenUsernames (username.getText())) {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("This username does not exist!");
                         taken.setFont (Font.font (40));
-                        taken.relocate (Consts.width / 5, 100);
+                        taken.relocate (Consts.width / 4, 310);
                         mainMenuRoot.getChildren ( ).add (taken);
                         return;
                     }
@@ -483,7 +482,7 @@ public class MainMenuView {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("Wrong Password");
                         taken.setFont (Font.font (40));
-                        taken.relocate (Consts.width / 5, 100);
+                        taken.relocate (450 , 310);
                         mainMenuRoot.getChildren ( ).add (taken);
                         return;
                     }
@@ -491,9 +490,8 @@ public class MainMenuView {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("You're Logged in");
                         taken.setFont (Font.font (40));
-                        taken.relocate (Consts.width / 5, 100);
+                        taken.relocate (450, 310);
                         mainMenuRoot.getChildren ().add (taken);
-                        //Menu.firstMenuCommand ("login "+username.getText ()+" "+pass.getText ());
                         return;
                     }
                 }
@@ -509,7 +507,7 @@ public class MainMenuView {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("username is taken");
                         taken.setFont (Font.font (40));
-                        taken.relocate (Consts.width / 5, 100);
+                        taken.relocate (Consts.width / 4, 310);
                         mainMenuRoot.getChildren ( ).add (taken);
                         return;
                     }
@@ -517,7 +515,7 @@ public class MainMenuView {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text text = new Text ("Your account was created successfully!");
                         text.setFont (Font.font (40));
-                        text.relocate (Consts.width / 5, 100);
+                        text.relocate (Consts.width / 4, 310);
                         mainMenuRoot.getChildren ( ).add (text);
                         return;
                     }
