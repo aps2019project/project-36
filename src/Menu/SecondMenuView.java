@@ -126,6 +126,7 @@ public class SecondMenuView {
             @Override
             public void handle(MouseEvent event) {
 
+
                 enteredPlayer.play();
                 enteredPlayer.seek(Duration.ZERO);
                 if ( shopButtonImageView.getOpacity() == 100)
@@ -267,7 +268,7 @@ public class SecondMenuView {
 
         Button exit = new Button("");
         try {
-            Image image = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close.png"));
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
             ImageView exitButtonImageView = new ImageView(image);
             exitButtonImageView.setFitWidth(50);
             exitButtonImageView.setFitHeight(50);
@@ -279,7 +280,7 @@ public class SecondMenuView {
             ex.printStackTrace();
         }
         try {
-            Image image1 = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close@2x.png"));
+            Image image1 = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
             ImageView exitButtonImageView1 = new ImageView(image1);
             exitButtonImageView1.setFitWidth(50);
             exitButtonImageView1.setFitHeight(50);

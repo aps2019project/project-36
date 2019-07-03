@@ -1,12 +1,16 @@
 package Menu;
 
+import Collective.Card.Card;
+import Collective.Item;
+import Player.Account;
 import Shop.ShopMenu;
-import com.google.gson.Gson;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,12 +21,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
-import java.io.*;
-import Shop.Shop;
 import Consts.Consts;
-
-import java.io.File;
+import Shop.Shop;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -36,33 +38,23 @@ public class ShopMenuView {
     private Image buttonImage1 = new Image("pics/button_secondary_glow.png");
     private Image shopBackgroundImage = new Image("pics/counterplay-games-the-great-tree-eyos.jpg");
 
-    private Button showCollectionButton = new Button("Show Collection");
+    private Button showCollectionButton = new Button("Collection");
     private Button searchButton = new Button("Search");
     private Button searchCollectionButton = new Button("Search Collection");
     private Button buyButton = new Button("Buy");
-    private Button sellButton = new Button("Sell");
-    private Button helpButton = new Button("Help");
-    private Button showButton= new Button("Show");
-    private Button mainMenuButton= new Button("Main Menu");
     private Button itemButton=new Button("Items");
     private Button cardButton=new Button("Cards");
 
-    private Label showCollectionLabel = new Label("Show Collection");
+    private Label showCollectionLabel = new Label("Collection");
     private Label searchLabel = new Label("Search");
     private Label searchCollectionLabel = new Label("Search Collection");
     private Label buyLabel = new Label("Buy");
-    private Label sellLabel = new Label("Sell");
-    private Label helpLabel = new Label("Help");
-    private Label showLabel= new Label ("Show");
-    private Label mainMenuLabel= new Label ("Home");
     private Label itemButtonLabel=new Label("Items");
     private Label cardButtonLabel=new Label ("Cards");
 
     private final int buttonSizeWidth = 250;
     private final int buttonSizeHeight = 80;
 
-    private ImageView showButtonImageView = new ImageView(buttonImage);
-    private ImageView showButtonImageView1 = new ImageView(buttonImage1);
     private ImageView showCollectionButtonImageView = new ImageView(buttonImage);
     private ImageView showCollectionButtonImageView1 = new ImageView(buttonImage1);
     private ImageView searchButtonImageView = new ImageView(buttonImage);
@@ -71,16 +63,11 @@ public class ShopMenuView {
     private ImageView searchCollectionButtonImageView1 = new ImageView(buttonImage1);
     private ImageView buyButtonImageView = new ImageView(buttonImage);
     private ImageView buyButtonImageView1 = new ImageView(buttonImage1);
-    private ImageView sellButtonImageView = new ImageView(buttonImage);
-    private ImageView sellButtonImageView1 = new ImageView(buttonImage1);
-    private ImageView mainMenuButtonImageView = new ImageView(buttonImage);
-    private ImageView mainMenuButtonImageView1 = new ImageView(buttonImage1);
-    private ImageView helpButtonImageView = new ImageView(buttonImage);
-    private ImageView helpButtonImageView1 = new ImageView(buttonImage1);
     private ImageView itemButtonImageView = new ImageView(buttonImage);
     private ImageView itemButtonImageView1 = new ImageView(buttonImage1);
     private ImageView cardButtonImageView = new ImageView(buttonImage);
     private ImageView cardButtonImageView1 = new ImageView(buttonImage1);
+
 
     private ImageView backgroundImageView = new ImageView(shopBackgroundImage);
 
@@ -89,209 +76,6 @@ public class ShopMenuView {
     private Media mouseEntered= new Media (getClass().getClassLoader().getResource ("audio/zapsplat_multimedia_click_003_19369.mp3").toExternalForm ());
     MediaPlayer clickedPlayer= new MediaPlayer (mouseClicked);
     MediaPlayer enteredPlayer= new MediaPlayer (mouseEntered);
-
-
-    public void buyItemButtonClicked(){
-        Boolean rightPage=true;
-        Boolean leftPage=false;
-        shopMenuRoot.getChildren ( ).clear ( );
-        shopMenuRoot.getChildren ( ).addAll (backgroundImageView);
-        backgroundImageView.setEffect (blur);
-//        Polygon rightArrow=new Polygon ();
-//        rightArrow.getPoints ().addAll (1110.0,310.0,1110.0,350.0,1150.0,330.0);
-//        Polygon leftArrow=new Polygon ();
-//        leftArrow.getPoints ().addAll (90.0,310.0,90.0,350.0,50.0,330.0);
-//        shopMenuRoot.getChildren ().addAll(rightArrow,leftArrow);
-        int j=0;
-        try {
-            for (int i = 0; i < Shop.getItems ( ).size ( ); i++) {
-                if(Shop.getItems ().get (i).getType ().compareToIgnoreCase ("Usable")==0 && j<10){
-                    String itemName=Shop.getItems ().get (i).getName ();
-                    String address = "/Users/rostaroghani/Desktop/Items/";
-                    Image image = new Image (new FileInputStream (address + Shop.getItems ( ).get (i).getName ( ) + ".png"));
-                    ImageView imageView = new ImageView (image);
-                    imageView.setFitHeight (240);
-                    imageView.setFitWidth (200);
-                    shopMenuRoot.getChildren ( ).add (imageView);
-                    Button buyItemButton = new Button ( Shop.getItems ().get (i).getName ());
-                    buyItemButton.setOpacity (10);
-                    buyItemButton.setPrefSize (Consts.buyButtonWidth, Consts.buyButtonHeight);
-                    buyItemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            buyItemButton.setStyle ("-fx-border-color: #34BAF0; -fx-border-width: 2px;");
-                            shopMenu.buy (itemName,Menu.loggedInPlayer);
-
-                        }
-                    });
-                    shopMenuRoot.getChildren ( ).add (buyItemButton);
-                    if(j<2){
-                        imageView.relocate (20,20+340*j);
-                        buyItemButton.relocate (50,255+340*j);
-                    }
-                    else if(j<4){
-                        imageView.relocate (260,20+340*(j-2));
-                        buyItemButton.relocate (290,255+340*(j-2));
-                    }
-                    else if(j<6){
-                        imageView.relocate (500,20+340*(j-4));
-                        buyItemButton.relocate (530,255+340*(j-4));
-                    }
-                    else if(j<8){
-                        imageView.relocate (740,20+340*(j-6));
-                        buyItemButton.relocate (770,255+340*(j-6));
-                    }
-                    else if(j<10){
-                        imageView.relocate (980,20+340*(j-8));
-                        buyItemButton.relocate (1010,255+340*(j-8));
-                    }
-                    j++;
-                }
-//                else if(Shop.getItems ().get (i).getType ().compareToIgnoreCase ("Usable")==0 && j>=10){
-//                    leftPage=true;
-//                    rightPage=false;
-//                }
-//                if(rightPage){
-//                    rightArrow.setFill (Color.rgb (1,154,215));
-//                }
-//                else if(!rightPage){
-//                    shopMenuRoot.getChildren ().remove (rightArrow);
-//                    //rightArrow.setFill (Color.rgb (111,111,111));
-//                }
-//                if(leftPage){
-//                    leftArrow.setFill (Color.rgb (1,154,215));
-//                }
-//                else if(!leftPage){
-//                    shopMenuRoot.getChildren ().remove (leftArrow);
-////                    leftArrow.setFill (Color.rgb (111,111,111));
-//                }
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace ( );
-        }
-
-
-    }
-
-    public void buyButtonClicked() {
-        shopMenuRoot.getChildren ( ).clear ( );
-        shopMenuRoot.getChildren ( ).add(backgroundImageView);
-        backgroundImageView.setEffect (blur);
-
-        //item Button
-        itemButtonImageView.setFitWidth(buttonSizeWidth);
-        itemButtonImageView.setFitHeight(buttonSizeHeight);
-        itemButtonImageView1.setFitWidth(buttonSizeWidth);
-        itemButtonImageView1.setFitHeight(buttonSizeHeight);
-        itemButtonImageView.setX(400);
-        itemButtonImageView.setY(250);
-        itemButtonImageView1.setX(400);
-        itemButtonImageView1.setY(250);
-        itemButton.setPrefSize(buttonSizeWidth, buttonSizeHeight);
-        itemButtonImageView1.setOpacity(0);
-        itemButton.relocate(400, 250 );
-        itemButton.setOpacity(0);
-        itemButtonLabel.relocate(490, 275);
-        itemButtonLabel.setFont(Font.font("Verdana", FontWeight.NORMAL,FontPosture.ITALIC, 20));
-        itemButtonLabel.setTextFill (Color.GHOSTWHITE);
-
-        //card Button
-        cardButtonImageView.setFitWidth(buttonSizeWidth);
-        cardButtonImageView.setFitHeight(buttonSizeHeight);
-        cardButtonImageView1.setFitWidth(buttonSizeWidth);
-        cardButtonImageView1.setFitHeight(buttonSizeHeight);
-        cardButtonImageView.setX(650);
-        cardButtonImageView.setY(250);
-        cardButtonImageView1.setX(650);
-        cardButtonImageView1.setY(250);
-        cardButton.setPrefSize(buttonSizeWidth, buttonSizeHeight);
-        cardButtonImageView1.setOpacity(0);
-        cardButton.relocate(650, 250 );
-        cardButton.setOpacity(0);
-        cardButtonLabel.relocate(740, 275);
-        cardButtonLabel.setFont(Font.font("Verdana", FontWeight.NORMAL, FontPosture.ITALIC,20));
-        cardButtonLabel.setTextFill (Color.GHOSTWHITE);
-
-
-        //item
-        shopMenuRoot.getChildren().add(itemButtonImageView);
-        shopMenuRoot.getChildren().add(itemButtonImageView1);
-        shopMenuRoot.getChildren().add(itemButtonLabel);
-        shopMenuRoot.getChildren().add(itemButton);
-
-
-
-        //card
-        shopMenuRoot.getChildren().add(cardButtonImageView);
-        shopMenuRoot.getChildren().add(cardButtonImageView1);
-        shopMenuRoot.getChildren().add(cardButtonLabel);
-        shopMenuRoot.getChildren().add(cardButton);
-
-
-
-        itemButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (itemButtonImageView.getOpacity() == 100)
-                    itemButtonImageView.setOpacity(0);
-                if (itemButtonImageView1.getOpacity() == 0)
-                   itemButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        itemButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (itemButtonImageView1.getOpacity() == 100)
-                    itemButtonImageView1.setOpacity(0);
-                if (itemButtonImageView.getOpacity() == 0)
-                    itemButtonImageView.setOpacity(100);
-            }
-        });
-
-        itemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-                buyItemButtonClicked ();
-            }
-        });
-
-        cardButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (cardButtonImageView.getOpacity() == 100)
-                    cardButtonImageView.setOpacity(0);
-                if (cardButtonImageView1.getOpacity() == 0)
-                  cardButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        cardButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if ( cardButtonImageView1.getOpacity() == 100)
-                   cardButtonImageView1.setOpacity(0);
-                if ( cardButtonImageView.getOpacity() == 0)
-                    cardButtonImageView.setOpacity(100);
-            }
-        });
-
-
-    }
-
 
     public ShopMenuView() {
 
@@ -315,82 +99,39 @@ public class ShopMenuView {
         shopMenuRoot.getChildren().add(showCollectionLabel);
 
         //search
-        setImageView(searchButtonImageView, 5);
-        setImageView(searchButtonImageView1, 5);
+        setImageView(searchButtonImageView, 1);
+        setImageView(searchButtonImageView1, 1);
         searchButtonImageView1.setOpacity(0);
-        setButton(searchButton, 5);
-        setLabel(searchLabel, 5);
+        setButton(searchButton, 1);
+        setLabel(searchLabel, 1);
         shopMenuRoot.getChildren().add(searchButtonImageView);
         shopMenuRoot.getChildren().add(searchButtonImageView1);
         shopMenuRoot.getChildren().add(searchLabel);
         shopMenuRoot.getChildren().add(searchButton);
 
         //search collection
-        setImageView(searchCollectionButtonImageView, 1);
-        setImageView(searchCollectionButtonImageView1, 1);
+        setImageView(searchCollectionButtonImageView, 3);
+        setImageView(searchCollectionButtonImageView1, 3);
         searchCollectionButtonImageView1.setOpacity(0);
-        setButton(searchCollectionButton , 1);
-        setLabel(searchCollectionLabel, 1);
+        setButton(searchCollectionButton , 3);
+        setLabel(searchCollectionLabel, 3);
         shopMenuRoot.getChildren().add((searchCollectionButtonImageView));
         shopMenuRoot.getChildren().add((searchCollectionButtonImageView1));
         shopMenuRoot.getChildren().add(searchCollectionLabel);
         shopMenuRoot.getChildren().add(searchCollectionButton );
 
         //buy Button
-        setImageView(buyButtonImageView, 7);
-        setImageView(buyButtonImageView1, 7);
+        setImageView(buyButtonImageView, 0);
+        setImageView(buyButtonImageView1, 0);
         buyButtonImageView1.setOpacity(0);
-        setButton(buyButton, 7);
+        setButton(buyButton, 0);
         buyButton.setOpacity(0);
-        setLabel(buyLabel, 7);
+        setLabel(buyLabel, 0);
         shopMenuRoot.getChildren().add(buyButtonImageView);
         shopMenuRoot.getChildren().add(buyButtonImageView1);
         shopMenuRoot.getChildren().add(buyLabel);
         shopMenuRoot.getChildren().add(buyButton);
 
-        //sell
-        setImageView(sellButtonImageView, 3);
-        setImageView(sellButtonImageView1, 3);
-        sellButtonImageView1.setOpacity(0);
-        setButton(sellButton, 3);
-        setLabel(sellLabel, 3);
-        shopMenuRoot.getChildren().add(sellButtonImageView);
-        shopMenuRoot.getChildren().add(sellButtonImageView1);
-        shopMenuRoot.getChildren().add(sellLabel);
-        shopMenuRoot.getChildren().add(sellButton);
-
-        //help button
-        setImageView(helpButtonImageView, 4);
-        setImageView(helpButtonImageView1, 4);
-        helpButtonImageView1.setOpacity(0);
-        setButton(helpButton, 4);
-        setLabel(helpLabel, 4);
-        shopMenuRoot.getChildren().add(helpButtonImageView);
-        shopMenuRoot.getChildren().add(helpButtonImageView1);
-        shopMenuRoot.getChildren().add(helpLabel);
-        shopMenuRoot.getChildren().add(helpButton);
-
-        //show
-        setImageView(showButtonImageView, 6);
-        setImageView(showButtonImageView1, 6);
-        showButtonImageView1.setOpacity(0);
-        setButton(showButton, 6);
-        setLabel(showLabel, 6);
-        shopMenuRoot.getChildren().add(showButtonImageView);
-        shopMenuRoot.getChildren().add(showButtonImageView1);
-        shopMenuRoot.getChildren().add(showLabel);
-        shopMenuRoot.getChildren().add(showButton);
-
-        //main menu
-        setImageView(mainMenuButtonImageView, 0);
-        setImageView(mainMenuButtonImageView1, 0);
-        mainMenuButtonImageView1.setOpacity(0);
-        setButton(mainMenuButton, 0);
-        setLabel(mainMenuLabel, 0);
-        shopMenuRoot.getChildren().add(mainMenuButtonImageView);
-        shopMenuRoot.getChildren().add(mainMenuButtonImageView1);
-        shopMenuRoot.getChildren().add(mainMenuLabel);
-        shopMenuRoot.getChildren().add(mainMenuButton);
 
 
 
@@ -507,106 +248,6 @@ public class ShopMenuView {
             }
         });
 
-        sellButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (sellButtonImageView.getOpacity() == 100)
-                    sellButtonImageView.setOpacity(0);
-                if (sellButtonImageView1.getOpacity() == 0)
-                    sellButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        sellButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (sellButtonImageView1.getOpacity() == 100)
-                    sellButtonImageView1.setOpacity(0);
-                if (sellButtonImageView.getOpacity() == 0)
-                    sellButtonImageView.setOpacity(100);
-            }
-        });
-
-        helpButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (helpButtonImageView.getOpacity() == 100)
-                    helpButtonImageView.setOpacity(0);
-                if (helpButtonImageView1.getOpacity() == 0)
-                    helpButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        helpButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (helpButtonImageView1.getOpacity() == 100)
-                    helpButtonImageView1.setOpacity(0);
-                if (helpButtonImageView.getOpacity() == 0)
-                    helpButtonImageView.setOpacity(100);
-            }
-        });
-
-        mainMenuButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (mainMenuButtonImageView.getOpacity() == 100)
-                    mainMenuButtonImageView.setOpacity(0);
-                if (mainMenuButtonImageView1.getOpacity() == 0)
-                    mainMenuButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        mainMenuButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (mainMenuButtonImageView1.getOpacity() == 100)
-                    mainMenuButtonImageView1.setOpacity(0);
-                if (mainMenuButtonImageView.getOpacity() == 0)
-                    mainMenuButtonImageView.setOpacity(100);
-            }
-        });
-
-
-        showButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if ( showButtonImageView.getOpacity() == 100)
-                    showButtonImageView.setOpacity(0);
-                if ( showButtonImageView1.getOpacity() == 0)
-                    showButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        showButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if ( showButtonImageView1.getOpacity() == 100)
-                    showButtonImageView1.setOpacity(0);
-                if ( showButtonImageView.getOpacity() == 0)
-                    showButtonImageView.setOpacity(100);
-            }
-        });
 
         showCollectionButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
@@ -616,52 +257,23 @@ public class ShopMenuView {
             }
         });
 
-        showButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-            }
-        });
-
-        sellButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-            }
-        });
 
         buyButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                buyButtonClicked();
+                buyButtonClicked ();
             }
         });
 
-        mainMenuButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-            }
-        });
-
-        helpButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-            }
-        });
 
         searchButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
+                searchButtonClicked ();
             }
         });
 
@@ -673,9 +285,439 @@ public class ShopMenuView {
             }
         });
 
-        Button exit = new Button("");
+        setExitButton ();
+    }
+
+    public void setImageView(ImageView buttonImageView, int n) {
+
+        buttonImageView.setFitWidth(buttonSizeWidth);
+        buttonImageView.setFitHeight(buttonSizeHeight);
+        buttonImageView.setX(Consts.width / 2 + 70);
+        buttonImageView.setY(Consts.height / 2.7 + n * Consts.distance);
+    }
+
+    public void setButton(Button button, int n) {
+        button.setOpacity(0);
+        button.relocate(Consts.width / 2 + 70, Consts.height / 2.7 + n * Consts.distance);
+        button.setPrefSize(buttonSizeWidth, buttonSizeHeight);
+    }
+
+    public void setLabel(Label label, int n) {
+        label.setTextFill(Color.WHITE);
+        label.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+        if(n == 3){
+            label.relocate(Consts.width / 2 + 120, Consts.height / 2.7 + n * Consts.distance + 27);
+        }
+        else if (n == 0){
+            label.relocate(Consts.width / 2 + 175, Consts.height / 2.7 + n * Consts.distance + 27);
+        }
+        else {
+            label.relocate(Consts.width / 2 + 150, Consts.height / 2.7 + n * Consts.distance + 27);
+        }
+
+    }
+
+
+
+    public void buyButtonClicked() {
+        shopMenuRoot.getChildren ( ).clear ( );
+        shopMenuRoot.getChildren ( ).add(backgroundImageView);
+        backgroundImageView.setEffect (blur);
+
+        //item Button
+        itemButtonImageView.setFitWidth(buttonSizeWidth);
+        itemButtonImageView.setFitHeight(buttonSizeHeight);
+        itemButtonImageView1.setFitWidth(buttonSizeWidth);
+        itemButtonImageView1.setFitHeight(buttonSizeHeight);
+        itemButtonImageView.setX(400);
+        itemButtonImageView.setY(250);
+        itemButtonImageView1.setX(400);
+        itemButtonImageView1.setY(250);
+        itemButton.setPrefSize(buttonSizeWidth, buttonSizeHeight);
+        itemButtonImageView1.setOpacity(0);
+        itemButton.relocate(400, 250 );
+        itemButton.setOpacity(0);
+        itemButtonLabel.relocate(490, 275);
+        itemButtonLabel.setFont(Font.font("Verdana", FontWeight.NORMAL,FontPosture.ITALIC, 20));
+        itemButtonLabel.setTextFill (Color.GHOSTWHITE);
+
+        //card Button
+        cardButtonImageView.setFitWidth(buttonSizeWidth);
+        cardButtonImageView.setFitHeight(buttonSizeHeight);
+        cardButtonImageView1.setFitWidth(buttonSizeWidth);
+        cardButtonImageView1.setFitHeight(buttonSizeHeight);
+        cardButtonImageView.setX(650);
+        cardButtonImageView.setY(250);
+        cardButtonImageView1.setX(650);
+        cardButtonImageView1.setY(250);
+        cardButton.setPrefSize(buttonSizeWidth, buttonSizeHeight);
+        cardButtonImageView1.setOpacity(0);
+        cardButton.relocate(650, 250 );
+        cardButton.setOpacity(0);
+        cardButtonLabel.relocate(740, 275);
+        cardButtonLabel.setFont(Font.font("Verdana", FontWeight.NORMAL, FontPosture.ITALIC,20));
+        cardButtonLabel.setTextFill (Color.GHOSTWHITE);
+
+
+        //item
+        shopMenuRoot.getChildren().add(itemButtonImageView);
+        shopMenuRoot.getChildren().add(itemButtonImageView1);
+        shopMenuRoot.getChildren().add(itemButtonLabel);
+        shopMenuRoot.getChildren().add(itemButton);
+
+
+
+        //card
+        shopMenuRoot.getChildren().add(cardButtonImageView);
+        shopMenuRoot.getChildren().add(cardButtonImageView1);
+        shopMenuRoot.getChildren().add(cardButtonLabel);
+        shopMenuRoot.getChildren().add(cardButton);
+
+
+
+        itemButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                enteredPlayer.play();
+                enteredPlayer.seek(Duration.ZERO);
+                if (itemButtonImageView.getOpacity() == 100)
+                    itemButtonImageView.setOpacity(0);
+                if (itemButtonImageView1.getOpacity() == 0)
+                    itemButtonImageView1.setOpacity(100);
+            }
+        });
+
+
+        itemButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                if (itemButtonImageView1.getOpacity() == 100)
+                    itemButtonImageView1.setOpacity(0);
+                if (itemButtonImageView.getOpacity() == 0)
+                    itemButtonImageView.setOpacity(100);
+            }
+        });
+
+        itemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                buyItemButtonClicked ();
+            }
+        });
+
+        cardButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                enteredPlayer.play();
+                enteredPlayer.seek(Duration.ZERO);
+                if (cardButtonImageView.getOpacity() == 100)
+                    cardButtonImageView.setOpacity(0);
+                if (cardButtonImageView1.getOpacity() == 0)
+                    cardButtonImageView1.setOpacity(100);
+            }
+        });
+
+
+        cardButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                if ( cardButtonImageView1.getOpacity() == 100)
+                    cardButtonImageView1.setOpacity(0);
+                if ( cardButtonImageView.getOpacity() == 0)
+                    cardButtonImageView.setOpacity(100);
+            }
+        });
+
+
+        cardButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent event) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                buyCardButtonClicked();
+            }
+        });
+
+    }
+
+    public void buyItemButtonClicked(){
+        final Boolean[] rightPage = {true};
+        final Boolean[] leftPage = {false};
+        shopMenuRoot.getChildren ( ).clear ( );
+        shopMenuRoot.getChildren ( ).addAll (backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        setExitButton();
+        itemPage (0);
+        Button rightArrowButton=new Button ("Next Page");
+        Button leftArrowButton=new Button("Last Page");
+        rightArrowButton.relocate (1070,320);
+        leftArrowButton.relocate (40,320);
+        rightArrowButton.setPrefSize (100,50);
+        leftArrowButton.setPrefSize (100,50);
+        shopMenuRoot.getChildren ().addAll (rightArrowButton);
+        rightArrowButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(rightPage[0]){
+                    shopMenuRoot.getChildren ().clear ();
+                    rightPage[0] =false;
+                    leftPage[0] =true;
+                    if(rightPage[0]){
+                        shopMenuRoot.getChildren ( ).add(rightArrowButton);
+                    }
+                    shopMenuRoot.getChildren ().addAll (backgroundImageView,leftArrowButton);
+                    backgroundImageView.setEffect (blur);
+                    setExitButton();
+                    itemPage (1);
+
+                }
+            }
+        });
+
+        leftArrowButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(leftPage[0]){
+                    shopMenuRoot.getChildren ().clear ();
+                    rightPage[0]=true;
+                    leftPage[0]=false;
+                    if(leftPage[0]){
+                        shopMenuRoot.getChildren ().add (leftArrowButton);
+
+                    }
+                    shopMenuRoot.getChildren ( ).addAll (backgroundImageView,rightArrowButton);
+                    backgroundImageView.setEffect (blur);
+                    setExitButton();
+                    itemPage (0);
+                }
+            }
+        });
+
+    }
+
+    public void itemPage(int page){
+        int j=0;
         try {
-            Image image = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close.png"));
+            for (int i = 9 +page*10; i < Math.min(19+page*10,Shop.getItems ().size()); i++) {
+                String itemName=Shop.getItems ().get (i).getName ();
+                String address = "/Users/rostaroghani/Desktop/Items/";
+                Image image = new Image (new FileInputStream (address + Shop.getItems ( ).get (i).getName ( ) + ".png"));
+                ImageView imageView = new ImageView (image);
+                imageView.setFitHeight (240);
+                imageView.setFitWidth (200);
+                shopMenuRoot.getChildren ( ).add (imageView);
+                Button buyItemButton = new Button ( Shop.getItems ().get (i).getName ());
+                buyItemButton.setOpacity (10);
+                buyItemButton.setPrefSize (Consts.buyButtonWidth, Consts.buyButtonHeight);
+                shopMenuRoot.getChildren ( ).add (buyItemButton);
+                buyItemButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        buyItemButton.setStyle ("-fx-border-color: #34BAF0; -fx-border-width: 2px;");
+                        shopMenuRoot.getChildren ().clear ();
+                        shopMenuRoot.getChildren ().add (backgroundImageView);
+                        backgroundImageView.setEffect (blur);
+                        setExitButton ();
+                        buy (itemName,Menu.loggedInPlayer);
+                    }
+                });
+                if(j<10){
+                    if(j<2){
+                        imageView.relocate (20,20+340*j);
+                        buyItemButton.relocate (50,255+340*j);
+                    }
+                    else if(j<4){
+                        imageView.relocate (260,20+340*(j-2));
+                        buyItemButton.relocate (290,255+340*(j-2));
+                    }
+                    else if(j<6){
+                        imageView.relocate (500,20+340*(j-4));
+                        buyItemButton.relocate (530,255+340*(j-4));
+                    }
+                    else if(j<8){
+                        imageView.relocate (740,20+340*(j-6));
+                        buyItemButton.relocate (770,255+340*(j-6));
+                    }
+                    else{
+                        imageView.relocate (980,20+340*(j-8));
+                        buyItemButton.relocate (1010,255+340*(j-8));
+                    }
+                }
+                else
+                    j=j-10;
+                j++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace ( );
+        }
+
+    }
+
+    public void buyCardButtonClicked(){
+        //todo
+    }
+
+    public void searchButtonClicked(){
+        shopMenuRoot.getChildren ().clear ();
+        shopMenuRoot.getChildren ().add (backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        TextField wanted=new TextField ();
+        Label label=new Label("What are you looking for?" );
+        label.setTextFill (Color.BLACK);
+        label.setFont (Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        label.relocate (320,300);
+        wanted.setPrefSize (200, 50);
+        label.setLabelFor (wanted);
+        wanted.relocate (620,300);
+        shopMenuRoot.getChildren ().addAll (wanted,label);
+
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                String lookingFor=wanted.getText();
+                wanted.setVisible(false);
+                shopMenuRoot.getChildren ().removeAll (label,wanted);
+                backgroundImageView.setEffect (blur);
+                search(lookingFor);
+
+            }
+        };
+        wanted.setOnAction (event);
+        setExitButton ();
+
+
+    }
+
+    public void buy(String name, Account account) {
+        boolean found = false;
+        showMessage (0);
+        Text wanted=new Text ();
+        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        wanted.setFill (Color.BLACK);
+        wanted.relocate(400, 320);
+        shopMenuRoot.getChildren ().add (wanted);
+        for (Card card1 : Shop.getCards()) {
+            if (name.compareToIgnoreCase(card1.getName()) == 0) {
+                found = true;
+                if (found) {
+                    if (card1.getPrice() > account.getDaric()) {
+                        wanted.setText ("You don't have enough money");
+                    } else if (card1.getPrice() <= account.getDaric()) {
+                        wanted.setText ("You bought this card successfully");
+                        Card card = Shop.makeNewCardByName(card1.getName());
+                        card.setCardID(shopMenu.makeID(card1.getName(), account));
+                        account.getCollection().addToCards(card);
+                        account.changeDaric(account.getDaric() - card1.getPrice());
+
+                    }
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            for (Item x : Shop.getItems()) {
+                if (name.compareToIgnoreCase(x.getName()) == 0 && x.getType ().compareToIgnoreCase ("Collectible")!=0) {
+                    found = true;
+                    if (found) {
+                        if (x.getPrice() > account.getDaric()) {
+                            wanted.setText ("You don't have enough money.");
+                        } else if (account.getNumberOfItemsOwned() >= 3) {
+                            wanted.setText ("You can't have more than 3 items.");
+                        } else if (account.getNumberOfItemsOwned() < 3 && x.getPrice() <= account.getDaric()) {
+                            wanted.setText ("You bought this item successfully");
+                            account.changeDaric(account.getDaric() - x.getPrice());
+                            account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() + 1);
+                            Item item = Shop.makeNewItemByName(x.getName());
+                            item.setItemID(shopMenu.makeID(x.getName(), account));
+                            account.getCollection().addToItems(item);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        if (!found) {
+            wanted.setText ("This Card/Item is not in the shop");
+        }
+
+    }
+
+    public void search(String name) {
+        boolean found = false;
+        Text wanted=new Text ();
+        wanted.setFont (Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        wanted.setFill (Color.BLACK);
+        wanted.relocate(400, 320);
+        for (Card x : Shop.getCards()) {
+            if (name.compareToIgnoreCase(x.getName()) == 0) {
+                wanted.setText ("Found it!");
+                wanted.relocate (830,100);
+                String cardName=x.getName ();
+                //todo
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            for (Item x : Shop.getItems()) {
+                if (name.compareToIgnoreCase(x.getName()) == 0) {
+                    wanted.setText("Found it!");
+                    wanted.relocate (830,100);
+                    String itemPic=x.getName ();
+                    String address = "/Users/rostaroghani/Desktop/Items/";
+                    Image image = null;
+                    try {
+                        image = new Image (new FileInputStream (address + x.getName ( ) + ".png"));
+                        ImageView imageView = new ImageView (image);
+                        imageView.setFitHeight (560);
+                        imageView.setFitWidth (430);
+                        imageView.relocate (350,20);
+                        shopMenuRoot.getChildren ().add (imageView);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace ( );
+                    }
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+           wanted.setText("This Card/Item is not in the shop");
+           showMessage (0);
+        }
+        shopMenuRoot.getChildren ().add (wanted);
+
+
+    }
+
+    public void showMessage(int position){
+        try {
+            Image warning = new Image (new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/notification_your_turn@2x.png"));
+            ImageView warningImageView= new ImageView (warning);
+            if(position==0){
+                warningImageView.relocate (250,270);
+            }
+            else if(position==-1){
+                warningImageView.relocate (250,350);
+            }
+            warningImageView.setFitHeight (160);
+            warningImageView.setFitWidth (700);
+            shopMenuRoot.getChildren ().add(warningImageView);
+        } catch (FileNotFoundException ec) {
+            ec.printStackTrace();
+        }
+    }
+
+
+    public void setExitButton(){
+        Button exit = new Button(null);
+        try {
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
             ImageView exitButtonImageView = new ImageView(image);
             exitButtonImageView.setFitWidth(50);
             exitButtonImageView.setFitHeight(50);
@@ -687,7 +729,7 @@ public class ShopMenuView {
             ex.printStackTrace();
         }
         try {
-            Image image1 = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close@2x.png"));
+            Image image1 = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
             ImageView exitButtonImageView1 = new ImageView(image1);
             exitButtonImageView1.setFitWidth(50);
             exitButtonImageView1.setFitHeight(50);
@@ -699,7 +741,7 @@ public class ShopMenuView {
         }
 
         exit.setPrefSize(40, 40);
-        exit.relocate(20, 20);
+        exit.relocate(5, 5);
         exit.setOpacity(0);
         shopMenuRoot.getChildren().add(exit);
 
@@ -714,53 +756,6 @@ public class ShopMenuView {
             }
         });
 
-    }
 
-    public void setImageView(ImageView buttonImageView, int n) {
-
-        buttonImageView.setFitWidth(buttonSizeWidth);
-        buttonImageView.setFitHeight(buttonSizeHeight);
-        if (n <= 3) {
-            buttonImageView.setX(Consts.width / 2 + 70);
-            buttonImageView.setY(Consts.height / 2.7 + n * Consts.distance);
-        }
-        else {
-            buttonImageView.setX(Consts.width / 2 + 300);
-            buttonImageView.setY(Consts.height / 100 + (n - 2) * Consts.distance);
-        }
-
-    }
-
-    public void setButton(Button button, int n) {
-        button.setOpacity(0);
-        if (n <= 3) {
-            button.relocate(Consts.width / 2 + 70, Consts.height / 2.7 + n * Consts.distance);
-        }
-        else {
-            button.relocate(Consts.width / 2 + 300, Consts.height / 100 + (n - 2) * Consts.distance);
-        }
-        button.setPrefSize(buttonSizeWidth, buttonSizeHeight);
-    }
-
-    public void setLabel(Label label, int n) {
-        label.setTextFill(Color.WHITE);
-        label.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
-        if (n <= 3) {
-            if(n == 1){
-                label.relocate(Consts.width / 2 + 120, Consts.height / 2.7 + n * Consts.distance + 27);
-            }
-            else if (n == 0){
-                label.relocate(Consts.width / 2 + 170, Consts.height / 2.7 + n * Consts.distance + 27);
-            }
-            else if (n == 2){
-                label.relocate(Consts.width / 2 + 120, Consts.height / 2.7 + n * Consts.distance + 27);
-            }
-            else {
-                label.relocate(Consts.width / 2 + 170, Consts.height / 2.7 + n * Consts.distance + 27);
-            }
-        }
-        else {
-            label.relocate(Consts.width / 2 + 390, Consts.height / 100 + (n - 2) * Consts.distance + 27);
-        }
     }
 }

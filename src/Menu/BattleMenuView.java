@@ -16,6 +16,8 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import Consts.Consts;
 
+import javax.sound.midi.Receiver;
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -47,8 +49,6 @@ public class BattleMenuView {
     private ImageView multiPlayerButtonImageView1 = new ImageView(buttonImage1);
     private ImageView mainMenuButtonImageView = new ImageView(buttonImage);
     private ImageView mainMenuButtonImageView1 = new ImageView(buttonImage1);
-    private ImageView helpButtonImageView = new ImageView(buttonImage);
-    private ImageView helpButtonImageView1 = new ImageView(buttonImage1);
 
     private ImageView backgroundImageView = new ImageView(battleBackgroundImage);
 
@@ -89,16 +89,6 @@ public class BattleMenuView {
         battleMenuRoot.getChildren().add(multiPlayerLabel);
         battleMenuRoot.getChildren().add(multiPlayerButton);
 
-        //help button
-        setImageView(helpButtonImageView, 3);
-        setImageView(helpButtonImageView1, 3);
-        helpButtonImageView1.setOpacity(0);
-        setButton(helpButton, 3);
-        setLabel(helpLabel, 3);
-        battleMenuRoot.getChildren().add(helpButtonImageView);
-        battleMenuRoot.getChildren().add(helpButtonImageView1);
-        battleMenuRoot.getChildren().add(helpLabel);
-        battleMenuRoot.getChildren().add(helpButton);
 
         //main menu
         setImageView(mainMenuButtonImageView, 0);
@@ -175,31 +165,6 @@ public class BattleMenuView {
         });
 
 
-        helpButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                enteredPlayer.play();
-                enteredPlayer.seek(Duration.ZERO);
-                if (helpButtonImageView.getOpacity() == 100)
-                    helpButtonImageView.setOpacity(0);
-                if (helpButtonImageView1.getOpacity() == 0)
-                    helpButtonImageView1.setOpacity(100);
-            }
-        });
-
-
-        helpButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                if (helpButtonImageView1.getOpacity() == 100)
-                    helpButtonImageView1.setOpacity(0);
-                if (helpButtonImageView.getOpacity() == 0)
-                    helpButtonImageView.setOpacity(100);
-            }
-        });
-
         mainMenuButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -250,18 +215,9 @@ public class BattleMenuView {
             }
         });
 
-        helpButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-            }
-        });
-
-
         Button exit = new Button("");
         try {
-            Image image = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close.png"));
+            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
             ImageView exitButtonImageView = new ImageView(image);
             exitButtonImageView.setFitWidth(50);
             exitButtonImageView.setFitHeight(50);
@@ -273,7 +229,7 @@ public class BattleMenuView {
             ex.printStackTrace();
         }
         try {
-            Image image1 = new Image(new FileInputStream("C:\\Users\\asus\\IdeaProjects\\project-36\\project-36\\project-36\\src\\pics\\button_close@2x.png"));
+            Image image1 = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
             ImageView exitButtonImageView1 = new ImageView(image1);
             exitButtonImageView1.setFitWidth(50);
             exitButtonImageView1.setFitHeight(50);
@@ -299,7 +255,6 @@ public class BattleMenuView {
                 //faqat be safheye qabl bargarde na be main menu
             }
         });
-
 
     }
 
