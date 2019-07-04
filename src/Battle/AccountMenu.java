@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class AccountMenu {
-    public void save(){};
+    public void save(){}
     public void exit(){
         return;
     }

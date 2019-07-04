@@ -3,13 +3,15 @@ package Menu;
 
 import Battle.AccountMenu;
 import Battle.BattleMenu;
-import Collective.Card.Card;
-import Collective.Item;
 import Player.Account;
 import Player.Deck;
 import Player.Player;
 import Shop.ShopMenu;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.io.*;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Menu {
@@ -35,9 +37,9 @@ public class Menu {
 
 
         //if (input == "1") {
-            MainMenuView menuView = new MainMenuView(input);
-            Graphics.changeScene(menuView.getMainMenuScene());
-            input = "";
+        MainMenuView menuView = new MainMenuView(input);
+        Graphics.changeScene(menuView.getMainMenuScene());
+        input = "";
         //}
 
         /*if (input == "" || input == "1"){
@@ -73,14 +75,17 @@ public class Menu {
         } else if (input.compareToIgnoreCase("save") == 0) {
 
         } else if (input.compareToIgnoreCase("logout") == 0) {
-            loggedInPlayer = null;
+            //System.out.println ("here" );
+            //saveAccountInfo(loggedInPlayer);
+            //loggedInPlayer = null;
+
         } else if (input.compareToIgnoreCase("help") == 0) {
             menu.help();
         }
         else if (str[0].compareToIgnoreCase("create")==0 && str[1].compareToIgnoreCase("account")==0){
-            System.out.println("here");
             if (!Player.takenUsernames(str[2])) {
                 menu.createAccount(str[2], str[3]);
+                accountsList (str[2]);
                 System.out.println("New Account Created!");
                 firstMenu();
             } else
@@ -314,5 +319,53 @@ public class Menu {
         System.out.println("Battle");
         System.out.println("Exit");
         System.out.println("Help");
+    }
+
+    public static void saveAccountInfo(Account account) {
+        Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
+        try{
+            FileWriter fileWriter = new FileWriter ("AccountInfo/"+account.getUsername ()+".json");
+            fileWriter.write (gson.toJson (account));
+            fileWriter.close ();
+        } catch (IOException e) {
+            e.printStackTrace ( );
+        }
+
+    }
+
+    public static void accountsList(String username){
+        Gson gson = new GsonBuilder ().setPrettyPrinting ().create ();
+        try{
+            FileWriter fileWriter = new FileWriter ("AccountInfo/accountList.txt");
+            fileWriter.append (username);
+            fileWriter.close ();
+        } catch (IOException e) {
+            e.printStackTrace ( );
+        }
+    }
+
+
+    public static void makeAllAccounts(){
+        try {
+            FileReader fileReader = new FileReader ("AccountInfo/accountList.txt");
+            BufferedReader bufferedReader = new BufferedReader (fileReader);
+            while(true){
+                String line = bufferedReader.readLine();
+                if (line == null){
+                    break;
+                }
+                String userName= line.trim ();
+                Gson gson = new Gson();
+                InputStream input = new FileInputStream("AccountInfo/"+ userName+".json");
+                Reader reader = new InputStreamReader(input);
+                Account account = gson.fromJson (reader,Account.class);
+                Account.addToAccounts (account);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace ( );
+        } catch (IOException e) {
+            e.printStackTrace ( );
+        }
+
     }
 }

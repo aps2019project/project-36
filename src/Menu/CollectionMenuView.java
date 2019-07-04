@@ -331,7 +331,7 @@ public class CollectionMenuView {
             }
         });
 
-       showDeckButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        showDeckButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -371,7 +371,7 @@ public class CollectionMenuView {
         });
 
 
-       saveButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+        saveButton.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
@@ -566,9 +566,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
                 showAllDecksClicked(Menu.loggedInPlayer);
             }
         });
@@ -658,16 +655,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField ID = new TextField();
-                ID.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        searchClicked(ID.getText());
-                    }
-                });
             }
         });
 
@@ -676,18 +663,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                collectionMenuRoot.getChildren().add(textField);
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        collectionMenuRoot.getChildren().remove(textField);
-                        createOrRemoveDeck("create", textField.getText());
-                    }
-                });
             }
         });
 
@@ -696,16 +671,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        createOrRemoveDeck("remove", textField.getText());
-                    }
-                });
             }
         });
 
@@ -714,29 +679,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-                            if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(textField.getText())==0) {
-                                if (Menu.loggedInPlayer.getCollection().validateDeck(Menu.loggedInPlayer.getCollection().getDecks().get(i))) {
-                                    Text text = new Text("valid");
-                                    collectionMenuRoot.getChildren().add(text);
-                                    System.out.println("valid");
-                                } else {
-                                    Text text = new Text("invalid");
-                                    collectionMenuRoot.getChildren().add(text);
-                                    System.out.println("invalid");
-                                }
-                                break;
-                            }
-                        }
-                    }
-                });
             }
         });
 
@@ -745,21 +687,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                collectionMenuRoot.getChildren().add(textField);
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        for (Deck deck: Menu.loggedInPlayer.getCollection().getDecks()) {
-                            if(deck.getName().compareToIgnoreCase(textField.getText()) == 0){
-                                showDeck(deck);
-                            }
-                        }
-                    }
-                });
             }
         });
 
@@ -768,17 +695,6 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                collectionMenuRoot.getChildren ().clear();
-                collectionMenuRoot.getChildren().add(backgroundImageView);
-                backgroundImageView.setEffect(new GaussianBlur());
-                TextField textField = new TextField();
-                collectionMenuRoot.getChildren().add(textField);
-                textField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        selectClicked(textField.getText());
-                    }
-                });
             }
         });
 
@@ -787,357 +703,287 @@ public class CollectionMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                //todo
             }
         });
+            Button exit = new Button("");
+            try {
+                Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
+                ImageView exitButtonImageView = new ImageView(image);
+                exitButtonImageView.setFitWidth(50);
+                exitButtonImageView.setFitHeight(50);
+                exitButtonImageView.setX(10);
+                exitButtonImageView.setY(10);
+                collectionMenuRoot.getChildren().add(exitButtonImageView);
 
-
-        Button exit = new Button("");
-        try {
-            Image image = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close.png"));
-            ImageView exitButtonImageView = new ImageView(image);
-            exitButtonImageView.setFitWidth(50);
-            exitButtonImageView.setFitHeight(50);
-            exitButtonImageView.setX(10);
-            exitButtonImageView.setY(10);
-            collectionMenuRoot.getChildren().add(exitButtonImageView);
-
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        try {
-            Image image1 = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
-            ImageView exitButtonImageView1 = new ImageView(image1);
-            exitButtonImageView1.setFitWidth(50);
-            exitButtonImageView1.setFitHeight(50);
-            exitButtonImageView1.setX(10);
-            exitButtonImageView1.setY(10);
-            collectionMenuRoot.getChildren().add(exitButtonImageView1);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        exit.setPrefSize(40, 40);
-        exit.relocate(20, 20);
-        exit.setOpacity(0);
-        collectionMenuRoot.getChildren().add(exit);
-
-        exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
-            @Override
-            public void handle(MouseEvent event) {
-                clickedPlayer.play ();
-                clickedPlayer.seek(Duration.ZERO);
-                Menu.secondMenuCommand("exit");
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
             }
-        });
-        //faqat be safheye qabl bargarde na be main menu
-    }
-
-    public void setImageView(ImageView buttonImageView, int n) {
-
-        buttonImageView.setFitWidth(buttonSizeWidth);
-        buttonImageView.setFitHeight(buttonSizeHeight);
-        if (n <= 3) {
-            buttonImageView.setX(Consts.width - 750);
-            buttonImageView.setY(Consts.height / 100 + 100 +  n * Consts.distance);
-        }
-        else if(n<=7){
-            buttonImageView.setX(Consts.width / 2 + 100);
-            buttonImageView.setY(Consts.height / 100 + (n - 3) * Consts.distance);
-        }
-        else {
-            buttonImageView.setX(Consts.width / 2 + 340 );
-            buttonImageView.setY(Consts.height / 100 + (n - 7) * Consts.distance);
-        }
-
-    }
-
-    public void setButton(Button button, int n) {
-        button.setOpacity(0);
-        if (n <= 3) {
-            button.relocate(Consts.width -750, Consts.height / 100 + 100 +  n * Consts.distance);
-        }
-        else if(n<=7){
-            button.relocate(Consts.width / 2 + 100, Consts.height / 100 + (n-3) * Consts.distance);
-        }
-        else {
-            button.relocate(Consts.width / 2 + 340, Consts.height / 100 + (n - 7) * Consts.distance);
-        }
-        button.setPrefSize(buttonSizeWidth, buttonSizeHeight);
-    }
-
-    public void setLabel(Label label, int n) {
-        label.setTextFill(Color.WHITE);
-        label.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
-        if (n <= 3) {
-            if(n==3){
-                label.relocate(Consts.width - 660 , Consts.height / 100 + 130 + n * Consts.distance);
+            try {
+                Image image1 = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
+                ImageView exitButtonImageView1 = new ImageView(image1);
+                exitButtonImageView1.setFitWidth(50);
+                exitButtonImageView1.setFitHeight(50);
+                exitButtonImageView1.setX(10);
+                exitButtonImageView1.setY(10);
+                collectionMenuRoot.getChildren().add(exitButtonImageView1);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
             }
-            else{
-                label.relocate(Consts.width - 650 , Consts.height / 100 + 130 + n * Consts.distance);
-            }
-        }
-        else if(n<=7){
-            if(n==4){
-                label.relocate(Consts.width / 2 + 180, Consts.height / 100 + (n-3) * Consts.distance + 30);
-            }
-            else if(n==6){
-                label.relocate(Consts.width / 2 + 195, Consts.height / 100 + (n-3) * Consts.distance + 30);
-            }
-            else{
-                label.relocate(Consts.width / 2 + 165, Consts.height / 100 + (n-3) * Consts.distance + 30);
-            }
-        }
-        else {
-            label.relocate(Consts.width / 2 + 400, Consts.height / 100 + (n - 7) * Consts.distance + 30);
-        }
-    }
 
-    public void showAllDecksClicked(Account account) {
-        boolean haveMainDeck=false;
-        if(account.getMainDeck ()!=null){
-            System.out.println (account.getMainDeck ().getName () );
-            showDeck (account.getMainDeck ());
-            haveMainDeck=true;
+            exit.setPrefSize(40, 40);
+            exit.relocate(20, 20);
+            exit.setOpacity(0);
+            collectionMenuRoot.getChildren().add(exit);
+
+            exit.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+                @Override
+                public void handle(MouseEvent event) {
+                    clickedPlayer.play ();
+                    clickedPlayer.seek(Duration.ZERO);
+                    Menu.secondMenuCommand("exit");
+                }
+            });
+            //faqat be safheye qabl bargarde na be main menu
         }
-        for(Deck x:account.getDecks ()){
-            if(!haveMainDeck){
-                System.out.println (x.getName () );
-                showDeck (x);
+
+        public void setImageView(ImageView buttonImageView, int n) {
+
+            buttonImageView.setFitWidth(buttonSizeWidth);
+            buttonImageView.setFitHeight(buttonSizeHeight);
+            if (n <= 3) {
+                buttonImageView.setX(Consts.width - 750);
+                buttonImageView.setY(Consts.height / 100 + 100 +  n * Consts.distance);
             }
-            else if(!(x.equals (account.getMainDeck ()))){
-                System.out.println (x.getName () );
-                showDeck (x);
+            else if(n<=7){
+                buttonImageView.setX(Consts.width / 2 + 100);
+                buttonImageView.setY(Consts.height / 100 + (n - 3) * Consts.distance);
+            }
+            else {
+                buttonImageView.setX(Consts.width / 2 + 340 );
+                buttonImageView.setY(Consts.height / 100 + (n - 7) * Consts.distance);
+            }
+
+        }
+
+        public void setButton(Button button, int n) {
+            button.setOpacity(0);
+            if (n <= 3) {
+                button.relocate(Consts.width -750, Consts.height / 100 + 100 +  n * Consts.distance);
+            }
+            else if(n<=7){
+                button.relocate(Consts.width / 2 + 100, Consts.height / 100 + (n-3) * Consts.distance);
+            }
+            else {
+                button.relocate(Consts.width / 2 + 340, Consts.height / 100 + (n - 7) * Consts.distance);
+            }
+            button.setPrefSize(buttonSizeWidth, buttonSizeHeight);
+        }
+
+        public void setLabel(Label label, int n) {
+            label.setTextFill(Color.WHITE);
+            label.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+            if (n <= 3) {
+                if(n==3){
+                    label.relocate(Consts.width - 660 , Consts.height / 100 + 130 + n * Consts.distance);
+                }
+                else{
+                    label.relocate(Consts.width - 650 , Consts.height / 100 + 130 + n * Consts.distance);
+                }
+            }
+            else if(n<=7){
+                if(n==4){
+                    label.relocate(Consts.width / 2 + 180, Consts.height / 100 + (n-3) * Consts.distance + 30);
+                }
+                else if(n==6){
+                    label.relocate(Consts.width / 2 + 195, Consts.height / 100 + (n-3) * Consts.distance + 30);
+                }
+                else{
+                    label.relocate(Consts.width / 2 + 165, Consts.height / 100 + (n-3) * Consts.distance + 30);
+                }
+            }
+            else {
+                label.relocate(Consts.width / 2 + 400, Consts.height / 100 + (n - 7) * Consts.distance + 30);
             }
         }
-    }
 
-    public void showDeck(Deck deck){
-
-        Button exit = new Button("back");
-        exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Menu.collectionMenu();
+        public void showAllDecksClicked(Account account) {
+            collectionMenuRoot.getChildren ().clear();
+            collectionMenuRoot.getChildren().add(backgroundImageView);
+            backgroundImageView.setEffect(new GaussianBlur());
+            boolean haveMainDeck=false;
+            if(account.getMainDeck ()!=null){
+                System.out.println (account.getMainDeck ().getName () );
+                showDeck (account.getMainDeck ());
+                haveMainDeck=true;
             }
-        });
-        int changeY = 50;
-        Text deckName = new Text("deck name = " + deck.getName());
-        collectionMenuRoot.getChildren().add(deckName);
-        deckName.relocate(100, changeY);
-        changeY+=50;
-        System.out.println("deck name = " + deck.getName());
-
-        Text heroes = new Text("Heroes:" );
-        collectionMenuRoot.getChildren().add(heroes);
-        heroes.relocate(100, changeY);
-        changeY += 50;
-        System.out.println ("Heroes:" );
-        for(int i = 0; i< deck.getCards ().size (); i++){
-            if(deck.getCards ().get(i).getType ().compareTo ("Hero")==0){
-                Text text = new Text((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
-                        " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getDesc () +
-                        " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
-                text.relocate(100, changeY);
-                collectionMenuRoot.getChildren().add(text);
-                changeY += 50;
-                System.out.println ((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
-                        " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getDesc () +
-                        " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+            for(Deck x:account.getDecks ()){
+                if(!haveMainDeck){
+                    System.out.println (x.getName () );
+                    showDeck (x);
+                }
+                else if(!(x.equals (account.getMainDeck ()))){
+                    System.out.println (x.getName () );
+                    showDeck (x);
+                }
             }
         }
-        Text items = new Text("Items:" );
-        collectionMenuRoot.getChildren().add(items);
-        items.relocate(100, changeY);
-        changeY += 50;
-        System.out.println ("Items:" );
-        for(int i= 0; i< deck.getItems ().size(); i++){
-            Text text = new Text((i+1) + ": Name:" + deck.getItems ().get(i).getName () + "- Desc:" + deck.getItems ().get (i).getDesc () +
-                    "Buy Cost:" + deck.getItems ().get(i).getPrice ());
-            collectionMenuRoot.getChildren().add(text);
-            text.relocate(100, changeY);
+
+        public void showDeck(Deck deck){
+            Button exit = new Button("back");
+            exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Menu.collectionMenu();
+                }
+            });
+            int changeY = 50;
+            Text deckName = new Text("deck name = " + deck.getName());
+            collectionMenuRoot.getChildren().add(deckName);
+            deckName.relocate(100, changeY);
+            changeY+=50;
+            System.out.println("deck name = " + deck.getName());
+
+            Text heroes = new Text("Heroes:" );
+            collectionMenuRoot.getChildren().add(heroes);
+            heroes.relocate(100, changeY);
             changeY += 50;
-            System.out.println ((i+1) + ": Name:" + deck.getItems ().get(i).getName () + "- Desc:" + deck.getItems ().get (i).getDesc () +
-                    "Buy Cost:" + deck.getItems ().get(i).getPrice ());
-        }
-        Text cards = new Text("Cards:" );
-        cards.relocate(100, changeY);
-        collectionMenuRoot.getChildren().add(cards);
-        changeY += 50;
-        System.out.println ("Cards:" );
-        for(int i = 0; i< deck.getCards ().size (); i++){
-            if(deck.getCards ().get(i).getType ().compareTo ("Spell")== 0){
-                Text text = new Text((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
-                        " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
-                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+            System.out.println ("Heroes:" );
+            for(int i = 0; i< deck.getCards ().size (); i++){
+                if(deck.getCards ().get(i).getType ().compareTo ("Hero")==0){
+                    Text text = new Text((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
+                            " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getDesc () +
+                            " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                    text.relocate(100, changeY);
+                    collectionMenuRoot.getChildren().add(text);
+                    changeY += 50;
+                    System.out.println ((i+1) +" Name: " + deck.getCards ().get(i).getName () +" - AP: "+deck.getCards ().get(i).getAP ()+
+                            " - HP: "+ deck.getCards ().get(i).getHP ()+" - Special Power: "+ deck.getCards ().get(i).getDesc () +
+                            " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                }
+            }
+            Text items = new Text("Items:" );
+            collectionMenuRoot.getChildren().add(items);
+            items.relocate(100, changeY);
+            changeY += 50;
+            System.out.println ("Items:" );
+            for(int i= 0; i< deck.getItems ().size(); i++){
+                Text text = new Text((i+1) + ": Name:" + deck.getItems ().get(i).getName () + "- Desc:" + deck.getItems ().get (i).getDesc () +
+                        "Buy Cost:" + deck.getItems ().get(i).getPrice ());
                 collectionMenuRoot.getChildren().add(text);
                 text.relocate(100, changeY);
                 changeY += 50;
-                System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
-                        " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
-                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                System.out.println ((i+1) + ": Name:" + deck.getItems ().get(i).getName () + "- Desc:" + deck.getItems ().get (i).getDesc () +
+                        "Buy Cost:" + deck.getItems ().get(i).getPrice ());
             }
-            else if(deck.getCards ().get(i).getType ().compareTo ("Minion")== 0){
-                Text text = new Text((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
-                        deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
-                        " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
-                        " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
-                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
-                collectionMenuRoot.getChildren().add(text);
-                text.relocate(100, changeY);
-                changeY += 50;
-                System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
-                        deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
-                        " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
-                        " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
-                        deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+            Text cards = new Text("Cards:" );
+            cards.relocate(100, changeY);
+            collectionMenuRoot.getChildren().add(cards);
+            changeY += 50;
+            System.out.println ("Cards:" );
+            for(int i = 0; i< deck.getCards ().size (); i++){
+                if(deck.getCards ().get(i).getType ().compareTo ("Spell")== 0){
+                    Text text = new Text((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
+                            " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
+                            deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                    collectionMenuRoot.getChildren().add(text);
+                    text.relocate(100, changeY);
+                    changeY += 50;
+                    System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +deck.getCards ().get(i).getName () +
+                            " - MP: "+deck.getCards ().get(i).getMP ()+" - Class: " +deck.getCards ().getClass () +" - Description: "+
+                            deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                }
+                else if(deck.getCards ().get(i).getType ().compareTo ("Minion")== 0){
+                    Text text = new Text((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
+                            deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
+                            " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
+                            " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
+                            deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                    collectionMenuRoot.getChildren().add(text);
+                    text.relocate(100, changeY);
+                    changeY += 50;
+                    System.out.println ((i+1) +"Type "+ deck.getCards ().get (i).getType ()+ " - Name: " +
+                            deck.getCards ().get(i).getName () + " - Class: " +deck.getCards ().getClass () +
+                            " - AP: "+deck.getCards ().get(i).getAP ()+" - HP: "+deck.getCards ().get (i).getHP ()+
+                            " - MP"+deck.getCards ().get (i).getMP ()+" - SpecialPower: "+
+                            deck.getCards ().get(i).getDesc () + " - Buy Cost: " + deck.getCards ().get (i).getPrice ());
+                }
             }
         }
-    }
 
-    public void addOrRemoveCardClicked(String order, String deckName, String cardID) {
+        public void addOrRemoveCardClicked(String order, String deckName, String cardID) {
 
-        outer:
-        for (Deck deck: Menu.loggedInPlayer.getCollection().getDecks()) {
-            if(deck.getName().equals(deckName)){
-                for (Card card: Menu.loggedInPlayer.getCollection().getCards()) {
-                    System.out.println("card.getName() = " + card.getName());
-                    if(card.getCardID().equals(cardID)){
-                        if (card.getType().equals("Hero")){
-                            if(deck.getHero() != null){
-                                if(order.equals("add")) {
+            outer:
+            for (Deck deck: Menu.loggedInPlayer.getCollection().getDecks()) {
+                if(deck.getName().equals(deckName)){
+                    for (Card card: Menu.loggedInPlayer.getCollection().getCards()) {
+                        System.out.println("card.getName() = " + card.getName());
+                        if(card.getCardID().equals(cardID)){
+                            if (card.getType().equals("Hero")){
+                                if(deck.getHero() != null){
+                                    if(order.equals("add")) {
+                                        Text text = new Text("cannot add any hero to deck");
+                                        collectionMenuRoot.getChildren().add(text);
+                                        System.out.println("cannot add any hero to deck");
+                                    }
+                                    else{
+                                        deck.setHero(null);
+                                    }
+                                    break outer;
+                                }
+                                else {
+                                    deck.setHero(card);
+                                    break outer;
+                                }
+                            }
+                            if(order.compareToIgnoreCase("add")==0) {
+                                deck.addToCards(card);
+                                if(deck.getCards().size() > 20){
                                     Text text = new Text("cannot add any hero to deck");
                                     collectionMenuRoot.getChildren().add(text);
-                                    System.out.println("cannot add any hero to deck");
+                                    System.out.println("cannot add any card to deck");
+                                    deck.removeFromCards(card);
                                 }
-                                else{
-                                    deck.setHero(null);
-                                }
-                                break outer;
                             }
-                            else {
-                                deck.setHero(card);
-                                break outer;
-                            }
-                        }
-                        if(order.compareToIgnoreCase("add")==0) {
-                            deck.addToCards(card);
-                            if(deck.getCards().size() > 20){
-                                Text text = new Text("cannot add any hero to deck");
-                                collectionMenuRoot.getChildren().add(text);
-                                System.out.println("cannot add any card to deck");
+                            else
+                            if(deck.contains(card)) {
                                 deck.removeFromCards(card);
-                            }
-                        }
-                        else
-                        if(deck.contains(card)) {
-                            deck.removeFromCards(card);
-                        }
-                        else {
-                            Text text = new Text("Deck doesn't contain this item");
-                            collectionMenuRoot.getChildren().add(text);
-                            System.out.println("Deck doesn't contain this card");
-                        }
-                        break outer;
-                    }
-                }
-                for (Item item : Menu.loggedInPlayer.getCollection().getItems()){
-                    if(item.getItemID().equals(cardID)){
-                        if (order.compareToIgnoreCase("add")==0) {
-                            deck.addToItems(item);
-                            if (!deck.validateDeck()) {
-                                Text text = new Text("cannot add any hero to deck");
-                                collectionMenuRoot.getChildren().add(text);
-                                System.out.println("cannot add any item to deck");
-                                deck.removeFromItems(item);
-                            }
-                        }
-                        else {
-                            if(deck.contains(item)) {
-                                deck.removeFromItems(item);
                             }
                             else {
                                 Text text = new Text("Deck doesn't contain this item");
                                 collectionMenuRoot.getChildren().add(text);
-                                System.out.println("Deck doesn't contain this item");
+                                System.out.println("Deck doesn't contain this card");
                             }
+                            break outer;
                         }
-                        break outer;
                     }
-                }
-                Text text = new Text("selected card/item is not in the collection");
-                collectionMenuRoot.getChildren().add(text);
-                System.out.println("selected card/item is not in the collection");
-            }
-        }
-    }
-
-    public void searchClicked(String name) {
-        String temp = Menu.loggedInPlayer.getCollection().search(name);
-        if (temp != "") {
-            Text text = new Text(temp);
-            collectionMenuRoot.getChildren().add(text);
-            System.out.println(temp);
-        } else {
-            Text text = new Text("entered card/item does not exist in this collection");
-            System.out.println("entered card/item does not exist in this collection");
-        }
-    }
-
-    public void createOrRemoveDeck(String order, String name) {
-
-        if(order.equals("create")) {
-            boolean check = false;
-            Deck deck = new Deck();
-            deck.setName(name);
-            for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().equals(name)) {
-                    Text text = new Text("Deck already exists!");
+                    for (Item item : Menu.loggedInPlayer.getCollection().getItems()){
+                        if(item.getItemID().equals(cardID)){
+                            if (order.compareToIgnoreCase("add")==0) {
+                                deck.addToItems(item);
+                                if (!deck.validateDeck()) {
+                                    Text text = new Text("cannot add any hero to deck");
+                                    collectionMenuRoot.getChildren().add(text);
+                                    System.out.println("cannot add any item to deck");
+                                    deck.removeFromItems(item);
+                                }
+                            }
+                            else {
+                                if(deck.contains(item)) {
+                                    deck.removeFromItems(item);
+                                }
+                                else {
+                                    Text text = new Text("Deck doesn't contain this item");
+                                    collectionMenuRoot.getChildren().add(text);
+                                    System.out.println("Deck doesn't contain this item");
+                                }
+                            }
+                            break outer;
+                        }
+                    }
+                    Text text = new Text("selected card/item is not in the collection");
                     collectionMenuRoot.getChildren().add(text);
-                    System.out.println("Deck already exists!");
-                    check = true;
+                    System.out.println("selected card/item is not in the collection");
                 }
-            }
-            if (!check) {
-                Text text = new Text("added!");
-
-                collectionMenuRoot.getChildren().add(text);
-                text.relocate(100, 100);
-                text.setFont(Font.font(40));
-                Menu.loggedInPlayer.getCollection().addToDecks(deck);
-            }
-            System.out.println("deck.getName() = " + deck.getName());
-        }
-        else{
-            boolean check = false;
-            for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-                if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().equals(name)) {
-                    Menu.loggedInPlayer.getCollection().getDecks().remove(i);
-                    check = true;
-                }
-            }
-            if (!check) {
-                System.out.println("Deck doesn't exist!");
             }
         }
     }
-
-    public void selectClicked(String name) {
-        boolean check = false;
-        for (int i = 0; i < Menu.loggedInPlayer.getCollection().getDecks().size(); i++) {
-            if (Menu.loggedInPlayer.getCollection().getDecks().get(i).getName().compareToIgnoreCase(name)==0) {
-                Menu.loggedInPlayer.setMainDeck(Menu.loggedInPlayer.getCollection().getDecks().get(i));
-                check = true;
-                Text text = new Text("selected");
-                collectionMenuRoot.getChildren().add(text);
-                text.relocate(100, 100);
-                text.setFont(Font.font(40));
-            }
-        }
-        if (!check) {
-            Text text = new Text("Deck doesnt exist!");
-            collectionMenuRoot.getChildren().add(text);
-            System.out.println("Deck doesnt exist!");
-        }
-    }
-}
