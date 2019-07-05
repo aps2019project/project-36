@@ -5,8 +5,6 @@ import Shop.Shop;
 import java.io.IOException;
 
 public class Main {
-
-
     public static void main(String[] args) {
         Shop shop=new Shop();
         Menu.makeAllAccounts ();

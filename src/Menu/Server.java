@@ -13,17 +13,31 @@ public class Server {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         ServerSocket serverSocket = new ServerSocket(8000);
-        //while (true) {
+        while (true) {
 
-        Socket socket = serverSocket.accept();
-        System.out.println("new one added!");
-        sockets.add(socket);
+            Socket socket = serverSocket.accept();
+            System.out.println("new one added!");
+            sockets.add(socket);
 
-        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
 
-        ClientInfo object = (ClientInfo) objectInputStream.readObject();
+            //ClientInfo object = (ClientInfo) objectInputStream.readObject();
 
-        //System.out.println(object.getName());
-        //}
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run(){
+                    while (true) {
+                        try {
+                            ClientInfo object = (ClientInfo) objectInputStream.readObject();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+            thread.start();
+        }
     }
 }

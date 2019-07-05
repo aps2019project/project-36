@@ -18,6 +18,7 @@ import Menu.MainMenuView;
 import Menu.Menu;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
@@ -71,7 +72,10 @@ public class Graphics extends Application {
 
         System.out.println("here");
         Socket socket = new Socket("localhost",8000);
+
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+
 
         ClientInfo clientInfo = new ClientInfo();
 
@@ -79,6 +83,22 @@ public class Graphics extends Application {
         objectOutputStream.flush();
 
         socket.close();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        ClientInfo object = (ClientInfo) objectInputStream.readObject();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread.start();
 
         launch(args);
     }
