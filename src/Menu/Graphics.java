@@ -16,6 +16,10 @@ import Battle.*;
 import Consts.Consts;
 import Menu.MainMenuView;
 import Menu.Menu;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class Graphics extends Application {
@@ -63,7 +67,18 @@ public class Graphics extends Application {
         thread.start();
     }
 
-    public static void graphics(String[] args) {
+    public static void graphics(String[] args) throws IOException {
+
+        System.out.println("here");
+        Socket socket = new Socket("localhost",8000);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+
+        ClientInfo clientInfo = new ClientInfo();
+
+        objectOutputStream.writeObject(clientInfo);
+        objectOutputStream.flush();
+
+        socket.close();
 
         launch(args);
     }
