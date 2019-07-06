@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class Shop {
+public class Shop implements Serializable{
     private static ArrayList<Card> cards = new ArrayList<> ( );
     private static ArrayList<Item> items = new ArrayList<> ( );
 

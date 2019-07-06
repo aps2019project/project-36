@@ -1,9 +1,12 @@
 package Battle;
 
+import Menu.ClientInfo;
+import Menu.*;
 import Player.Account;
 import Player.Collection;
 import Player.Player;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -27,7 +30,7 @@ public class AccountMenu {
         return null;
     }
 
-    public void createAccount(String username, String password){
+    public void createAccount(String username, String password) throws IOException {
         // checked in main
         Account newAccount = new Account();
         newAccount.setUsername(username);
@@ -35,6 +38,11 @@ public class AccountMenu {
         newAccount.setDaric();
         Account.addToAccounts(newAccount);
         newAccount.setNumberOfItemsOwned();
+        ClientInfo clientInfo = Main.clientInfo;
+        clientInfo.setOrder("new Account");
+        clientInfo.setAccount(newAccount);
+        Graphics.objectOutputStream.writeObject(clientInfo);
+        Graphics.objectOutputStream.flush();
     }
 
     public void showLeaderboard(){

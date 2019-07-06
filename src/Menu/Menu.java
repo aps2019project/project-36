@@ -51,7 +51,7 @@ public class Menu {
         }*/
     }
 
-    public static void firstMenuCommand(String input) {
+    public static void firstMenuCommand(String input) throws IOException {
 
         AccountMenu menu = new AccountMenu();
         menu.help();

@@ -518,6 +518,11 @@ public class MainMenuView {
                         Text text = new Text ("Your account was created successfully!");
                         text.setFont (Font.font (40));
                         text.relocate (Consts.width / 4, 310);
+                        try {
+                            Menu.firstMenuCommand("create account " + username.getText() + " " + pass.getText());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         mainMenuRoot.getChildren ( ).add (text);
                         return;
                     }

@@ -16,10 +16,16 @@ import Battle.*;
 import Consts.Consts;
 import Menu.MainMenuView;
 import Menu.Menu;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class Graphics extends Application {
 
+    public static ObjectOutputStream objectOutputStream;
     public static Stage stage;
     public static Player player = new Player();
 
@@ -63,7 +69,41 @@ public class Graphics extends Application {
         thread.start();
     }
 
-    public static void graphics(String[] args) {
+
+
+    public static void graphics(String[] args) throws IOException {
+
+        Socket socket = new Socket("localhost",8000);
+
+        objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        //ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+
+        //System.out.println("here");
+
+        ClientInfo clientInfo = Main.clientInfo;
+        clientInfo.setOrder("new");
+
+
+        objectOutputStream.writeObject(clientInfo);
+        objectOutputStream.flush();
+
+        //socket.close();
+
+        /*Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        ClientInfo object = (ClientInfo) objectInputStream.readObject();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread.start();*/
 
         launch(args);
     }
