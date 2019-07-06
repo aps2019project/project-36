@@ -41,8 +41,8 @@ public class AccountMenu {
         ClientInfo clientInfo = Main.clientInfo;
         clientInfo.setOrder("new Account");
         clientInfo.setAccount(newAccount);
-        Graphics.objectOutputStream.writeObject(clientInfo);
-        Graphics.objectOutputStream.flush();
+            Graphics.objectOutputStream.writeObject(clientInfo);
+            Graphics.objectOutputStream.flush();
     }
 
     public void showLeaderboard(){

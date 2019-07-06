@@ -1,5 +1,6 @@
 package Menu;
 
+import Battle.AccountMenu;
 import Consts.Consts;
 import Player.Account;
 import Player.Player;
@@ -518,8 +519,10 @@ public class MainMenuView {
                         Text text = new Text ("Your account was created successfully!");
                         text.setFont (Font.font (40));
                         text.relocate (Consts.width / 4, 310);
+
                         try {
-                            Menu.firstMenuCommand("create account " + username.getText() + " " + pass.getText());
+                            AccountMenu menu = new AccountMenu();
+                            menu.createAccount(username.getText(), pass.getText());//("create account " + username.getText() + " " + pass.getText());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
