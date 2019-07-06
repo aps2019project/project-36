@@ -30,7 +30,7 @@ public class AccountMenu {
         return null;
     }
 
-    public void createAccount(String username, String password) throws IOException {
+    public Account createAccount(String username, String password) throws IOException {
         // checked in main
         Account newAccount = new Account();
         newAccount.setUsername(username);
@@ -43,6 +43,7 @@ public class AccountMenu {
         clientInfo.setAccount(newAccount);
             Graphics.objectOutputStream.writeObject(clientInfo);
             Graphics.objectOutputStream.flush();
+            return newAccount;
     }
 
     public void showLeaderboard(){

@@ -486,6 +486,12 @@ public class MainMenuView {
                         return;
                     }
                     else{
+                        AccountMenu menu = new AccountMenu();
+                        try {
+                            Menu.loggedInPlayer= menu.createAccount(username.getText(), pass.getText());
+                        } catch (IOException e) {
+                            e.printStackTrace ( );
+                        }
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
                         Text taken = new Text ("You're Logged in");
                         taken.setFont (Font.font (40));
@@ -522,7 +528,8 @@ public class MainMenuView {
 
                         try {
                             AccountMenu menu = new AccountMenu();
-                            menu.createAccount(username.getText(), pass.getText());//("create account " + username.getText() + " " + pass.getText());
+                            Menu.accountsList (username.getText ());
+                            Menu.loggedInPlayer = menu.createAccount(username.getText(), pass.getText());//("create account " + username.getText() + " " + pass.getText());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

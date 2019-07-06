@@ -67,17 +67,18 @@ public class Menu {
                 String username = str[1];
                 //input = scanner.nextLine();
                 loggedInPlayer = menu.login(str[1], str[2]);
+                secondMenu();
             } else
                 System.out.println("This username does not exist!");
-            secondMenu();
+
         } else if (input.compareToIgnoreCase("show leaderBoard") == 0) {
             //menu.showLeaderboard();
         } else if (input.compareToIgnoreCase("save") == 0) {
 
         } else if (input.compareToIgnoreCase("logout") == 0) {
             //System.out.println ("here" );
-            //saveAccountInfo(loggedInPlayer);
-            //loggedInPlayer = null;
+//            saveAccountInfo(loggedInPlayer);
+//            loggedInPlayer = null;
 
         } else if (input.compareToIgnoreCase("help") == 0) {
             menu.help();
