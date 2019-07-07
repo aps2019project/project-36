@@ -44,7 +44,7 @@ public class Consts {
     public static final Deck deckStory3 = null;
     public static final int height = 700, width = 1200;
     public static final int distance = 100;
-    public static final int buyButtonWidth=150;
+    public static final int buyButtonWidth=165;
     public static final int buyButtonHeight=30;
 
 

@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class Shop implements Serializable{
     private static ArrayList<Card> cards = new ArrayList<> ( );
     private static ArrayList<Item> items = new ArrayList<> ( );
+    private static ArrayList<Integer> cardNumbers = new ArrayList<> ();
+    private static ArrayList<Integer> itemNumbers = new ArrayList<> ();
+
 
     public enum TypeOfFiles {
         Collectible,
@@ -31,7 +34,23 @@ public class Shop implements Serializable{
         return items;
     }
 
-   // private static void init()
+    public static ArrayList<Integer> getCardNumbers() {
+        return cardNumbers;
+    }
+
+    public static void setCardNumbers(ArrayList<Integer> cardNumbers) {
+        Shop.cardNumbers = cardNumbers;
+    }
+
+    public static ArrayList<Integer> getItemNumbers() {
+        return itemNumbers;
+    }
+
+    public static void setItemNumbers(ArrayList<Integer> itemNumbers) {
+        Shop.itemNumbers = itemNumbers;
+    }
+
+    // private static void init()
     static
    {
         for (TypeOfFiles typeOfFiles : TypeOfFiles.values ( )) {
@@ -42,6 +61,13 @@ public class Shop implements Serializable{
                     makeNewFromFile (listOfFiles[i].getPath ( ), typeOfFiles.toString ( ));
                 }
             }
+        }
+
+        for(int i= 0 ; i<Shop.getCards ().size (); i++){
+            cardNumbers.add(4);
+        }
+        for(int i= 0; i<Shop.getItems ().size (); i++){
+            itemNumbers.add(4);
         }
     }
 

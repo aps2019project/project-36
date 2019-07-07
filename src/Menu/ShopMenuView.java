@@ -571,7 +571,7 @@ public class ShopMenuView {
                 imageView.setFitHeight (240);
                 imageView.setFitWidth (200);
                 shopMenuRoot.getChildren ( ).add (imageView);
-                Button buyItemButton = new Button ( Shop.getItems ().get (i).getName ());
+                Button buyItemButton = new Button ( Shop.getItems ().get (i).getName ()+" "+Shop.getItemNumbers ().get(i));
                 buyItemButton.setOpacity (10);
                 buyItemButton.setPrefSize (Consts.buyButtonWidth, Consts.buyButtonHeight);
                 shopMenuRoot.getChildren ( ).add (buyItemButton);
@@ -703,18 +703,24 @@ public class ShopMenuView {
         showMessage (0);
         Text wanted=setText ();
         shopMenuRoot.getChildren ().add (wanted);
-        for (Card card1 : Shop.getCards()) {
-            if (name.compareToIgnoreCase(card1.getName()) == 0) {
+        for (int i= 0 ; i<Shop.getCards ().size (); i++) {
+            if (name.compareToIgnoreCase(Shop.getCards ().get (i).getName()) == 0) {
                 found = true;
                 if (found) {
-                    if (card1.getPrice() > account.getDaric()) {
+                    if (Shop.getCards ().get (i).getPrice() > account.getDaric()) {
                         wanted.setText ("You don't have enough money");
-                    } else if (card1.getPrice() <= account.getDaric()) {
+                    }else if(Shop.getCardNumbers ().get (i)== 0) {
+                        wanted.setText ("This card is not available");
+                    }
+                    else if (Shop.getCards ().get (i).getPrice() <= account.getDaric() && Shop.getCardNumbers ().get (i)>0) {
                         wanted.setText ("You bought this card successfully");
-                        Card card = Shop.makeNewCardByName(card1.getName());
-                        card.setCardID(shopMenu.makeID(card1.getName(), account));
+                        Card card = Shop.makeNewCardByName(Shop.getCards ().get (i).getName());
+                        card.setCardID(shopMenu.makeID(Shop.getCards ().get (i).getName(), account));
                         account.getCollection().addToCards(card);
-                        account.changeDaric(account.getDaric() - card1.getPrice());
+                        account.changeDaric(account.getDaric() - Shop.getCards ().get (i).getPrice());
+                        int number= Shop.getCardNumbers ().get (i);
+                        Shop.getCardNumbers ().remove (i);
+                        Shop.getCardNumbers ().add (number - 1);
 
                     }
                     break;
@@ -722,20 +728,27 @@ public class ShopMenuView {
             }
         }
         if (!found) {
-            for (Item x : Shop.getItems()) {
-                if (name.compareToIgnoreCase(x.getName()) == 0 && x.getType ().compareToIgnoreCase ("Collectible")!=0) {
+            for (int i=0 ; i<Shop.getItems ().size (); i++) {
+                if (name.compareToIgnoreCase(Shop.getItems ().get (i).getName()) == 0 && Shop.getItems ().get (i).getType ().compareToIgnoreCase ("Collectible")!=0) {
                     found = true;
                     if (found) {
-                        if (x.getPrice() > account.getDaric()) {
+                        if (Shop.getItems ().get (i).getPrice() > account.getDaric()) {
                             wanted.setText ("You don't have enough money.");
                         } else if (account.getNumberOfItemsOwned() >= 3) {
                             wanted.setText ("You can't have more than 3 items.");
-                        } else if (account.getNumberOfItemsOwned() < 3 && x.getPrice() <= account.getDaric()) {
+                        } else if(Shop.getItemNumbers ().get (i)== 0) {
+                            wanted.setText ("This Item is not available");
+                        }
+                        else if (account.getNumberOfItemsOwned() < 3 && Shop.getItems ().get (i).getPrice() <= account.getDaric()
+                        && Shop.getItemNumbers ().get (i)>0) {
                             wanted.setText ("You bought this item successfully");
-                            account.changeDaric(account.getDaric() - x.getPrice());
+                            account.changeDaric(account.getDaric() - Shop.getItems ().get (i).getPrice());
                             account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() + 1);
-                            Item item = Shop.makeNewItemByName(x.getName());
-                            item.setItemID(shopMenu.makeID(x.getName(), account));
+                            Item item = Shop.makeNewItemByName(Shop.getItems ().get (i).getName());
+                            item.setItemID(shopMenu.makeID(Shop.getItems ().get (i).getName(), account));
+                            int number= Shop.getItemNumbers ().get (i);
+                            Shop.getItemNumbers ().remove (i);
+                            Shop.getItemNumbers ().add (number - 1);
                             account.getCollection().addToItems(item);
                         }
                         break;
