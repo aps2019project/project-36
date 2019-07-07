@@ -334,24 +334,6 @@ public class ShopMenuView {
         setExitButton ();
     }
 
-    private void customCardClicked() {
-        shopMenuRoot.getChildren ().clear ();
-        shopMenuRoot.getChildren ().add (backgroundImageView);
-        backgroundImageView.setEffect (blur);
-        Label cardTypeLabel = new Label ("Type:");
-        cardTypeLabel.relocate (430, 200);
-        TextField cardTypeTextField = new TextField ( );
-        cardTypeTextField.relocate (550, 200);
-        cardTypeLabel.setFont (Font.font ("verdana",FontWeight.BOLD,FontPosture.REGULAR,20));
-        cardTypeLabel.setLabelFor (cardTypeTextField);
-        cardTypeLabel.setTextFill (Color.GOLD);
-        shopMenuRoot.getChildren ( ).addAll (cardTypeLabel, cardTypeTextField);
-        cardTypeTextField.setPrefSize (200, 50);
-        String answer = new String ();
-        answer = cardTypeTextField.getText ();
-        //todo
-
-    }
 
     public void setImageView(ImageView buttonImageView, int n) {
 
@@ -382,7 +364,167 @@ public class ShopMenuView {
 
     }
 
+    private void customCardClicked() {
+        shopMenuRoot.getChildren ().clear ();
+        shopMenuRoot.getChildren ().add (backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        Label cardTypeLabel = new Label ("Type:");
+        cardTypeLabel.relocate (430, 200);
+        TextField cardTypeTextField = new TextField ( );
+        cardTypeTextField.relocate (550, 200);
+        cardTypeLabel.setFont (Font.font ("verdana",FontWeight.BOLD,FontPosture.REGULAR,20));
+        cardTypeLabel.setLabelFor (cardTypeTextField);
+        cardTypeLabel.setTextFill (Color.GOLD);
+        shopMenuRoot.getChildren ( ).addAll (cardTypeLabel, cardTypeTextField);
+        cardTypeTextField.setPrefSize (200, 50);
+        Button button = new Button ("Make One");
+        button.relocate (550,300);
+        button.setPrefSize (100,40);
+        shopMenuRoot.getChildren ().add (button);
+        button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String answer = new String ();
+                answer = cardTypeTextField.getText ();
+                shopMenuRoot.getChildren ().clear ();
+                shopMenuRoot.getChildren ().add (backgroundImageView);
+                backgroundImageView.setEffect (blur);
+                getInfoCustomCard (answer);
+            }
+        });
 
+
+    }
+
+    private void getInfoCustomCard(String type){
+
+        Button button = new Button ("Finish");
+
+        Label cardName = new Label ("Name:");
+        Label spellTarget = new Label ("Target:");
+        Label spellBuff = new Label ("Buffs:");
+        Label cardAP = new Label ("AP:");
+        Label cardHP = new Label ("HP:");
+        Label attackType = new Label ("Attack Type:");
+        Label cardRange = new Label ("Range:");
+        Label cardSpecialPower = new Label ("Special Power:");
+        Label powerActiviation = new Label ("Power Activiation:");
+        Label powerCoolDown = new Label ("Power Cooldown:");
+        Label cardCost = new Label ("Cost:");
+        Label buffType = new Label ("Buff Type:");
+        Label effectValue = new Label ("Effect Value:");
+        Label buffDelay = new Label ("Delay:");
+        Label buffLast = new Label ("Last:");
+        Label buffTarget = new Label ("Target:");
+
+        TextField cardNameText = new TextField ();
+        TextField spellTargetText = new TextField ();
+        TextField spellBuffText = new TextField ();
+        TextField cardAPText = new TextField ();
+        TextField cardHPText = new TextField ();
+        TextField attackTypeText = new TextField ();
+        TextField cardRangeText = new TextField ();
+        TextField cardSpecialPowerText = new TextField ();
+        TextField powerActiviationText = new TextField ();
+        TextField powerCoolDownText = new TextField ();
+        TextField cardCostText = new TextField ();
+        TextField buffTypeText = new TextField ();
+        TextField effectValueText = new TextField ();
+        TextField buffDelayText = new TextField ();
+        TextField buffLastText = new TextField ();
+        TextField buffTargetText = new TextField ();
+
+
+        labelStyle (cardName);
+        labelStyle (spellBuff);
+        labelStyle (spellTarget);
+        labelStyle (cardAP);
+        labelStyle (cardHP);
+        labelStyle (cardSpecialPower);
+        labelStyle (effectValue);
+        labelStyle (buffDelay);
+        labelStyle (buffLast);
+        labelStyle (buffTarget);
+        labelStyle (buffType);
+        labelStyle (attackType);
+        labelStyle (cardRange);
+        labelStyle (powerActiviation);
+        labelStyle (powerCoolDown);
+        labelStyle (cardCost);
+
+
+        cardName.relocate (430, 200);
+        cardNameText.relocate (630, 200);
+
+        cardCost.relocate (430,250);
+        cardCostText.relocate (630,250);
+
+        button.relocate (500,600);
+        button.setPrefSize (100,50);
+
+        if(type.compareToIgnoreCase ("spell")==0){
+            shopMenuRoot.getChildren ().addAll (spellBuff,spellBuffText,spellTarget,spellTargetText);
+            spellTarget.relocate (430,300);
+            spellTargetText.relocate (630,300);
+            spellBuff.relocate (430,350);
+            spellBuffText.relocate (630,350);
+            shopMenuRoot.getChildren ().addAll (cardName,cardNameText,cardCost,cardCostText,button);
+
+        }
+        else if(type.compareToIgnoreCase ("minion")== 0 || type.compareToIgnoreCase ("hero")== 0){
+            shopMenuRoot.getChildren ().addAll (cardAP,cardAPText,cardHP,cardHPText,attackType,attackTypeText,cardRange,cardRangeText
+            ,cardSpecialPower,cardSpecialPowerText);
+            shopMenuRoot.getChildren ().addAll (cardName,cardNameText,cardCost,cardCostText,button);
+
+            cardAP.relocate (430,300);
+            cardAPText.relocate (630,300);
+            cardHP.relocate (430,350);
+            cardHPText.relocate (630,350);
+            attackType.relocate (430,400);
+            attackTypeText.relocate (630,400);
+            cardRange.relocate (430,450);
+            cardRangeText.relocate (630,450);
+            cardSpecialPower.relocate (430,500);
+            cardSpecialPowerText.relocate (630,500);
+
+            if(type.compareToIgnoreCase ("minion")== 0){
+                shopMenuRoot.getChildren ().addAll (powerActiviation,powerActiviationText);
+                powerActiviation.relocate (430,550);
+                powerActiviationText.relocate (630,550);
+            }
+            else{
+                shopMenuRoot.getChildren ().addAll (powerCoolDown,powerCoolDownText);
+                powerCoolDown.relocate (430,550);
+                powerCoolDownText.relocate (630,550);
+            }
+        }
+
+        else if(type.compareToIgnoreCase ("buff")== 0){
+            shopMenuRoot.getChildren ().addAll (cardName,cardNameText);
+            shopMenuRoot.getChildren ().addAll (buffDelay,buffDelayText,buffLast,buffLastText,buffTarget,
+                    buffTargetText,buffType,buffTypeText,effectValue,effectValueText,button);
+
+            buffDelay.relocate (430,250);
+            buffDelayText.relocate (630,250);
+            buffLast.relocate (430,300);
+            buffLastText.relocate (630,300);
+            buffTarget.relocate (430,350);
+            buffTargetText.relocate (630,350);
+            buffType.relocate (430,400);
+            buffTypeText.relocate (630,400);
+            effectValue.relocate (430,450);
+            effectValueText.relocate (630,450);
+        }
+
+
+        //todo make card
+    }
+
+    public void labelStyle(Label label){
+        label.setFont (Font.font ("verdana",FontWeight.BOLD,FontPosture.REGULAR,20));
+        label.setTextFill (Color.GOLD);
+
+    }
 
     public void buyOrShowCollectionButtonClicked(String menu) {
         shopMenuRoot.getChildren ( ).clear ( );
@@ -985,7 +1127,6 @@ public class ShopMenuView {
                 clickedPlayer.seek(Duration.ZERO);
                 Menu.secondMenu();
                 //todo
-                //faqat be safheye qabl bargarde na be main menu
             }
         });
 
