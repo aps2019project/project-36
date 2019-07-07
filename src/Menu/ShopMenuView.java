@@ -327,14 +327,30 @@ public class ShopMenuView {
             public void handle(MouseEvent mouseEvent) {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
-                customCard();
+                customCardClicked ();
             }
         });
 
         setExitButton ();
     }
 
-    private void customCard() {
+    private void customCardClicked() {
+        shopMenuRoot.getChildren ().clear ();
+        shopMenuRoot.getChildren ().add (backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        Label cardTypeLabel = new Label ("Type:");
+        cardTypeLabel.relocate (430, 200);
+        TextField cardTypeTextField = new TextField ( );
+        cardTypeTextField.relocate (550, 200);
+        cardTypeLabel.setFont (Font.font ("verdana",FontWeight.BOLD,FontPosture.REGULAR,20));
+        cardTypeLabel.setLabelFor (cardTypeTextField);
+        cardTypeLabel.setTextFill (Color.GOLD);
+        shopMenuRoot.getChildren ( ).addAll (cardTypeLabel, cardTypeTextField);
+        cardTypeTextField.setPrefSize (200, 50);
+        String answer = new String ();
+        answer = cardTypeTextField.getText ();
+        //todo
+
     }
 
     public void setImageView(ImageView buttonImageView, int n) {
