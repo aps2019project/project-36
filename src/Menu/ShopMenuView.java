@@ -478,10 +478,22 @@ public class ShopMenuView {
                 suggestedPrice.relocate (400,200);
                 suggestedPriceText.relocate (570,200);
                 suggestedPriceText.setPrefSize (120,40);
+                Button makeAPrice = new Button ("Suggest");
+                makeAPrice.relocate (570,250);
+                makeAPrice.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        addPriceForAuction (Menu.loggedInPlayer,Integer.parseInt (suggestedPriceText.getText ()));
+                    }
+                });
+
                 shopMenuRoot.getChildren ().addAll (suggestedPrice,suggestedPriceText);
                 setExitButton ();
             }
         });
+    }
+
+    private void addPriceForAuction(Account account,int price){
         //TODO
     }
 
