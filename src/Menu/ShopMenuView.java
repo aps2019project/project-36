@@ -531,7 +531,7 @@ public class ShopMenuView {
                 public void handle(MouseEvent mouseEvent) {
                     FileWriter fileWriter = null;
                     try {
-                        fileWriter = new FileWriter ("CustomCard/"+cardNameText.getText ()+".json");
+                        fileWriter = new FileWriter (type+"/"+cardNameText.getText ()+".json");
                     } catch (IOException e) {
                         e.printStackTrace ( );
                     }
