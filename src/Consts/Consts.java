@@ -64,20 +64,18 @@ public class Consts {
         deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));
         deck.setHero(deck.getCards().get(deck.getCards().size() - 1));
 
-        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));//todo
-        System.out.println(deck.getCards().get(deck.getCards().size() - 1).getName());
-
+        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PersianArcher"));
         deck.addToItems (Shop.buyItemForStoryDeck ("ShahGhoul"));
         deck.addToCards (Shop.buyCardForStoryDeck ("Eagle"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("TuranSpy")); //todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranSpy"));
         deck.addToCards (Shop.buyCardForStoryDeck ("BlackDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("OneEyeGiant"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
         deck.addToCards (Shop.buyCardForStoryDeck ("TuranPrince"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("Ashkboos"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));//todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("Ashkboos"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PersianSwordsman"));
         deck.addToCards (Shop.buyCardForStoryDeck ("LightningBolt"));
         deck.addToCards (Shop.buyCardForStoryDeck ("AllDisarm"));
@@ -96,16 +94,16 @@ public class Consts {
         deck.addToCards (Shop.buyCardForStoryDeck ("PersianArcher"));
         System.out.println(deck.getCards().get(0).getName());
         //deck.addToCards (Shop.buyCardForStoryDeck ("TuranLancer"));
-        deck.addToCards (Shop.buyCardForStoryDeck ("TuranGorzdar")); //todo
+        deck.addToCards (Shop.buyCardForStoryDeck ("TuranSling"));
         deck.addToCards (Shop.buyCardForStoryDeck ("BlackDemon"));
         deck.addToCards (Shop.buyCardForStoryDeck ("OneEyeGiant"));
         deck.addToCards (Shop.buyCardForStoryDeck ("PoisonedSnake"));
         deck.addToCards (Shop.buyCardForStoryDeck ("GiantCatapult"));
-        //deck.addToCards (Shop.buyCardForStoryDeck ("GorgSefid"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("JadugarAzam"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));//todo
-        deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDiv"));//todo
+        //deck.addToCards (Shop.buyCardForStoryDeck ("WhiteWolf"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("GreatMagician"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("Siavash"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("NaneSarma"));
+        deck.addToCards (Shop.buyCardForStoryDeck ("ArzhangDemon"));
 
 
         deck.addToCards (Shop.buyCardForStoryDeck ("WhiteDemon"));

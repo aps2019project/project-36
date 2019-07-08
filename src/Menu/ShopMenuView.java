@@ -54,6 +54,7 @@ public class ShopMenuView {
     private Button customButton = new Button("Custom");
     private Button itemButton=new Button("Items");
     private Button cardButton=new Button("Cards");
+    private Button auctionButton = new Button("Auction");
 
     private Label showCollectionLabel = new Label("Collection");
     private Label searchLabel = new Label("Search");
@@ -62,6 +63,7 @@ public class ShopMenuView {
     private Label itemButtonLabel=new Label("Items");
     private Label cardButtonLabel=new Label ("Cards");
     private Label customButtonLabel = new Label ("Custom Card");
+    private Label auctionButtonLabel = new Label("Aution");
 
     private final int buttonSizeWidth = 250;
     private final int buttonSizeHeight = 80;
@@ -80,6 +82,8 @@ public class ShopMenuView {
     private ImageView cardButtonImageView1 = new ImageView(buttonImage1);
     private ImageView customButtonImageView = new ImageView(buttonImage);
     private ImageView customButtonImageView1 = new ImageView(buttonImage1);
+    private ImageView auctionButtonImageView = new ImageView(buttonImage);
+    private ImageView auctionButtonImageView1 = new ImageView(buttonImage1);
 
     private ImageView backgroundImageView = new ImageView(shopBackgroundImage);
 
@@ -154,6 +158,16 @@ public class ShopMenuView {
         shopMenuRoot.getChildren().add(customButtonLabel);
         shopMenuRoot.getChildren().add(customButton);
 
+        //auction Button
+        setImageView(auctionButtonImageView, 5);
+        setImageView(auctionButtonImageView1, 5);
+        auctionButtonImageView1.setOpacity(0);
+        setButton(auctionButton, 5);
+        setLabel(auctionButtonLabel, 5);
+        shopMenuRoot.getChildren().add(auctionButtonImageView);
+        shopMenuRoot.getChildren().add(auctionButtonImageView1);
+        shopMenuRoot.getChildren().add(auctionButtonLabel);
+        shopMenuRoot.getChildren().add(auctionButton);
 
         checkMovements();
 
@@ -293,6 +307,31 @@ public class ShopMenuView {
             }
         });
 
+        auctionButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                enteredPlayer.play();
+                enteredPlayer.seek(Duration.ZERO);
+                if ( auctionButtonImageView.getOpacity() == 100)
+                    auctionButtonImageView.setOpacity(0);
+                if (auctionButtonImageView1.getOpacity() == 0)
+                    auctionButtonImageView1.setOpacity(100);
+            }
+        });
+
+
+        auctionButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                if ( auctionButtonImageView1.getOpacity() == 100)
+                    auctionButtonImageView1.setOpacity(0);
+                if ( auctionButtonImageView.getOpacity() == 0)
+                    auctionButtonImageView.setOpacity(100);
+            }
+        });
+
         showCollectionButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
             public void handle(MouseEvent event) {
@@ -340,6 +379,16 @@ public class ShopMenuView {
             }
         });
 
+        auctionButton.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                clickedPlayer.play ();
+                clickedPlayer.seek(Duration.ZERO);
+                auctionButtonClicked();
+                //todo
+            }
+        });
+
         setExitButton ();
     }
 
@@ -370,6 +419,10 @@ public class ShopMenuView {
         else {
             label.relocate(Consts.width / 2 + 150, Consts.height / 2.7 + n * Consts.distance + 27 - 150);
         }
+
+    }
+
+    private void auctionButtonClicked(){
 
     }
 
