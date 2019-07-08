@@ -27,6 +27,29 @@
         "numberOfHits": 0,
         "numberOfWeaknessBuff": 0,
         "numberOfPoisonBuff": 0
+      },
+      {
+        "name": "TajDanaei",
+        "desc": "Add mana after third turn",
+        "type": "Usable",
+        "itemID": "rosta_ShockHammer_1",
+        "price": 300,
+        "changeHP": 0,
+        "changeAP": 0,
+        "changeMP": 1,
+        "numberOfTurns": 1,
+        "continuous": true,
+        "beginningTurn": 3,
+        "target": 0,
+        "activateBuff": false,
+        "numberOfHolyfBuff": 0,
+        "changeRange": 0,
+        "multipleHP": 0,
+        "heroTarget": true,
+        "numberOfEnemies": 0,
+        "numberOfHits": 0,
+        "numberOfWeaknessBuff": 0,
+        "numberOfPoisonBuff": 0
       }
     ],
     "decks": [],
@@ -35,8 +58,8 @@
   "graveYard": {
     "cards": []
   },
-  "numberOfItemsOwned": 1,
+  "numberOfItemsOwned": 2,
   "username": "rosta",
-  "daric": 14700,
+  "daric": 14400,
   "collectibles": []
 }

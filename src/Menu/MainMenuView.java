@@ -361,7 +361,9 @@ public class MainMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ( );
                 clickedPlayer.seek (Duration.ZERO);
-                //todo
+                Menu.saveAccountInfo(Menu.loggedInPlayer);
+                Text text = new Text ("Everything is saved");
+                mainMenuRoot.getChildren ().add (text);
             }
         });
 
@@ -370,11 +372,9 @@ public class MainMenuView {
             public void handle(MouseEvent event) {
                 clickedPlayer.play ( );
                 clickedPlayer.seek (Duration.ZERO);
-                Menu.saveAccountInfo(Menu.loggedInPlayer);
                 Menu.loggedInPlayer = null;
                 Text text = new Text ("logged out");
                 mainMenuRoot.getChildren ( ).add (text);
-                //todo
 
             }
         });
