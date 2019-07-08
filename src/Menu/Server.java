@@ -1,5 +1,7 @@
 package Menu;
 
+import Shop.Shop;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 public class Server {
 
     static ArrayList<Socket> sockets = new ArrayList<>();
-
+    static Shop shop = new Shop();
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         ServerSocket serverSocket = new ServerSocket(8000);

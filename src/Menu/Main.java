@@ -10,10 +10,9 @@ public class Main {
     public static ClientInfo clientInfo;
 
     public static void main(String[] args) throws IOException {
-        Shop shop=new Shop();
         Menu.makeAllAccounts ();
         clientInfo = new ClientInfo();
-        clientInfo.setShop(shop);
+        clientInfo.setShop(Server.shop);
         Graphics.graphics(args);
     }
 
