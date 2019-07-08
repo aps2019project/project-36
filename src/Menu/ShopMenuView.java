@@ -393,7 +393,7 @@ public class ShopMenuView {
         button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                String answer = new String ();
+                String answer = "";
                 answer = cardTypeTextField.getText ();
                 shopMenuRoot.getChildren ().clear ();
                 shopMenuRoot.getChildren ().add (backgroundImageView);
@@ -526,11 +526,15 @@ public class ShopMenuView {
         }
 
         Gson gson= new GsonBuilder ().setPrettyPrinting ().create ();
-        try {
-            FileWriter fileWriter = new FileWriter ("CustomCard/"+cardNameText.getText ()+".json");
-            button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+        button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
+                    FileWriter fileWriter = null;
+                    try {
+                        fileWriter = new FileWriter ("CustomCard/"+cardNameText.getText ()+".json");
+                    } catch (IOException e) {
+                        e.printStackTrace ( );
+                    }
                     if(type.compareToIgnoreCase ("hero")==0){
                         Hero hero = new Hero();
                         hero.setName (cardNameText.getText ());
@@ -542,6 +546,11 @@ public class ShopMenuView {
                         hero.setCoolDown (Integer.parseInt (powerCoolDownText.getText ()));
                         hero.setPrice (Integer.parseInt (cardCostText.getText ()));
                         Menu.loggedInPlayer.getCollection ().addToCards (hero);
+                        try {
+                            fileWriter.write (gson.toJson (hero));
+                        } catch (IOException e) {
+                            e.printStackTrace ( );
+                        }
                     }
                     else if(type.compareToIgnoreCase ("minion")== 0){
                         Minion minion = new Minion ();
@@ -554,6 +563,11 @@ public class ShopMenuView {
                         minion.setSpecialPower (cardSpecialPowerText.getText ());
                         minion.setPrice (Integer.parseInt (cardCostText.getText ()));
                         Menu.loggedInPlayer.getCollection ().addToCards (minion);
+                        try {
+                            fileWriter.write (gson.toJson (minion));
+                        } catch (IOException e) {
+                            e.printStackTrace ( );
+                        }
                     }
                     else if(type.compareToIgnoreCase ("spell")==0){
                         Spell spell = new Spell ();
@@ -562,6 +576,11 @@ public class ShopMenuView {
                         spell.setTargetAreas (spellTargetText.getText ());
                         spell.setSpellBuffNames (spellBuffText.getText ());
                         Menu.loggedInPlayer.getCollection ().addToCards (spell);
+                        try {
+                            fileWriter.write (gson.toJson (spell));
+                        } catch (IOException e) {
+                            e.printStackTrace ( );
+                        }
                     }
                     else{
                         String name = cardNameText.getText ();
@@ -575,46 +594,76 @@ public class ShopMenuView {
                             HolyBuff holyBuff = new HolyBuff ();
                             makeCustomBuff (holyBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (holyBuff);
+                            try {
+                                fileWriter.write (gson.toJson (holyBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                         else if(type.compareToIgnoreCase ("Disarm")== 0){
                             DisarmBuff disarmBuff = new DisarmBuff ();
                             makeCustomBuff (disarmBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (disarmBuff);
+                            try {
+                                fileWriter.write (gson.toJson (disarmBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                         else if(type.compareToIgnoreCase ("kill")== 0){
                             KillBuff killBuff = new KillBuff ();
                             makeCustomBuff (killBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (killBuff);
+                            try {
+                                fileWriter.write (gson.toJson (killBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                         else if(type.compareToIgnoreCase ("Poison")== 0){
                             PoisonBuff poisonBuff = new PoisonBuff ();
                             makeCustomBuff (poisonBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (poisonBuff);
+                            try {
+                                fileWriter.write (gson.toJson (poisonBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                         else if(type.compareToIgnoreCase ("power")== 0){
                             PowerBuff powerBuff = new PowerBuff ();
                             makeCustomBuff (powerBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (powerBuff);
+                            try {
+                                fileWriter.write (gson.toJson (powerBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                         else if(type.compareToIgnoreCase ("stun")== 0){
                             StunBuff stunBuff = new StunBuff ();
                             makeCustomBuff (stunBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (stunBuff);
+                            try {
+                                fileWriter.write (gson.toJson (stunBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                         else{
                             WeaknessBuff weaknessBuff = new WeaknessBuff ();
                             makeCustomBuff (weaknessBuff,name,type,effectValue,delay,last,target);
                             Map.getBuffs ().add (weaknessBuff);
+                            try {
+                                fileWriter.write (gson.toJson (weaknessBuff));
+                            } catch (IOException e) {
+                                e.printStackTrace ( );
+                            }
                         }
                     }
                     showCustomCardMessage ();
                 }
             });
-            fileWriter.close ();
-        } catch (IOException e) {
-            e.printStackTrace ( );
-        }
-
         //todo kam kardan daric
     }
 
@@ -628,7 +677,24 @@ public class ShopMenuView {
     }
 
     public void showCustomCardMessage(){
-        //todo
+        shopMenuRoot.getChildren ().clear ();
+        backgroundImageView.setEffect (blur);
+        setExitButton ();
+        Text text = new Text ("Your card was made successfully");
+        shopMenuRoot.getChildren ().addAll (backgroundImageView,text);
+        text.relocate (830,100);
+        String address = "/Users/rostaroghani/Desktop/Items/CustomItem.png";
+        Image image = null;
+        try {
+            image = new Image (new FileInputStream (address));
+            ImageView imageView = new ImageView (image);
+            imageView.setFitHeight (560);
+            imageView.setFitWidth (430);
+            imageView.relocate (350,20);
+            shopMenuRoot.getChildren ().add (imageView);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace ( );
+        }
     }
 
     public void labelStyle(Label label){
@@ -1211,17 +1277,6 @@ public class ShopMenuView {
             exitButtonImageView.setY(10);
             shopMenuRoot.getChildren().add(exitButtonImageView);
 
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        try {
-            Image image1 = new Image(new FileInputStream("/Users/rostaroghani/Desktop/project-3/src/pics/button_close@2x.png"));
-            ImageView exitButtonImageView1 = new ImageView(image1);
-            exitButtonImageView1.setFitWidth(50);
-            exitButtonImageView1.setFitHeight(50);
-            exitButtonImageView1.setX(10);
-            exitButtonImageView1.setY(10);
-            shopMenuRoot.getChildren().add(exitButtonImageView1);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
