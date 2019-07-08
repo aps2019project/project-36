@@ -11,6 +11,22 @@ public class Minion extends Card {
     protected String typeOfImpact;
     protected String classtype;
 
+    public void setTypeOfImpact(String typeOfImpact) {
+        this.typeOfImpact = typeOfImpact;
+    }
+
+    public void setRangeOfAttack(int rangeOfAttack) {
+        this.rangeOfAttack = rangeOfAttack;
+    }
+
+    public void setSpecialPower(String specialPower) {
+        this.specialPower = specialPower;
+    }
+
+    public void setTypeOfActivation(int typeOfActivation) {
+        this.typeOfActivation = typeOfActivation;
+    }
+
     public Minion() {
         this.canAttack = true;
     }

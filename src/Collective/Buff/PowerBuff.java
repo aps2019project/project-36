@@ -3,7 +3,7 @@ package Collective.Buff;
 import Collective.Card.Card;
 import Collective.Card.Minion.Minion;
 
-class PowerBuff extends Buff {
+public class PowerBuff extends Buff {
 
     private int duration;
 

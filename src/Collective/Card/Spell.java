@@ -20,6 +20,19 @@ public class Spell extends Card {
     private boolean isDispeller;
     private int number_of_simultaneous_attacks;
     private String type;
+    private String spellBuffNames;
+
+    public void setSpellBuffNames(String spellBuffNames) {
+        this.spellBuffNames = spellBuffNames;
+    }
+
+    public void setTarget(Target target) {
+        this.target = target;
+    }
+
+    public void setAddedBuffs(List<Buff> addedBuffs) {
+        this.addedBuffs = addedBuffs;
+    }
 
     public int getNumber_of_simultaneous_attacks() {
         return number_of_simultaneous_attacks;

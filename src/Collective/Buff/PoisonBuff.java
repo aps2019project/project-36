@@ -3,7 +3,7 @@ package Collective.Buff;
 import Collective.Card.Card;
 import Collective.Card.Minion.Minion;
 
-class PoisonBuff extends Buff {
+public class PoisonBuff extends Buff {
     private int numberOfTurns;
     private int damagePerTurn;
 

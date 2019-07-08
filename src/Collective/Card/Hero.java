@@ -5,6 +5,23 @@ public class Hero extends Card {
     private int RangeOfAttack;
     private String kindOfAttack;
     private int coolDown;
+    private String specialPower;
+
+    public String getSpecialPower() {
+        return specialPower;
+    }
+
+    public void setSpecialPower(String specialPower) {
+        this.specialPower = specialPower;
+    }
+
+    public void setKindOfAttack(String kindOfAttack) {
+        this.kindOfAttack = kindOfAttack;
+    }
+
+    public void setCoolDown(int coolDown) {
+        this.coolDown = coolDown;
+    }
 
     public int getRangeOfAttack() {
         return RangeOfAttack;
@@ -23,10 +40,6 @@ public class Hero extends Card {
 
     public int getCooldown() {
         return coolDown;
-    }
-
-    public void setCooldown(int cooldown) {
-        this.coolDown = cooldown;
     }
 
     public void heroEffect(Card defender,Card selectedCard){

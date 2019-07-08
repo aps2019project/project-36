@@ -2,7 +2,7 @@ package Collective.Buff;
 
 import Collective.Card.Card;
 
-class DisarmBuff extends Buff {
+public class DisarmBuff extends Buff {
     private int duration;
 
     public int getDuration() {

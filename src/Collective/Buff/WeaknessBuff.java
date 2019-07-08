@@ -3,7 +3,7 @@ package Collective.Buff;
 import Collective.Card.Card;
 import Collective.Card.Minion.Minion;
 
-class WeaknessBuff extends Buff {
+public class WeaknessBuff extends Buff {
     private int duration;
 
     public int getDuration() {

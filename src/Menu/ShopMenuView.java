@@ -1,9 +1,16 @@
 package Menu;
 
+import Collective.Buff.*;
 import Collective.Card.Card;
+import Collective.Card.Hero;
+import Collective.Card.Minion.Minion;
+import Collective.Card.Spell;
 import Collective.Item;
+import Map.Map;
 import Player.Account;
 import Shop.ShopMenu;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -27,6 +34,8 @@ import Consts.Consts;
 import Shop.Shop;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ShopMenuView {
     private Group shopMenuRoot;
@@ -516,8 +525,110 @@ public class ShopMenuView {
             effectValueText.relocate (630,450);
         }
 
+        Gson gson= new GsonBuilder ().setPrettyPrinting ().create ();
+        try {
+            FileWriter fileWriter = new FileWriter ("CustomCard/"+cardNameText.getText ()+".json");
+            button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if(type.compareToIgnoreCase ("hero")==0){
+                        Hero hero = new Hero();
+                        hero.setName (cardNameText.getText ());
+                        hero.setAP (Integer.parseInt (cardAPText.getText ()));
+                        hero.setHP (Integer.parseInt (cardHPText.getText ()));
+                        hero.setKindOfAttack (attackTypeText.getText ());
+                        hero.setRangeOfAttack (Integer.parseInt (cardRangeText.getText ()));
+                        hero.setSpecialPower (cardSpecialPowerText.getText ());
+                        hero.setCoolDown (Integer.parseInt (powerCoolDownText.getText ()));
+                        hero.setPrice (Integer.parseInt (cardCostText.getText ()));
+                        Menu.loggedInPlayer.getCollection ().addToCards (hero);
+                    }
+                    else if(type.compareToIgnoreCase ("minion")== 0){
+                        Minion minion = new Minion ();
+                        minion.setName (cardNameText.getText ());
+                        minion.setAP (Integer.parseInt (cardAPText.getText ()));
+                        minion.setHP (Integer.parseInt (cardHPText.getText ()));
+                        minion.setTypeOfImpact (attackTypeText.getText ());
+                        minion.setRangeOfAttack (Integer.parseInt (cardRangeText.getText ()));
+                        minion.setTypeOfActivation (Integer.parseInt (powerActiviationText.getText ()));
+                        minion.setSpecialPower (cardSpecialPowerText.getText ());
+                        minion.setPrice (Integer.parseInt (cardCostText.getText ()));
+                        Menu.loggedInPlayer.getCollection ().addToCards (minion);
+                    }
+                    else if(type.compareToIgnoreCase ("spell")==0){
+                        Spell spell = new Spell ();
+                        spell.setName (cardNameText.getText ());
+                        spell.setPrice (Integer.parseInt (cardCostText.getText ()));
+                        spell.setTargetAreas (spellTargetText.getText ());
+                        spell.setSpellBuffNames (spellBuffText.getText ());
+                        Menu.loggedInPlayer.getCollection ().addToCards (spell);
+                    }
+                    else{
+                        String name = cardNameText.getText ();
+                        String type = buffTypeText.getText ();
+                        int effectValue = Integer.parseInt (effectValueText.getText ());
+                        int delay = Integer.parseInt(buffDelayText.getText ());
+                        int last = Integer.parseInt(buffLastText.getText ());
+                        String target = buffTargetText.getText ();
 
-        //todo make card
+                        if(type.compareToIgnoreCase ("Holy")== 0){
+                            HolyBuff holyBuff = new HolyBuff ();
+                            makeCustomBuff (holyBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (holyBuff);
+                        }
+                        else if(type.compareToIgnoreCase ("Disarm")== 0){
+                            DisarmBuff disarmBuff = new DisarmBuff ();
+                            makeCustomBuff (disarmBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (disarmBuff);
+                        }
+                        else if(type.compareToIgnoreCase ("kill")== 0){
+                            KillBuff killBuff = new KillBuff ();
+                            makeCustomBuff (killBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (killBuff);
+                        }
+                        else if(type.compareToIgnoreCase ("Poison")== 0){
+                            PoisonBuff poisonBuff = new PoisonBuff ();
+                            makeCustomBuff (poisonBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (poisonBuff);
+                        }
+                        else if(type.compareToIgnoreCase ("power")== 0){
+                            PowerBuff powerBuff = new PowerBuff ();
+                            makeCustomBuff (powerBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (powerBuff);
+                        }
+                        else if(type.compareToIgnoreCase ("stun")== 0){
+                            StunBuff stunBuff = new StunBuff ();
+                            makeCustomBuff (stunBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (stunBuff);
+                        }
+                        else{
+                            WeaknessBuff weaknessBuff = new WeaknessBuff ();
+                            makeCustomBuff (weaknessBuff,name,type,effectValue,delay,last,target);
+                            Map.getBuffs ().add (weaknessBuff);
+                        }
+                    }
+                    showCustomCardMessage ();
+                }
+            });
+            fileWriter.close ();
+        } catch (IOException e) {
+            e.printStackTrace ( );
+        }
+
+        //todo kam kardan daric
+    }
+
+    public void makeCustomBuff(Buff buff,String name,String type,int effectValue,int delay,int last,String target){
+        buff.setName (name);
+        buff.setTypeOfBuff (type);
+        buff.setStartTurn (delay);
+        buff.setDuration (last);
+        buff.setPositiveOrNegative (target);
+        buff.setDamagePerTurn (effectValue);
+    }
+
+    public void showCustomCardMessage(){
+        //todo
     }
 
     public void labelStyle(Label label){

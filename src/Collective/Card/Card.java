@@ -27,6 +27,8 @@ public abstract class Card {
     private int hittedNumber;
     private String address;
 
+
+
     public int getHittedNumber() {
         return hittedNumber;
     }
