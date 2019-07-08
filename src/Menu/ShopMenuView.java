@@ -41,7 +41,6 @@ public class ShopMenuView {
     private Group shopMenuRoot;
     private Scene shopMenuScene;
     private GaussianBlur blur= new GaussianBlur ();
-    private ShopMenu shopMenu=new ShopMenu();
 
     private Image buttonImage = new Image("pics/button_secondary@2x.png");
     private Image buttonImage1 = new Image("pics/button_secondary_glow.png");
@@ -385,7 +384,6 @@ public class ShopMenuView {
                 clickedPlayer.play ();
                 clickedPlayer.seek(Duration.ZERO);
                 auctionButtonClicked();
-                //todo
             }
         });
 
@@ -423,7 +421,39 @@ public class ShopMenuView {
     }
 
     private void auctionButtonClicked(){
+        shopMenuRoot.getChildren ().clear ();
+        shopMenuRoot.getChildren ().add (backgroundImageView);
+        backgroundImageView.setEffect (blur);
+        setExitButton ();
+        Label chosenCard = new Label("Write down the ID:");
+        TextField chosenCardText = new TextField ();
+        labelStyle (chosenCard);
+        chosenCard.relocate (350,70);
+        chosenCardText.relocate (620,70);
+        int i = 0 ;
+        for(Item item:Menu.loggedInPlayer.getCollection ().getItems ()){
+            Text text = setText ();
+            text.setFont (Font.font ("verdana",FontWeight.BOLD,15));
+            text.setText (item.getName ()+" :" + item.getItemID ());
+            text.relocate (50,120 + i*22);
+            shopMenuRoot.getChildren ().add (text);
+            i++ ;
+        }
+        Button button = new Button("Auction");
+        button.relocate (450,100);
+        button.setPrefSize (100,50);
+        shopMenuRoot.getChildren ().addAll (chosenCard,chosenCardText,button);
 
+        button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                shopMenuRoot.getChildren ().clear ();
+                shopMenuRoot.getChildren ().add (backgroundImageView);
+                backgroundImageView.setEffect (blur);
+
+            }
+        });
+        //TODO
     }
 
     private void customCardClicked() {
@@ -1104,8 +1134,8 @@ public class ShopMenuView {
                     else if (Shop.getCards ().get (i).getPrice() <= account.getDaric() && Shop.getCardNumbers ().get (i)>0) {
                         wanted.setText ("You bought this card successfully");
                         Card card = Shop.makeNewCardByName(Shop.getCards ().get (i).getName());
-                        card.setCardID(shopMenu.makeID(Shop.getCards ().get (i).getName(), account));
                         account.getCollection().addToCards(card);
+                        card.setCardID(ShopMenu.makeID(Shop.getCards ().get (i).getName(), account));
                         account.changeDaric(account.getDaric() - Shop.getCards ().get (i).getPrice());
                         int number= Shop.getCardNumbers ().get (i);
                         Shop.getCardNumbers ().remove (i);
@@ -1134,11 +1164,12 @@ public class ShopMenuView {
                             account.changeDaric(account.getDaric() - Shop.getItems ().get (i).getPrice());
                             account.changeNumberOfItemsOwned(account.getNumberOfItemsOwned() + 1);
                             Item item = Shop.makeNewItemByName(Shop.getItems ().get (i).getName());
-                            item.setItemID(shopMenu.makeID(Shop.getItems ().get (i).getName(), account));
+                            account.getCollection().addToItems(item);
+                            item.setItemID(ShopMenu.makeID(item.getName (), account));
                             int number= Shop.getItemNumbers ().get (i);
                             Shop.getItemNumbers ().remove (i);
                             Shop.getItemNumbers ().add (number - 1);
-                            account.getCollection().addToItems(item);
+
                         }
                         break;
                     }

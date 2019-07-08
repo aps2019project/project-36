@@ -231,14 +231,14 @@ public class ShopMenu {
         System.out.println("help");
     }
 
-    public String makeID(String name, Account account) {
+    public static String makeID(String name, Account account) {
         String ID;
         ID = account.getUsername() + "_" + name + "_" + getMaxNumber(name, account);
         return ID;
 
     }
 
-    public int getMaxNumber(String name, Account account) {
+    public static int getMaxNumber(String name, Account account) {
         boolean found = false;
         int maxNumber = 0;
         for (Card x : account.getCollection().getCards()) {
@@ -255,7 +255,7 @@ public class ShopMenu {
                 }
             }
         }
-        return ++maxNumber;
+        return maxNumber;
     }
 
 

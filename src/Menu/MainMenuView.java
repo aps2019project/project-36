@@ -518,10 +518,6 @@ public class MainMenuView {
 
                 else{
                     str = "create account ";
-//                    str += username.getText ( );
-//                    str += " ";
-//                    str += pass.getText ( );
-
 
                     if (Player.takenUsernames (username.getText ( ))) {
                         mainMenuRoot.getChildren ().removeAll (pass,passwordLabel,username,usernameLabel,button);
