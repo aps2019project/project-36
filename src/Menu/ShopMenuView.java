@@ -439,18 +439,47 @@ public class ShopMenuView {
             shopMenuRoot.getChildren ().add (text);
             i++ ;
         }
+        for(Card card:Menu.loggedInPlayer.getCollection ().getCards ()){
+            Text text = setText ();
+            text.setFont (Font.font ("verdana",FontWeight.BOLD,15));
+            text.setText (card.getName ()+" :" + card.getCardID ());
+            text.relocate (50,120 + i*22);
+            shopMenuRoot.getChildren ().add (text);
+            i++ ;
+        }
+
+
         Button button = new Button("Auction");
-        button.relocate (450,100);
+        button.relocate (620,130);
         button.setPrefSize (100,50);
         shopMenuRoot.getChildren ().addAll (chosenCard,chosenCardText,button);
 
         button.setOnMouseClicked (new EventHandler<MouseEvent> ( ) {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                String[] partsOfID = chosenCardText.getText ().split ("_");
+                String name = partsOfID[1];
                 shopMenuRoot.getChildren ().clear ();
                 shopMenuRoot.getChildren ().add (backgroundImageView);
                 backgroundImageView.setEffect (blur);
-
+                try {
+                    Image auctionCardImage = new Image(new FileInputStream ("/Users/rostaroghani/Desktop/Items/"+name+".png"));
+                    ImageView auctioncardImageView = new ImageView (auctionCardImage);
+                    auctioncardImageView.setFitHeight (400);
+                    auctioncardImageView.setFitWidth (270);
+                    auctioncardImageView.relocate (50,20);
+                    shopMenuRoot.getChildren ().add (auctioncardImageView);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace ( );
+                }
+                TextField suggestedPriceText = new TextField ();
+                Text suggestedPrice = setText ();
+                suggestedPrice.setText ("Suggest a price:");
+                suggestedPrice.relocate (400,200);
+                suggestedPriceText.relocate (570,200);
+                suggestedPriceText.setPrefSize (120,40);
+                shopMenuRoot.getChildren ().addAll (suggestedPrice,suggestedPriceText);
+                setExitButton ();
             }
         });
         //TODO
