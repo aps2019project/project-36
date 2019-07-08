@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Battle.*;
@@ -17,9 +19,7 @@ import Consts.Consts;
 import Menu.MainMenuView;
 import Menu.Menu;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -28,12 +28,12 @@ public class Graphics extends Application {
     public static ObjectOutputStream objectOutputStream;
     public static Stage stage;
     public static Player player = new Player();
-
+    private Media backgroundMusic = new Media(getClass ().getResource ("/audio/Tower-Defense_Looping.mp3").toExternalForm ());
+    MediaPlayer backgroundMusicPlayer = new MediaPlayer (backgroundMusic);
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        backgroundMusicPlayer.play ();
         stage = primaryStage;
-
         player.setUsername("yegi");
         Deck deck = new Deck();
         Consts.setBattleDeck(deck);
