@@ -4,6 +4,7 @@ import Battle.AccountMenu;
 import Consts.Consts;
 import Player.Account;
 import Player.Player;
+import com.google.gson.Gson;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -488,7 +489,17 @@ public class MainMenuView {
                     else{
                         AccountMenu menu = new AccountMenu();
                         try {
-                            Menu.loggedInPlayer= menu.createAccount(username.getText(), pass.getText());
+                            Gson gson = new Gson ();
+                            InputStream input = new FileInputStream ("AccountInfo/"+username.getText ()+".json");
+                            Reader reader = new InputStreamReader (input);
+                            Account account = gson.fromJson (reader, Account.class);
+                            ClientInfo clientInfo = Main.clientInfo;
+                            clientInfo.setOrder("new Account");
+                            clientInfo.setAccount(account);
+                            Graphics.objectOutputStream.writeObject(clientInfo);
+                            Graphics.objectOutputStream.flush();
+                            Menu.loggedInPlayer=account;
+
                         } catch (IOException e) {
                             e.printStackTrace ( );
                         }
