@@ -535,6 +535,7 @@ public class ShopMenuView {
                     } catch (IOException e) {
                         e.printStackTrace ( );
                     }
+                    Menu.loggedInPlayer.changeDaric (Menu.loggedInPlayer.getDaric () - Integer.parseInt (cardCostText.getText ()));
                     if(type.compareToIgnoreCase ("hero")==0){
                         Hero hero = new Hero();
                         hero.setName (cardNameText.getText ());
@@ -664,7 +665,6 @@ public class ShopMenuView {
                     showCustomCardMessage ();
                 }
             });
-        //todo kam kardan daric
     }
 
     public void makeCustomBuff(Buff buff,String name,String type,int effectValue,int delay,int last,String target){
@@ -681,6 +681,7 @@ public class ShopMenuView {
         backgroundImageView.setEffect (blur);
         setExitButton ();
         Text text = new Text ("Your card was made successfully");
+        text.setFont (Font.font (20));
         shopMenuRoot.getChildren ().addAll (backgroundImageView,text);
         text.relocate (830,100);
         String address = "/Users/rostaroghani/Desktop/Items/CustomItem.png";
